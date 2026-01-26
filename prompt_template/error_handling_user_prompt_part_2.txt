@@ -1,0 +1,6 @@
+Attempt {}:
+
+Generated SQL Query:
+{}
+Error Message:
+{}
