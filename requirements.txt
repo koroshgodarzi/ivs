@@ -1,0 +1,15 @@
+numpy
+pandas
+openpyxl
+python-dotenv
+
+langchain-core
+langchain-huggingface
+langchain_openai
+langgraph
+langgraph-checkpoint-sqlite
+
+sqlalchemy
+pydantic
+
+huggingface-hub

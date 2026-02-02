@@ -36,6 +36,7 @@ Temporary Items
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
+src/graph/__pycache__/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -62,6 +63,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+src/wheels.zip
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

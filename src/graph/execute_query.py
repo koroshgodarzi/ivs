@@ -12,13 +12,13 @@ def execute_query(state: GraphState) -> GraphState:
 
     queries = [q for q in state.get("generated_query", [])]
     query = queries[-1] if queries else ""
+    print(f"Here on executing: {query}")
     
     if not query:
         state["error_message"] = "No SQL query generated"
         state["query_results"] = None
         return state
     
-    # Execute query
     results, error = run_sql_server_query(query)
     
     if error:
@@ -27,6 +27,7 @@ def execute_query(state: GraphState) -> GraphState:
         state["error_message"] = errors
     else:
         state["query_results"] = results
+        print(f"Query result: {results}")
 
     return state
 
@@ -42,9 +43,7 @@ def run_sql_server_query(
     """
     Execute a SQL query against a SQL Server database using SQLAlchemy and pytds.
     """
-    
-    # Security check: only allow SELECT statements
-    # (Assuming is_select_only is defined elsewhere in your project)
+
     if not is_select_only(query):
         return None, "Only SELECT queries are allowed."
 
@@ -53,33 +52,15 @@ def run_sql_server_query(
         # quote_plus handles special characters in passwords
         safe_password = quote_plus(password)
         
-        # 2. Construct the pytds connection string
-        # Format: mssql+pytds://<user>:<password>@<host>:<port>/<database>
         connection_url = (
             f"mssql+pytds://{user}:{safe_password}@{server}:{port}/{database}"
         )
-
-        # 3. Create Engine
-        # use_setinputsizes=False is often recommended for pytds to avoid 
-        # performance issues with certain data types
         engine = create_engine(connection_url, future=True)
 
-        # inspector = inspect(engine)
-        # table_names = inspector.get_table_names()
-        # print(f"Successfully connected! Tables found: {table_names}")
-        
         with engine.connect() as conn:
-            # Wrap raw SQL in SQLAlchemy text() object
-            executable_query = text(query)
-            
-            # Execute
+            executable_query = text(query)            
             result = conn.execute(executable_query)
-            
-            # Fetch as dictionaries
-            # .mappings() returns a MappingResult which behaves like a dict
             rows = result.mappings().all()
-            
-            # 4. Convert to list of dictionaries and ensure JSON serializability
             results = []
             for row in rows:
                 row_dict = {}
@@ -97,12 +78,10 @@ def run_sql_server_query(
             return results, None
 
     except SQLAlchemyError as e:
-        # This will catch connection issues, authentication failures, and syntax errors
         return None, f"Database error: {str(e)}"
     except Exception as e:
         return None, f"Unexpected error: {str(e)}"
     finally:
-        # Explicitly dispose of the engine to close connection pools
         if 'engine' in locals():
             engine.dispose()
 
@@ -112,12 +91,10 @@ def is_select_only(query: str) -> bool:
     Validate that the query only contains SELECT statements.
     Blocks DROP, DELETE, INSERT, UPDATE, and other dangerous operations.
     """
-    # Normalize the query: remove comments and extra whitespace
     query_normalized = re.sub(r'--.*?$', '', query, flags=re.MULTILINE)
     query_normalized = re.sub(r'/\*.*?\*/', '', query_normalized, flags=re.DOTALL)
     query_normalized = query_normalized.strip().upper()
     
-    # Check for dangerous SQL keywords
     dangerous_keywords = [
         'DROP', 'DELETE', 'INSERT', 'UPDATE', 'ALTER', 
         'CREATE', 'TRUNCATE', 'EXEC', 'EXECUTE', 'GRANT',
@@ -125,12 +102,10 @@ def is_select_only(query: str) -> bool:
     ]
     
     for keyword in dangerous_keywords:
-        # Use word boundaries to avoid false positives
         pattern = r'\b' + re.escape(keyword) + r'\b'
         if re.search(pattern, query_normalized):
             return False
     
-    # Must start with SELECT
     if not query_normalized.startswith('SELECT'):
         return False
     

@@ -1,6 +1,6 @@
 from graph.schema import GraphState
 from graph.embedding import schema_retriever
-from graph.validation import validate_query, should_proceed_with_query, handle_validation_failure
+from graph.validation import validate_user_question, should_proceed_with_user_question, handle_validation_failure
 from graph.generate_query import sql_generator
 from graph.execute_query import execute_query
 from graph.error_handling import error_handler, should_retry, explain_query_error
@@ -10,35 +10,31 @@ from graph.utils import get_llm
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.sqlite import SqliteSaver
 import sqlite3
-
+from graph.monitoring import configure_jsonl_logger, with_state_logging
 
 def build_graph():
-    """Build and compile the LangGraph workflow."""
-    # Create the graph
     workflow = StateGraph(GraphState)
+
+    logger = configure_jsonl_logger("workflow_state.jsonl")
+
+    workflow.add_node("schema_retriever", with_state_logging("schema_retriever", schema_retriever, logger))
+    workflow.add_node("validate_user_question", with_state_logging("validate_user_question", validate_user_question, logger))
+    workflow.add_node("handle_validation_failure", with_state_logging("handle_validation_failure", handle_validation_failure, logger))
+    workflow.add_node("sql_generator", with_state_logging("sql_generator", sql_generator, logger))
+    workflow.add_node("execute_query", with_state_logging("execute_query", execute_query, logger))
+    workflow.add_node("error_handler", with_state_logging("error_handler", error_handler, logger))
+    workflow.add_node("explain_query_error", with_state_logging("explain_query_error", explain_query_error, logger))
+    workflow.add_node("format_response", with_state_logging("format_response", format_final_response, logger))
     
-    # Add nodes
-    workflow.add_node("schema_retriever", schema_retriever)
-    workflow.add_node("validate_query", validate_query)
-    workflow.add_node("handle_validation_failure", handle_validation_failure)
-    workflow.add_node("sql_generator", sql_generator)
-    workflow.add_node("execute_query", execute_query)
-    workflow.add_node("error_handler", error_handler)
-    workflow.add_node("explain_query_error", explain_query_error)
-    workflow.add_node("format_response", format_final_response)
-    
-    # --- FLOW DEFINITION ---
-    
-    # 1. Start with schema retrieval
     workflow.set_entry_point("schema_retriever")
     
     # 2. Move from retrieval to validation
-    workflow.add_edge("schema_retriever", "validate_query")
+    workflow.add_edge("schema_retriever", "validate_user_question")
     
     # 3. Validation conditional routing
     workflow.add_conditional_edges(
-        "validate_query",
-        should_proceed_with_query,
+        "validate_user_question",
+        should_proceed_with_user_question,
         {
             "proceed": "sql_generator",
             "halt": "handle_validation_failure"
@@ -59,7 +55,7 @@ def build_graph():
             "end": "format_response"
         }
     )
-
+    # workflow.add_edge("explain_query_error", "execute_query")
     workflow.add_edge("explain_query_error", "error_handler")
     workflow.add_edge("format_response", END)
     
@@ -81,7 +77,7 @@ def main():
     app = build_graph()
 
     # 3. Define the user's question
-    questions = ["Which contracts are canceles?"]
+    questions = ['Status of how many contracts are canceled?']
 
     # 4. Initialize the state
     # This matches the 'GraphState' structure expected by your nodes

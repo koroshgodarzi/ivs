@@ -1,161 +1,134 @@
 from graph.schema import GraphState
-from typing import Optional, List, Dict, Any
+from typing import Optional, List
 import json
 import os
 import numpy as np
 from pathlib import Path
-import google.generativeai as genai
+import ollama 
 
 from dotenv import load_dotenv
 load_dotenv()
 
-def schema_retriever(state: GraphState) -> GraphState:
+def schema_retriever(state: GraphState,
+    top_k_schemas: int = 1,
+) -> GraphState:
     """
     Initial node to identify relevant view names based on the user's prompt.
     Saves only the names to the state, omitting file loading.
     """
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
     user_prompt = user_messages[-1]["content"] if user_messages else ""
-    
-    # Now returns a list of names instead of a large string
-    relevant_views = get_relevant_view_names(user_prompt=user_prompt)
-    
-    # Store the list of names in state
+
+    relevant_views = get_relevant_view_names(user_prompt=user_prompt, k=top_k_schemas)
+
     state["retrieved_schema"] = relevant_views
-    
+
     print(f"Relevant views identified and stored: {relevant_views}")
     return state
 
 
-def get_relevant_view_names(user_prompt: str = None, k: int = 1, schema_names: Optional[List[str]] = None) -> List[str]:
+def get_relevant_view_names(
+    user_prompt: Optional[str] = None,
+    k: int = 5,
+    schema_names: Optional[List[str]] = None,
+) -> List[str]:
     """
-    Determines which database views are relevant. 
-    File loading logic has been removed.
+    Determines which database views are relevant.
     """
+
     view_mapping_path = Path(__file__).parent.parent.parent / "data" / "view_index_mapping.json"
-    
+
     if user_prompt:
         try:
-            # Find most similar embeddings
             top_k_indices = find_most_similar_embeddings(user_prompt, k=k)
-            
+
             if not view_mapping_path.exists():
-                raise FileNotFoundError(f"View index mapping file not found at: {view_mapping_path}")
-            
+                raise FileNotFoundError(
+                    f"View index mapping file not found at: {view_mapping_path}"
+                )
+
             with open(view_mapping_path, "r", encoding="utf-8") as f:
-                view_mapping = json.load(f)
-            
-            index_to_view = {v: k for k, v in view_mapping.items()}
-            
-            # Extract just the names
-            schema_names = [index_to_view[int(idx)] for idx in top_k_indices if int(idx) in index_to_view]
-            
+                index_to_view = json.load(f)  
+
+            schema_names = []
+            for idx in top_k_indices:
+                key = str(int(idx))  
+                if key in index_to_view:
+                    view = index_to_view[key]
+                    if view not in schema_names:
+                        schema_names.append(view)
+
             if not schema_names:
-                raise ValueError(f"No matching views found for indices: {top_k_indices}")
-                
+                raise ValueError(
+                    f"No matching views found for indices: {top_k_indices}"
+                )
+
         except Exception as e:
-            raise RuntimeError(f"Failed to identify relevant schemas: {str(e)}") from e
+            raise RuntimeError(
+                f"Failed to identify relevant schemas: {str(e)}"
+            ) from e
+
     elif not schema_names:
         raise ValueError("Either user_prompt or schema_names must be provided")
-    
-    # Return the list of names directly; no file reading occurs.
+
     return schema_names
 
 
 def find_most_similar_embeddings(user_prompt: str, k: int = 5, embeddings_path: str = None) -> np.ndarray:
     """
-    Embed a user prompt using Gemini API and find the k most similar 
+    Embed a user prompt using Ollama (embeddinggemma) and find the k most similar
     embeddings from a pre-computed numpy array.
     """
-    # 1. Setup API Configuration
-    api_key = os.getenv("GOOGLE_API_KEY")
-    if not api_key:
-        raise ValueError("GOOGLE_API_KEY environment variable is not set")
-    
-    genai.configure(api_key=api_key)
-    
-    # 2. Handle File Path
+
     if embeddings_path is None:
-        # Default path logic
         embeddings_path = Path(__file__).parent.parent.parent / "data" / "embeddings.npy"
     else:
         embeddings_path = Path(embeddings_path)
-    
+
     if not embeddings_path.exists():
         raise FileNotFoundError(f"Embeddings file not found at: {embeddings_path}")
-    
-    # 3. Load existing embeddings
+
     embeddings_array = np.load(str(embeddings_path))
-    
-    # 4. Generate Embedding for User Prompt
-    # Using 'retrieval_query' task type which is optimized for search queries
-    result = genai.embed_content(
-        model="models/text-embedding-004",
-        content=user_prompt,
-        task_type="retrieval_query"
-    )
-    
-    # Extract the vector and convert to numpy
-    user_embedding = np.array(result['embedding'])
-    
-    # 5. Compute Cosine Similarity
-    # Normalize vectors to unit length
+
+    embed_model = os.getenv("OLLAMA_EMBED_MODEL", "embeddinggemma")
+    resp = ollama.embed(model=embed_model, input=user_prompt)
+    user_embedding = np.array(resp["embeddings"][0], dtype=np.float32) 
+
     user_norm = user_embedding / np.linalg.norm(user_embedding)
-    # Normalize the entire matrix (axis 1)
     array_norm = embeddings_array / np.linalg.norm(embeddings_array, axis=1, keepdims=True)
-    
-    # Dot product of normalized vectors gives cosine similarity
+
     similarities = np.dot(array_norm, user_norm)
-    
-    # 6. Return top K indices
-    # argsort returns indices in ascending order, so we reverse it [::-1]
+
     top_k_indices = np.argsort(similarities)[::-1][:k]
-    
     return top_k_indices
 
 
 if __name__ == "__main__":
-    import os
-    from pathlib import Path
 
-    # 1. Setup Mock Environment Variables (Replace with your actual key for testing)
-    # os.environ["GOOGLE_API_KEY"] = "your-api-key-here"
+    test_prompts = [
+        "تعداد پروژه های فعال من چند تاست؟",
+        "چند تا پروژه در حالت 'در حال مذاکره' دارم؟",
+        "ناصر اسدی مدیر چند تا پروژه در وضعیت در حال اجراست؟",
+        "ناصر اسدی مدیر چند تا پروژه فعاله؟",
+        "لیست پروژه هایی که ناظر یا مشاور دارن",
+        "کدوم یکی از پروژه های EPC من پیشرفت واقعی بیشتری دارن؟",
+        "جمع رقم قراردادهای خاتمه یافته عمومی رو به تفکیک سال بده.",
+        "لیست قراردادهای تاخیر دار رو به ترتیب از بدترین وضعیت بده",
+        "یه پروژه جدید داره میاد. به نظرت بین مدیر پروژه های قبلی، به کدوم یکی بدمش؟ هم بحث تعداد پروژه هایی که نفر دستشه رو در نظر بگیر هم بحث تاخیر پروژه های قبلی",
+        "آیا ارتباطی بین محل اجرای پروژه با احتمال تاخیرش دیده میشه؟",
+        "لیست قراردادهای فسخ شده رو بده",
+        "جمع مبلغ و تعداد قراردادهای جاری رو بده",
+        "جمع قراردادهای هر سال از 90 به اینور رو بده",
+        "لیست قراردادهایی که الحاقیه دارن رو بده",
+        "قراردادهایی که صورت وضعیت نخوردن ولی پرداخت داشتن",
+        "جمع مبالغی که صورت وضعیت شده اما هنوز پرداخت نشده برای قراردادهای جاری",
+        "میانگین درصد الحاقیه ها نسبت به رقم قرارداد به تفکیک سال",
+        "وضعیت کدوم قراردادم خیلی خرابه؟ میتونی از میزان پیشرفت فیزیکی نسبت به مبلغ پرداخت شده و همچنین مبلغ اولیه قرارداد برای معیار استفاده کنی",
+        "کدوم مدیر پروژه قراردادهاش رو بهتر مدیریت کرده؟ میتونی یه معیار از تعداد قراردادهای خاتمه یافته به عنوان امتیاز مثبت، فسخ شده به عنوان امتیاز منفی، و انحراف رقم پرداخت شده نهایی نسبت به رقم اولیه به عنوان امتیاز منفی شکل بدی و بر اون اساس قضاوت کنی"
+    ]
 
-    # 2. Define a Mock GraphState
-    # This mimics the structure LangGraph uses
-    mock_state: GraphState = {
-        "messages": [
-            {
-                "role": "user", 
-                "content": "I need to see the latest contract values and project statuses"
-            }
-        ],
-        "retrieved_schema": []
-    }
-
-    print("--- Starting Schema Retrieval Test ---")
-    
-    try:
-        # 3. Test the Node function
-        # This will internally call get_relevant_view_names and find_most_similar_embeddings
-        updated_state = schema_retriever(mock_state)
-        
-        # 4. Validate Results
-        retrieved_names = updated_state.get("retrieved_schema", [])
-        
-        print("\nSUCCESS!")
-        print(f"User Prompt: {mock_state['messages'][-1]['content']}")
-        print(f"Identified View Names: {retrieved_names}")
-        
-        if isinstance(retrieved_names, list) and len(retrieved_names) > 0:
-            print("Verification: State correctly contains a list of names.")
-        else:
-            print("Verification: No views were found. Check if your .npy and .json files are populated.")
-
-    except FileNotFoundError as e:
-        print(f"\nFILE ERROR: {e}")
-        print("Ensure your 'table_view' directory contains 'embeddings.npy' and 'view_index_mapping.json'.")
-    except Exception as e:
-        print(f"\nAN ERROR OCCURRED: {type(e).__name__}: {e}")
-
-    print("\n--- Test Complete ---")
+    for tp in test_prompts:
+        print(tp)
+        state = GraphState(messages=[{"role": "user", "content": tp}], generated_query=None, query_results=None, error_message=None, summary_context=None, retry_count=0, validation_result=None, retrieved_schema=['vw_Contracts'])
+        schema_retriever(state, 3)
+        print()

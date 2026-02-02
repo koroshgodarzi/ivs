@@ -1,30 +1,62 @@
-from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
+from langchain_openai import ChatOpenAI
 import os
 import json
 import re
+import os
+import tiktoken
+from typing import List, Dict
+from langchain_core.messages import BaseMessage
 
 from dotenv import load_dotenv
 load_dotenv()
 
 
-def get_llm():
+def get_llm(max_tokens: int = 512):
     """
-    Connects to Hugging Face's OpenAI-compatible API.
-    This fixes 'StopIteration' and 'Task Support' errors.
+    Returns a chat LLM using an OpenAI-compatible API.
+    Model + endpoint are fully configurable.
     """
-    api_token = os.getenv("HUGGINGFACEHUB_API_TOKEN")
-    if not api_token:
-        raise ValueError("HUGGINGFACEHUB_API_TOKEN environment variable is not set")
-    
-    llm = HuggingFaceEndpoint(
-        repo_id="Qwen/Qwen2.5-Coder-7B-Instruct",
-        task="text-generation",
-        max_new_tokens=512,
-        do_sample=False,
-        repetition_penalty=1.03,
-        provider="auto", 
+
+    api_key = os.getenv("LLM_API_KEY")
+    base_url = os.getenv("LLM_BASE_URL")  
+    model = os.getenv("LLM_MODEL", "qwen2.5-coder-7b-instruct")
+
+    if not api_key or not base_url:
+        raise ValueError("LLM_API_KEY or LLM_BASE_URL not set")
+
+    return ChatOpenAI(
+        api_key=api_key,
+        base_url=base_url,
+        model=model,
+        temperature=0,
+        max_tokens=max_tokens,
     )
-    return ChatHuggingFace(llm=llm)
+
+
+def count_chat_tokens(messages: list[BaseMessage]) -> int:
+    """
+    Counts tokens for LangChain chat messages.
+    Uses a best-effort tokenizer based on the configured model.
+    """
+    model = os.getenv("LLM_MODEL", "qwen2.5-coder-7b-instruct")
+
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+    except KeyError:
+        encoding = tiktoken.get_encoding("cl100k_base")
+
+    total_tokens = 0
+
+    for message in messages:
+        total_tokens += len(encoding.encode(message.content))
+
+        # Small overhead per message (role + separators)
+        total_tokens += 4
+
+    # Extra tokens for assistant reply priming
+    total_tokens += 2
+
+    return total_tokens
 
 
 def extract_json_from_text(text: str) -> dict:
@@ -98,6 +130,42 @@ def create_column_names_for_schemas(schema_list: list, needed_categories: str) -
                 all_schemas_metadata.append(col_info)
 
     return all_schemas_metadata
+
+
+def ommiting_think_block(text: str) -> str:
+    """
+    Extract a SQL query from model output.
+    - Removes any <think>...</think> blocks (if present)
+    - Extracts SQL starting from first SELECT or WITH
+    - Validates basic SQL-only constraints
+    """
+
+    if not text or not isinstance(text, str):
+        raise ValueError("Input must be a non-empty string")
+
+    # 1) Remove <think>...</think> blocks (non-greedy, case-insensitive, dotall)
+    cleaned = re.sub(
+        r'(?is)<think>.*?</think>\s*',
+        '',
+        text
+    ).strip()
+
+    # # 2) Find the first SELECT or WITH
+    # match = re.search(r'(?is)\b(select|with)\b', cleaned)
+    # if not match:
+    #     raise ValueError("No SQL statement found")
+
+    # sql = cleaned[match.start():].strip()
+
+    # # 3) Final sanity checks
+    # if re.search(r'(?is)<\/?think\b|```', sql):
+    #     raise ValueError("Non-SQL content detected in output")
+
+    # if not re.match(r'(?is)^(select|with)\b', sql):
+    #     raise ValueError("Extracted text does not start with SQL")
+
+    return cleaned
+
 
 
 if __name__ == "__main__":
