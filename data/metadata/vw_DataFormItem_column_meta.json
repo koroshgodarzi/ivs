@@ -1,0 +1,473 @@
+[
+    {
+        "name": "DataFormItemKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "WBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            45211,
+            45212
+        ]
+    },
+    {
+        "name": "WeightOfWhole",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.028068042125577473,
+            0.018712028083718312
+        ]
+    },
+    {
+        "name": "ProjectKey",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            36,
+            6391
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "بعثت بلوک B",
+            "احداث ایستگاه فیبرنوری ایذه - خوزستان1"
+        ]
+    },
+    {
+        "name": "DataFormItemPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            13937,
+            13938
+        ]
+    },
+    {
+        "name": "DataFormItemTitle",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "شيب بندي و كفسازي تراسها - هفتم B",
+            "عايقكاري تراسها - هفتم B"
+        ]
+    },
+    {
+        "name": "Duration",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            2.0,
+            5.0
+        ]
+    },
+    {
+        "name": "DurationUnit",
+        "type": "CHAR(3) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "HOR",
+            "DAY",
+            "MON"
+        ]
+    },
+    {
+        "name": "ActualStartDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            20251116,
+            20241026,
+            20150101,
+            20251101,
+            20240508
+        ]
+    },
+    {
+        "name": "ActualStartDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1404,
+            1403,
+            1393,
+            1391,
+            1390
+        ]
+    },
+    {
+        "name": "ActualStartDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            8,
+            10,
+            2,
+            3,
+            1
+        ]
+    },
+    {
+        "name": "ActualStartDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            25,
+            5,
+            11,
+            10,
+            19
+        ]
+    },
+    {
+        "name": "ActualStartDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1404/08/25",
+            "1403/08/05",
+            "1393/10/11",
+            "1404/08/10",
+            "1403/02/19"
+        ]
+    },
+    {
+        "name": "ActualStartDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "2025-11-16",
+            "2024-10-26",
+            "2015-01-01",
+            "2025-11-01",
+            "2024-05-08"
+        ]
+    },
+    {
+        "name": "ActualEndDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            20251116,
+            20240508,
+            20240504,
+            20240608,
+            20110528
+        ]
+    },
+    {
+        "name": "ActualEndDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1404,
+            1403,
+            1390,
+            1391,
+            1402
+        ]
+    },
+    {
+        "name": "ActualEndDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            8,
+            2,
+            3,
+            4,
+            10
+        ]
+    },
+    {
+        "name": "ActualEndDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            25,
+            19,
+            15,
+            7,
+            17
+        ]
+    },
+    {
+        "name": "ActualEndDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1404/08/25",
+            "1403/02/19",
+            "1403/02/15",
+            "1403/03/19",
+            "1390/03/07"
+        ]
+    },
+    {
+        "name": "ActualEndDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "2025-11-16",
+            "2024-05-08",
+            "2024-05-04",
+            "2024-06-08",
+            "2011-05-28"
+        ]
+    },
+    {
+        "name": "PlanStartDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20120111,
+            20120113
+        ]
+    },
+    {
+        "name": "PlanStartDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1390,
+            1391
+        ]
+    },
+    {
+        "name": "PlanStartDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            10,
+            11
+        ]
+    },
+    {
+        "name": "PlanStartDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            21,
+            23
+        ]
+    },
+    {
+        "name": "PlanStartDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1390/10/21",
+            "1390/10/23"
+        ]
+    },
+    {
+        "name": "PlanStartDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2012-01-11",
+            "2012-01-13"
+        ]
+    },
+    {
+        "name": "PlanEndDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20120112,
+            20120114
+        ]
+    },
+    {
+        "name": "PlanEndDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1390,
+            1391
+        ]
+    },
+    {
+        "name": "PlanEndDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            10,
+            11
+        ]
+    },
+    {
+        "name": "PlanEndDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            22,
+            24
+        ]
+    },
+    {
+        "name": "PlanEndDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1390/10/22",
+            "1390/10/24"
+        ]
+    },
+    {
+        "name": "PlanEndDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2012-01-12",
+            "2012-01-14"
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            100.0
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            100.0,
+            99.99999999999999
+        ]
+    },
+    {
+        "name": "DisciplineName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "CPA",
+            "SPV",
+            "FA",
+            "CPM",
+            "discipline"
+        ]
+    },
+    {
+        "name": "DFITypeName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "عمومی"
+        ]
+    },
+    {
+        "name": "WorkflowModelName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "پایه",
+            "تست"
+        ]
+    },
+    {
+        "name": "حجم",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            3.0,
+            1000.0,
+            1250.0,
+            151.0,
+            2.0
+        ]
+    },
+    {
+        "name": "اختصار حجم",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Km",
+            "Sq M",
+            "M",
+            "Cu M",
+            "USD"
+        ]
+    },
+    {
+        "name": "واحد حجم",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "کیلومتر",
+            "متر مربع",
+            "متر",
+            "متر مکعب",
+            "دلار"
+        ]
+    },
+    {
+        "name": "SubProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            6375,
+            5339,
+            6376,
+            3294,
+            6374
+        ]
+    }
+]

@@ -1,0 +1,7 @@
+[Report].[vw_ProjectMonthlyReport]
+1) Report & Project Identity: unique report key, project key, and project name.
+2) Workflow Status: report status/title and completion flag.
+3) Creation Time: creation date in Gregorian + Jalali date string and Jalali Y/M/D parts.
+4) Worklog (Done): done-work title and description.
+5) Worklog (Planned): future-work title and description.
+6) Reference/Tracking: report number or external identifier.

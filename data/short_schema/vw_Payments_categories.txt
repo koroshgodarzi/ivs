@@ -1,0 +1,6 @@
+1. Payment Identity: Unique payment record identifier and related document reference.
+2. Organization & Project Context: Organizational unit hierarchy (unit, parent) and the project this payment belongs to.
+3. Classification & Allocations: Payment type plus accounting/structure dimensions (CBS, cost center, paid-on-behalf).
+4. Counterparty & Contract/Invoice Linkage: Optional ties to invoice and contract (numbers/titles) for traceability.
+5. Monetary Amount: Payment value and currency.
+6. Time Attributes: Payment/contract dates captured as date keys, Solar Hijri date strings, and year/month components.

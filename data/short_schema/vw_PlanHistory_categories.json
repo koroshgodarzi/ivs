@@ -1,0 +1,46 @@
+{
+  "table": "[Report].[vw_PlanHistory]",
+  "categories": [
+    {
+      "category_name": 1,
+      "columns": [
+        "PlanHistoryKEY",
+        "ProjectPlanPK",
+        "WBSPK"
+      ]
+    },
+    {
+      "category_name": 2,
+      "columns": [
+        "ProjectName",
+        "wbsName",
+        "ProjectPlanName"
+      ]
+    },
+    {
+      "category_name": 3,
+      "columns": [
+        "CreationTime",
+        "CreationTime_JalaliDate",
+        "CreationTime_JalaliYear",
+        "CreationTime_JalaliMonth",
+        "CreationTime_JalaliDay"
+      ]
+    },
+    {
+      "category_name": 4,
+      "columns": [
+        "PlanStartDate",
+        "PlanStartDate_JalaliDate",
+        "PlanStartDate_JalaliYear",
+        "PlanStartDate_JalaliMonth",
+        "PlanStartDate_JalaliDay",
+        "PlanEndDate",
+        "PlanEndDate_JalaliDate",
+        "PlanEndDate_JalaliYear",
+        "PlanEndDate_JalaliMonth",
+        "PlanEndDate_JalaliDay"
+      ]
+    }
+  ]
+}

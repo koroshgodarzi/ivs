@@ -1,0 +1,7 @@
+1) Identity & Scope: Item key/PK, title, and the project/subproject it belongs to.
+2) Structure & Weighting: WBS linkage and contribution/weight within the whole scope.
+3) Planning Schedule (Dates): Planned start/end dates (Gregorian + Persian + Y/M/D breakdown) and planned duration/unit.
+4) Actual Schedule (Dates): Actual start/end dates (Gregorian + Persian + Y/M/D breakdown).
+5) Progress: Planned vs. actual completion percentages.
+6) Classification & Workflow: Discipline, item/type classification, and workflow model.
+7) Quantity/Volume: Recorded quantity with its unit and short label/abbreviation.

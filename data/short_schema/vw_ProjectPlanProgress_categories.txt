@@ -1,0 +1,4 @@
+vw_ProjectPlanProgress
+1) Project Identity: Project identifier + project display name.
+2) Time Period: Reporting period/date label (e.g., Persian month/year text).
+3) Progress Metrics: Actual progress vs. planned/scheduled progress (numeric).

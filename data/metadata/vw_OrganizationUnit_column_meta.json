@@ -1,0 +1,55 @@
+[
+    {
+        "name": "StakeholderID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            765
+        ]
+    },
+    {
+        "name": "OrganizationUnitTitle",
+        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "SANAM",
+            "SANAM1"
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            1770,
+            1777,
+            2144,
+            2791
+        ]
+    },
+    {
+        "name": "ProgProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            0.806451612903226
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            38.0989994622645
+        ]
+    }
+]

@@ -1,5 +1,5 @@
 {
-    "table": "[Report].[_vw_Contracts]",
+    "table": "[Report].[vw_Contracts]",
     "categories": [
       {
         "category_name": 1,

@@ -1,0 +1,3 @@
+1. Organization Identity: Unique unit/stakeholder identifier and the unit’s display title/name.
+2. Hierarchy/Structure: Parent–child linkage to model the org tree (root units have no parent).
+3. Progress Metrics: Planned/program progress vs. actual progress (numeric %, for target vs. achieved).

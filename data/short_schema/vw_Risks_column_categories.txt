@@ -1,0 +1,7 @@
+1) Identity & Scope: Risk record identifier plus the organization/unit it belongs to (including parent hierarchy) and linked project (if any).
+2) Risk Definition: The risk’s title and narrative details (description, signs/indicators, resolution, supporting notes).
+3) Assessment & Scoring: Severity and other scoring dimensions (e.g., probability, detectability, type, response/strategy reference).
+4) Timeline (Dates): Identification and due dates provided in both Gregorian and Jalali, also split into year/month/day parts.
+5) Ownership & Audit Trail: Assigned owner and the creator/last-modifier user references and basic user profile details for each.
+6) Classification & Status: Category/date-type references, risk status, and basic tracking metrics (e.g., reference count).
+7) Actions & Stakeholders: Action/response description fields and stakeholder attribution.

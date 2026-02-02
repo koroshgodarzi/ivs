@@ -1,0 +1,30 @@
+[
+    {
+        "name": "PhotosPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            187,
+            188
+        ]
+    },
+    {
+        "name": "ProjectPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            25,
+            27
+        ]
+    },
+    {
+        "name": "PhotoValue",
+        "type": "VARBINARY",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+       ]
+    }
+]

@@ -1,0 +1,7 @@
+1. Identity & Label: Unique CBS record identifier and its human-readable name.
+2. Organization & Ownership: Which organizational unit this CBS item belongs to, including unit name and any parent stakeholder linkage.
+3. Audit Trail (Users): Who created and last modified the record.
+4. Audit Trail (Timestamps): When the record was created and last modified (as stored time keys).
+5. Allocation/Weighting: Relative weighting used for reporting/rollups.
+6. Project & Structure Links: The project reference plus any linkage to a work-breakdown structure item.
+7. Financial Values: Planned budget and/or actual amount assigned/recorded for the CBS item.

@@ -1,0 +1,25 @@
+{
+  "table": "[Report].[vw_ProjectPlanProgress]",
+  "categories": [
+    {
+      "category_name": 1,
+      "columns": [
+        "کد پروژه",
+        "نام پروژه"
+      ]
+    },
+    {
+      "category_name": 2,
+      "columns": [
+        "تاریخ"
+      ]
+    },
+    {
+      "category_name": 3,
+      "columns": [
+        "پیشرفت واقعی",
+        "پیشرفت برنامه ای"
+      ]
+    }
+  ]
+}

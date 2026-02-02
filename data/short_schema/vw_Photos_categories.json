@@ -1,0 +1,18 @@
+{
+  "table": "[Report].[vw_Photos]",
+  "categories": [
+    {
+      "category_name": 1,
+      "columns": [
+        "PhotosPK",
+        "ProjectPK"
+      ]
+    },
+    {
+      "category_name": 2,
+      "columns": [
+        "PhotoValue"
+      ]
+    }
+  ]
+}

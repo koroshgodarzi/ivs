@@ -1,0 +1,119 @@
+[
+    {
+        "name": "jFromDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1388/10/14",
+            "1389/10/14"
+        ]
+    },
+    {
+        "name": "jTodate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/10/14",
+            "1390/10/14"
+        ]
+    },
+    {
+        "name": "GFromDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2010-01-04",
+            "2011-01-04"
+        ]
+    },
+    {
+        "name": "GTodate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-04",
+            "2012-01-04"
+        ]
+    },
+    {
+        "name": "Orgid",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            1777
+        ]
+    },
+    {
+        "name": "OrgTitle",
+        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "کل سازمان",
+            "معاونت فن آوری (2)"
+        ]
+    },
+    {
+        "name": "ParentId",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            1777,
+            3001,
+            3002,
+            3003
+        ]
+    },
+    {
+        "name": "Prog",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            47.72642202038387,
+            0.0
+        ]
+    },
+    {
+        "name": "Actual",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            15.346344354846174,
+            0.0
+        ]
+    },
+    {
+        "name": "TimePeriod",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            3,
+            12,
+            1,
+            30
+        ]
+    },
+    {
+        "name": "TimePeriodtxt",
+        "type": "VARCHAR(50) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "daily",
+            "Monthly",
+            "Seasonally",
+            "yearly"
+        ]
+    }
+]

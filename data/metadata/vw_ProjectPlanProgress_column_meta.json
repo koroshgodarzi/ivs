@@ -1,0 +1,52 @@
+[
+    {
+        "name": "کد پروژه",
+        "type": "BIGINT",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            25,
+            26
+        ]
+    },
+    {
+        "name": "نام پروژه",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "فاز اول - ناصری",
+            "فاز اول - احمدی"
+        ]
+    },
+    {
+        "name": "تاریخ",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "دی, 1389",
+            "بهمن, 1389"
+        ]
+    },
+    {
+        "name": "پیشرفت واقعی",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            2.00954126799742,
+            4.732003136986434
+        ]
+    },
+    {
+        "name": "پیشرفت برنامه ای",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            5.910420753760501,
+            13.475634757546471
+        ]
+    }
+]

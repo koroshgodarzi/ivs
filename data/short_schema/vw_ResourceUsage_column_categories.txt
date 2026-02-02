@@ -1,0 +1,8 @@
+vw_ResourceUsage — Column Groups (concise)
+
+1) Project & Record Identity: Project reference; resource reference; WBS/work-package reference.
+2) Resource Details: Resource short label; person/equipment/material name; resource type (id+name); resource group (id+name).
+3) Usage Quantities: Usage amount + unit of measure; free-text comments/notes.
+4) Costing: Cost value + currency reference (if provided).
+5) Work Breakdown / Activity Context: WBS name & code; optional activity code; full WBS path/hierarchy string.
+6) Actual Start Date: Available as Solar Hijri (Persian) string, Gregorian date, and Year/Month/Day components.

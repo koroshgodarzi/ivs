@@ -1,0 +1,24 @@
+[
+    {
+        "name": "OrganizationUnitTypeKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "name": "OrganizationUnitTypeTitle",
+        "type": "NVARCHAR(50) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "ستاد",
+            "صنعت",
+            "گروه"
+        ]
+    }
+]

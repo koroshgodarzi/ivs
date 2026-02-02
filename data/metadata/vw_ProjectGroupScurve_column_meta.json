@@ -1,0 +1,125 @@
+[
+    {
+        "name": "DateType",
+        "type": "CHAR(1) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "j"
+        ]
+    },
+    {
+        "name": "GFromDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-01",
+            "2008-09-02"
+        ]
+    },
+    {
+        "name": "GToDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-09-01",
+            "2008-12-01"
+        ]
+    },
+    {
+        "name": "JFromDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1387/03/12",
+            "1387/06/12"
+        ]
+    },
+    {
+        "name": "JToDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1387/06/11",
+            "1387/09/11"
+        ]
+    },
+    {
+        "name": "PlanPer",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0,
+            0.07622524881456627,
+            0.1227919000430866,
+            0.13269339356295884,
+            0.35213451054819433
+        ]
+    },
+    {
+        "name": "ActualPer",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            -0.5541106571259817,
+            0.0,
+            0.0006249999999994316,
+            0.0008928571428583609,
+            0.0025000000000048317
+        ]
+    },
+    {
+        "name": "PlanCommulative",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0,
+            1.3196897888841015,
+            1.4933333333333334,
+            3.9999999999999996,
+            4.666666666666667
+        ]
+    },
+    {
+        "name": "ActualCommulative",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0,
+            0.004060310559339052,
+            0.018139201359279808,
+            0.04974824693459952,
+            0.1909090909090909
+        ]
+    },
+    {
+        "name": "ProjectGroupID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            8,
+            11
+        ]
+    },
+    {
+        "name": "TimePeriod",
+        "type": "VARCHAR(20) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Monthly",
+            "Seasonally",
+            "Weekly",
+            "Yearly"
+        ]
+    }
+]

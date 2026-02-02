@@ -1,0 +1,8 @@
+1. Identity & Core Project Info: Project keys/codes, project number, subject/name, and project type/category (incl. Persian label fields).
+2. Organization & Ownership: Organizational unit, project manager identity (user/name/ID), PMO/task-master roles, supervisor, consultant, client.
+3. Contract & Counterparties: Contract number plus contractor/operator/other involved parties tied to the project.
+4. Status & Performance: Project status plus progress KPIs (actual vs planned; start/end-of-year snapshots) and efficiency/variance indicators (overall/year).
+5. Time & Audit Metadata: Creation/last-modified timestamps and users (Gregorian + Solar Hijri representations where available).
+6. Location & Geography: Default location ID/title, city ID, latitude/longitude, and country/province/city descriptors.
+7. Structure & Portfolio: Parent/child linkage, parent weight, portfolio/basket fields, governance/approval level, and control-point flag.
+8. Custom Fields & Attachments: Free-form tags/labels, structural notes, customer-need description, methodology/framework fields, ad‑hoc test fields, and attachment indicators.

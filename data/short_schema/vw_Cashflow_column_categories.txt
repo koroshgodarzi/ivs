@@ -1,0 +1,11 @@
+**Cashflow View – Column Categories**
+1. **Time Dimension & Periodization**
+   Defines the reporting window and aggregation level (yearly/periodic), with both Gregorian and Persian (Solar Hijri) date ranges.
+2. **Planned Cashflow Metrics**
+   Planned cash inflows, outflows, net cash, and their cumulative values over time.
+3. **Actual Cashflow Metrics**
+   Realized cash inflows, outflows, net cash, and their cumulative values over time.
+4. **Comparative Totals**
+   Net planned vs. net actual cash positions, enabling variance and trend analysis.
+5. **Project Context**
+   Identifies which project the cashflow data belongs to.

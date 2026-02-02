@@ -1,0 +1,378 @@
+[
+    {
+        "name": "DataFormItemPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            7826,
+            7827
+        ]
+    },
+    {
+        "name": "WBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            204744,
+            204745
+        ]
+    },
+    {
+        "name": "WeightOfWhole",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            3.225806451612904
+        ]
+    },
+    {
+        "name": "ProjectKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1207,
+            6392
+        ]
+    },
+    {
+        "name": "آیدی قلم کاری",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            96269,
+            96270
+        ]
+    },
+    {
+        "name": "کد پروژه",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1207,
+            6392
+        ]
+    },
+    {
+        "name": "نام پروژه",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "تست پایش میدانی",
+            "طرح جامع آبرسانی"
+        ]
+    },
+    {
+        "name": "کد قلم کاری",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            96269,
+            96270
+        ]
+    },
+    {
+        "name": "عنوان قلم کاری",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "اجرای ساپورت",
+            "لوله کشی فاضلاب و ونت"
+        ]
+    },
+    {
+        "name": "تاریخ شروع برنامه ای قلم کاری-سال",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1394,
+            1392,
+            1388,
+            1389,
+            1407
+        ]
+    },
+    {
+        "name": "تاریخ شروع برنامه ای قلم کاری-ماه",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            11,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "تاریخ شروع برنامه ای قلم کاری-روز",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            18,
+            19,
+            13,
+            15,
+            24
+        ]
+    },
+    {
+        "name": "تاریخ شروع برنامه ای قلم کاری",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2012-03-27",
+            "2012-03-22"
+        ]
+    },
+    {
+        "name": "تاریخ شروع واقعی قلم کاری-سال",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1394,
+            1392,
+            1389,
+            1393,
+            1399
+        ]
+    },
+    {
+        "name": "تاریخ شروع واقعی قلم کاری-ماه",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            11,
+            1,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "تاریخ شروع واقعی قلم کاری-روز",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            18,
+            19,
+            13,
+            15,
+            24
+        ]
+    },
+    {
+        "name": "تاریخ شروع واقعی قلم کاری",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2025-12-27",
+            "2025-12-10"
+        ]
+    },
+    {
+        "name": "تاریخ پایان برنامه ای قلم کاری-سال",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1394,
+            1392,
+            1388,
+            1389,
+            1407
+        ]
+    },
+    {
+        "name": "تاریخ پایان برنامه ای قلم کاری-ماه",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            11,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "تاریخ پایان برنامه ای قلم کاری-روز",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            18,
+            19,
+            13,
+            15,
+            24
+        ]
+    },
+    {
+        "name": "تاریخ پایان برنامه ای قلم کاری",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2012-04-07",
+            "2012-03-26"
+        ]
+    },
+    {
+        "name": "تاریخ پایان واقعی قلم کاری-سال",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1394,
+            1392,
+            1389,
+            1393,
+            1390
+        ]
+    },
+    {
+        "name": "تاریخ پایان واقعی قلم کاری-ماه",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            11,
+            1,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "تاریخ پایان واقعی قلم کاری-روز",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            18,
+            19,
+            13,
+            15,
+            24
+        ]
+    },
+    {
+        "name": "تاریخ پایان واقعی قلم کاری",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2025-12-27",
+            "2016-01-01"
+        ]
+    },
+    {
+        "name": "پیشرفت برنامه قلم کاری",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            88.6661350951126
+        ]
+    },
+    {
+        "name": "پیشرفت واقعی قلم کاری",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            100.00000000000003
+        ]
+    },
+    {
+        "name": "نام دیسیپلین قلم کاری",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "تجهیزات متفرقه",
+            "Instrument"
+        ]
+    },
+    {
+        "name": "نام چرخه کاری قلم کاری",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "چرخه مهندسی-ورژن 3",
+            "Direct Res test3"
+        ]
+    },
+    {
+        "name": "نوع قلم کاری",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "عمومی"
+        ]
+    },
+    {
+        "name": "SubProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            6375,
+            3294,
+            6374,
+            5339,
+            6376
+        ]
+    },
+    {
+        "name": "استان",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "سایت",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "شهر",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "مسول",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    }
+]

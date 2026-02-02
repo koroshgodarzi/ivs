@@ -1,0 +1,154 @@
+[
+    {
+        "name": "CBSKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            13,
+            14
+        ]
+    },
+    {
+        "name": "CBSName",
+        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "هزینه کارگاه",
+            "دفتر مرکزی"
+        ]
+    },
+    {
+        "name": "OrganizationUnitPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2803,
+            3001,
+            1778,
+            3002
+        ]
+    },
+    {
+        "name": "OrganUnitName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "کل سازمان",
+            "معاونت بهره برداری و توسعه",
+            "معاونت برنامه ریزی، مالی و پشتیبانی",
+            "معاونت مالی",
+            "معاونت اقتصادی و سرمایه گذاری"
+        ]
+    },
+    {
+        "name": "Stakeholder_ParentKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2802
+        ]
+    },
+    {
+        "name": "CreatedBy",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1080774189,
+            1313419576
+        ]
+    },
+    {
+        "name": "LastModifiedBy",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1208196680,
+            1080774189
+        ]
+    },
+    {
+        "name": "CreationTimeKEY",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20130422163319026,
+            20130422163327660
+        ]
+    },
+    {
+        "name": "LastModificationTimeKEY",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20180210115845133,
+            20180429160509270
+        ]
+    },
+    {
+        "name": "Weight",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            90.0,
+            10.0,
+            0.0,
+            100.0,
+            15.28
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            25,
+            34
+        ]
+    },
+    {
+        "name": "Budget",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "Amount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1400000000000.0,
+            15047302670.0,
+            511608290.78,
+            0.0,
+            10000.0
+        ]
+    },
+    {
+        "name": "WBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            31994,
+            43443,
+            181432,
+            128653,
+            128654
+        ]
+    }
+]

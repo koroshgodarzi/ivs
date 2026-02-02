@@ -1,0 +1,459 @@
+[
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            221428,
+            220919
+        ]
+    },
+    {
+        "name": "WbsId",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            221431,
+            220949
+        ]
+    },
+    {
+        "name": "Duration",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            60.0,
+            2190.0
+        ]
+    },
+    {
+        "name": "DurationUnit",
+        "type": "CHAR(3) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "HOR",
+            "DAY",
+            "MON"
+        ]
+    },
+    {
+        "name": "IsActivity",
+        "type": "BIT",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "Code",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "RP02-HDPE-2-Final-2.CO.2.9",
+            "RP02-HDPE-2-Final-2.PP"
+        ]
+    },
+    {
+        "name": "Name",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "Equipment Insulation",
+            "Procurement"
+        ]
+    },
+    {
+        "name": "ActivityCode",
+        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "CP-40-000-2060",
+            "RP02-HDPE-2-Final-2.PP"
+        ]
+    },
+    {
+        "name": "JalaliDate_PlanEndDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1404/11/18",
+            "1404/11/19"
+        ]
+    },
+    {
+        "name": "GeorgianDate_PlanEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2026-02-07",
+            "2026-02-08"
+        ]
+    },
+    {
+        "name": "JalaliYear_PlanEndDate",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1404,
+            1405
+        ]
+    },
+    {
+        "name": "JalaliMonth_PlanEndDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            11,
+            12
+        ]
+    },
+    {
+        "name": "JalaliDay_PlanEndDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            18,
+            19
+        ]
+    },
+    {
+        "name": "JalaliDate_PlanStartDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1404/09/19",
+            "1398/11/22"
+        ]
+    },
+    {
+        "name": "GeorgianDate_PlanStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2025-12-10",
+            "2020-02-11"
+        ]
+    },
+    {
+        "name": "JalaliYear_PlanStartDate",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1404,
+            1398
+        ]
+    },
+    {
+        "name": "JalaliMonth_PlanStartDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            11
+        ]
+    },
+    {
+        "name": "JalaliDay_PlanStartDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            19,
+            22
+        ]
+    },
+    {
+        "name": "JalaliDate_ActualEndDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1389/10/23",
+            "1389/11/09",
+            "1390/02/01",
+            "1390/03/07",
+            "1391/05/02"
+        ]
+    },
+    {
+        "name": "GeorgianDate_ActualEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "2011-01-13",
+            "2011-01-29",
+            "2011-04-21",
+            "2011-05-28",
+            "2012-07-23"
+        ]
+    },
+    {
+        "name": "JalaliYear_ActualEndDate",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1389,
+            1390,
+            1391,
+            1392,
+            1403
+        ]
+    },
+    {
+        "name": "JalaliMonth_ActualEndDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            10,
+            11,
+            2,
+            3,
+            5
+        ]
+    },
+    {
+        "name": "JalaliDay_ActualEndDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            23,
+            9,
+            1,
+            7,
+            2
+        ]
+    },
+    {
+        "name": "JalaliDate_ActualStartDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1389/10/18",
+            "1389/10/16",
+            "1389/10/27",
+            "1389/10/29",
+            "1389/11/19"
+        ]
+    },
+    {
+        "name": "GeorgianDate_ActualStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "2011-01-08",
+            "2011-01-06",
+            "2011-01-17",
+            "2011-01-19",
+            "2011-02-08"
+        ]
+    },
+    {
+        "name": "JalaliYear_ActualStartDate",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1389,
+            1390,
+            1391,
+            1392,
+            1393
+        ]
+    },
+    {
+        "name": "JalaliMonth_ActualStartDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            10,
+            11,
+            3,
+            6,
+            4
+        ]
+    },
+    {
+        "name": "JalaliDay_ActualStartDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            18,
+            16,
+            27,
+            29,
+            19
+        ]
+    },
+    {
+        "name": "IsMilestone",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "PrjId",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            6377,
+            6404
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "Main Plant",
+            "test-primavera"
+        ]
+    },
+    {
+        "name": "OrgID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            4250,
+            4263,
+            4251,
+            3001,
+            1
+        ]
+    },
+    {
+        "name": "Weight",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            2249.2011827537995,
+            100.0
+        ]
+    },
+    {
+        "name": "Critical",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "DefaultProjectPlanID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            3704,
+            3764
+        ]
+    },
+    {
+        "name": "DefaultProjectWBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            4654,
+            4717
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            51.923076923076906
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            86.73000000000002
+        ]
+    },
+    {
+        "name": "FieldProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0,
+            1.1818181818181819,
+            10.0,
+            42.00000000000001,
+            10.536999999999999
+        ]
+    },
+    {
+        "name": "lvl",
+        "type": "CHAR(2) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "5 ",
+            "2 "
+        ]
+    },
+    {
+        "name": "ParentPath",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "RP02-HDPE-2--Rev.03/Construction/Mechanical Erection & Pre-Commissioning/Paint & Insulation & Fire Proofing/Equipment Insulation",
+            "RP02-HDPE-2--Rev.03/Procurement"
+        ]
+    },
+    {
+        "name": "ProjectHasControlPoint",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    }
+]

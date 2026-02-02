@@ -1,0 +1,2 @@
+1. Identity & Relations: Primary record identifier and the related project identifier.
+2. Binary Content: The photo itself stored as raw image bytes (e.g., JPEG) in a large binary field.

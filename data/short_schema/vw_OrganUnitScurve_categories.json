@@ -1,0 +1,36 @@
+{
+  "table": "[Report].[vw_OrganUnitScurve]",
+  "categories": [
+    {
+      "category_name": 1,
+      "columns": [
+        "jFromDate",
+        "jTodate",
+        "GFromDate",
+        "GTodate"
+      ]
+    },
+    {
+      "category_name": 2,
+      "columns": [
+        "Orgid",
+        "OrgTitle",
+        "ParentId"
+      ]
+    },
+    {
+      "category_name": 3,
+      "columns": [
+        "Prog",
+        "Actual"
+      ]
+    },
+    {
+      "category_name": 4,
+      "columns": [
+        "TimePeriod",
+        "TimePeriodtxt"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,469 @@
+[
+    {
+        "name": "IssuesKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            11,
+            12
+        ]
+    },
+    {
+        "name": "OrganizationUnitID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1
+        ]
+    },
+    {
+        "name": "OrganUnitName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "کل سازمان"
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "IssuesTitle",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            " عدم ارسال بموقع صورت وضعیت به کارفرما",
+            "1"
+        ]
+    },
+    {
+        "name": "Description",
+        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "asd",
+            "Due to the role of Mr Shamin in the project, there is a risk of missing project knowledge caused by his leaving. ",
+            "In spite of passing the deadlines the generation of basic documents is not finished yet. Although some are critical for the detailed design phase",
+            "به دلیل شیوع بیماری کرونا به مدت 1 ماه امکان حضور افراد در دفتر مرکزی وجود ندارد"
+        ]
+    },
+    {
+        "name": "ActionDescription",
+        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "asd",
+            "اقدام 1",
+            "اقدام 25",
+            "اقدام 26",
+            "دستور خرید داده شد"
+        ]
+    },
+    {
+        "name": "Severity",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "IdentificationDate_GeorgianDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001-01-01",
+            "2013-07-09"
+        ]
+    },
+    {
+        "name": "IdentificationDate_JalaliDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001/01/01",
+            "1392/04/18"
+        ]
+    },
+    {
+        "name": "IdentificationDate_JalaliYear",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            1392
+        ]
+    },
+    {
+        "name": "IdentificationDate_JalaliMonth",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "IdentificationDate_JalaliDay",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "DueDate_GeorgianDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001-01-01",
+            "2013-08-13"
+        ]
+    },
+    {
+        "name": "DueDate_JalaliDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001/01/01",
+            "1392/05/22"
+        ]
+    },
+    {
+        "name": "DueDate_JalaliYear",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            1392
+        ]
+    },
+    {
+        "name": "DueDate_JalaliMonth",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            2
+        ]
+    },
+    {
+        "name": "DueDate_JalaliDay",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Resolution",
+        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "AssignedTo",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            402080009,
+            1063264426
+        ]
+    },
+    {
+        "name": "CategoryPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            4,
+            5,
+            6,
+            8,
+            10
+        ]
+    },
+    {
+        "name": "CreatedByKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            244300198,
+            1145110906
+        ]
+    },
+    {
+        "name": "LastModifiedByKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            244300198,
+            906907199
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "",
+            "asadi"
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "",
+            "امیر حسین"
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "",
+            "اسدی"
+        ]
+    },
+    {
+        "name": "ProjectIssueStatusName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "",
+            "2"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "asadi",
+            "bakhshizadeh"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "Project",
+            "آقاي"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "Manager",
+            "اسدي"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "asadi",
+            "bakhshizadeh"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "Project",
+            "آقاي"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "Manager",
+            "اسدي"
+        ]
+    },
+    {
+        "name": "ProjectPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            25,
+            27
+        ]
+    },
+    {
+        "name": "StatusPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            7,
+            9,
+            10,
+            12,
+            13
+        ]
+    },
+    {
+        "name": "DateTypePK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Dorood Field Development",
+            "IVS"
+        ]
+    },
+    {
+        "name": "ProjectIssueCategoriesTitle",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1",
+            "پروژه",
+            "پیمانکاران",
+            "دفتر مرکزی",
+            "کارگاه"
+        ]
+    },
+    {
+        "name": "Name",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "2",
+            "Identified",
+            "بدون اقدام",
+            "برطرف شده",
+            "جاری"
+        ]
+    },
+    {
+        "name": "ProjectStatusPK",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            4
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsFullName",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "امیر حسین اقبالی",
+            "بهنام اقدام راد",
+            "پژمان وحیدزاده",
+            "دفتر مدیریت پروژه",
+            "طاهر شعبانی"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsFullName",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Project Manager",
+            "آقاي اسدي"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsFullName",
+        "type": "NVARCHAR(1001) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Project Manager",
+            "آقاي اسدي"
+        ]
+    },
+    {
+        "name": "ReferCount",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "StakeholderName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "ABB (Turkey Branch)",
+            "پشتیبانی",
+            "رفع معایب",
+            "سهیل سازه صدرا ( بیگوند )",
+            "صنایع خیام الکتریک"
+        ]
+    }
+]

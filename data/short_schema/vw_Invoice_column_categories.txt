@@ -1,0 +1,7 @@
+1. Identity & Contract Link: Invoice identifier plus the contract it belongs to (key + contract id/title).
+2. Invoice Reference: Human-facing invoice numbers (system number; optional manual number for balance invoices).
+3. Dates (Received & Issued): When the invoice was received/issued.
+Note: each date exists as Gregorian + Persian (Solar Hijri) string and as Year/Month/Day parts.
+4. Financial Amounts: Invoice amount, previously accepted amount, final accepted amount, and VAT.
+5. Cost Breakdown Link (CBS): Optional reference to a Cost Breakdown Structure item (id + name).
+6. Balance Flag: Indicates whether the record is a balance/settlement invoice.

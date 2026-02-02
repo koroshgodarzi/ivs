@@ -1,0 +1,63 @@
+{
+  "table": "[Report].[vw_Payments]",
+  "categories": [
+    {
+      "category_name": 1,
+      "columns": [
+        "PaymentKEY",
+        "DocumentNumber"
+      ]
+    },
+    {
+      "category_name": 2,
+      "columns": [
+        "OrganizationUnitPK",
+        "OrganUnitName",
+        "ParentPK",
+        "ProjectPK",
+        "ProjectName"
+      ]
+    },
+    {
+      "category_name": 3,
+      "columns": [
+        "PaymentTypePK",
+        "PaymentTypeName",
+        "CBSPK",
+        "CBSName",
+        "CostCenterPK",
+        "CostCenterName",
+        "PaymentBehalfPK",
+        "PaymentBehalfName"
+      ]
+    },
+    {
+      "category_name": 4,
+      "columns": [
+        "InvoicePK",
+        "InvoiceNumber",
+        "ContractPK",
+        "ContractTitle"
+      ]
+    },
+    {
+      "category_name": 5,
+      "columns": [
+        "Amount",
+        "CurrencyName"
+      ]
+    },
+    {
+      "category_name": 6,
+      "columns": [
+        "PaiementDateKEY",
+        "PaymentJalaliDate",
+        "PaymentJalaliYear",
+        "PaymentJalaliMonth",
+        "ContractJalaliDate",
+        "ContractJalaliYear",
+        "ContractJalaliMonth"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+[
+    {
+        "name": "InvoiceKey",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            10,
+            11
+        ]
+    },
+    {
+        "name": "ContractPK",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            465,
+            467
+        ]
+    },
+    {
+        "name": "ContractTitle",
+        "type": "NVARCHAR(200) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "555",
+            "currencytest"
+        ]
+    },
+    {
+        "name": "InvoiceNumber",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "01",
+            "02"
+        ]
+    },
+    {
+        "name": "DateReceivedKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20130203,
+            20130220
+        ]
+    },
+    {
+        "name": "DateReceived",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2013-02-03",
+            "2013-02-20"
+        ]
+    },
+    {
+        "name": "DateReceived_JalaliDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1391/11/15",
+            "1391/12/02"
+        ]
+    },
+    {
+        "name": "DateReceived_JalaliDay",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "DateReceived_JalaliMonth",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "DateReceived_JalaliYear",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1391,
+            1392
+        ]
+    },
+    {
+        "name": "DateIssuedKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            20130203,
+            20130220,
+            20130625,
+            20130715,
+            20130806
+        ]
+    },
+    {
+        "name": "DateIssued",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "2013-02-03",
+            "2013-02-20",
+            "2013-06-25",
+            "2013-07-15",
+            "2013-08-06"
+        ]
+    },
+    {
+        "name": "DateIssued_JalaliDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1391/11/15",
+            "1391/12/02",
+            "1392/04/04",
+            "1392/04/24",
+            "1392/05/15"
+        ]
+    },
+    {
+        "name": "DateIssued_JalaliDay",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "DateIssued_JalaliMonth",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "DateIssued_JalaliYear",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1391,
+            1392,
+            1393,
+            1394,
+            1397
+        ]
+    },
+    {
+        "name": "Amount",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "name": "PreviousAccepted",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0",
+            "12"
+        ]
+    },
+    {
+        "name": "FinalAcceptedAmount",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "12"
+        ]
+    },
+    {
+        "name": "CBSPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            15,
+            17,
+            1988,
+            1989,
+            1990
+        ]
+    },
+    {
+        "name": "CBSName",
+        "type": "NVARCHAR(200) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "CBS",
+            "ere",
+            "General Conditions",
+            "ترابری",
+            "صورت وضعیت"
+        ]
+    },
+    {
+        "name": "ValueAddedTax",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "0",
+            "9",
+            "81",
+            "90",
+            "2700"
+        ]
+    },
+    {
+        "name": "IsBalance",
+        "type": "BIT",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "BalanceManualNumber",
+        "type": "NVARCHAR(50) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    }
+]
