@@ -1,5 +1,3 @@
-A SQL query execution failed. Please analyze and explain the error.
-
 Needed column's of table:
 {}
 
