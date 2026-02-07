@@ -22,7 +22,7 @@ def validate_user_question(state: GraphState) -> GraphState:
         Updated GraphState with validation_result field
     """
 
-    llm = get_llm()
+    llm = get_llm(max_tokens=2048)
     
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
     if not user_messages:
@@ -30,10 +30,13 @@ def validate_user_question(state: GraphState) -> GraphState:
         return state
     
     schema = ""
-    for view in state.get("retrieved_schema"):
-        with open(os.path.join('..', 'data', 'short_schema', f'{view}.txt')) as f:
-            s = f.read()
-        schema += s
+    views = state.get("retrieved_schema")
+    view_index = state.get("schema_to_check", 0)
+    print(f"view_index: {view_index}")
+
+    with open(os.path.join('..', 'data', 'short_schema', f'{views[view_index]}.txt')) as f:
+        s = f.read()
+    schema += s
     
     with open(os.path.join('..', 'prompt_template', 'query_validation_system_prompt.txt')) as f:
         system_prompt = f.read()
@@ -67,12 +70,18 @@ def validate_user_question(state: GraphState) -> GraphState:
 def should_proceed_with_user_question(state: GraphState) -> Literal["proceed", "halt"]:
     """Conditional edge: Decide whether to proceed with SQL generation based on validation."""
     validation_result = state.get("validation_result", "")
-    
+    retrieved_schema = state.get("retrieved_schema", [])
+    schema_to_check = state.get("schema_to_check", 0)
+    print(f"schema_to_check: {schema_to_check}")
+    print(f"len(retrieved_schema): {len(retrieved_schema)}")
+
     if not validation_result:
         return "proceed"
 
     if validation_result.get("short answer", "").strip().upper().startswith("YES"):
         return "proceed"
+    elif schema_to_check <= len(retrieved_schema)-2:
+        return "loop"
     else:
         return "halt"
 
@@ -93,6 +102,15 @@ def handle_validation_failure(state: GraphState) -> GraphState:
         "content": validation_message
     })
     
+    return state
+
+
+def check_other_schemas(state: GraphState) -> GraphState:
+    """Node 3: Handle errors and prepare for retry or final response."""
+    # Increment retry count if there's an error
+    schema_to_check = state.get("schema_to_check", 0)
+    state["schema_to_check"] = schema_to_check + 1
+
     return state
 
 

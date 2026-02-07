@@ -19,7 +19,7 @@ def get_system_prompt(schema_list: list, needed_categories: str) -> str:
 
 def sql_generator(state: GraphState) -> GraphState:
     """Node 1: Generate SQL query from user input using LLM."""
-    llm = get_llm()
+    llm = get_llm(max_tokens=2048)
     
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
     user_prompt = user_messages[-1]["content"] if user_messages else ""
@@ -50,7 +50,7 @@ def sql_generator(state: GraphState) -> GraphState:
     queries = state.get("generated_query") or []
     queries.append(sql_query)
     state["generated_query"] = queries
-    # print(f"Generated query: {queries}")
+    print(f"Generated query: {queries}")
 
     return state
 

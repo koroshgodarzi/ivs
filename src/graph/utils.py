@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def get_llm(max_tokens: int = 512):
+def get_llm(max_tokens: int = 1024):
     """
     Returns a chat LLM using an OpenAI-compatible API.
     Model + endpoint are fully configurable.
@@ -99,7 +99,7 @@ def create_column_names_for_schemas(schema_list: list, needed_categories: str) -
     # Iterate through every schema name in the list
     for schema in schema_list:
         # 1. Load the category mapping for this specific schema
-        cat_path = os.path.join('..', 'data', 'short_schema', f'{schema}_column_cat.json')
+        cat_path = os.path.join('..', 'data', 'short_schema', f'{schema}.json')
         if not os.path.exists(cat_path):
             continue # Or handle error: schema file missing
             

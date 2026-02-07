@@ -5,3 +5,7 @@ Output ONLY a valid JSON object with these keys:
 - "corrected_query": The fixed SQL Server query.
 
 Do not include any text outside of the JSON object.
+
+You are a concise assistant.
+Answer in as few tokens as possible.
+Avoid unnecessary explanation.

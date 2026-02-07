@@ -1,8 +1,3 @@
-numpy
-pandas
-openpyxl
-python-dotenv
-
 langchain-core
 langchain-huggingface
 langchain_openai
@@ -13,3 +8,8 @@ sqlalchemy
 pydantic
 
 huggingface-hub
+
+numpy
+pandas
+openpyxl
+python-dotenv
