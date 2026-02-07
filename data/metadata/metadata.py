@@ -43,7 +43,7 @@ def save_view_schemas_to_json():
                     # We fetch TOP 6 to see if it exceeds our threshold of 5
                     try:
                         # Use quoted identifiers for schema, view, and column names to handle spaces/Persian chars
-                        query = text(f'SELECT DISTINCT TOP 6 "{col_name}" FROM "{schema_name}"."{view_name}"')
+                        query = text(f'SELECT DISTINCT TOP 100 "{col_name}" FROM "{schema_name}"."{view_name}"')
                         result = conn.execute(query).fetchall()
                         
                         # Extract values and convert to string if not JSON serializable (Date, Decimal, etc.)
@@ -51,7 +51,7 @@ def save_view_schemas_to_json():
                         
                         # Process logic: 5 or less = unique_values, more than 5 = example_values (2)
                         val_info = {}
-                        if len(raw_values) <= 5:
+                        if len(raw_values) <= 10:
                             val_info["unique_values"] = [str(v) if not isinstance(v, (int, float, bool)) else v for v in raw_values]
                         else:
                             # Take only 2 as examples

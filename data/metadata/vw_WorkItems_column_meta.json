@@ -65,8 +65,8 @@
         "nullable": false,
         "default": null,
         "example_values": [
-            "تست پایش میدانی",
-            "طرح جامع آبرسانی"
+            "مجتمع الهیه",
+            "پارس"
         ]
     },
     {
@@ -94,12 +94,9 @@
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1394,
-            1392,
-            1388,
-            1389,
-            1407
+            1392
         ]
     },
     {
@@ -107,12 +104,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1,
-            11,
-            3,
-            4,
-            5
+            11
         ]
     },
     {
@@ -120,12 +114,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             18,
-            19,
-            13,
-            15,
-            24
+            19
         ]
     },
     {
@@ -134,8 +125,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "2012-03-27",
-            "2012-03-22"
+            "2012-06-26",
+            "2012-11-28"
         ]
     },
     {
@@ -143,12 +134,9 @@
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1394,
-            1392,
-            1389,
-            1393,
-            1399
+            1392
         ]
     },
     {
@@ -156,12 +144,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             11,
-            1,
-            3,
-            4,
-            5
+            1
         ]
     },
     {
@@ -169,12 +154,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             18,
-            19,
-            13,
-            15,
-            24
+            19
         ]
     },
     {
@@ -192,12 +174,9 @@
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1394,
-            1392,
-            1388,
-            1389,
-            1407
+            1392
         ]
     },
     {
@@ -205,12 +184,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1,
-            11,
-            3,
-            4,
-            5
+            11
         ]
     },
     {
@@ -218,12 +194,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             18,
-            19,
-            13,
-            15,
-            24
+            19
         ]
     },
     {
@@ -232,8 +205,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "2012-04-07",
-            "2012-03-26"
+            "2012-10-07",
+            "2012-06-26"
         ]
     },
     {
@@ -246,7 +219,11 @@
             1392,
             1389,
             1393,
-            1390
+            1390,
+            1391,
+            1404,
+            1402,
+            1403
         ]
     },
     {
@@ -254,12 +231,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             11,
-            1,
-            3,
-            4,
-            5
+            1
         ]
     },
     {
@@ -267,12 +241,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             18,
-            19,
-            13,
-            15,
-            24
+            19
         ]
     },
     {

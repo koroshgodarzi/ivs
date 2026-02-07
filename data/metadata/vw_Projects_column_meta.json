@@ -14,12 +14,9 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1,
-            1778,
-            1779,
-            1780,
-            2125
+            1778
         ]
     },
     {
@@ -47,12 +44,9 @@
         "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "آ.س.پ",
-            "آبفا فارس",
-            "تابان",
-            "توسعه بین المللی ساختمان",
-            "توسعه ساختمان"
+            "آبفا فارس"
         ]
     },
     {
@@ -60,12 +54,9 @@
         "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "",
-            "آ.س.پ",
-            "احمدی",
-            "بیگوند",
-            "پارس سازه پرمايون"
+            "آ.س.پ"
         ]
     },
     {
@@ -78,7 +69,8 @@
             "بهزاد کشتکار",
             "شخص زد",
             "گلدشت",
-            "محمد"
+            "محمد",
+            "مشاور/ ناظر--2"
         ]
     },
     {
@@ -86,12 +78,9 @@
         "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "01",
-            "1",
-            "1/293/2157",
-            "1/322/3677",
-            "1/326/5521"
+            "1"
         ]
     },
     {
@@ -99,12 +88,9 @@
         "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "",
-            "0005-تیپ یک",
-            "0006-تیپ یک",
-            "0007-تیپ یک",
-            "LN-0001"
+            "0005-تیپ یک"
         ]
     },
     {
@@ -123,9 +109,15 @@
         "type": "UNIQUEIDENTIFIER",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "43f1224f-65d1-4c3a-892e-043fb0b38fe4",
-            "788702e1-81ec-4132-b88a-12eeb0e1e380"
+            "788702e1-81ec-4132-b88a-12eeb0e1e380",
+            "120acbc0-deb7-4151-87e3-169f93a186b6",
+            "2adb818d-ee4e-4dc4-804e-64b74429a84b",
+            "320df7f9-f44d-4339-91c7-6e73b1dbd321",
+            "8423d75a-7635-4d40-8088-88ea0afbf846",
+            "61ff4d5e-193b-4736-b65f-d7e11148c8e3",
+            "91915af2-984d-4631-8282-ed06320fc5c9"
         ]
     },
     {
@@ -144,8 +136,8 @@
         "nullable": false,
         "default": null,
         "example_values": [
-            "2013-04-15 13:20:37.473000",
-            "2013-06-13 10:57:46.970000"
+            "2013-04-10 14:53:59.080000",
+            "2013-04-15 13:17:59.940000"
         ]
     },
     {
@@ -154,8 +146,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "1392/01/26",
-            "1392/03/23"
+            "1392/01/21",
+            "1392/01/26"
         ]
     },
     {
@@ -164,8 +156,8 @@
         "nullable": false,
         "default": null,
         "example_values": [
-            "2019-09-16 13:10:43.323000",
-            "2016-03-07 18:37:08.777000"
+            "2013-06-13 12:40:21.673000",
+            "2016-03-07 18:36:50.093000"
         ]
     },
     {
@@ -174,7 +166,7 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "1398/06/25",
+            "1392/03/23",
             "1394/12/17"
         ]
     },
@@ -198,7 +190,9 @@
             2,
             3,
             4,
-            107
+            107,
+            300,
+            402
         ]
     },
     {
@@ -206,12 +200,9 @@
         "type": "DECIMAL(9, 6)",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "24.829367",
-            "27.322975",
-            "29.632084",
-            "31.824",
-            "32.644523"
+            "27.322975"
         ]
     },
     {
@@ -219,12 +210,9 @@
         "type": "DECIMAL(9, 6)",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "-123.111763",
-            "-1.097091",
-            "44.058301",
-            "46.519619",
-            "46.76"
+            "-1.097091"
         ]
     },
     {
@@ -232,9 +220,16 @@
         "type": "TINYINT",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             1,
-            2
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10
         ]
     },
     {
@@ -259,12 +254,9 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             254,
-            255,
-            256,
-            257,
-            261
+            255
         ]
     },
     {
@@ -272,12 +264,9 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "آب بر",
-            "آذربایجان شرقی",
-            "آذربایجان غربی",
-            "اردبیل",
-            "اصفهان"
+            "آذربایجان شرقی"
         ]
     },
     {
@@ -286,8 +275,8 @@
         "nullable": false,
         "default": null,
         "example_values": [
-            31,
-            40
+            25,
+            26
         ]
     },
     {
@@ -315,9 +304,16 @@
         "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "آتی",
-            "آرشیو"
+            "آرشیو",
+            "اتمام",
+            "تست",
+            "در حال برنامه ریزی",
+            "در حال ساخت",
+            "درحال اجرا",
+            "درحال عقد قرارداد",
+            "درحال مذاکره"
         ]
     },
     {
@@ -325,12 +321,9 @@
         "type": "NVARCHAR(250) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "ایده ورزان",
-            "سازمان تولیدی سامان",
-            "سهند",
-            "معاونت اقتصادی و سرمایه گذاری",
-            "معاونت برنامه ریزی"
+            "سازمان تولیدی سامان"
         ]
     },
     {
@@ -339,8 +332,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            87.8,
-            0.0
+            0.0,
+            0.01
         ]
     },
     {
@@ -379,8 +372,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            87.8,
-            0.0
+            0.0,
+            0.01
         ]
     },
     {
@@ -389,8 +382,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            87.8,
-            0.0
+            0.0,
+            0.01
         ]
     },
     {
@@ -399,8 +392,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            87.8,
-            100.0
+            0.0,
+            0.46
         ]
     },
     {
@@ -408,9 +401,17 @@
         "type": "FLOAT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             -1159.446,
-            -162.632
+            -162.632,
+            -145.433,
+            0.0,
+            1.274,
+            12.168,
+            36.522,
+            52.0,
+            100.0,
+            247.562
         ]
     },
     {
@@ -432,7 +433,10 @@
             "آذربایجان غربی",
             "اردبیل",
             "اصفهان",
-            "تهران"
+            "تهران",
+            "زنجان",
+            "مازندران",
+            "همدان"
         ]
     },
     {
@@ -445,7 +449,9 @@
             "اصفهان",
             "بابل",
             "تهران",
-            "تهران 6"
+            "تهران 6",
+            "سهند",
+            "قروه درجزین"
         ]
     },
     {
@@ -458,7 +464,9 @@
             34,
             3292,
             5338,
-            5339
+            5339,
+            6374,
+            6375
         ]
     },
     {
@@ -611,7 +619,11 @@
             10000.0,
             50000000.0,
             100000000.0,
-            100000000000.0
+            100000000000.0,
+            128000000000.0,
+            400000000000.0,
+            560000000000.0,
+            1000000000000.0
         ]
     },
     {

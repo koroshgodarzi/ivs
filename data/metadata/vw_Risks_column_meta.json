@@ -54,7 +54,12 @@
             "بررسی شد",
             "پایین آمدن کارایی کارکنان که لزوم اجرای طرحهای انگیزشی برای پرسنل را ضروری می نماید",
             "تست",
-            "جهت بررسی بیشتر به سایت مربوط مراجعه شود."
+            "جهت بررسی بیشتر به سایت مربوط مراجعه شود.",
+            "عدم نگهداری صحیح از تجهیزات سبب اشکالاتی چون زنگ زدگی، اشکال در عملکرد و.. می گردد",
+            "فعالیت",
+            "ناظر 1",
+            "نبود سیستم DCC سبب اختلال در دستگردانی مدارک و به تبع آن مشکلات اجرایی می شود",
+            "نظارت 1"
         ]
     },
     {
@@ -94,9 +99,13 @@
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             0,
-            1400
+            1400,
+            1401,
+            1402,
+            1403,
+            1404
         ]
     },
     {
@@ -104,9 +113,16 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             0,
-            1
+            1,
+            2,
+            3,
+            5,
+            6,
+            8,
+            10,
+            12
         ]
     },
     {
@@ -114,9 +130,17 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             0,
-            1
+            1,
+            2,
+            5,
+            8,
+            9,
+            15,
+            21,
+            30,
+            31
         ]
     },
     {
@@ -124,9 +148,13 @@
         "type": "DATE",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "0001-01-01",
-            "2023-05-24"
+            "2023-05-24",
+            "2023-09-22",
+            "2024-01-24",
+            "2024-03-19",
+            "2025-05-25"
         ]
     },
     {
@@ -134,9 +162,13 @@
         "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "0001/01/01",
-            "1402/03/03"
+            "1402/03/03",
+            "1402/06/31",
+            "1402/11/04",
+            "1402/12/29",
+            "1404/03/04"
         ]
     },
     {
@@ -188,9 +220,15 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             244300198,
-            269264075
+            269264075,
+            402080009,
+            1059827585,
+            1189118919,
+            1233198652,
+            1878852022,
+            2147483647
         ]
     },
     {
@@ -198,9 +236,16 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             200172637,
-            244300198
+            244300198,
+            323764287,
+            374119585,
+            1233198652,
+            1387883204,
+            1873207723,
+            1878852022,
+            2048503990
         ]
     },
     {
@@ -208,9 +253,17 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             200172637,
-            244300198
+            244300198,
+            269264075,
+            323764287,
+            374119585,
+            1233198652,
+            1387883204,
+            1873207723,
+            1878852022,
+            2048503990
         ]
     },
     {
@@ -268,7 +321,8 @@
             "RF005",
             "RF006",
             "RF007",
-            "RF008"
+            "RF008",
+            "RF009"
         ]
     },
     {
@@ -302,9 +356,15 @@
         "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "",
-            "asadi"
+            "asadi",
+            "eghbali",
+            "izadpanah",
+            "mory",
+            "PMO",
+            "PmoAraste",
+            "rezaei.mohammad"
         ]
     },
     {
@@ -312,9 +372,15 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "",
-            "Pmo"
+            "Pmo",
+            "امیر حسین",
+            "پیمان",
+            "دفتر",
+            "محمد",
+            "موری",
+            "ناصر"
         ]
     },
     {
@@ -322,9 +388,15 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "",
-            "Araste"
+            "Araste",
+            "اسدی",
+            "اقبالی",
+            "ایزدپناه",
+            "رضایی",
+            "مدیریت پروژه",
+            "موری"
         ]
     },
     {
@@ -332,9 +404,16 @@
         "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "asadi",
-            "izadpanah"
+            "izadpanah",
+            "momatest1",
+            "momatest2",
+            "momatest4",
+            "momatest6",
+            "PMO",
+            "PmoTest_deleted",
+            "sinsin1"
         ]
     },
     {
@@ -342,9 +421,13 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "moma",
-            "PMO"
+            "PMO",
+            "sinsin",
+            "پیمان",
+            "دفتر",
+            "ناصر"
         ]
     },
     {
@@ -352,9 +435,16 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "1",
-            "TEST"
+            "TEST",
+            "test1",
+            "test2",
+            "test4",
+            "test6",
+            "اسدی",
+            "ایزدپناه",
+            "مدیریت پروژه"
         ]
     },
     {
@@ -362,9 +452,17 @@
         "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "asadi",
-            "izadpanah"
+            "izadpanah",
+            "momatest1",
+            "momatest2",
+            "momatest4",
+            "momatest6",
+            "PMO",
+            "PmoTest_deleted",
+            "rezaei.mohammad",
+            "sinsin1"
         ]
     },
     {
@@ -372,9 +470,14 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "moma",
-            "PMO"
+            "PMO",
+            "sinsin",
+            "پیمان",
+            "دفتر",
+            "محمد",
+            "ناصر"
         ]
     },
     {
@@ -382,9 +485,17 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": false,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "1",
-            "TEST"
+            "TEST",
+            "test1",
+            "test2",
+            "test4",
+            "test6",
+            "اسدی",
+            "ایزدپناه",
+            "رضایی",
+            "مدیریت پروژه"
         ]
     },
     {
@@ -469,7 +580,12 @@
             "اقدام 1",
             "اقدام 230",
             "اقدام 25",
-            "اقدام 26"
+            "اقدام 26",
+            "اقدام 3",
+            "اقدام شد",
+            "راهکار 1",
+            "شرح اقدام ریسک عدم اطمینان از توانایی شبکه توزیع برق منطقه ای از تامین برق پروژه ",
+            "فعال"
         ]
     },
     {

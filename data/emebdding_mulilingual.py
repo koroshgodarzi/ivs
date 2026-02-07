@@ -2,23 +2,21 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-import ollama
 import os
 import json
 from typing import Optional, Tuple
+from sentence_transformers import SentenceTransformer
 
 
 def build_bilingual_view_embeddings(
     english_xlsx: str = "BI Views description_.xlsx",
     persian_xlsx: str = "BI_Views_description_Persian.xlsx",
     *,
-    ollama_base_url: str = "http://localhost:11434",
-    model: str = "gemmaembedding",  # kept for API compatibility
     sheet_name: Optional[str] = 0,
-    timeout_s: int = 120,
-    save_npy_path: Optional[str] = "embeddings.npy",
+    save_npy_path: Optional[str] = "embeddings_multilingual.npy",
     view_index_mapping_path: str = "view_index_mapping.json",
     require_all_matches: bool = True,
+    device: Optional[str] = None,  # "cpu", "cuda", "mps"
 ) -> Tuple[np.ndarray, np.ndarray]:
     """
     Returns:
@@ -26,7 +24,11 @@ def build_bilingual_view_embeddings(
       view_names: string array of shape (2*N,) aligned with embeddings
     """
 
-    embed_model = os.getenv("OLLAMA_EMBED_MODEL", "embeddinggemma")
+    # Load Multilingual-E5-large
+    model = SentenceTransformer(
+        "intfloat/multilingual-e5-large",
+        device=device,
+    )
 
     df_en = pd.read_excel(english_xlsx, sheet_name=sheet_name, engine="openpyxl")
     df_fa = pd.read_excel(persian_xlsx, sheet_name=sheet_name, engine="openpyxl")
@@ -34,7 +36,7 @@ def build_bilingual_view_embeddings(
     if df_en.shape[1] < 2 or df_fa.shape[1] < 2:
         raise ValueError("Each file must have at least 2 columns: name and description.")
 
-    # Normalize names
+    # Normalize names → description
     en_map = {
         str(name).strip(): ("" if pd.isna(desc) else str(desc).strip())
         for name, desc in zip(df_en.iloc[:, 0], df_en.iloc[:, 1])
@@ -60,7 +62,7 @@ def build_bilingual_view_embeddings(
     if not common:
         raise ValueError("No matching view names found between the two files.")
 
-    rows_emb: list[np.ndarray] = []
+    texts: list[str] = []
     rows_names: list[str] = []
     index_to_view: dict[int, str] = {}
 
@@ -73,25 +75,23 @@ def build_bilingual_view_embeddings(
         if not fa_desc:
             raise ValueError(f"Empty Persian description for view {view!r}")
 
-        # English embedding
-        resp_en = ollama.embed(model=embed_model, input=en_desc)
-        emb_en = np.array(resp_en["embeddings"][0], dtype=np.float32)
-
-        idx = len(rows_emb)
-        rows_emb.append(emb_en)
+        # E5 requires prefixes
+        texts.append(f"passage: {en_desc}")
         rows_names.append(view)
-        index_to_view[idx] = view.split()[-1]
+        index_to_view[len(texts) - 1] = view.split()[-1]
 
-        # Persian embedding
-        resp_fa = ollama.embed(model=embed_model, input=fa_desc)
-        emb_fa = np.array(resp_fa["embeddings"][0], dtype=np.float32)
-
-        idx = len(rows_emb)
-        rows_emb.append(emb_fa)
+        texts.append(f"passage: {fa_desc}")
         rows_names.append(view)
-        index_to_view[idx] = view.split()[-1]
+        index_to_view[len(texts) - 1] = view.split()[-1]
 
-    embeddings = np.asarray(rows_emb, dtype=np.float32)
+    # Compute embeddings (batched + normalized)
+    embeddings = model.encode(
+        texts,
+        batch_size=32,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+    ).astype(np.float32)
+
     view_names = np.asarray(rows_names, dtype=object)
 
     if save_npy_path:
@@ -105,4 +105,4 @@ def build_bilingual_view_embeddings(
 
 
 if __name__ == "__main__":
-    build_bilingual_view_embeddings()
+    build_bilingual_view_embeddings('BI_Views_description_English_Detailed.xlsx', 'BI_Views_description_Persian_Refined.xlsx')

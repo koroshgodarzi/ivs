@@ -94,8 +94,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            25,
-            26
+            1117,
+            29
         ]
     },
     {
@@ -103,9 +103,13 @@
         "type": "VARCHAR(20) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             "Sixmonth",
-            "Daily"
+            "Daily",
+            "Monthly",
+            "Weekly",
+            "Seasonally",
+            "Yearly"
         ]
     }
 ]

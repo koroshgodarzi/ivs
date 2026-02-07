@@ -24,12 +24,9 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1,
-            1770,
-            1777,
-            2144,
-            2791
+            1770
         ]
     },
     {
@@ -37,9 +34,14 @@
         "type": "FLOAT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             0.0,
-            0.806451612903226
+            0.806451612903226,
+            12.6889,
+            15.069345555942732,
+            25.0,
+            29.99175575168073,
+            52.0
         ]
     },
     {
@@ -47,9 +49,14 @@
         "type": "FLOAT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             0.0,
-            38.0989994622645
+            38.0989994622645,
+            45.44035763710721,
+            48.00792791628778,
+            63.57142857142859,
+            99.99999999999999,
+            100.0
         ]
     }
 ]

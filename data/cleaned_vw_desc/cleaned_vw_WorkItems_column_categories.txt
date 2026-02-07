@@ -1,0 +1,1 @@
+vw_workitems column groups for llm prompt structure internal pks project wbs subproject weighting project identity project project name work item identity work item title schedule planned actual start end also split performance planned progress actual progress classification discipline work cycle work item type geography ownership province site city responsible person

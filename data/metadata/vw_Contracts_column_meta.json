@@ -25,8 +25,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "1234",
-            "تست"
+            "001",
+            "01"
         ]
     },
     {
@@ -35,8 +35,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "تست دسترسی",
-            "تست چرخه ابلاغ"
+            "555",
+            "currencytest"
         ]
     },
     {
@@ -54,8 +54,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            34,
-            25
+            25,
+            26
         ]
     },
     {
@@ -86,8 +86,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            1401,
-            1402
+            1387,
+            1388
         ]
     },
     {
@@ -96,8 +96,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            12,
-            6
+            1,
+            2
         ]
     },
     {
@@ -107,7 +107,7 @@
         "default": null,
         "example_values": [
             1,
-            25
+            2
         ]
     },
     {
@@ -136,8 +136,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            1402,
-            1401
+            1388,
+            1389
         ]
     },
     {
@@ -146,8 +146,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            6,
-            10
+            1,
+            2
         ]
     },
     {
@@ -156,8 +156,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            17,
-            29
+            1,
+            2
         ]
     },
     {
@@ -185,9 +185,13 @@
         "type": "FLOAT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             -0.3300936848733888,
-            -0.26596496554824867
+            -0.26596496554824867,
+            -0.1,
+            -0.04000000000000001,
+            -0.004022671844949355,
+            0.0
         ]
     },
     {
@@ -221,7 +225,8 @@
             5800000.0,
             2311299500.0,
             2500000000.0,
-            3500000000.0
+            3500000000.0,
+            50000000000000.0
         ]
     },
     {
@@ -229,12 +234,9 @@
         "type": "DECIMAL(38, 0)",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "100000",
-            "1000000000",
-            "31000500",
-            "1",
-            "1650000000"
+        "example_values": [
+            "0",
+            "1"
         ]
     },
     {
@@ -243,8 +245,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            1401,
-            1402
+            1389,
+            1390
         ]
     },
     {
@@ -253,8 +255,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            11,
-            6
+            1,
+            2
         ]
     },
     {
@@ -263,8 +265,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            12,
-            20
+            1,
+            2
         ]
     },
     {
@@ -273,8 +275,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "2023-02-01",
-            "2023-09-11"
+            "2010-06-29",
+            "2010-07-04"
         ]
     },
     {
@@ -282,12 +284,9 @@
         "type": "DECIMAL(18, 0)",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "100000000",
-            "10000000",
-            "770000000000",
-            "4007890000000",
-            "40000"
+        "example_values": [
+            "4000",
+            "4995"
         ]
     },
     {
@@ -295,12 +294,9 @@
         "type": "DECIMAL(18, 0)",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "20000",
-            "20000000",
-            "1000",
-            "10000000",
-            "1900000"
+        "example_values": [
+            "0",
+            "1"
         ]
     },
     {
@@ -320,9 +316,16 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             0,
-            2
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            25
         ]
     },
     {
@@ -330,12 +333,9 @@
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            1402,
-            1401,
-            1403,
-            1404,
-            1398
+        "example_values": [
+            1389,
+            1390
         ]
     },
     {
@@ -343,12 +343,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1,
-            9,
-            12,
-            8,
-            6
+            2
         ]
     },
     {
@@ -356,12 +353,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            31,
+        "example_values": [
             1,
-            10,
-            27,
-            8
+            2
         ]
     },
     {
@@ -369,12 +363,9 @@
         "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "1402/01/31",
-            "1401/09/01",
-            "1401/12/10",
-            "1403/01/27",
-            "1402/08/08"
+        "example_values": [
+            "1389/04/09",
+            "1389/04/24"
         ]
     },
     {
@@ -383,9 +374,14 @@
         "nullable": true,
         "default": null,
         "unique_values": [
-            1402,
+            1391,
+            1392,
             1393,
+            1394,
+            1397,
+            1399,
             1401,
+            1402,
             1403,
             1404
         ]
@@ -395,12 +391,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            9,
-            12,
+        "example_values": [
             1,
-            4,
-            6
+            2
         ]
     },
     {
@@ -408,12 +401,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            21,
+        "example_values": [
             1,
-            8,
-            16,
-            29
+            2
         ]
     },
     {
@@ -421,12 +411,9 @@
         "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "1402/09/21",
-            "1402/12/01",
-            "1402/01/08",
-            "1393/04/16",
-            "1401/06/29"
+        "example_values": [
+            "1391/12/02",
+            "1392/04/04"
         ]
     },
     {
@@ -448,11 +435,13 @@
         "nullable": true,
         "default": null,
         "unique_values": [
+            1392,
+            1393,
+            1400,
             1401,
             1402,
             1403,
-            1404,
-            1400
+            1404
         ]
     },
     {
@@ -461,11 +450,16 @@
         "nullable": true,
         "default": null,
         "unique_values": [
-            8,
-            5,
-            4,
+            1,
             2,
-            7
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12
         ]
     },
     {
@@ -473,12 +467,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            9,
-            8,
-            14,
-            12,
-            17
+        "example_values": [
+            3,
+            8
         ]
     },
     {
@@ -486,12 +477,9 @@
         "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "1401/08/09",
-            "1401/08/08",
-            "1402/05/09",
-            "1402/04/14",
-            "1403/02/12"
+        "example_values": [
+            "1392/05/19",
+            "1392/06/18"
         ]
     },
     {

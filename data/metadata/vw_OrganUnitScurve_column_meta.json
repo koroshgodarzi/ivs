@@ -5,8 +5,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "1388/10/14",
-            "1389/10/14"
+            "1404/05/24",
+            "1404/05/17"
         ]
     },
     {
@@ -15,8 +15,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "1389/10/14",
-            "1390/10/14"
+            "1404/05/24",
+            "1405/03/10"
         ]
     },
     {
@@ -25,8 +25,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "2010-01-04",
-            "2011-01-04"
+            "2019-01-04",
+            "2025-02-28"
         ]
     },
     {
@@ -35,8 +35,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "2011-01-04",
-            "2012-01-04"
+            "2019-01-04",
+            "2025-02-28"
         ]
     },
     {
@@ -45,8 +45,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            1,
-            1777
+            3009,
+            3040
         ]
     },
     {
@@ -55,8 +55,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "کل سازمان",
-            "معاونت فن آوری (2)"
+            "آزمایشگاه مرجع",
+            "اداره کل ارتباطات و نظارت مردمی"
         ]
     },
     {
@@ -64,12 +64,9 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            1,
-            1777,
-            3001,
-            3002,
-            3003
+        "example_values": [
+            3009,
+            4251
         ]
     },
     {
@@ -77,9 +74,15 @@
         "type": "FLOAT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
+            0.0,
+            99.99999999999999,
+            47.726422020383865,
+            100.0,
+            38.0989994622645,
+            63.57142857142859,
             47.72642202038387,
-            0.0
+            47.72642202038386
         ]
     },
     {
@@ -87,9 +90,14 @@
         "type": "FLOAT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
+            0.0,
+            15.346344354846172,
+            12.6889,
+            52.0,
+            0.806451612903226,
             15.346344354846174,
-            0.0
+            25.0
         ]
     },
     {

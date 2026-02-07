@@ -5,8 +5,8 @@
         "nullable": false,
         "default": null,
         "example_values": [
-            25,
-            26
+            1117,
+            29
         ]
     },
     {
@@ -15,8 +15,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "فاز اول - ناصری",
-            "فاز اول - احمدی"
+            "Construction P",
+            "Construction Project"
         ]
     },
     {
@@ -25,8 +25,8 @@
         "nullable": false,
         "default": null,
         "example_values": [
-            "دی, 1389",
-            "بهمن, 1389"
+            "آبان, 1388",
+            "آبان, 1389"
         ]
     },
     {

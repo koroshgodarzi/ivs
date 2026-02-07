@@ -53,9 +53,15 @@
         "type": "BIGINT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             0,
-            2
+            2,
+            444,
+            500,
+            123123,
+            1000000,
+            1500000000,
+            7505000000
         ]
     },
     {
@@ -83,9 +89,15 @@
         "type": "BIGINT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             0,
-            2
+            2,
+            444,
+            502,
+            123567,
+            1500000000,
+            7505000000,
+            7506000000
         ]
     },
     {

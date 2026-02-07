@@ -75,9 +75,15 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "example_values": [
+        "unique_values": [
             2,
-            3
+            3,
+            4,
+            5,
+            7,
+            8,
+            9,
+            10
         ]
     },
     {
@@ -95,12 +101,9 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "ASAsAS",
-            "asd",
-            "bhhhh",
-            "dada",
-            "Done work"
+            "asd"
         ]
     },
     {
@@ -108,12 +111,9 @@
         "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "adad",
-            "adadasdasda",
-            "ASasaSas",
-            "asd",
-            "desc"
+            "adadasdasda"
         ]
     },
     {
@@ -121,12 +121,9 @@
         "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "asd",
-            "hhhhhh",
-            "hnhhhh",
-            "jsj ",
-            "oiuou"
+            "hhhhhh"
         ]
     },
     {

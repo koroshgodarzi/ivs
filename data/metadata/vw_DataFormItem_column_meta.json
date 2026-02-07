@@ -35,8 +35,8 @@
         "nullable": false,
         "default": null,
         "example_values": [
-            36,
-            6391
+            6404,
+            1117
         ]
     },
     {
@@ -45,8 +45,8 @@
         "nullable": false,
         "default": null,
         "example_values": [
-            "بعثت بلوک B",
-            "احداث ایستگاه فیبرنوری ایذه - خوزستان1"
+            "مجتمع الهیه",
+            "پارس"
         ]
     },
     {
@@ -95,12 +95,9 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             20251116,
-            20241026,
-            20150101,
-            20251101,
-            20240508
+            20241026
         ]
     },
     {
@@ -108,12 +105,9 @@
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            1404,
+        "example_values": [
             1403,
-            1393,
-            1391,
-            1390
+            1389
         ]
     },
     {
@@ -121,12 +115,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            8,
-            10,
-            2,
+        "example_values": [
             3,
-            1
+            6
         ]
     },
     {
@@ -134,12 +125,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            25,
-            5,
-            11,
-            10,
-            19
+        "example_values": [
+            23,
+            3
         ]
     },
     {
@@ -147,12 +135,9 @@
         "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "1404/08/25",
-            "1403/08/05",
-            "1393/10/11",
-            "1404/08/10",
-            "1403/02/19"
+            "1403/08/05"
         ]
     },
     {
@@ -160,12 +145,9 @@
         "type": "DATE",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "2025-11-16",
-            "2024-10-26",
-            "2015-01-01",
-            "2025-11-01",
-            "2024-05-08"
+            "2024-10-26"
         ]
     },
     {
@@ -173,12 +155,9 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             20251116,
-            20240508,
-            20240504,
-            20240608,
-            20110528
+            20240508
         ]
     },
     {
@@ -187,11 +166,15 @@
         "nullable": true,
         "default": null,
         "unique_values": [
-            1404,
             1403,
+            1389,
+            1392,
+            1404,
             1390,
+            1393,
+            1402,
             1391,
-            1402
+            1394
         ]
     },
     {
@@ -199,12 +182,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            8,
-            2,
+        "example_values": [
             3,
-            4,
-            10
+            6
         ]
     },
     {
@@ -212,12 +192,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            25,
-            19,
-            15,
-            7,
-            17
+        "example_values": [
+            23,
+            3
         ]
     },
     {
@@ -225,12 +202,9 @@
         "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "1404/08/25",
-            "1403/02/19",
-            "1403/02/15",
-            "1403/03/19",
-            "1390/03/07"
+            "1403/02/19"
         ]
     },
     {
@@ -238,12 +212,9 @@
         "type": "DATE",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "2025-11-16",
-            "2024-05-08",
-            "2024-05-04",
-            "2024-06-08",
-            "2011-05-28"
+            "2024-05-08"
         ]
     },
     {
@@ -262,8 +233,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            1390,
-            1391
+            1397,
+            1400
         ]
     },
     {
@@ -272,8 +243,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            10,
-            11
+            3,
+            6
         ]
     },
     {
@@ -282,8 +253,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            21,
-            23
+            23,
+            3
         ]
     },
     {
@@ -322,8 +293,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            1390,
-            1391
+            1397,
+            1400
         ]
     },
     {
@@ -332,8 +303,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            10,
-            11
+            3,
+            6
         ]
     },
     {
@@ -342,8 +313,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            22,
-            24
+            23,
+            3
         ]
     },
     {
@@ -382,8 +353,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            100.0,
-            99.99999999999999
+            0.0,
+            89.48627406310439
         ]
     },
     {
@@ -391,12 +362,9 @@
         "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "CPA",
-            "SPV",
-            "FA",
-            "CPM",
-            "discipline"
+        "example_values": [
+            "BIM",
+            "Mechanical"
         ]
     },
     {
@@ -414,8 +382,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            "پایه",
-            "تست"
+            "Test case",
+            "چرخه تایید"
         ]
     },
     {
@@ -423,12 +391,9 @@
         "type": "FLOAT",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            3.0,
-            1000.0,
-            1250.0,
-            151.0,
-            2.0
+        "example_values": [
+            0.0,
+            1234567890.0
         ]
     },
     {
@@ -436,12 +401,9 @@
         "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "Km",
-            "Sq M",
-            "M",
-            "Cu M",
-            "USD"
+        "example_values": [
+            "Amp",
+            "Pcs"
         ]
     },
     {
@@ -449,12 +411,9 @@
         "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
-            "کیلومتر",
-            "متر مربع",
-            "متر",
-            "متر مکعب",
-            "دلار"
+        "example_values": [
+            "ست",
+            "متر"
         ]
     },
     {

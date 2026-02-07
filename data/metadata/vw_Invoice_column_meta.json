@@ -104,12 +104,9 @@
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             20130203,
-            20130220,
-            20130625,
-            20130715,
-            20130806
+            20130220
         ]
     },
     {
@@ -117,12 +114,9 @@
         "type": "DATE",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "2013-02-03",
-            "2013-02-20",
-            "2013-06-25",
-            "2013-07-15",
-            "2013-08-06"
+            "2013-02-20"
         ]
     },
     {
@@ -130,12 +124,9 @@
         "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "1391/11/15",
-            "1391/12/02",
-            "1392/04/04",
-            "1392/04/24",
-            "1392/05/15"
+            "1391/12/02"
         ]
     },
     {
@@ -143,12 +134,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1,
-            2,
-            3,
-            4,
-            5
+            2
         ]
     },
     {
@@ -156,12 +144,9 @@
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1,
-            2,
-            3,
-            4,
-            5
+            2
         ]
     },
     {
@@ -169,12 +154,9 @@
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             1391,
-            1392,
-            1393,
-            1394,
-            1397
+            1392
         ]
     },
     {
@@ -182,12 +164,9 @@
         "type": "DECIMAL(18, 0)",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "0",
-            "1",
-            "2",
-            "3",
-            "4"
+            "1"
         ]
     },
     {
@@ -205,12 +184,9 @@
         "type": "DECIMAL(18, 0)",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "0",
-            "1",
-            "2",
-            "3",
-            "12"
+            "1"
         ]
     },
     {
@@ -223,7 +199,11 @@
             17,
             1988,
             1989,
-            1990
+            1990,
+            1991,
+            12665,
+            17927,
+            27537
         ]
     },
     {
@@ -236,7 +216,11 @@
             "ere",
             "General Conditions",
             "ترابری",
-            "صورت وضعیت"
+            "صورت وضعیت",
+            "قلم کاری عمومی",
+            "مقدمه",
+            "منوال چرخه",
+            "کل پروژه"
         ]
     },
     {
@@ -244,12 +228,9 @@
         "type": "DECIMAL(18, 0)",
         "nullable": true,
         "default": null,
-        "unique_values": [
+        "example_values": [
             "0",
-            "9",
-            "81",
-            "90",
-            "2700"
+            "9"
         ]
     },
     {
