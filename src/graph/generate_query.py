@@ -39,10 +39,11 @@ def sql_generator(state: GraphState) -> GraphState:
     )
 
     schema_list = state.get("retrieved_schema", [])
-    if isinstance(schema_list, str):
-        schema_list = [schema_list]
+    view_index = state.get("schema_to_check", 0)
+    # if isinstance(schema_list, str):
+    #     schema_list = [schema_list]
 
-    system_prompt = get_system_prompt(schema_list, column_categories)
+    system_prompt = get_system_prompt([schema_list[view_index]], column_categories)
 
     # Initial message stack
     messages = [

@@ -10,12 +10,12 @@ from graph.utils import get_llm
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.sqlite import SqliteSaver
 import sqlite3
-from graph.monitoring import configure_jsonl_logger, with_state_logging
+from graph.monitoring import configure_text_logger, with_state_logging
 
 def build_graph():
     workflow = StateGraph(GraphState)
 
-    logger = configure_jsonl_logger("workflow_state.jsonl")
+    logger = configure_text_logger()
 
     workflow.add_node("schema_retriever", with_state_logging("schema_retriever", schema_retriever, logger))
     workflow.add_node("validate_user_question", with_state_logging("validate_user_question", validate_user_question, logger))
@@ -133,7 +133,7 @@ def main():
             # or .invoke() to just get the final result.
         final_state = app.invoke(initial_state, config=config)
         output[str(i)] = final_state
-        with open(os.path.join('..', 'ouput',f'output{str(i)}.json'), 'w') as f:
+        with open(os.path.join('..', 'output',f'output{str(i)}.json'), 'w') as f:
             json.dump(final_state, f)  
 
 
