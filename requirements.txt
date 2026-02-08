@@ -1,8 +1,11 @@
 langchain-core
 langchain-huggingface
 langchain_openai
+langchain_community
 langgraph
 langgraph-checkpoint-sqlite
+
+ollama
 
 sqlalchemy
 pydantic

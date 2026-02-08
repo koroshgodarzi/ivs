@@ -1,3 +1,4 @@
+from langchain_community.chat_models import ChatOllama
 from langchain_openai import ChatOpenAI
 import os
 import json
@@ -6,31 +7,33 @@ import os
 import tiktoken
 from typing import List, Dict
 from langchain_core.messages import BaseMessage
+from transformers import AutoTokenizer
 
 from dotenv import load_dotenv
 load_dotenv()
 
 
 def get_llm(max_tokens: int = 1024):
-    """
-    Returns a chat LLM using an OpenAI-compatible API.
-    Model + endpoint are fully configurable.
-    """
+    backend = os.getenv("LLM_BACKEND", "openai")
 
-    api_key = os.getenv("LLM_API_KEY")
-    base_url = os.getenv("LLM_BASE_URL")  
-    model = os.getenv("LLM_MODEL", "qwen2.5-coder-7b-instruct")
+    if backend == "openai":
+        return ChatOpenAI(
+            api_key=os.getenv("LLM_API_KEY"),
+            base_url=os.getenv("LLM_BASE_URL"),
+            model=os.getenv("LLM_MODEL"),
+            temperature=0,
+            max_tokens=max_tokens,
+        )
 
-    if not api_key or not base_url:
-        raise ValueError("LLM_API_KEY or LLM_BASE_URL not set")
+    elif backend == "ollama":
+        return ChatOllama(
+            model=os.getenv("LLM_MODEL", "qwen2.5-coder:14b"),
+            temperature=0,
+            num_predict=max_tokens,
+        )
 
-    return ChatOpenAI(
-        api_key=api_key,
-        base_url=base_url,
-        model=model,
-        temperature=0,
-        max_tokens=max_tokens,
-    )
+    else:
+        raise ValueError(f"Unknown LLM_BACKEND: {backend}")
 
 
 def count_chat_tokens(messages: list[BaseMessage]) -> int:
@@ -38,12 +41,24 @@ def count_chat_tokens(messages: list[BaseMessage]) -> int:
     Counts tokens for LangChain chat messages.
     Uses a best-effort tokenizer based on the configured model.
     """
-    model = os.getenv("LLM_MODEL", "qwen2.5-coder-7b-instruct")
+    backend = os.getenv("LLM_BACKEND", "openai")
 
-    try:
-        encoding = tiktoken.encoding_for_model(model)
-    except KeyError:
-        encoding = tiktoken.get_encoding("cl100k_base")
+    if backend == "openai":
+        model = os.getenv("LLM_MODEL", "qwen2.5-coder-7b-instruct")
+
+        try:
+            encoding = tiktoken.encoding_for_model(model)
+        except KeyError:
+            encoding = tiktoken.get_encoding("cl100k_base")
+
+    elif backend == "ollama":
+        encoding = AutoTokenizer.from_pretrained(
+            "Qwen/Qwen2.5-Coder-14B-Instruct",
+            trust_remote_code=True,
+        )
+
+    else:
+        raise ValueError(f"Unknown LLM_BACKEND: {backend}")
 
     total_tokens = 0
 
