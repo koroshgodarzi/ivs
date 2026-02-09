@@ -23,6 +23,7 @@ def get_llm(max_tokens: int = 1024):
             model=os.getenv("LLM_MODEL"),
             temperature=0,
             max_tokens=max_tokens,
+            model_kwargs={"response_format": {"type": "json_object"}},
         )
 
     elif backend == "ollama":
@@ -30,6 +31,7 @@ def get_llm(max_tokens: int = 1024):
             model=os.getenv("LLM_MODEL", "qwen2.5-coder:14b"),
             temperature=0,
             num_predict=max_tokens,
+            format="json",
         )
 
     else:

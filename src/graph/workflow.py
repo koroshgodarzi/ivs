@@ -12,6 +12,8 @@ from langgraph.checkpoint.sqlite import SqliteSaver
 import sqlite3
 from graph.monitoring import configure_text_logger, with_state_logging
 
+import time
+
 def build_graph():
     workflow = StateGraph(GraphState)
 
@@ -103,8 +105,8 @@ def main():
     # 4. Initialize the state
     # This matches the 'GraphState' structure expected by your nodes
     for i, user_question in enumerate(questions):
-        if i != 9:
-            continue
+        # if i != 9:
+        #     continue
         initial_state = {
             "messages": [
                 {"role": "user", "content": user_question}
@@ -128,14 +130,23 @@ def main():
             # 6. Run the graph
             # Use .stream() if you want to see updates node-by-node, 
             # or .invoke() to just get the final result.
+        start_time = time.perf_counter()
         final_state = app.invoke(initial_state, config=config)
-        output[str(i)] = final_state
+        end_time = time.perf_counter()
+        duration = end_time - start_time
+
+        messages_only = final_state.get("messages", [])
+        question_data = {
+            "messages": messages_only,
+            "time_spent_seconds": round(duration, 4)
+        }
+        output[str(i)] = question_data
         with open(os.path.join('..', 'output',f'output{str(i)}.json'), 'w') as f:
             json.dump(final_state, f)  
 
+        with open('output.json', 'w') as f:
+            json.dump(output, f)    
 
-    # with open('output.json', 'w') as f:
-    #     json.dump(output, f)    
     # 7. Print the results
     print("--- Workflow Complete ---")
 
