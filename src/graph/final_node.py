@@ -11,14 +11,13 @@ def format_final_response(state: GraphState) -> GraphState:
     """
     query = state.get("generated_query", "")
     results = state.get("query_results")
+    query_explanation = state.get("query_explanation")
     error = state.get("error_message")
     
     if error:
-        # Query execution was unsuccessful - store error_message
         response_text = error
     elif results is not None:
-        # Query execution was successful - store generated_query and query_results
-        response_text = results
+        response_text = query_explanation + "\nWhich resulted in: \n" +results
     else:
         # Fallback case
         response_text = "I was unable to generate a valid SQL query."

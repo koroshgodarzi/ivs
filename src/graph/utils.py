@@ -163,26 +163,11 @@ def ommiting_think_block(text: str) -> str:
     if not text or not isinstance(text, str):
         raise ValueError("Input must be a non-empty string")
 
-    # 1) Remove <think>...</think> blocks (non-greedy, case-insensitive, dotall)
     cleaned = re.sub(
         r'(?is)<think>.*?</think>\s*',
         '',
         text
     ).strip()
-
-    # # 2) Find the first SELECT or WITH
-    # match = re.search(r'(?is)\b(select|with)\b', cleaned)
-    # if not match:
-    #     raise ValueError("No SQL statement found")
-
-    # sql = cleaned[match.start():].strip()
-
-    # # 3) Final sanity checks
-    # if re.search(r'(?is)<\/?think\b|```', sql):
-    #     raise ValueError("Non-SQL content detected in output")
-
-    # if not re.match(r'(?is)^(select|with)\b', sql):
-    #     raise ValueError("Extracted text does not start with SQL")
 
     return cleaned
 

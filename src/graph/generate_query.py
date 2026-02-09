@@ -7,8 +7,7 @@ import os
 
 
 def sql_generator(state: GraphState) -> GraphState:
-    """Node 1: Generate SQL query from user input using LLM with human correction loop."""
-    
+    """Node 1: Generate SQL query from user input using LLM."""
     llm = get_llm(max_tokens=2048)
 
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
@@ -36,65 +35,33 @@ def sql_generator(state: GraphState) -> GraphState:
         HumanMessage(content=user_prompt),
     ]
 
+    response = llm.invoke(messages)
+
+    try:
+        query_generation_result = response.content.strip()
+        query_generation_result = ommiting_think_block(query_generation_result)
+        query_generation_result = extract_json_from_text(query_generation_result)
+    except (json.JSONDecodeError, ValueError) as e:
+        print(f"Failed to parse query_generation_result as JSON: {e}")
+
     query_explanation = []
-
-    while True:
-        response = llm.invoke(messages)
-
-        try:
-            query_generation_result = response.content.strip()
-            query_generation_result = ommiting_think_block(query_generation_result)
-            query_generation_result = extract_json_from_text(query_generation_result)
-        except (json.JSONDecodeError, ValueError) as e:
-            print(f"Failed to parse query_generation_result as JSON: {e}")
-
-        query_explanation.append(query_generation_result['query_explanation'])
-        user_command = input(
-            f"{query_generation_result['query_explanation']}\n"
-            "Do you approve of the procedure? (y / n / h): "
-        ).lower()
-
-        if user_command == "y":
-            sql_query = (
-                query_generation_result["generated_query"]
-                .strip()
-                .replace("```sql", "")
-                .replace("```", "")
-                .strip()
-            )
-
-            queries = state.get("generated_query") or []
-            queries.append(sql_query)
-            state["generated_query"] = queries
-
-            print(f"Generated query accepted:\n{sql_query}")
-            break
-
-        elif user_command == "n":
-            user_instructions = input("Type your corrections or instructions: ")
-            query_explanation.append(user_instructions)
-
-            messages.append(
-                AIMessage(content=response.content)
-            )
-
-            messages.append(
-                HumanMessage(
-                    content=(
-                        "Please revise the previous SQL query using these corrections:\n"
-                        f"{user_instructions}"
-                    )
-                )
-            )
-
-        elif user_command == "h":
-            print("SQL generation halted by user.")
-            break
-
-        else:
-            print("Invalid input. Please type y, n, or h.")
-
+    query_explanation.append(query_generation_result['query_explanation'])
     state['query_explanation'] = query_explanation
+    
+    sql_query = (
+        query_generation_result["generated_query"]
+        .strip()
+        .replace("```sql", "")
+        .replace("```", "")
+        .strip()
+    )
+
+    queries = state.get("generated_query") or []
+    queries.append(sql_query)
+    state["generated_query"] = queries
+
+    print(f"Generated query accepted:\n{sql_query}")
+
     return state
 
 
