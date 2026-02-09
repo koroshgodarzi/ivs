@@ -1,0 +1,4 @@
+These are the column names you may need to generate the query:
+{}
+User's question:
+{}
