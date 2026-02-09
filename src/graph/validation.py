@@ -31,12 +31,13 @@ def validate_user_question(state: GraphState) -> GraphState:
     
     schema = ""
     views = state.get("retrieved_schema")
-    view_index = state.get("schema_to_check", 0)
-    print(f"view_index: {view_index}")
 
-    with open(os.path.join('..', 'data', 'short_schema', f'{views[view_index]}.txt')) as f:
-        s = f.read()
-    schema += s
+    for v in views:
+        schema += v + ':\n'
+        with open(os.path.join('..', 'data', 'short_schema', f'{v}.txt')) as f:
+            s = f.read()
+        schema += s
+        schema += '\n'
     
     with open(os.path.join('..', 'prompt_template', 'query_validation_system_prompt.txt')) as f:
         system_prompt = f.read()
@@ -70,18 +71,12 @@ def validate_user_question(state: GraphState) -> GraphState:
 def should_proceed_with_user_question(state: GraphState) -> Literal["proceed", "halt"]:
     """Conditional edge: Decide whether to proceed with SQL generation based on validation."""
     validation_result = state.get("validation_result", "")
-    retrieved_schema = state.get("retrieved_schema", [])
-    schema_to_check = state.get("schema_to_check", 0)
-    print(f"schema_to_check: {schema_to_check}")
-    print(f"len(retrieved_schema): {len(retrieved_schema)}")
 
     if not validation_result:
         return "proceed"
 
     if validation_result.get("short answer", "").strip().upper().startswith("YES"):
         return "proceed"
-    elif schema_to_check <= len(retrieved_schema)-2:
-        return "loop"
     else:
         return "halt"
 
@@ -105,19 +100,10 @@ def handle_validation_failure(state: GraphState) -> GraphState:
     return state
 
 
-def check_other_schemas(state: GraphState) -> GraphState:
-    """Node 3: Handle errors and prepare for retry or final response."""
-    # Increment retry count if there's an error
-    schema_to_check = state.get("schema_to_check", 0)
-    state["schema_to_check"] = schema_to_check + 1
-
-    return state
-
-
 if __name__ == "__main__":
     # with open(os.path.join('..', 'data', 'short_schema', 'vw_Contract.txt')) as f:
     #     r_schema = f.read()
-    state = GraphState(messages=[{"role": "user", "content": "Status of how many contracts are canceled?"}], generated_query=None, query_results=None, error_message=None, summary_context=None, retry_count=0, validation_result=None, retrieved_schema=['vw_Contracts'])
+    state = GraphState(messages=[{"role": "user", "content": "Status of how many contracts are canceled?"}], generated_query=None, query_results=None, error_message=None, summary_context=None, retry_count=0, validation_result=None, retrieved_schema=['vw_Contracts', 'vw_Projects'])
     state = validate_user_question(state)
     print(state)
 

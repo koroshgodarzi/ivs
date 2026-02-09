@@ -1,6 +1,6 @@
 from graph.schema import GraphState
 from graph.embedding import schema_retriever
-from graph.validation import validate_user_question, should_proceed_with_user_question, handle_validation_failure, check_other_schemas
+from graph.validation import validate_user_question, should_proceed_with_user_question, handle_validation_failure
 from graph.generate_query import sql_generator
 from graph.execute_query import execute_query
 from graph.error_handling import error_handler, should_retry, explain_query_error
@@ -23,7 +23,6 @@ def build_graph():
     workflow.add_node("sql_generator", with_state_logging("sql_generator", sql_generator, logger))
     workflow.add_node("execute_query", with_state_logging("execute_query", execute_query, logger))
     workflow.add_node("error_handler", with_state_logging("error_handler", error_handler, logger))
-    workflow.add_node("check_other_schemas", check_other_schemas)
     workflow.add_node("explain_query_error", with_state_logging("explain_query_error", explain_query_error, logger))
     workflow.add_node("format_response", with_state_logging("format_response", format_final_response, logger))
     
@@ -38,14 +37,12 @@ def build_graph():
         should_proceed_with_user_question,
         {
             "proceed": "sql_generator",
-            "loop": "check_other_schemas",
             "halt": "handle_validation_failure"
         }
     )
     
     # 4. Standard edges
     workflow.add_edge("handle_validation_failure", END)
-    workflow.add_edge("check_other_schemas", "validate_user_question")
     workflow.add_edge("sql_generator", "execute_query")
     workflow.add_edge("execute_query", "error_handler")
     
@@ -106,7 +103,7 @@ def main():
     # 4. Initialize the state
     # This matches the 'GraphState' structure expected by your nodes
     for i, user_question in enumerate(questions):
-        if i != 1:
+        if i != 9:
             continue
         initial_state = {
             "messages": [
@@ -118,7 +115,7 @@ def main():
             "error_message": None,
             "query_results": None,
             "validation_result": None,
-            "schema_to_check": 0,
+            "query_explanation": None,
         }
 
         # 5. Config with thread_id (required for persistent memory/SqliteSaver)

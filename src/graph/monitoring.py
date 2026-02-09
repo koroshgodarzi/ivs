@@ -34,6 +34,11 @@ def _state_view(state: Dict[str, Any]) -> Dict[str, Any]:
         view["error_last"] = _truncate(em[-1], 500)
         view["error_count"] = len(em)
 
+    qe = state.get("query_explanation") or []
+    if isinstance(qe, list) and qe:
+        view["query_explanation_last"] = _truncate(qe[-1], 700)
+        view["query_explanation_count"] = len(qe)
+
     if state.get("query_results") is not None:
         view["query_results"] = _truncate(state.get("query_results"), 500)
 

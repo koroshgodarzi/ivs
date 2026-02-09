@@ -15,7 +15,7 @@ class GraphState(TypedDict):
     retry_count: int  # Track number of retries to limit loops
     validation_result: Optional[str]  # Result from query validation
     retrieved_schema: Optional[str] 
-    schema_to_check: int
+    query_explanation: int
 
 
 # FastAPI Request/Response Models

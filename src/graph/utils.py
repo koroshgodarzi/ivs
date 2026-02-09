@@ -106,18 +106,23 @@ def extract_json_from_text(text: str) -> dict:
     return json.loads(text)
 
 
-def create_column_names_for_schemas(schema_list: list, needed_categories: str) -> str:
-    
-    needed_cat_ids = [int(n) for n in needed_categories]
+def create_column_names_for_schemas(schema_categories: dict) -> list:
+    """
+    schema_categories: dict where
+        key   -> schema name
+        value -> iterable of needed category IDs for that schema
+    """
+
     all_schemas_metadata = []
 
-    # Iterate through every schema name in the list
-    for schema in schema_list:
+    for schema, needed_categories in schema_categories.items():
+        needed_cat_ids = {int(n) for n in needed_categories}
+
         # 1. Load the category mapping for this specific schema
         cat_path = os.path.join('..', 'data', 'short_schema', f'{schema}.json')
         if not os.path.exists(cat_path):
-            continue # Or handle error: schema file missing
-            
+            continue  # or raise an error
+
         with open(cat_path, 'r', encoding='utf-8') as f:
             schema_data = json.load(f)
 
@@ -137,11 +142,11 @@ def create_column_names_for_schemas(schema_list: list, needed_categories: str) -
         with open(meta_path, 'r', encoding='utf-8') as f:
             master_metadata = json.load(f)
 
-        # 3. Filter and add a 'table' identifier so the LLM knows which table is which
+        # 3. Filter and annotate with schema source
         for col_info in master_metadata:
             if col_info['name'] in needed_columns:
-                # Optional: Add the schema/table name to the dict so the LLM knows context
-                col_info['table_source'] = schema 
+                col_info = col_info.copy()  # avoid mutating original metadata
+                col_info['table_source'] = schema
                 all_schemas_metadata.append(col_info)
 
     return all_schemas_metadata

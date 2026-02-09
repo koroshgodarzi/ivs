@@ -6,24 +6,13 @@ import json
 import os
 
 
-def get_system_prompt(schema_list: list, needed_categories: str) -> str:
-    """Build the system prompt with schema and optional summary context."""
-    with open(os.path.join('..', 'prompt_template', 'query_generation_system_prompt.txt')) as f:
-        system_prompt_template = f.read()
-    
-    all_schemas_metadata = create_column_names_for_schemas(schema_list, needed_categories)
-    base_prompt = system_prompt_template.format(all_schemas_metadata)
-    
-    return base_prompt
-
-
 def sql_generator(state: GraphState) -> GraphState:
     """Node 1: Generate SQL query from user input using LLM with human correction loop."""
     
     llm = get_llm(max_tokens=2048)
 
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
-    user_prompt = user_messages[-1]["content"] if user_messages else ""
+    user_question = user_messages[-1]["content"] if user_messages else ""
 
     validation_result = state.get("validation_result", {})
     if isinstance(validation_result, str):
@@ -32,24 +21,22 @@ def sql_generator(state: GraphState) -> GraphState:
         except (json.JSONDecodeError, ValueError):
             validation_result = {}
 
-    column_categories = (
-        validation_result.get("Needed categories", "")
-        if isinstance(validation_result, dict)
-        else ""
-    )
+    all_schemas_metadata = create_column_names_for_schemas(validation_result['Needed table and categories'])
 
-    schema_list = state.get("retrieved_schema", [])
-    view_index = state.get("schema_to_check", 0)
-    # if isinstance(schema_list, str):
-    #     schema_list = [schema_list]
+    with open(os.path.join('..', 'prompt_template', 'query_generation_user_prompt.txt')) as f:
+        user_prompt = f.read()
+    
+    user_prompt = user_prompt.format(all_schemas_metadata, user_question)
 
-    system_prompt = get_system_prompt([schema_list[view_index]], column_categories)
+    with open(os.path.join('..', 'prompt_template', 'query_generation_system_prompt.txt')) as f:
+        system_prompt = f.read()
 
-    # Initial message stack
     messages = [
         SystemMessage(content=system_prompt),
         HumanMessage(content=user_prompt),
     ]
+
+    query_explanation = []
 
     while True:
         response = llm.invoke(messages)
@@ -60,8 +47,8 @@ def sql_generator(state: GraphState) -> GraphState:
             query_generation_result = extract_json_from_text(query_generation_result)
         except (json.JSONDecodeError, ValueError) as e:
             print(f"Failed to parse query_generation_result as JSON: {e}")
-            return state
 
+        query_explanation.append(query_generation_result['query_explanation'])
         user_command = input(
             f"{query_generation_result['query_explanation']}\n"
             "Do you approve of the procedure? (y / n / h): "
@@ -85,13 +72,12 @@ def sql_generator(state: GraphState) -> GraphState:
 
         elif user_command == "n":
             user_instructions = input("Type your corrections or instructions: ")
+            query_explanation.append(user_instructions)
 
-            # Add the model's previous response FIRST
             messages.append(
                 AIMessage(content=response.content)
             )
 
-            # Then add the user's correction
             messages.append(
                 HumanMessage(
                     content=(
@@ -108,11 +94,12 @@ def sql_generator(state: GraphState) -> GraphState:
         else:
             print("Invalid input. Please type y, n, or h.")
 
+    state['query_explanation'] = query_explanation
     return state
 
 
 if __name__ == "__main__":
-    validation_result = '```json\n{\n  "short answer": "Yes",\n  "Needed categories": [2]\n}\n```'
-    state = GraphState(messages=[{"role": "user", "content": "Status of how many contracts are canceled?"}], generated_query=None, query_results=None, error_message=None, summary_context=None, retry_count=0, validation_result=validation_result, retrieved_schema=['vw_Contracts'])
+    validation_result = {'short answer': 'Yes', 'Needed table and categories': {'vw_Projects': [2, 4]}}
+    state = GraphState(messages=[{"role": "user", "content": "Status of how many contracts are canceled?"}], generated_query=None, query_results=None, error_message=None, summary_context=None, retry_count=0, validation_result=validation_result, retrieved_schema=['vw_Contracts', 'vw_Projects'])
     state = sql_generator(state)
     print(state)

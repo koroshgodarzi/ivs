@@ -29,15 +29,8 @@ def explain_query_error(state: GraphState) -> GraphState:
             validation_result = extract_json_from_text(validation_result)
         except (json.JSONDecodeError, ValueError):
             validation_result = {}
-            
-    needed_categories = validation_result.get("Needed categories", "") if isinstance(validation_result, dict) else ""
 
-    schema_list = state.get("retrieved_schema", [])
-    view_index = state.get("schema_to_check", 0)
-    # if isinstance(schema_list, str): 
-    #     schema_list = [schema_list]
-
-    all_schemas_metadata = create_column_names_for_schemas([schema_list[view_index]], needed_categories)
+    all_schemas_metadata = create_column_names_for_schemas(validation_result['Needed table and categories'])
 
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
     user_prompt = user_messages[-1]["content"] if user_messages else ""
