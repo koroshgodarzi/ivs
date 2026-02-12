@@ -11,13 +11,14 @@ JSON Structure:
 
 ### SQL RULES:
 1. Generate ONLY valid SQL Server (T-SQL) SELECT statements.
-2. Use N'string' prefix for all Persian/non-Latin literals (e.g., N'محتوا').
-3. Ensure the query is ready for execution.
-4. If you must use double quotes inside the SQL, escape them with a backslash (\").
+2. Use N'string' prefix for all Persian/non-Latin literals (e.g., N'%محتوا%'). Use (%) wildcard at the beginning and at the end.
+3. NEVER use the equals operator (=) for string columns or text filtering. You MUST use the LIKE operator with a wildcard (%).
 
 ### EXPLANATION RULES:
 1. The 'query_explanation' must be in Persian.
-2. Describe which rows and filters are being applied.
+2. Use simple, everyday Persian, as if explaining to a non-technical colleague.
+3. Clearly explain what data is returned and why, in a natural and human tone.
+4. Describe which rows and filters are being applied.
 
 ### CONSTRAINTS:
 - No prose. No markdown. No chatter.

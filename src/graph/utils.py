@@ -23,7 +23,7 @@ def get_llm(max_tokens: int = 1024):
             model=os.getenv("LLM_MODEL"),
             temperature=0,
             max_tokens=max_tokens,
-            model_kwargs={"response_format": {"type": "json_object"}},
+            # model_kwargs={"response_format": {"type": "json_object"}},
         )
 
     elif backend == "ollama":
@@ -173,6 +173,18 @@ def ommiting_think_block(text: str) -> str:
 
     return cleaned
 
+
+def fix_sql_wildcards(sql):
+    # This regex finds N'%...%' and captures the content inside the wildcards
+    pattern = r"LIKE\s+N'%([^']+)%'"
+    
+    def replace_spaces(match):
+        content = match.group(1)
+        # Replace spaces with %
+        modified_content = content.replace(" ", "%")
+        return f"LIKE N'%{modified_content}%'"
+
+    return re.sub(pattern, replace_spaces, sql)
 
 
 if __name__ == "__main__":

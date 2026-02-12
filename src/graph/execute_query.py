@@ -3,6 +3,7 @@ from graph.error_handling import explain_query_error
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine, text, inspect
 from urllib.parse import quote_plus
+from graph.utils import fix_sql_wildcards
 import re
 import os
 
@@ -12,6 +13,7 @@ def execute_query(state: GraphState) -> GraphState:
 
     queries = [q for q in state.get("generated_query", [])]
     query = queries[-1] if queries else ""
+    query = fix_sql_wildcards(query)
     print(f"Here on executing: {query}")
     
     if not query:
