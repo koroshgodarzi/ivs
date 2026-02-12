@@ -1,31 +1,43 @@
+import pandas as pd
 from graph.schema import GraphState
-
 
 def format_final_response(state: GraphState) -> GraphState:
     """
-    Surrogate for format_final_response that stores query and results directly
-    without prompting the LLM.
-    
-    If query execution was successful: stores generated_query and query_results as content.
-    If query execution was unsuccessful: stores error_message as content.
+    Formats the final response:
+    1. Creates a Markdown table via Pandas for the chat history.
+    2. Preserves raw 'query_results' (JSON) for UI/FastAPI usage.
     """
-    query = state.get("generated_query", "")
-    results = state.get("query_results")
     query_explanation = state.get("query_explanation")
+    results = state.get("query_results")
     error = state.get("error_message")
     
+    response_content = ""
+
     if error:
-        response_text = error
+        error_detail = "\n".join(error) if isinstance(error, list) else str(error)
+        response_content = f"### ❌ Query Error\nI encountered an issue while running the query:\n\n`{error_detail}`"
+
     elif results is not None:
-        response_text = query_explanation + "\nWhich resulted in: \n" +results
+        if len(results) == 0:
+            response_content = f"### Query Explanation\n{query_explanation}\n\n**Result:** The query returned no matching records."
+        else:
+            df = pd.DataFrame(results)
+            markdown_table = df.to_markdown(index=False)
+            
+            response_content = (
+                f"### Query Explanation\n{query_explanation}\n\n"
+                f"### Results\n{markdown_table}"
+            )
+            
+            if len(results) > 15:
+                response_content += f"\n\n*(Showing first {len(results)} rows)*"
+
     else:
-        # Fallback case
-        response_text = "I was unable to generate a valid SQL query."
-    
-    # Add assistant response to messages (same as original function at lines 246-249)
+        response_content = "I'm sorry, I was unable to generate a valid response for that query."
+
     state["messages"].append({
         "role": "assistant",
-        "content": response_text
+        "content": response_content
     })
 
     return state

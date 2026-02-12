@@ -16,3 +16,4 @@ numpy
 pandas
 openpyxl
 python-dotenv
+tabulate

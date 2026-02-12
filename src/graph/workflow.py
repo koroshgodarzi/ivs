@@ -105,8 +105,8 @@ def main():
     # 4. Initialize the state
     # This matches the 'GraphState' structure expected by your nodes
     for i, user_question in enumerate(questions):
-        # if i != 9:
-        #     continue
+        if i != 4:
+            continue
         initial_state = {
             "messages": [
                 {"role": "user", "content": user_question}

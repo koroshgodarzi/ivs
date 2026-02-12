@@ -18,7 +18,7 @@ JSON Structure:
 1. The 'query_explanation' must be in Persian.
 2. Use simple, everyday Persian, as if explaining to a non-technical colleague.
 3. Clearly explain what data is returned and why, in a natural and human tone.
-4. Describe which rows and filters are being applied.
+4. Don't say anything about LIKE operator.
 
 ### CONSTRAINTS:
 - No prose. No markdown. No chatter.
