@@ -70,6 +70,9 @@ def build_graph():
 import uuid
 import json
 import os
+import pandas as pd
+import os
+import time
 
 def main():
     # 1. Ensure your API token is set
@@ -79,31 +82,46 @@ def main():
     # 2. Build the compiled graph
     app = build_graph()
 
-    # 3. Define the user's question
-    questions = [
-        "تعداد پروژه های فعال من چند تاست؟",
-        "چند تا پروژه در حالت 'در حال مذاکره' دارم؟",
-        "ناصر اسدی مدیر چند تا پروژه در وضعیت در حال اجراست؟",
-        "ناصر اسدی مدیر چند تا پروژه فعاله؟",
-        "لیست پروژه هایی که ناظر یا مشاور دارن",
-        "کدوم یکی از پروژه های EPC من پیشرفت واقعی بیشتری دارن؟",
-        "جمع رقم قراردادهای خاتمه یافته عمومی رو به تفکیک سال بده.",
-        "لیست قراردادهای تاخیر دار رو به ترتیب از بدترین وضعیت بده",
-        "یه پروژه جدید داره میاد. به نظرت بین مدیر پروژه های قبلی، به کدوم یکی بدمش؟ هم بحث تعداد پروژه هایی که نفر دستشه رو در نظر بگیر هم بحث تاخیر پروژه های قبلی",
-        "آیا ارتباطی بین محل اجرای پروژه با احتمال تاخیرش دیده میشه؟",
-        "لیست قراردادهای فسخ شده رو بده",
-        "جمع مبلغ و تعداد قراردادهای جاری رو بده",
-        "جمع قراردادهای هر سال از 90 به اینور رو بده",
-        "لیست قراردادهایی که الحاقیه دارن رو بده",
-        "قراردادهایی که صورت وضعیت نخوردن ولی پرداخت داشتن",
-        "جمع مبالغی که صورت وضعیت شده اما هنوز پرداخت نشده برای قراردادهای جاری",
-        "میانگین درصد الحاقیه ها نسبت به رقم قرارداد به تفکیک سال",
-        "وضعیت کدوم قراردادم خیلی خرابه؟ میتونی از میزان پیشرفت فیزیکی نسبت به مبلغ پرداخت شده و همچنین مبلغ اولیه قرارداد برای معیار استفاده کنی",
-        "کدوم مدیر پروژه قراردادهاش رو بهتر مدیریت کرده؟ میتونی یه معیار از تعداد قراردادهای خاتمه یافته به عنوان امتیاز مثبت، فسخ شده به عنوان امتیاز منفی، و انحراف رقم پرداخت شده نهایی نسبت به رقم اولیه به عنوان امتیاز منفی شکل بدی و بر اون اساس قضاوت کنی"
-    ]
+    # 3. Define the user's question by reading from Excel
+    excel_file = "../FAQ-IPMP-1404-11-21 (1)_.xlsx"
+    
+    try:
+        # Reads the Excel file. 
+        # header=None assumes the first row is data. If there is a header, remove header=None.
+        # iloc[:, 0] takes the first column.
+        df = pd.read_excel(excel_file, header=0) 
+        
+        # Convert the first column to a list and remove empty rows
+        questions = df.iloc[:, 1].dropna().astype(str).tolist()
+        
+        print(f"Successfully loaded {len(questions)} questions from {excel_file}")
+        
+    except FileNotFoundError:
+        print(f"Error: The file '{excel_file}' was not found. Loading fallback questions.")
+        # Fallback to the hardcoded list if file is missing
+        questions = [
+            "تعداد پروژه های فعال من چند تاست؟",
+            "چند تا پروژه در حالت 'در حال مذاکره' دارم؟",
+            "ناصر اسدی مدیر چند تا پروژه در وضعیت در حال اجراست؟",
+            "ناصر اسدی مدیر چند تا پروژه فعاله؟",
+            "لیست پروژه هایی که ناظر یا مشاور دارن",
+            "کدوم یکی از پروژه های EPC من پیشرفت واقعی بیشتری دارن؟",
+            "جمع رقم قراردادهای خاتمه یافته عمومی رو به تفکیک سال بده.",
+            "لیست قراردادهای تاخیر دار رو به ترتیب از بدترین وضعیت بده",
+            "یه پروژه جدید داره میاد. به نظرت بین مدیر پروژه های قبلی، به کدوم یکی بدمش؟ هم بحث تعداد پروژه هایی که نفر دستشه رو در نظر بگیر هم بحث تاخیر پروژه های قبلی",
+            "آیا ارتباطی بین محل اجرای پروژه با احتمال تاخیرش دیده میشه؟",
+            "لیست قراردادهای فسخ شده رو بده",
+            "جمع مبلغ و تعداد قراردادهای جاری رو بده",
+            "جمع قراردادهای هر سال از 90 به اینور رو بده",
+            "لیست قراردادهایی که الحاقیه دارن رو بده",
+            "قراردادهایی که صورت وضعیت نخوردن ولی پرداخت داشتن",
+            "جمع مبالغی که صورت وضعیت شده اما هنوز پرداخت نشده برای قراردادهای جاری",
+            "میانگین درصد الحاقیه ها نسبت به رقم قرارداد به تفکیک سال",
+            "وضعیت کدوم قراردادم خیلی خرابه؟ میتونی از میزان پیشرفت فیزیکی نسبت به مبلغ پرداخت شده و همچنین مبلغ اولیه قرارداد برای معیار استفاده کنی",
+            "کدوم مدیر پروژه قراردادهاش رو بهتر مدیریت کرده؟ میتونی یه معیار از تعداد قراردادهای خاتمه یافته به عنوان امتیاز مثبت، فسخ شده به عنوان امتیاز منفی، و انحراف رقم پرداخت شده نهایی نسبت به رقم اولیه به عنوان امتیاز منفی شکل بدی و بر اون اساس قضاوت کنی"
+        ]
 
     # 4. Initialize the state
-    # This matches the 'GraphState' structure expected by your nodes
     for i, user_question in enumerate(questions):
         if i != 4:
             continue
@@ -120,31 +138,28 @@ def main():
             "query_explanation": None,
         }
 
-        # 5. Config with thread_id (required for persistent memory/SqliteSaver)
+        # 5. Config with thread_id
         config = {"configurable": {"thread_id": "test"}}
 
         print("--- Starting Text-to-SQL Workflow ---")
         print(f"User Question: {user_question}\n")
 
-        # try:
-            # 6. Run the graph
-            # Use .stream() if you want to see updates node-by-node, 
-            # or .invoke() to just get the final result.
+        # 6. Run the graph
         start_time = time.perf_counter()
         final_state = app.invoke(initial_state, config=config)
         end_time = time.perf_counter()
         duration = end_time - start_time
-
+        
         messages_only = final_state.get("messages", [])
         question_data = {
             "messages": messages_only,
             "time_spent_seconds": round(duration, 4)
         }
         output[str(i)] = question_data
-        with open(os.path.join('..', 'output',f'output{str(i)}.json'), 'w') as f:
+        with open(os.path.join('..', 'output', 'second_question_series',f'output{str(i)}.json'), 'w') as f:
             json.dump(final_state, f)  
 
-        with open('output.json', 'w') as f:
+        with open(os.path.join('..', 'output', 'second_question_series', 'output.json'), 'w') as f:
             json.dump(output, f)    
 
     # 7. Print the results

@@ -11,8 +11,9 @@ JSON Structure:
 
 ### SQL RULES:
 1. Generate ONLY valid SQL Server (T-SQL) SELECT statements.
-2. Use N'string' prefix for all Persian/non-Latin literals (e.g., N'%محتوا%'). Use (%) wildcard at the beginning and at the end.
-3. NEVER use the equals operator (=) for string columns or text filtering. You MUST use the LIKE operator with a wildcard (%).
+2. If user didn't specify the details, only select the column(s) regarding name and identification.
+3. Use N'string' prefix for all Persian/non-Latin literals (e.g., N'%محتوا%'). Use (%) wildcard at the beginning and at the end.
+4. NEVER use the equals operator (=) for string columns or text filtering. You MUST use the LIKE operator with a wildcard (%).
 
 ### EXPLANATION RULES:
 1. The 'query_explanation' must be in Persian.

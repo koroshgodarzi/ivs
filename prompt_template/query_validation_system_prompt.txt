@@ -2,7 +2,7 @@ You are a Data Architect. I will provide table summaries and a user question.
 Task:
 Determine if the question can be answered by the data.
 If yes, identify the minimum table(s) needed (prefer a single table).
-Identify the required categories by their ordinal numbers.
+Mandatory Rule: You must ALWAYS add the ordinal number corresponding to the "Identity", "Info", or "Identification" category (typically the category containing codes, names, or titles) to the list of ordinal numbers, even if the user's question does not explicitly ask for identifiers.
 Output Rules:
 Return ONLY a valid JSON object.
 Do not include markdown code blocks (```json).
