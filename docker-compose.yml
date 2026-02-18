@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    container_name: sql_server_2025
+    platform: linux/amd64 
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrongPassword123!
+      - MSSQL_PID=Developer
+    volumes:
+      - mssql_2025_data:/var/opt/mssql
+      - ./ivs_data:/var/opt/mssql/backup_folder
+    restart: always
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    network_mode: host
+    environment:
+      - OPENAI_API_TIMEOUT=300
+      - OPENAI_API_BASE_URL=http://127.0.0.1:8000/v1
+      - OPENAI_API_KEY=dummy
+    # It is highly recommended to add a volume to persist your chats/settings:
+    # volumes:
+    #   - open-webui-data:/app/backend/data
+    restart: always
+
+volumes:
+  mssql_2025_data:
+  # open-webui-data:

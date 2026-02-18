@@ -12,6 +12,9 @@ pydantic
 
 huggingface-hub
 
+uvicorn
+fastapi
+
 numpy
 pandas
 openpyxl

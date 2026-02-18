@@ -1,14 +1,16 @@
 from graph.utils import get_llm, extract_json_from_text, create_column_names_for_schemas, ommiting_think_block
 from graph.schema import GraphState
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_core.runnables import RunnableConfig
 
 import json
 import os
 
 
-def sql_generator(state: GraphState) -> GraphState:
+def sql_generator(state: GraphState, config: RunnableConfig) -> GraphState:
     """Node 1: Generate SQL query from user input using LLM."""
-    llm = get_llm(max_tokens=2048)
+    model_name = config.get("configurable", {}).get("model_name", "gpt")
+    llm = get_llm(model_id=model_name)
 
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
     user_question = user_messages[-1]["content"] if user_messages else ""

@@ -13,29 +13,57 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def get_llm(max_tokens: int = 1024):
-    backend = os.getenv("LLM_BACKEND", "openai")
+import os
+from langchain_openai import ChatOpenAI
+from langchain_community.chat_models import ChatOllama
 
-    if backend == "openai":
-        return ChatOpenAI(
-            api_key=os.getenv("LLM_API_KEY"),
-            base_url=os.getenv("LLM_BASE_URL"),
-            model=os.getenv("LLM_MODEL"),
-            temperature=0,
-            max_tokens=max_tokens,
-            # model_kwargs={"response_format": {"type": "json_object"}},
-        )
-
-    elif backend == "ollama":
+def get_llm(model_id: str, max_tokens: int = 4096):
+    """
+    model_id comes from the UI/API request.
+    Example IDs: 'gpt-4o', 'qwen-72b-api', 'ollama-qwen'
+    """
+    # 1. OLLAMA Logic
+    if model_id.startswith("ollama"):
+        # You can extract the specific version if you send 'ollama:qwen2.5'
+        model_name = model_id.split(":")[1::] if ":" in model_id else "qwen2.5-coder:14b"
+        model_name = model_name[0] + ':' + model_name[1]
         return ChatOllama(
-            model=os.getenv("LLM_MODEL", "qwen2.5-coder:14b"),
+            model=model_name,
             temperature=0,
             num_predict=max_tokens,
             format="json",
         )
 
+    # 2. QWEN API Logic (OpenAI Compatible)
+    elif "qwen" in model_id.lower() and "api" in model_id.lower():
+        return ChatOpenAI(
+            api_key=os.getenv("LLM_API_KEY"),
+            base_url=os.getenv("QWEN_BASE_URL"), # e.g. DashScope or your proxy
+            model='Qwen3-30B-A3B-lbu2r',
+            temperature=0,
+            max_tokens=max_tokens,
+        )
+
+    # 3. GPT Logic (OpenAI)
+    elif "gpt" in model_id.lower():
+        return ChatOpenAI(
+            api_key=os.getenv("LLM_API_KEY"),
+            base_url=os.getenv("GPT_BASE_URL"),
+            model='GPT-5-Nano-xudvw',
+            temperature=0,
+            max_tokens=max_tokens,
+        )
+
+    # Fallback / Default
     else:
-        raise ValueError(f"Unknown LLM_BACKEND: {backend}")
+        # Use your original environment variable logic as a fallback
+        return ChatOpenAI(
+            api_key=os.getenv("LLM_API_KEY"),
+            base_url=os.getenv("LLM_BASE_URL"),
+            model=os.getenv("LLM_MODEL", "gpt-3.5-turbo"),
+            temperature=0,
+            max_tokens=max_tokens,
+        )
 
 
 def count_chat_tokens(messages: list[BaseMessage]) -> int:

@@ -4,11 +4,12 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine, text, inspect
 from urllib.parse import quote_plus
 from graph.utils import fix_sql_wildcards
+from langchain_core.runnables import RunnableConfig
+
 import re
 import os
 
-
-def execute_query(state: GraphState) -> GraphState:
+def execute_query(state: GraphState, config: RunnableConfig) -> GraphState:
     """Node 2: Execute the generated SQL query."""
 
     queries = [q for q in state.get("generated_query", [])]

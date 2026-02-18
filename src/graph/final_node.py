@@ -1,7 +1,8 @@
 import pandas as pd
 from graph.schema import GraphState
+from langchain_core.runnables import RunnableConfig
 
-def format_final_response(state: GraphState) -> GraphState:
+def format_final_response(state: GraphState, config: RunnableConfig) -> GraphState:
     """
     Formats the final response:
     1. Creates a Markdown table via Pandas for the chat history.

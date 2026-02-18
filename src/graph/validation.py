@@ -1,6 +1,7 @@
 """Query validation using LLM to check if a question can be answered from the database schema."""
 
 from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.runnables import RunnableConfig
 
 from graph.schema import GraphState
 from graph.utils import get_llm, extract_json_from_text, ommiting_think_block, count_chat_tokens
@@ -10,7 +11,7 @@ import os
 import json
 
 
-def validate_user_question(state: GraphState) -> GraphState:
+def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphState:
     """
     Use LLM to determine if a question can be answered from the database schema.
     This function works as a LangGraph node and updates the state.
@@ -21,8 +22,8 @@ def validate_user_question(state: GraphState) -> GraphState:
     Returns:
         Updated GraphState with validation_result field
     """
-
-    llm = get_llm(max_tokens=2048)
+    model_name = config.get("configurable", {}).get("model_name", "gpt")
+    llm = get_llm(model_id=model_name)
     
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
     if not user_messages:
@@ -44,11 +45,13 @@ def validate_user_question(state: GraphState) -> GraphState:
 
     with open(os.path.join('..', 'prompt_template', 'query_validation_user_prompt.txt')) as f:
         user_prompt = f.read().format(schema, user_messages)
-    
+
     messages = [
         SystemMessage(content=system_prompt),
         HumanMessage(content=user_prompt)
     ]
+
+    # print(messages)
 
     num_tokens_msg = count_chat_tokens(messages)
     print(num_tokens_msg)
@@ -68,7 +71,7 @@ def validate_user_question(state: GraphState) -> GraphState:
     return state
 
 
-def should_proceed_with_user_question(state: GraphState) -> Literal["proceed", "halt"]:
+def should_proceed_with_user_question(state: GraphState, config: RunnableConfig) -> Literal["proceed", "halt"]:
     """Conditional edge: Decide whether to proceed with SQL generation based on validation."""
     validation_result = state.get("validation_result", "")
 
@@ -81,7 +84,7 @@ def should_proceed_with_user_question(state: GraphState) -> Literal["proceed", "
         return "halt"
 
 
-def handle_validation_failure(state: GraphState) -> GraphState:
+def handle_validation_failure(state: GraphState, config: RunnableConfig) -> GraphState:
     """Handle case when validation fails - set query_results and add assistant message."""
     validation_result = state.get("validation_result", "Failed to validate user's question.")
     

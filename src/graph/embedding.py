@@ -5,11 +5,12 @@ import os
 import numpy as np
 from pathlib import Path
 import ollama 
+from langchain_core.runnables import RunnableConfig
 
 from dotenv import load_dotenv
 load_dotenv()
 
-def schema_retriever(state: GraphState,
+def schema_retriever(state: GraphState, config: RunnableConfig,
     top_k_schemas: int = 3,
 ) -> GraphState:
     """

@@ -20,7 +20,7 @@ def build_graph():
     logger = configure_text_logger()
 
     workflow.add_node("schema_retriever", with_state_logging("schema_retriever", schema_retriever, logger))
-    workflow.add_node("validate_user_question", with_state_logging("validate_user_question", validate_user_question, logger))
+    workflow.add_node("validate_user_question", with_state_logging("validate_user_question", validate_user_question, logger)) 
     workflow.add_node("handle_validation_failure", with_state_logging("handle_validation_failure", handle_validation_failure, logger))
     workflow.add_node("sql_generator", with_state_logging("sql_generator", sql_generator, logger))
     workflow.add_node("execute_query", with_state_logging("execute_query", execute_query, logger))
@@ -83,47 +83,52 @@ def main():
     app = build_graph()
 
     # 3. Define the user's question by reading from Excel
-    excel_file = "../FAQ-IPMP-1404-11-21 (1)_.xlsx"
+    # excel_file = "../FAQ-IPMP-1404-11-21 (1).xlsx"
     
-    try:
-        # Reads the Excel file. 
-        # header=None assumes the first row is data. If there is a header, remove header=None.
-        # iloc[:, 0] takes the first column.
-        df = pd.read_excel(excel_file, header=0) 
+    # try:
+    #     # Reads the Excel file. 
+    #     # header=None assumes the first row is data. If there is a header, remove header=None.
+    #     # iloc[:, 0] takes the first column.
+    #     df = pd.read_excel(excel_file, header=0) 
         
-        # Convert the first column to a list and remove empty rows
-        questions = df.iloc[:, 1].dropna().astype(str).tolist()
+    #     # Convert the first column to a list and remove empty rows
+    #     questions = df.iloc[:, 1].dropna().astype(str).tolist()
         
-        print(f"Successfully loaded {len(questions)} questions from {excel_file}")
+    #     print(f"Successfully loaded {len(questions)} questions from {excel_file}")
         
-    except FileNotFoundError:
-        print(f"Error: The file '{excel_file}' was not found. Loading fallback questions.")
-        # Fallback to the hardcoded list if file is missing
-        questions = [
-            "تعداد پروژه های فعال من چند تاست؟",
-            "چند تا پروژه در حالت 'در حال مذاکره' دارم؟",
-            "ناصر اسدی مدیر چند تا پروژه در وضعیت در حال اجراست؟",
-            "ناصر اسدی مدیر چند تا پروژه فعاله؟",
-            "لیست پروژه هایی که ناظر یا مشاور دارن",
-            "کدوم یکی از پروژه های EPC من پیشرفت واقعی بیشتری دارن؟",
-            "جمع رقم قراردادهای خاتمه یافته عمومی رو به تفکیک سال بده.",
-            "لیست قراردادهای تاخیر دار رو به ترتیب از بدترین وضعیت بده",
-            "یه پروژه جدید داره میاد. به نظرت بین مدیر پروژه های قبلی، به کدوم یکی بدمش؟ هم بحث تعداد پروژه هایی که نفر دستشه رو در نظر بگیر هم بحث تاخیر پروژه های قبلی",
-            "آیا ارتباطی بین محل اجرای پروژه با احتمال تاخیرش دیده میشه؟",
-            "لیست قراردادهای فسخ شده رو بده",
-            "جمع مبلغ و تعداد قراردادهای جاری رو بده",
-            "جمع قراردادهای هر سال از 90 به اینور رو بده",
-            "لیست قراردادهایی که الحاقیه دارن رو بده",
-            "قراردادهایی که صورت وضعیت نخوردن ولی پرداخت داشتن",
-            "جمع مبالغی که صورت وضعیت شده اما هنوز پرداخت نشده برای قراردادهای جاری",
-            "میانگین درصد الحاقیه ها نسبت به رقم قرارداد به تفکیک سال",
-            "وضعیت کدوم قراردادم خیلی خرابه؟ میتونی از میزان پیشرفت فیزیکی نسبت به مبلغ پرداخت شده و همچنین مبلغ اولیه قرارداد برای معیار استفاده کنی",
-            "کدوم مدیر پروژه قراردادهاش رو بهتر مدیریت کرده؟ میتونی یه معیار از تعداد قراردادهای خاتمه یافته به عنوان امتیاز مثبت، فسخ شده به عنوان امتیاز منفی، و انحراف رقم پرداخت شده نهایی نسبت به رقم اولیه به عنوان امتیاز منفی شکل بدی و بر اون اساس قضاوت کنی"
-        ]
+    # except FileNotFoundError:
+    #     print(f"Error: The file '{excel_file}' was not found. Loading fallback questions.")
+    #     # Fallback to the hardcoded list if file is missing
+    #     questions = [
+    #         "تعداد پروژه های فعال من چند تاست؟",
+    #         "چند تا پروژه در حالت 'در حال مذاکره' دارم؟",
+    #         "ناصر اسدی مدیر چند تا پروژه در وضعیت در حال اجراست؟",
+    #         "ناصر اسدی مدیر چند تا پروژه فعاله؟",
+    #         "لیست پروژه هایی که ناظر یا مشاور دارن",
+    #         "کدوم یکی از پروژه های EPC من پیشرفت واقعی بیشتری دارن؟",
+    #         "جمع رقم قراردادهای خاتمه یافته عمومی رو به تفکیک سال بده.",
+    #         "لیست قراردادهای تاخیر دار رو به ترتیب از بدترین وضعیت بده",
+    #         "یه پروژه جدید داره میاد. به نظرت بین مدیر پروژه های قبلی، به کدوم یکی بدمش؟ هم بحث تعداد پروژه هایی که نفر دستشه رو در نظر بگیر هم بحث تاخیر پروژه های قبلی",
+    #         "آیا ارتباطی بین محل اجرای پروژه با احتمال تاخیرش دیده میشه؟",
+    #         "لیست قراردادهای فسخ شده رو بده",
+    #         "جمع مبلغ و تعداد قراردادهای جاری رو بده",
+    #         "جمع قراردادهای هر سال از 90 به اینور رو بده",
+    #         "لیست قراردادهایی که الحاقیه دارن رو بده",
+    #         "قراردادهایی که صورت وضعیت نخوردن ولی پرداخت داشتن",
+    #         "جمع مبالغی که صورت وضعیت شده اما هنوز پرداخت نشده برای قراردادهای جاری",
+    #         "میانگین درصد الحاقیه ها نسبت به رقم قرارداد به تفکیک سال",
+    #         "وضعیت کدوم قراردادم خیلی خرابه؟ میتونی از میزان پیشرفت فیزیکی نسبت به مبلغ پرداخت شده و همچنین مبلغ اولیه قرارداد برای معیار استفاده کنی",
+    #         "کدوم مدیر پروژه قراردادهاش رو بهتر مدیریت کرده؟ میتونی یه معیار از تعداد قراردادهای خاتمه یافته به عنوان امتیاز مثبت، فسخ شده به عنوان امتیاز منفی، و انحراف رقم پرداخت شده نهایی نسبت به رقم اولیه به عنوان امتیاز منفی شکل بدی و بر اون اساس قضاوت کنی"
+    #     ]
 
+    questions = ['لیست پروژه های جاری «ناصر اسدی» را بده',
+    'پروژه های با ارز دلاری که «Project Admin» راهبر پروژه است چند تا هست؟ نام پروژه و وضعیت جاری',
+    'کدام شکست برنامه ای پروژه هایی که من راهبر پروژه هستم (من javad ahmadi هستم)، محاسبه برنامه ای ندارند؟',
+    'لیست قراردادهای جاری پروژه بعثت را بده ؟',
+    'لیست منابع پروژه «فاز اول- ناصری» را نیاز دارم؟']
     # 4. Initialize the state
     for i, user_question in enumerate(questions):
-        if i != 4:
+        if i != 0:
             continue
         initial_state = {
             "messages": [
@@ -139,7 +144,7 @@ def main():
         }
 
         # 5. Config with thread_id
-        config = {"configurable": {"thread_id": "test"}}
+        config = {"configurable": {"thread_id": f"{str(i)}", "model_name": 'qwen-api'}}
 
         print("--- Starting Text-to-SQL Workflow ---")
         print(f"User Question: {user_question}\n")
@@ -151,16 +156,20 @@ def main():
         duration = end_time - start_time
         
         messages_only = final_state.get("messages", [])
+        schema_only = final_state.get("retrieved_schema", [])
+        query_results = final_state.get("query_results", [])
         question_data = {
             "messages": messages_only,
+            "query_results": query_results,
+            "schema_only": schema_only,
             "time_spent_seconds": round(duration, 4)
         }
         output[str(i)] = question_data
-        with open(os.path.join('..', 'output', 'second_question_series',f'output{str(i)}.json'), 'w') as f:
-            json.dump(final_state, f)  
+        # with open(os.path.join('..', 'output', 'second_question_series_gpt',f'output{str(i)}.json'), 'w') as f:
+        #     json.dump(final_state, f)  
 
-        with open(os.path.join('..', 'output', 'second_question_series', 'output.json'), 'w') as f:
-            json.dump(output, f)    
+        # with open(os.path.join('..', 'output', 'second_question_series_gpt', 'output.json'), 'w') as f:
+        #     json.dump(output, f)    
 
     # 7. Print the results
     print("--- Workflow Complete ---")
