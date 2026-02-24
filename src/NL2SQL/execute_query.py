@@ -1,5 +1,5 @@
-from graph.schema import GraphState
-from graph.error_handling import explain_query_error
+from NL2SQL.schema import GraphState
+from NL2SQL.error_handling import explain_query_error
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine, text, inspect
 from urllib.parse import quote_plus

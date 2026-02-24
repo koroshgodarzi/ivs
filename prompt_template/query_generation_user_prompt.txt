@@ -1,4 +1,6 @@
 These are the column names you may need to generate the query:
 {}
+You may need these defenitions/formulaes to understand the user's business terms:
+{}
 User's question:
 {}

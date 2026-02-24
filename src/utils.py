@@ -8,6 +8,8 @@ import tiktoken
 from typing import List, Dict
 from langchain_core.messages import BaseMessage
 from transformers import AutoTokenizer
+import chromadb
+from chromadb.utils import embedding_functions
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -213,6 +215,29 @@ def fix_sql_wildcards(sql):
         return f"LIKE N'%{modified_content}%'"
 
     return re.sub(pattern, replace_spaces, sql)
+
+
+def get_rag_context(user_question: str, n_results: int = 2, chroma_db_path: str = "../data/chroma_db"):
+    # Initialize the same client and embedding function used in storage
+    client = chromadb.PersistentClient(path=chroma_db_path)
+    
+    ollama_ef = embedding_functions.OllamaEmbeddingFunction(
+        url="http://localhost:11434/api/embeddings",
+        model_name="embeddinggemma"
+    )
+    
+    collection = client.get_collection(
+        name="project_management_rag", 
+        embedding_function=ollama_ef
+    )
+
+    results = collection.query(
+        query_texts=[user_question],
+        n_results=n_results
+    )
+
+    context_list = results.get("documents", [[]])[0]
+    return "\n---\n".join(context_list)
 
 
 if __name__ == "__main__":

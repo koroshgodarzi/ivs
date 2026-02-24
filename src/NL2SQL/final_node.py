@@ -1,5 +1,5 @@
 import pandas as pd
-from graph.schema import GraphState
+from NL2SQL.schema import GraphState
 from langchain_core.runnables import RunnableConfig
 
 def format_final_response(state: GraphState, config: RunnableConfig) -> GraphState:

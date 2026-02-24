@@ -1,4 +1,4 @@
-from graph.schema import GraphState
+from NL2SQL.schema import GraphState
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from utils import get_llm, create_column_names_for_schemas, extract_json_from_text, ommiting_think_block
 from typing import Literal

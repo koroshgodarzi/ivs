@@ -1,5 +1,5 @@
-from utils import get_llm, extract_json_from_text, create_column_names_for_schemas, ommiting_think_block
-from graph.schema import GraphState
+from utils import get_llm, extract_json_from_text, create_column_names_for_schemas, ommiting_think_block, get_rag_context
+from NL2SQL.schema import GraphState
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 
@@ -27,7 +27,10 @@ def sql_generator(state: GraphState, config: RunnableConfig) -> GraphState:
     with open(os.path.join('..', 'prompt_template', 'query_generation_user_prompt.txt')) as f:
         user_prompt = f.read()
     
-    user_prompt = user_prompt.format(all_schemas_metadata, user_question)
+    rag_context = get_rag_context(user_question)
+
+    user_prompt = user_prompt.format(all_schemas_metadata, rag_context, user_question)
+    print(user_prompt)
 
     with open(os.path.join('..', 'prompt_template', 'query_generation_system_prompt.txt')) as f:
         system_prompt = f.read()
@@ -68,7 +71,8 @@ def sql_generator(state: GraphState, config: RunnableConfig) -> GraphState:
 
 
 if __name__ == "__main__":
+    config = {"configurable": {"thread_id": "1", "model_name": 'qwen-api'}}
     validation_result = {'short answer': 'Yes', 'Needed table and categories': {'vw_Projects': [2, 4]}}
     state = GraphState(messages=[{"role": "user", "content": "Status of how many contracts are canceled?"}], generated_query=None, query_results=None, error_message=None, summary_context=None, retry_count=0, validation_result=validation_result, retrieved_schema=['vw_Contracts', 'vw_Projects'])
-    state = sql_generator(state)
+    state = sql_generator(state, config)
     print(state)

@@ -1,4 +1,4 @@
-from graph.schema import GraphState
+from NL2SQL.schema import GraphState
 from typing import Optional, List
 import json
 import os
