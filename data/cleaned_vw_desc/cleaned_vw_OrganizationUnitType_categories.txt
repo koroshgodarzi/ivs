@@ -1,1 +1,0 @@
-vw_organizationunittype categories identifier internal for each organization unit type type label short human readable title name the unit type group industry

@@ -1,1 +1,0 @@
-vw_projectscurve column categories concise context grain project and reporting grain time period label calendar type indicating which calendar the row represents period boundaries start end the period both and formats period progress planned actual progress for the period percent cumulative progress planned actual cumulative progress the period end percent

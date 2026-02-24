@@ -1,1 +1,0 @@
-vw_planhistory column categories concise hierarchy ids unique row plus links the project plan and wbs work breakdown nodes naming labels human readable names for the project wbs element and project plan snapshot creation time when this plan history snapshot was jalali parts planned schedule window planned start and planned end for the plan jalali parts
