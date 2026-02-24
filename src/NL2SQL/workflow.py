@@ -5,7 +5,7 @@ from graph.generate_query import sql_generator
 from graph.execute_query import execute_query
 from graph.error_handling import error_handler, should_retry, explain_query_error
 from graph.final_node import format_final_response
-from graph.utils import get_llm
+from utils import get_llm
 
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.sqlite import SqliteSaver

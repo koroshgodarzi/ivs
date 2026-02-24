@@ -1,4 +1,4 @@
-from graph.utils import get_llm, extract_json_from_text, create_column_names_for_schemas, ommiting_think_block
+from utils import get_llm, extract_json_from_text, create_column_names_for_schemas, ommiting_think_block
 from graph.schema import GraphState
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig

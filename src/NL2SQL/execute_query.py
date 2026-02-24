@@ -3,7 +3,7 @@ from graph.error_handling import explain_query_error
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine, text, inspect
 from urllib.parse import quote_plus
-from graph.utils import fix_sql_wildcards
+from utils import fix_sql_wildcards
 from langchain_core.runnables import RunnableConfig
 
 import re
