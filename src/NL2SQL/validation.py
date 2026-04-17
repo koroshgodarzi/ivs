@@ -33,7 +33,7 @@ def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphSt
     schema = ""
     views = state.get("retrieved_schema")
 
-    for v in views:
+    for v in views['Table Candidates']:
         schema += v + ':\n'
         with open(os.path.join('..', 'data', 'short_schema', f'{v}.txt')) as f:
             s = f.read()
@@ -53,8 +53,8 @@ def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphSt
 
     # print(messages)
 
-    num_tokens_msg = count_chat_tokens(messages)
-    print(num_tokens_msg)
+    # num_tokens_msg = count_chat_tokens(messages)
+    # print(num_tokens_msg)
 
     response = llm.invoke(messages)
     
