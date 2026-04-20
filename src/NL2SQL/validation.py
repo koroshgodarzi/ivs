@@ -14,13 +14,7 @@ import json
 def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphState:
     """
     Use LLM to determine if a question can be answered from the database schema.
-    This function works as a LangGraph node and updates the state.
-    
-    Args:
-        state: The GraphState containing messages with the user's question
-        
-    Returns:
-        Updated GraphState with validation_result field
+    Iterates through 3, 5, and 7 table candidates until a 'Yes' is found.
     """
     model_name = config.get("configurable", {}).get("model_name", "gpt")
     llm = get_llm(model_id=model_name)
@@ -30,43 +24,70 @@ def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphSt
         state["validation_result"] = "No user question found."
         return state
     
-    schema = ""
-    views = state.get("retrieved_schema")
-
-    for v in views['Table Candidates']:
-        schema += v + ':\n'
-        with open(os.path.join('..', 'data', 'short_schema', f'{v}.txt')) as f:
-            s = f.read()
-        schema += s
-        schema += '\n'
+    views = state.get("retrieved_schema", {})
+    table_candidates = views.get('Table Candidates', [])
     
+    # Define the increments for the loop
+    limits = [3, 5, 7]
+    validation_result = {}
+    last_limit_tried = 0
+
     with open(os.path.join('..', 'prompt_template', 'query_validation_system_prompt.txt')) as f:
         system_prompt = f.read()
-
     with open(os.path.join('..', 'prompt_template', 'query_validation_user_prompt.txt')) as f:
-        user_prompt = f.read().format(schema, user_messages)
+        user_prompt_template = f.read()
 
-    messages = [
-        SystemMessage(content=system_prompt),
-        HumanMessage(content=user_prompt)
-    ]
+    for limit in limits:
+        # Optimization: If the total tables available are less than the previous limit, stop.
+        # Or if we've already tried all available tables in the previous step.
+        actual_tables_to_use = table_candidates[:limit]
+        if len(actual_tables_to_use) <= last_limit_tried and last_limit_tried != 0:
+            break
+        
+        last_limit_tried = len(actual_tables_to_use)
+        print(f"Attempting validation with first {len(actual_tables_to_use)} tables...")
 
-    # print(messages)
+        # 1. Build schema for current subset
+        schema = ""
+        for v in actual_tables_to_use:
+            schema += v + ':\n'
+            try:
+                with open(os.path.join('..', 'data', 'short_schema', f'{v}.txt')) as f:
+                    s = f.read()
+                schema += s + '\n'
+            except FileNotFoundError:
+                print(f"Warning: Schema file for {v} not found.")
 
-    # num_tokens_msg = count_chat_tokens(messages)
-    # print(num_tokens_msg)
+        # 2. Prepare messages
+        formatted_user_prompt = user_prompt_template.format(schema, user_messages)
+        messages = [
+            SystemMessage(content=system_prompt),
+            HumanMessage(content=formatted_user_prompt)
+        ]
 
-    response = llm.invoke(messages)
-    
-    try:
-        validation_result = response.content.strip()
-        validation_result = ommiting_think_block(validation_result)
-        validation_result = extract_json_from_text(validation_result)
-    except (json.JSONDecodeError, ValueError) as e:
-        print(f"Failed to parse validation_result as JSON: {e}")
+        response = llm.invoke(messages)
+        
+        try:
+            raw_content = response.content.strip()
+            clean_content = ommiting_think_block(raw_content)
+            parsed_json = extract_json_from_text(clean_content)
+            validation_result = parsed_json
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"Failed to parse validation_result as JSON at limit {limit}: {e}")
+            continue # Try next limit if parsing fails
 
+        # 5. Check condition to break
+        # We check for "Yes" (case-insensitive usually safer)
+        short_answer = validation_result.get("short answer", "No")
+        if str(short_answer).strip().upper().startswith("YES"):
+            print(f"Validation successful with {limit} tables.")
+            break
+        else:
+            print(f"Validation failed with {limit} tables. Trying next increment...")
+
+    # Final state update
     state["validation_result"] = validation_result
-    print(f"validation result is: {validation_result}")
+    print(f"Final validation result: {validation_result}")
 
     return state
 
