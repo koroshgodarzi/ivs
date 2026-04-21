@@ -1,28 +1,102 @@
-from typing import List, TypedDict
 from langgraph.graph import StateGraph, END
-from trainingAssistant.label_extraction import label_extraction_node
-from trainingAssistant.label_search import label_search_node
+from trainingAssistant.tag_matching import tag_matching_node
+from trainingAssistant.path_selection import path_selection_node
+from trainingAssistant.chunk_retrieval import chunk_retrieval_node
 from trainingAssistant.response_generation import response_generation_node
+from trainingAssistant.schema import AgentState
+import json
+import os
 
-# Define the state object
-class AgentState(TypedDict):
-    query: str
-    labels: List[str]
-    retrieved_chunks: List[dict]
-    answer: str
 
 def create_rag_graph():
     workflow = StateGraph(AgentState)
 
-    # Add Nodes
-    workflow.add_node("label_extraction", label_extraction_node)
-    workflow.add_node("label_search", label_search_node)
+    workflow.add_node("tag_matching", tag_matching_node)
+    workflow.add_node("path_selection", path_selection_node)
+    workflow.add_node("chunk_retrieval", chunk_retrieval_node)
     workflow.add_node("response_generation", response_generation_node)
 
-    # Define Edges
-    workflow.set_entry_point("label_extraction")
-    workflow.add_edge("label_extraction", "label_search")
-    workflow.add_edge("label_search", "response_generation")
+    workflow.set_entry_point("tag_matching")
+    workflow.add_edge("tag_matching", "path_selection")
+    workflow.add_edge("path_selection", "chunk_retrieval")
+    workflow.add_edge("chunk_retrieval", "response_generation")
     workflow.add_edge("response_generation", END)
 
     return workflow.compile()
+
+
+def main():
+    # 1. Compile the graph
+    app = create_rag_graph()
+
+    primary_questions = [
+    "چگونه می توانم قراردادها مرتبط با پروژه را در سامانه ثبت نمایم؟",
+    "امکان ثبت مبلغ قرارداد با ارزی غیر از ارز پیش فرض پروژه وجود دارد؟",
+    "برای یک قرارداد مبالغ به ارزهای مختلف قابل ثبت است؟",
+    "برای هر پروژه می توانم دو قرارداد ثبت نمایم؟",
+    "امکان ثبت تقویم جلسات فردی در سامانه وجود دارد؟ چگونه؟",
+    "چطور می توانم اتاق جلسات را بصورت پیش فرض داشته باشم؟",
+    "چگونه می توانم جلسات را دسته بندی نمایم؟",
+    "می توانم در سامانه فرآیند یا گردش کاری تعریف کنم؟ چگونه؟",
+    "برای فرمهای طراحی شده توسط خودم می توانم چرخه کاری طراحی نمایم؟"
+]
+    midlevel_questions = [
+    "تبدیل مبلغ ارزی قرارداد به ارز پایه پروژه در سامانه چگونه انجام می شود؟",
+    "چگونه می توانم قراردادها ثبت شده را به فعالیت های کاری متصل نمایم؟",
+    "چگونه می توانم پیشرفت مالی پروژه را ثبت نمایم؟",
+    "چطوری می توانم پرداختهای مربوط به پروژه را ثبت نمایم؟",
+    "چگونه می توانم از جلسات همکاران و مدیران باخبر بشم؟",
+    "چرخه های کاری برای چه فرآیندهایی قابل طراحی است؟",
+    "چرخه های کاری طراحی شده در ماژول مدیریت فرم ها چه تفاوت و شباهتی با چرخه های کاری هسته دارد؟"
+]
+    questions = primary_questions
+    questions.extend(midlevel_questions)
+    report = []
+    for i, q in enumerate(questions):
+        if i == 0: continue
+        print(i)
+        # 2. Define the initial state
+        initial_state = {
+            "query": q,
+            "query_embedding": [],
+            "selected_tag": "",
+            "candidate_paths": [],
+            "selected_paths": [],
+            "retrieved_chunks": [],
+            "answer": ""
+        }
+
+        # 3. Run the graph
+        # Using .stream or .invoke
+        # print("--- Starting Workflow ---\n")
+        # for output in app.stream(initial_state):
+        #     # This prints which node just finished and its output
+        #     for key, value in output.items():
+        #         print(f"Node '{key}' finished.")
+        #         if "selected_tag" in value:
+        #             print(f"  Tag Found: {value['selected_tag']}")
+        #         if "selected_paths" in value:
+        #             print(f"  Paths Selected: {value['selected_paths']}")
+        
+        # 4. Get the final result
+        final_state = app.invoke(initial_state)
+        exclude_keys = {"query_embedding", "retrieved_chunks"}
+        part_data = {k: v for k, v in final_state.items() if k not in exclude_keys}
+        # report.append(part_data)
+        # print("\n--- Final Answer ---")
+        # print(f"query: {final_state['query']}")
+        # print(f"selected_tag: {final_state['selected_tag']}")
+        # print(f"candidate_paths: {final_state['candidate_paths']}")
+        # print(f"selected_paths: {final_state['selected_paths']}")
+        # print(f"retrieved_chunks: {final_state['retrieved_chunks']}")
+        # print(f"answer: {final_state['answer']}")
+        # print("Question:")
+        # print(q)
+        # print("Answer")
+        # print(final_state["answer"])
+
+        with open(os.path.join('..', 'output', 'assistant_agent_first_try', 'result.json'), "a", encoding="utf-8") as f:
+            json.dump(part_data, f, ensure_ascii=False, indent=2)
+
+if __name__ == "__main__":
+    main()    

@@ -1,26 +1,23 @@
-from utils import get_llm, ommiting_think_block
-from langchain_core.messages import HumanMessage
+from utils import get_llm
+from trainingAssistant.schema import AgentState
 
-def response_generation_node(state):
+
+def response_generation_node(state: AgentState):
     query = state["query"]
     chunks = state["retrieved_chunks"]
     
-    # Format the context for the LLM
-    context_text = "\n\n".join([f"Source ({c['label']}): {c['text']}" for c in chunks])
+    context = "\n\n".join([f"Source ({c['metadata']['path']}): {c['text']}" for c in chunks])
     
-    llm = get_llm("gpt-4o")
-    
+    llm = get_llm("qwen_api")
     prompt = f"""
-    You are a helpful company assistant. Use the provided context to answer the user query accurately.
-    If the context doesn't contain the answer, say you don't know.
+    Answer the user's question based strictly on the context provided.
     
     Context:
-    {context_text}
+    {context}
     
-    Query: {query}
+    Question: {query}
     """
+    # print(prompt)
     
-    response = llm.invoke([HumanMessage(content=prompt)])
-    final_answer = ommiting_think_block(response.content)
-    
-    return {"answer": final_answer}
+    response = llm.invoke(prompt)
+    return {"answer": response.content}
