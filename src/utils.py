@@ -24,8 +24,18 @@ def get_llm(model_id: str, max_tokens: int = 4096):
     model_id comes from the UI/API request.
     Example IDs: 'gpt-4o', 'qwen-72b-api', 'ollama-qwen'
     """
+    if model_id.startswith("hugging_face"):
+        client = ChatOpenAI(
+            base_url="https://router.huggingface.co/v1",
+            api_key=os.getenv("HF_TOKEN"),
+            model="Qwen/Qwen2.5-14B:featherless-ai",
+            temperature=0,
+            max_tokens=max_tokens,
+        )
+        return client
+
     # 1. OLLAMA Logic
-    if model_id.startswith("ollama"):
+    elif model_id.startswith("ollama"):
         # You can extract the specific version if you send 'ollama:qwen2.5'
         model_name = model_id.split(":")[1::] if ":" in model_id else "qwen2.5-coder:14b"
         model_name = model_name[0] + ':' + model_name[1]
