@@ -1,5 +1,5 @@
 from langgraph.graph import StateGraph, END
-from trainingAssistant.source_matching import source_matching_node, embedding_query
+from trainingAssistant.source_matching import source_matching_node, embedding_query, hallucinated_llm_embedding
 from trainingAssistant.path_selection import path_selection_node
 from trainingAssistant.chunk_retrieval import retrieve_by_path, retrieve_chunks_globally, retrieve_by_source
 from trainingAssistant.response_generation import response_generation_node
@@ -28,7 +28,7 @@ def create_rag_graph():
 def create_rag_graph_2():
     workflow = StateGraph(AgentState)
     
-    workflow.add_node("embedding_query", embedding_query)
+    workflow.add_node("embedding_query", hallucinated_llm_embedding)
     workflow.add_node("chunk_retrieval", retrieve_chunks_globally)
     workflow.add_node("chunk_reranking", retrieve_by_source)
     workflow.add_node("response_generation", response_generation_node)
@@ -72,7 +72,7 @@ def main():
     questions.extend(midlevel_questions)
     report = []
     for i, q in enumerate(questions):
-        if i <= 16: continue
+        # if i <= 16: continue
         print(i)
         # 2. Define the initial state
         initial_state = {
@@ -115,8 +115,8 @@ def main():
         # print("Answer")
         # print(final_state["answer"])
 
-    with open(os.path.join('..', 'output', 'assistant_agent_second_try', 'result.json'), "w", encoding="utf-8") as f:
-        json.dump(part_data, f, ensure_ascii=False, indent=2)
+    with open(os.path.join('..', 'output', 'assistant_agent_second_try_hyde', 'result.json'), "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
 
 if __name__ == "__main__":
     main()    

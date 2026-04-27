@@ -4,6 +4,7 @@ import os
 import ollama
 from pathlib import Path
 import json
+from utils import get_llm
 
 def cosine_similarity(v1, v2):
     """Calculates the cosine similarity between two vectors."""
@@ -18,6 +19,22 @@ def get_query_embedding(query: str):
     embed_model = os.getenv("OLLAMA_EMBED_MODEL", "embeddinggemma")
     resp = ollama.embed(model=embed_model, input=query)
     return np.array(resp["embeddings"][0], dtype=np.float32)
+
+def hallucinated_llm_embedding(state: AgentState):
+    query = state["query"]
+    
+    llm = get_llm("qwen_api", max_tokens=250)
+    prompt = f"""
+    Answer the user's question. Imagine that you have the knowledge.
+    
+    Question: {query}
+    """
+    
+    response = llm.invoke(prompt)
+    print(f"Hallicination: {response.content}")
+
+    user_embedding = get_query_embedding(response.content)
+    return {"query_embedding": user_embedding}
 
 def embedding_query(state: AgentState, k=3):
     query = state["query"]
