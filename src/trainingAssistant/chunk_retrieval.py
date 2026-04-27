@@ -2,12 +2,44 @@ import numpy as np
 from trainingAssistant.schema import AgentState
 import json
 import chromadb
+from utils import cosine_similarity
 
 # 1. Initialize the client to point to your local storage
 client = chromadb.PersistentClient(path="../data/chroma_db")
 
 # 2. Get the collection (Replace "your_collection_name" with the name you used when creating it)
 collection = client.get_collection(name="software_user_guide")
+
+
+def fetch_chunks_by_source(selected_sources, collection):
+    """
+    selected_sources: list of filenames, e.g. ["Catalog.md", "PM_concepts.jsonl"]
+    """
+    if not selected_sources:
+        return []
+
+    # If searching for one source: {"source": "Catalog.md"}
+    # If searching for multiple: {"source": {"$in": ["Catalog.md", "Docs.md"]}}
+    if len(selected_sources) == 1:
+        where_clause = {"source": selected_sources[0]}
+    else:
+        where_clause = {"source": {"$in": selected_sources}}
+
+    results = collection.get(
+        where=where_clause,
+        include=["documents", "metadatas", "embeddings"]
+    )
+
+    # Note: No json.loads() needed anymore!
+    chunks = []
+    for i in range(len(results["ids"])):
+        chunks.append({
+            "id": results["ids"][i],
+            "text": results["documents"][i],
+            "embedding": results["embeddings"][i],
+            "metadata": results["metadatas"][i]
+        })
+    return chunks
 
 
 def fetch_chunks_by_paths(selected_paths, collection):
@@ -45,10 +77,29 @@ def fetch_chunks_by_paths(selected_paths, collection):
     return chunks
 
 
-def cosine_similarity(v1, v2):
-    return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
+def retrieve_by_source(state: AgentState):
+    sources = state["selected_sources"]
+    query_emb = state["query_embedding"]
 
-def chunk_retrieval_node(state: AgentState):
+    # 1. Fetch chunks matching the paths
+    chunks = fetch_chunks_by_source(sources, collection)
+
+    # 2. Calculate similarity for each chunk
+    scored_chunks = []
+    for chunk in chunks:
+        score = cosine_similarity(query_emb, chunk["embedding"])
+        chunk["score"] = score
+        scored_chunks.append(chunk)
+    
+    # 3. Sort by score descending and take top results
+    scored_chunks.sort(key=lambda x: x["score"], reverse=True)
+    top_chunks = scored_chunks[:3] 
+    
+    # print(f"top_chunks: {top_chunks[0]['metadata']}")
+    return {"reranked_chunks": top_chunks}
+
+
+def retrieve_by_path(state: AgentState):
     query_emb = state["query_embedding"]
     selected_paths = state["selected_paths"]
 
@@ -66,7 +117,41 @@ def chunk_retrieval_node(state: AgentState):
     scored_chunks.sort(key=lambda x: x["score"], reverse=True)
     top_chunks = scored_chunks[:3] 
     
+    # print(f"top_chunks: {top_chunks[0]['metadata']}")
     return {"retrieved_chunks": top_chunks}
+
+
+def retrieve_chunks_globally(state: AgentState, n_results=5):
+    """
+    Performs a global vector search in ChromaDB to find the most similar chunks.
+    """
+    query_emb = state["query_embedding"]
+    # query_embeddings expects a list of lists (if searching multiple)
+    # or a single list for one query.
+    results = collection.query(
+        query_embeddings=[query_emb.tolist() if isinstance(query_emb, np.ndarray) else query_emb],
+        n_results=n_results,
+        include=["documents", "embeddings", "metadatas", "distances"]
+    )
+
+    chunks = []
+    sources = set()
+    # results returns lists of lists because it supports batch queries
+    for i in range(len(results["ids"][0])):
+        chunks.append({
+            "id": results["ids"][0][i],
+            "text": results["documents"][0][i],
+            "embedding": results["embeddings"][0][i],
+            "metadata": results["metadatas"][0][i],
+            "score": results["distances"][0][i] # Chroma returns distance (lower is better for L2)
+        })
+        source_name = chunks[-1]["metadata"].get("source")
+        if source_name:
+            sources.add(source_name)
+
+    # print(f"sources: {sources}")
+    # print(f"chunks: {chunks[0]['metadata']}")
+    return {"retrieved_chunks": chunks, "selected_sources": list(sources)}
 
 
 if __name__ == '__main__':
@@ -263,4 +348,4 @@ if __name__ == '__main__':
        -1.00051522e-01,  1.16373347e-02,  1.34029137e-02, -9.05833766e-03,
        -6.30215975e-03, -2.29280777e-02,  5.21782273e-03, -4.96684425e-02],
       dtype=np.float32), 'selected_tag': ['CreateContract.md', 'WorkFlow.md', 'MittingRoom.md'], 'candidate_paths': ['ایجاد قرارداد > چگونه می توانم قراردادهای مرتبط با پروژه را در سامانه ثبت نمایم؟', 'ایجاد قرارداد > توضیح کلی', 'ایجاد قرارداد > توضیح کلی', 'ایجاد قرارداد > توضیح کلی', 'ایجاد قرارداد > چه کسی می تواند قرارداد پروژه را ثبت نماید؟', 'ایجاد قرارداد > چه کسی می تواند قرارداد پروژه را ثبت نماید؟', 'ایجاد قرارداد > چه کسی می تواند قرارداد پروژه را ثبت نماید؟', 'ایجاد قرارداد > مراحل ثبت قرارداد:', 'ایجاد قرارداد > مراحل ثبت قرارداد:', 'ایجاد قرارداد > مراحل ثبت قرارداد:', 'ایجاد قرارداد > مراحل ثبت قرارداد:', 'ایجاد قرارداد > مراحل ثبت قرارداد:', 'ایجاد قرارداد > ویدئوی آموزشی نحوه ثبت قرارداد و اطلاعات مرتبط', 'ایجاد قرارداد > فیلم آموزشی ثبت قرارداد', 'ایجاد قرارداد > فیلم آموزشی اتصال قرارداد با اقلام کاری و خوداظهاری قرارداد', 'ایجاد قرارداد > Contract\\_payment', 'ایجاد قرارداد > نکات:', 'ایجاد قرارداد > نکات:', 'ایجاد قرارداد > موضوعات مرتبط:', 'مدیریت اتاق های جلسه > چگونه می توانم لیست اتاق جلسات را در سامانه ثبت نمایم؟', 'مدیریت اتاق های جلسه > چگونه می توانم لیست اتاق جلسات را در سامانه ثبت نمایم؟', 'مدیریت اتاق های جلسه > توضیح کلی:', 'مدیریت اتاق های جلسه > توضیح کلی:', 'مدیریت اتاق های جلسه > توضیح کلی:', 'مدیریت اتاق های جلسه > چه کسی می تواند به مدیریت اتاق جلسات دسترسی داشته باشد؟', 'مدیریت اتاق های جلسه > چه کسی می تواند به مدیریت اتاق جلسات دسترسی داشته باشد؟', 'مدیریت اتاق های جلسه > مراحل ثبت اتاق جلسه', 'مدیریت اتاق های جلسه > مراحل ثبت اتاق جلسه', 'مدیریت اتاق های جلسه > ویدئوی آموزشی نحوه مدیریت اتاق جلسه', 'مدیریت اتاق های جلسه > فیلم آموزشی مدیریت اتاق های جلسه', 'مدیریت اتاق های جلسه > نکات:'], 'selected_paths': ['ایجاد قرارداد > چگونه می توانم قراردادهای مرتبط با پروژه را در سامانه ثبت نمایم؟', 'ایجاد قرارداد > مراحل ثبت قرارداد:', 'ایجاد قرارداد > Contract\\_payment', 'ایجاد قرارداد > نکات:', 'ایجاد قرارداد > نکات:', 'ایجاد قرارداد > موضوعات مرتبط:'], 'retrieved_chunks': [], 'answer': ''}
-    chunk_retrieval_node(state)
+    fetch_top_chunks_globally(state)

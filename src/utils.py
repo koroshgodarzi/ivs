@@ -9,6 +9,7 @@ from typing import List, Dict
 from langchain_core.messages import BaseMessage
 from transformers import AutoTokenizer
 from openai import OpenAI
+import numpy as np
 # import chromadb
 # from chromadb.utils import embedding_functions
 
@@ -330,6 +331,9 @@ def get_rag_context(user_question: str, n_results: int = 2, chroma_db_path: str 
     context_list = results.get("documents", [[]])[0]
     return "\n---\n".join(context_list)
 
+
+def cosine_similarity(v1, v2):
+    return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
 
 if __name__ == "__main__":
     import pprint
