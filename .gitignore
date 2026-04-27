@@ -5,6 +5,8 @@ ollama-image.tar
 mermaid-diagram-2026-02-17-102155.png
 report/
 
+data/chroma_db
+
 # Created by https://www.toptal.com/developers/gitignore/api/macos,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,python
 
