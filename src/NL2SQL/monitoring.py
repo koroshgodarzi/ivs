@@ -37,7 +37,8 @@ def _diff(before: Dict[str, Any], after: Dict[str, Any]) -> Dict[str, Dict[str, 
             out[k] = {"before": before.get(k), "after": after.get(k)}
     return out
 
-def configure_text_logger(path: str = os.path.join('output', "workflow_state.log")) -> logging.Logger:
+def configure_text_logger(path: str) -> logging.Logger:
+    path = os.path.join('..', 'output', path, "workflow_state_LLM_based.log")
     os.makedirs(os.path.dirname(path), exist_ok=True)
     logger = logging.getLogger("workflow")
     logger.setLevel(logging.INFO)

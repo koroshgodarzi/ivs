@@ -1,5 +1,5 @@
 For example if the user asked:
-قراردادهای (که برنامه‌ریزی دارند) متصل به ساختار شکست هزینه پروژه «فاز اول - ناصری» است؟
+قراردادهای که برنامه‌ریزی دارند و متصل به ساختار شکست هزینه پروژه «فاز اول - ناصری» هستند؟
 
 Here is how to solve the problem:
 The user needs some specific contracts (قرارداد)
@@ -10,11 +10,6 @@ So vw_CBS, vw_Projects, vw_Contracts and vw_WBS needs to be joined.
 
 This is the final answer that you should produce:
 {
-  "generated_query": "SELECT PC.ProjectName, PC.ProjectNO, PC.ContractNO
-FROM     vw_CBS AS CBS INNER JOIN
-                  vw_Contracts AS PC ON CBS.CBSKEY = PC.CBSKEY INNER JOIN
-                  vw_Projects AS PR ON PC.ProjectKEY = PR.ProjectKEY INNER JOIN
-                  vw_WBS AS WBS ON CBS.WBSID = WBS.WbsId
-where PR.ProjectName= N'فاز اول - ناصری'",
+  "generated_query": "SELECT PC.ProjectName, PC.ProjectNO, PC.ContractNO FROM Report.vw_CBS AS CBS INNER JOIN Report.vw_Contracts AS PC ON CBS.CBSKEY = PC.CBSKEY INNER JOIN Report.vw_Projects AS PR ON PC.ProjectKEY = PR.ProjectKEY INNER JOIN Report.vw_WBS AS WBS ON CBS.WBSID = WBS.WbsId where PR.ProjectName= N'فاز اول - ناصری'",
   "query_explanation": "من تمام قرادادهایی که به ساختار شکست کار و هزینه‌ی پروژه‌ی «فاز اول - ناصری» هستند را لیست می‌کنم."
 }

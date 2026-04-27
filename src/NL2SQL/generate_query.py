@@ -1,4 +1,4 @@
-from utils import get_llm, extract_json_from_text, create_column_names_for_schemas, ommiting_think_block, get_rag_context
+from utils import get_llm, extract_json_from_text, create_column_names_for_schemas, ommiting_think_block, get_rag_context, count_chat_tokens, create_ddl_for_schemas
 from NL2SQL.schema import GraphState
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
@@ -22,26 +22,32 @@ def sql_generator(state: GraphState, config: RunnableConfig) -> GraphState:
         except (json.JSONDecodeError, ValueError):
             validation_result = {}
 
-    all_schemas_metadata = create_column_names_for_schemas(validation_result['Needed table and categories'])
+    # all_schemas_metadata = create_column_names_for_schemas(validation_result['Needed table and categories'])
+    all_schemas_metadata = create_ddl_for_schemas(validation_result['Needed table and categories'])
 
     with open(os.path.join('..', 'prompt_template', 'query_generation_user_prompt.txt')) as f:
         user_prompt = f.read()
     
-    rag_context = get_rag_context(user_question)
+    rag_context = [] #get_rag_context(user_question)
 
     user_prompt = user_prompt.format(all_schemas_metadata, rag_context, user_question)
-    print(user_prompt)
+    # print(user_prompt)
 
     with open(os.path.join('..', 'prompt_template', 'query_generation_system_prompt.txt')) as f:
         system_prompt = f.read()
+
+    with open(os.path.join('..', 'prompt_template', 'query_generation_shot.txt')) as f:
+        system_prompt += f.read()
 
     messages = [
         SystemMessage(content=system_prompt),
         HumanMessage(content=user_prompt),
     ]
 
+    print(count_chat_tokens(messages))
+    # print(messages)
     response = llm.invoke(messages)
-
+    print(response.content)
     try:
         query_generation_result = response.content.strip()
         query_generation_result = ommiting_think_block(query_generation_result)

@@ -30,6 +30,9 @@ def schema_retriever(state: GraphState, config: RunnableConfig) -> GraphState:
     with open(os.path.join('..', 'prompt_template', 'schema_retriever_system_prompt.txt')) as f:
         system_prompt = f.read()
 
+    # with open(os.path.join('..', 'prompt_template', 'schema_retriever_shot.txt')) as f:
+    #     system_prompt += f.read()
+
     with open(os.path.join('..', 'prompt_template', 'schema_retriever_user_prompt.txt')) as f:
         user_prompt = f.read().format(view_descriptions, user_messages)
 
@@ -37,8 +40,6 @@ def schema_retriever(state: GraphState, config: RunnableConfig) -> GraphState:
         SystemMessage(content=system_prompt),
         HumanMessage(content=user_prompt)
     ]
-
-    # print(messages)
 
     # num_tokens_msg = count_chat_tokens(messages)
     # print(num_tokens_msg)
