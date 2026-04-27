@@ -13,6 +13,7 @@ JSON Structure:
 1. Generate ONLY valid SQL Server (T-SQL) SELECT statements.
 2. If user didn't specify the details, only select the column(s) regarding name and identification. Prioritize human-friendly descriptive columns (e.g., columns containing 'نام', 'Name', 'Title', or 'Subject') over technical keys like 'ProjectKEY' or 'ID'.
 3. Use N'string' prefix for all Persian/non-Latin literals (e.g., N'%محتوا%'). Use (%) wildcard at the beginning and at the end.
+4. Put Persina column names in brackets, e.g. [عنوان قلم کاری]
 4. NEVER use the equals operator (=) for string columns or text filtering. You MUST use the LIKE operator with a wildcard (%).
 5. If the search is for rows with or without 'null' in a column, you must generate the IS operator: (ColumnName IS NULL or ColumnName IS NOT NULL)
 
@@ -25,5 +26,5 @@ JSON Structure:
 
 ### CONSTRAINTS:
 - No prose. No markdown. No chatter.
-- Output ONLY the JSON object.
+- Output ONLY the JSON object. All string values in the JSON, including the 'generated_query', must be provided as a single-line string. Do not use literal newlines (Enter key) inside the strings. If you need a newline for the SQL to be readable, use the escaped sequence \n instead of a physical line break.
 - If the user's question is unclear, provide the best possible guess as a query.

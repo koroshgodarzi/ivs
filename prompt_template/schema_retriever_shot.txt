@@ -1,0 +1,12 @@
+For example if the user asked:
+قراردادهای متصل به ساختار شکست هزینه پروژه «فاز اول - ناصری» است؟
+
+Here is how to solve the problem:
+The user needs some specific contracts (قرارداد)
+The contracts are connected to Cost Breakdown Structure or CBS (ساختار شکست هزینه)
+A CBS row should always belong to a valid WBS item
+The contracts are related to a project called «فاز اول - ناصری»
+So vw_CBS, vw_Projects, vw_Contracts and vw_WBS needs to be joined.
+
+This is the final answer that you should produce:
+{"Table Candidates": ["vw_CBS", "vw_Contracts", "vw_Projects", "vw_WBS"]}

@@ -14,10 +14,10 @@ from NL2SQL.monitoring import configure_text_logger, with_state_logging
 
 import time
 
-def build_graph():
+def build_graph(output_folder: str):
     workflow = StateGraph(GraphState)
 
-    logger = configure_text_logger()
+    logger = configure_text_logger(output_folder)
 
     workflow.add_node("schema_retriever", with_state_logging("schema_retriever", schema_retriever, logger))
     workflow.add_node("validate_user_question", with_state_logging("validate_user_question", validate_user_question, logger)) 
@@ -80,7 +80,10 @@ def main():
     output = {}
 
     # 2. Build the compiled graph
-    app = build_graph()
+    output_folder = 'LLM_based_view_abrarvan'
+    os.makedirs(os.path.join('..', 'output', output_folder), exist_ok=True)
+
+    app = build_graph(output_folder)
 
     # 3. Define the user's question by reading from Excel
     # excel_file = "../FAQ-IPMP-1404-11-21 (1).xlsx"
@@ -122,14 +125,31 @@ def main():
     #     ]
 
     questions = ['لیست پروژه های جاری «ناصر اسدی» را بده',
+    'کدام پروژه های «دفتر مدیریت پروژه» با وضعیت جاری، ساختار شکست(WBS) ندارند؟',
+    'لیست تمام قلم کاری ها در پروژه «خط انتقال» که پیشرفت برنامه ای و پیشرفت فیزیکی ندارند رو بده',
+    'لیست پروژه های از نوع EPC رو بده',
     'پروژه های با ارز دلاری که «Project Admin» راهبر پروژه است چند تا هست؟ نام پروژه و وضعیت جاری',
-    'کدام شکست برنامه ای پروژه هایی که من راهبر پروژه هستم (من javad ahmadi هستم)، محاسبه برنامه ای ندارند؟',
+    'اقلام کاری که مسئول مستقیم آنها «احمد نظاری» هستند ؟',
+    'کدام شکست برنامه ای پروژه هایی که من راهبر پروژه هستم، محاسبه برنامه ای ندارند؟',
+    'لیست پروژه هایی که ساختار شکست هزینه به یورو دارند؟',
     'لیست قراردادهای جاری پروژه بعثت را بده ؟',
-    'لیست منابع پروژه «فاز اول- ناصری» را نیاز دارم؟']
+    'اقلام مهندسی که با دیسیپلین Piping مرتبط هستند؟',
+    'ریسکهایی که ذینفع آنها ABB است؟',
+    'لیست مشکلات و موانع پروژه های «طاهر شعبانی»‌ به همراه نام پروژه؟',
+    'لیست پروژه با وضعیت در حال اجرا بدون پیشرفت که تاریخ شروع آنها نسبت تاریخ روز گذشته است',
+    'لیست قراردادهای جاری پروژه بعثت که الحاقیه دارند رو بده ؟',
+    'لیست صورت وضعیت هایی که مربوط به ساختار هزینه «هزینه کارگاه» پروژه «فاز اول- ناصری» است؟',
+    'لیست تمام اقلام کاریهایی که تنها ۲۰ درصد پیشرفت دارند و تاریخ پایان آنها گذشته است را نیاز دارم؟',
+    'لیست قراردادهایی که تعدیل دارند از پروژه «فاز اول- احمدی» بده؟',
+    'لیست پروژه هایی که ریسک منفی و تاریخ شناسایی قبل از ۶ ماه پیش دارند؟',
+    'لیست قراردادهای پروژه «فاز اول- ناصری» که پرداخت بدون صورت وضعیت دارند؟',
+    'لیست منابع پروژه «فاز اول- ناصری» را نیاز دارم؟',
+    'کدام شکست برنامه ای پروژه هایی که من راهبر پروژه هستم (من javad ahmadi هستم)، محاسبه برنامه ای ندارند؟']
     # 4. Initialize the state
+
     for i, user_question in enumerate(questions):
-        if i != 0:
-            continue
+        # if i != 12:
+        #     continue
         initial_state = {
             "messages": [
                 {"role": "user", "content": user_question}
@@ -144,7 +164,12 @@ def main():
         }
 
         # 5. Config with thread_id
-        config = {"configurable": {"thread_id": f"{str(i)}", "model_name": 'qwen-api'}}
+        config = {"configurable": {"thread_id": f"{str(i)}", "model_name": 'qwen_api'}}
+
+        if not os.path.exists(os.path.join('..', 'output', output_folder, 'info.txt')):
+            with open(os.path.join('..', 'output', output_folder, 'info.txt'), 'w', encoding='utf-8') as f:
+                f.write(f"Model: {config['configurable']['model_name']}")
+                f.write("Qwen3-30B-A3B-lbu2r")
 
         print("--- Starting Text-to-SQL Workflow ---")
         print(f"User Question: {user_question}\n")
@@ -165,11 +190,12 @@ def main():
             "time_spent_seconds": round(duration, 4)
         }
         output[str(i)] = question_data
-        # with open(os.path.join('..', 'output', 'second_question_series_gpt',f'output{str(i)}.json'), 'w') as f:
-        #     json.dump(final_state, f)  
 
-        # with open(os.path.join('..', 'output', 'second_question_series_gpt', 'output.json'), 'w') as f:
-        #     json.dump(output, f)    
+        with open(os.path.join('..', 'output', output_folder ,f'output_{str(i)}.json'), 'w', encoding="utf-8") as f:
+            json.dump(final_state, f, ensure_ascii=False, indent=2)  
+
+        with open(os.path.join('..', 'output', output_folder, 'output.json'), 'a', encoding="utf-8") as f:
+            json.dump(question_data, f, ensure_ascii=False, indent=2)    
 
     # 7. Print the results
     print("--- Workflow Complete ---")
