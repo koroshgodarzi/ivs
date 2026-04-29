@@ -6,26 +6,10 @@ from trainingAssistant.response_generation import response_generation_node
 from trainingAssistant.schema import AgentState
 import json
 import os
+from datetime import datetime
 
 
 def create_rag_graph():
-    workflow = StateGraph(AgentState)
-
-    workflow.add_node("source_matching", source_matching_node)
-    workflow.add_node("path_selection", path_selection_node)
-    workflow.add_node("chunk_retrieval", retrieve_by_path)
-    workflow.add_node("response_generation", response_generation_node)
-
-    workflow.set_entry_point("source_matching")
-    workflow.add_edge("source_matching", "path_selection")
-    workflow.add_edge("path_selection", "chunk_retrieval")
-    workflow.add_edge("chunk_retrieval", "response_generation")
-    workflow.add_edge("response_generation", END)
-
-    return workflow.compile()
-
-
-def create_rag_graph_2():
     workflow = StateGraph(AgentState)
     
     workflow.add_node("embedding_query", hallucinated_llm_embedding)
@@ -44,7 +28,8 @@ def create_rag_graph_2():
 
 def main():
     # 1. Compile the graph
-    app = create_rag_graph_2()
+    output_folder = 'assistant_agent_third_try'
+    app = create_rag_graph()
 
     primary_questions = [
     "چگونه می توانم قراردادها مرتبط با پروژه را در سامانه ثبت نمایم؟",
@@ -70,11 +55,20 @@ def main():
 ]
     questions = primary_questions
     questions.extend(midlevel_questions)
+        
+    # Create directory if it doesn't exist
+    output_dir = os.path.join('..', 'output', output_folder)
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Unique filename for this specific run session
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_file = os.path.join(output_dir, f"run_{timestamp}.json")
+
     report = []
+    
     for i, q in enumerate(questions):
-        # if i <= 16: continue
-        print(i)
-        # 2. Define the initial state
+        print(f"Processing question {i+1}/{len(questions)}...")
+        
         initial_state = {
             "query": q,
             "query_embedding": [],
@@ -86,37 +80,30 @@ def main():
             "answer": ""
         }
 
-        # 3. Run the graph
-        # Using .stream or .invoke
-        # print("--- Starting Workflow ---\n")
-        # for output in app.stream(initial_state):
-        #     # This prints which node just finished and its output
-        #     for key, value in output.items():
-        #         print(f"Node '{key}' finished.")
-        #         if "selected_tag" in value:
-        #             print(f"  Tag Found: {value['selected_tag']}")
-        #         if "selected_paths" in value:
-        #             print(f"  Paths Selected: {value['selected_paths']}")
-        
-        # 4. Get the final result
-        final_state = app.invoke(initial_state)
-        exclude_keys = {"query_embedding", "retrieved_chunks", "reranked_chunks"}
-        part_data = {k: v for k, v in final_state.items() if k not in exclude_keys}
-        report.append(part_data)
-        # print("\n--- Final Answer ---")
-        print(f"query: {final_state['query']}")
-        # print(f"selected_tag: {final_state['selected_tag']}")
-        # print(f"candidate_paths: {final_state['candidate_paths']}")
-        # print(f"selected_paths: {final_state['selected_paths']}")
-        # print(f"retrieved_chunks: {final_state['retrieved_chunks']}")
-        print(f"answer: {final_state['answer']}")
-        # print("Question:")
-        # print(q)
-        # print("Answer")
-        # print(final_state["answer"])
+        try:
+            final_state = app.invoke(initial_state)
+            
+            # Keys to EXCLUDE from the JSON (they contain large numpy arrays/vectors)
+            exclude_keys = {"query_embedding", "retrieved_chunks", "reranked_chunks"}
+            
+            # Prepare data for saving
+            run_data = {
+                "index": i,
+                "timestamp": datetime.now().isoformat(),
+                "data": {k: v for k, v in final_state.items() if k not in exclude_keys}
+            }
+            
+            report.append(run_data)
+            
+        except Exception as e:
+            print(f"Error processing question {i}: {e}")
+            report.append({"index": i, "query": q, "error": str(e)})
 
-    with open(os.path.join('..', 'output', 'assistant_agent_second_try_hyde', 'result.json'), "w", encoding="utf-8") as f:
+    # Save the full report for this session
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
+    
+    print(f"Run completed. Results saved to {output_file}")
 
 if __name__ == "__main__":
-    main()    
+    main()

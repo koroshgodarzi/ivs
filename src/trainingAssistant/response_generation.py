@@ -2,9 +2,9 @@ from utils import get_llm
 from trainingAssistant.schema import AgentState
 
 
-def response_generation_node(state: AgentState):
+def response_generation_node(state: AgentState, n_chunks=5):
     query = state["query"]
-    chunks = state["retrieved_chunks"]
+    chunks = state["reranked_chunks"][:n_chunks]
     
     context = "\n\n".join([f"Source ({c['metadata']['path']}): {c['text']}" for c in chunks])
     

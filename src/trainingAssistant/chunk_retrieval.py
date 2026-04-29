@@ -77,26 +77,27 @@ def fetch_chunks_by_paths(selected_paths, collection):
     return chunks
 
 
-def retrieve_by_source(state: AgentState):
+def retrieve_by_source(state: AgentState, n_results=10):
     sources = state["selected_sources"]
     query_emb = state["query_embedding"]
 
-    # 1. Fetch chunks matching the paths
     chunks = fetch_chunks_by_source(sources, collection)
 
-    # 2. Calculate similarity for each chunk
     scored_chunks = []
     for chunk in chunks:
         score = cosine_similarity(query_emb, chunk["embedding"])
-        chunk["score"] = score
+        chunk["score"] = float(score) # Ensure it's a standard float
         scored_chunks.append(chunk)
     
-    # 3. Sort by score descending and take top results
+    # Sort by score descending
     scored_chunks.sort(key=lambda x: x["score"], reverse=True)
-    top_chunks = scored_chunks[:3] 
     
-    # print(f"top_chunks: {top_chunks[0]['metadata']}")
-    return {"reranked_chunks": top_chunks}
+    # Take top 10 instead of 5
+    top_chunks = scored_chunks[:n_results] 
+    
+    return {
+        "reranked_chunks": top_chunks, 
+    }
 
 
 def retrieve_by_path(state: AgentState):
@@ -121,13 +122,9 @@ def retrieve_by_path(state: AgentState):
     return {"retrieved_chunks": top_chunks}
 
 
-def retrieve_chunks_globally(state: AgentState, n_results=5):
-    """
-    Performs a global vector search in ChromaDB to find the most similar chunks.
-    """
+def retrieve_chunks_globally(state: AgentState, n_results=20):
     query_emb = state["query_embedding"]
-    # query_embeddings expects a list of lists (if searching multiple)
-    # or a single list for one query.
+    
     results = collection.query(
         query_embeddings=[query_emb.tolist() if isinstance(query_emb, np.ndarray) else query_emb],
         n_results=n_results,
@@ -136,22 +133,29 @@ def retrieve_chunks_globally(state: AgentState, n_results=5):
 
     chunks = []
     sources = set()
-    # results returns lists of lists because it supports batch queries
+
     for i in range(len(results["ids"][0])):
-        chunks.append({
+        # Chroma distances: lower is more similar (usually L2). 
+        # If you want similarity, you might need (1 - distance) depending on Chroma config
+        score = float(results["distances"][0][i])
+        
+        chunk = {
             "id": results["ids"][0][i],
             "text": results["documents"][0][i],
             "embedding": results["embeddings"][0][i],
             "metadata": results["metadatas"][0][i],
-            "score": results["distances"][0][i] # Chroma returns distance (lower is better for L2)
-        })
-        source_name = chunks[-1]["metadata"].get("source")
+            "score": score 
+        }
+        chunks.append(chunk)
+        
+        source_name = chunk["metadata"].get("source")
         if source_name:
             sources.add(source_name)
 
-    # print(f"sources: {sources}")
-    # print(f"chunks: {chunks[0]['metadata']}")
-    return {"retrieved_chunks": chunks, "selected_sources": list(sources)}
+    return {
+        "retrieved_chunks": chunks, 
+        "selected_sources": list(sources),
+    }
 
 
 if __name__ == '__main__':

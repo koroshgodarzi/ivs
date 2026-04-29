@@ -31,7 +31,6 @@ def hallucinated_llm_embedding(state: AgentState):
     """
     
     response = llm.invoke(prompt)
-    print(f"Hallicination: {response.content}")
 
     user_embedding = get_query_embedding(response.content)
     return {"query_embedding": user_embedding}
