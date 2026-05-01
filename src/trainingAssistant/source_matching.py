@@ -14,6 +14,15 @@ def cosine_similarity(v1, v2):
         return 0.0
     return np.dot(v1, v2) / (norm_v1 * norm_v2)
 
+def re_embed_segment_node(state: AgentState):
+    # Take the last 250 tokens (or the last segment)
+    segment_to_embed = state["last_generated_segment"]
+    
+    # Use your existing embedding logic
+    user_embedding = get_query_embedding(segment_to_embed)
+    
+    return {"query_embedding": user_embedding}
+
 def get_query_embedding(query: str):
     """Encapsulates the logic for fetching embeddings from Ollama."""
     embed_model = os.getenv("OLLAMA_EMBED_MODEL", "embeddinggemma")

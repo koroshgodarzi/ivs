@@ -1,13 +1,59 @@
 from langgraph.graph import StateGraph, END
-from trainingAssistant.source_matching import source_matching_node, embedding_query, hallucinated_llm_embedding
+from trainingAssistant.source_matching import source_matching_node, embedding_query, hallucinated_llm_embedding, re_embed_segment_node
 from trainingAssistant.path_selection import path_selection_node
 from trainingAssistant.chunk_retrieval import retrieve_by_path, retrieve_chunks_globally, retrieve_by_source
-from trainingAssistant.response_generation import response_generation_node
+from trainingAssistant.response_generation import response_generation_node, active_response_generation_node
 from trainingAssistant.schema import AgentState
 import json
 import os
 from datetime import datetime
 
+
+
+def decide_next_step(state: AgentState):
+    """
+    Look at the low_confidence flag to decide whether to loop or end.
+    """
+    if state.get("low_confidence"):
+        return "re_embed"
+    return END
+
+def create_active_rag_graph():
+    workflow = StateGraph(AgentState)
+    
+    # 1. Entry nodes
+    workflow.add_node("initial_embedding", hallucinated_llm_embedding)
+    
+    # 2. Retrieval nodes
+    workflow.add_node("chunk_retrieval", retrieve_chunks_globally)
+    workflow.add_node("chunk_reranking", retrieve_by_source)
+    
+    # 3. Generation node (with logprob monitoring)
+    workflow.add_node("active_generation", active_response_generation_node)
+    
+    # 4. Re-embedding node (the loop back step)
+    workflow.add_node("re_embed_segment", re_embed_segment_node)
+
+    # Define edges
+    workflow.set_entry_point("initial_embedding")
+    workflow.add_edge("initial_embedding", "chunk_retrieval")
+    workflow.add_edge("chunk_retrieval", "chunk_reranking")
+    workflow.add_edge("chunk_reranking", "active_generation")
+
+    # The Loop logic
+    workflow.add_conditional_edges(
+        "active_generation",
+        decide_next_step,
+        {
+            "re_embed": "re_embed_segment",
+            END: END
+        }
+    )
+    
+    # From re-embedding, go back to retrieval to get better context
+    workflow.add_edge("re_embed_segment", "chunk_retrieval")
+
+    return workflow.compile()
 
 def create_rag_graph():
     workflow = StateGraph(AgentState)

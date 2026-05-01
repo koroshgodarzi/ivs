@@ -10,3 +10,6 @@ class AgentState(TypedDict):
     retrieved_chunks: List[dict]
     reranked_chunks: List[dict]
     answer: str
+    steps_taken: int
+    low_confidence: bool
+    last_generated_segment: str
