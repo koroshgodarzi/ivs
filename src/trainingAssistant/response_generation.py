@@ -2,68 +2,102 @@ from utils import get_llm
 from trainingAssistant.schema import AgentState
 import numpy as np
 
-def active_response_generation_node(state: AgentState):
+
+def active_response_generation_node(state: AgentState, n_chunks=5):
     query = state["query"]
-    chunks = state.get("reranked_chunks", [])
-    current_answer = state.get("answer", "")
+    chunks = state.get("reranked_chunks", [])[:n_chunks]
+    print(chunks.get("score"))
+    verified_answer = state.get("answer", "")  # Only high-confidence text goes here
     steps = state.get("steps_taken", 0)
     
-    # Context from retrieved chunks
+    # Track the best complete or partial attempt for fallback
+    best_min_lp = state.get("best_min_logprob", -999.0)
+    best_answer_so_far = state.get("best_answer", "")
+
     context = "\n\n".join([f"Source ({c['metadata']['path']}): {c['text']}" for c in chunks])
     
-    # We use a slightly higher max_token for the 'segment' to find low-confidence areas
-    llm = get_llm("qwen_api", max_tokens=150) 
+    llm = get_llm("ollama", max_tokens=250) 
     
-    # If we already have a partial answer, we tell the LLM to continue
-    prefix = f"Existing partial response: {current_answer}" if current_answer else ""
-    
+    # We always continue from the last VERIFIED part of the answer
+    prefix_instruction = ""
+    if verified_answer:
+        prefix_instruction = f"Existing high-confidence response: {verified_answer}\nCONTINUE the response naturally."
+
     prompt = f"""
     Answer the user's question based strictly on the context. 
-    {prefix}
-    
     Context:
     {context}
     
     Question: {query}
-    
-    Continue the response naturally. If the existing partial response is empty, start from the beginning.
+    {prefix_instruction}
     """
     
-    # Request logprobs from the API
     response = llm.invoke(prompt, logprobs=True)
-    
-    logprobs_data = response.response_metadata.get("logprobs", {}).get("content", [])
-    
-    # Define a confidence threshold (log probability)
-    # -0.5 to -1.0 is a common range for 'low confidence'
-    THRESHOLD = -0.7 
-    
     content = response.content
-    low_confidence_found = False
-    cut_index = len(content)
+    logprobs_data = response.response_metadata.get("logprobs", {}).get("content", [])
+    finish_reason = response.response_metadata.get("finish_reason", "stop")
+    print(finish_reason)
 
-    # Check tokens for low probability
-    for i, token_info in enumerate(logprobs_data):
-        if token_info.get("logprob", 0) < THRESHOLD:
-            # We found a low confidence token!
-            # We allow it to generate a bit more (already in content) then stop
-            low_confidence_found = True
-            # Optional: cut the content at the point of low confidence to re-verify
-            # Or just flag it to trigger a new search for the NEXT segment
-            break
-
-    new_answer = current_answer + " " + content
+    # 1. Calculate confidence for THIS specific segment
+    current_segment_logprobs = [token_info.get("logprob", 0) for token_info in logprobs_data]
+    min_logprob = min(current_segment_logprobs) if current_segment_logprobs else 0
     
-    # If we've looped too many times, stop anyway
-    if steps >= 3:
-        low_confidence_found = False
+    THRESHOLD = -0.7 
+    low_confidence = min_logprob < THRESHOLD
+    is_finished = (finish_reason == "stop")
 
+    # 2. Update Fallback tracking
+    # Even if this segment is low confidence, it might be "less bad" than others.
+
+    if min_logprob > best_min_lp:
+        best_min_lp = min_logprob
+        best_answer_so_far = content
+
+    # 3. DECISION LOGIC
+    if low_confidence:
+        # LOW CONFIDENCE: Discard content from the final answer.
+        # But return it as 'last_generated_segment' so 're_embed_segment_node' can use it for search.
+        return {
+            "answer": verified_answer, # Do NOT append
+            "last_generated_segment": content, # Use for re-embedding
+            "low_confidence": True,
+            "is_finished": False,
+            "steps_taken": steps + 1,
+            "best_min_logprob": best_min_lp,
+            "best_answer": best_answer_so_far,
+            "best_is_finished": is_finished
+        }
+    else:
+        # HIGH CONFIDENCE: This segment is good! Append it to the verified answer.
+        new_verified_answer = verified_answer + content
+        
+        # If we are hitting the step limit now, check if we actually finished.
+        # If we reached step 3 but haven't finished the sentence, the next loop will
+        # trigger the 'steps >= 3' check in the router and we'll end.
+        return {
+            "answer": new_verified_answer, # APPENDED
+            "last_generated_segment": content,
+            "low_confidence": False,
+            "is_finished": is_finished,
+            "steps_taken": 0,
+            "best_min_logprob": best_min_lp,
+            "best_answer": best_answer_so_far,
+            "best_is_finished": False
+        }
+
+
+def recover_best_attempt_node(state: AgentState):
+    """
+    Node that resets the state to the best attempt found during the search.
+    """
     return {
-        "answer": new_answer,
-        "last_generated_segment": content, # Used for the next embedding query
-        "low_confidence": low_confidence_found,
-        "steps_taken": steps + 1
+        "answer": state["answer"] + state["best_answer"],
+        # "reranked_chunks": state["best_chunks"], # Use the context that worked best
+        "is_finished": state["best_is_finished"],
+        "steps_taken": 0, # Reset to allow finishing
+        "low_confidence": False # Assume we proceed to finish regardless
     }
+
 
 def response_generation_node(state: AgentState, n_chunks=5):
     query = state["query"]
@@ -71,7 +105,7 @@ def response_generation_node(state: AgentState, n_chunks=5):
     
     context = "\n\n".join([f"Source ({c['metadata']['path']}): {c['text']}" for c in chunks])
     
-    llm = get_llm("qwen_api")
+    llm = get_llm("ollama")
     prompt = f"""
     Answer the user's question based strictly on the context provided. 
     If you cannot answer the question say you are not able to. 

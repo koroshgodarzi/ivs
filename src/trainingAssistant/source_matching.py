@@ -32,19 +32,23 @@ def get_query_embedding(query: str):
 def hallucinated_llm_embedding(state: AgentState):
     query = state["query"]
     
-    llm = get_llm("qwen_api", max_tokens=250)
+    llm = get_llm("ollama", max_tokens=250)
     prompt = f"""
     Answer the user's question. Imagine that you have the knowledge.
     
     Question: {query}
     """
     
-    response = llm.invoke(prompt)
-
+    response = llm.invoke(prompt, logprobs=True)
+    logprobs_data = response.response_metadata.get("logprobs", {}).get("content", [])
+    current_segment_logprobs = [token_info.get("logprob", 0) for token_info in logprobs_data]
+    min_logprob = min(current_segment_logprobs) if current_segment_logprobs else 0
+    print(min_logprob)
+    print(current_segment_logprobs)
     user_embedding = get_query_embedding(response.content)
     return {"query_embedding": user_embedding}
 
-def embedding_query(state: AgentState, k=3):
+def embedding_query(state: AgentState):
     query = state["query"]
 
     user_embedding = get_query_embedding(query)

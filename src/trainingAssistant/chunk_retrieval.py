@@ -137,14 +137,14 @@ def retrieve_chunks_globally(state: AgentState, n_results=20):
     for i in range(len(results["ids"][0])):
         # Chroma distances: lower is more similar (usually L2). 
         # If you want similarity, you might need (1 - distance) depending on Chroma config
-        score = float(results["distances"][0][i])
+        distance = float(results["distances"][0][i])
         
         chunk = {
             "id": results["ids"][0][i],
             "text": results["documents"][0][i],
             "embedding": results["embeddings"][0][i],
             "metadata": results["metadatas"][0][i],
-            "score": score 
+            "score": 1 - distance 
         }
         chunks.append(chunk)
         

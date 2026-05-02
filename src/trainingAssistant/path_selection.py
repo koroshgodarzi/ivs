@@ -38,11 +38,11 @@ def fetch_chunks_by_source(selected_sources, collection):
 
 def path_selection_node(state: AgentState):
     query = state["query"]
-    tag = state["selected_tag"]
+    tag = state["selected_sources"]
     candidate_paths = fetch_chunks_by_source(tag, collection)
     candidate_paths = list(set(candidate_paths))
     
-    llm = get_llm("qwen_api")
+    llm = get_llm("ollama")
     prompt = f"""
     User Query: {query}
 

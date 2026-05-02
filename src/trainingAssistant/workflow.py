@@ -2,59 +2,92 @@ from langgraph.graph import StateGraph, END
 from trainingAssistant.source_matching import source_matching_node, embedding_query, hallucinated_llm_embedding, re_embed_segment_node
 from trainingAssistant.path_selection import path_selection_node
 from trainingAssistant.chunk_retrieval import retrieve_by_path, retrieve_chunks_globally, retrieve_by_source
-from trainingAssistant.response_generation import response_generation_node, active_response_generation_node
+from trainingAssistant.response_generation import response_generation_node, active_response_generation_node, recover_best_attempt_node
 from trainingAssistant.schema import AgentState
 import json
 import os
 from datetime import datetime
 
 
+def create_rag_graph_path():
+    workflow = StateGraph(AgentState)
+
+    workflow.add_node("source_matching", source_matching_node)
+    workflow.add_node("path_selection", path_selection_node)
+    workflow.add_node("chunk_retrieval", retrieve_by_path)
+    workflow.add_node("response_generation", response_generation_node)
+
+    workflow.set_entry_point("source_matching")
+    workflow.add_edge("source_matching", "path_selection")
+    workflow.add_edge("path_selection", "chunk_retrieval")
+    workflow.add_edge("chunk_retrieval", "response_generation")
+    workflow.add_edge("response_generation", END)
+
+    return workflow.compile()
+
 
 def decide_next_step(state: AgentState):
-    """
-    Look at the low_confidence flag to decide whether to loop or end.
-    """
+    # If max steps reached, always end (the node already picked the best_answer)
+    if state.get("steps_taken", 0) >= 3:
+        # If the best version we found is already finished, we end.
+        if state.get("best_is_finished"):
+            return "end_with_best_fallback"
+        # If not finished, go to recovery node to reset and continue.
+        return "recover_and_finish"
+
+    # Condition 1: Low confidence -> Re-embed (Loop to Retrieval)
     if state.get("low_confidence"):
         return "re_embed"
+    
+    # Condition 2: High confidence but NOT finished -> Continue (Loop to Generation)
+    if not state.get("is_finished"):
+        return "continue"
+
+    # Condition 3: High confidence AND finished
     return END
+
+def finalize_best_answer(state: AgentState):
+    """Ensure the final answer is the best one found before ending."""
+    return {"answer": state["answer"] + state["best_answer"]}
 
 def create_active_rag_graph():
     workflow = StateGraph(AgentState)
     
-    # 1. Entry nodes
     workflow.add_node("initial_embedding", hallucinated_llm_embedding)
-    
-    # 2. Retrieval nodes
     workflow.add_node("chunk_retrieval", retrieve_chunks_globally)
     workflow.add_node("chunk_reranking", retrieve_by_source)
-    
-    # 3. Generation node (with logprob monitoring)
     workflow.add_node("active_generation", active_response_generation_node)
-    
-    # 4. Re-embedding node (the loop back step)
     workflow.add_node("re_embed_segment", re_embed_segment_node)
+    workflow.add_node("recover_best_attempt", recover_best_attempt_node)
+    workflow.add_node("finalize_best", finalize_best_answer)
 
-    # Define edges
     workflow.set_entry_point("initial_embedding")
     workflow.add_edge("initial_embedding", "chunk_retrieval")
     workflow.add_edge("chunk_retrieval", "chunk_reranking")
     workflow.add_edge("chunk_reranking", "active_generation")
 
-    # The Loop logic
     workflow.add_conditional_edges(
         "active_generation",
         decide_next_step,
         {
             "re_embed": "re_embed_segment",
+            "continue": "active_generation",
+            "recover_and_finish": "recover_best_attempt", # Reverts context & answer
+            "end_with_best_fallback": "finalize_best",    # Sets answer to best and ends
             END: END
         }
     )
     
-    # From re-embedding, go back to retrieval to get better context
+    # Logic for recovered path
+    workflow.add_edge("recover_best_attempt", "active_generation")
+    workflow.add_edge("finalize_best", END)
+    
+    # Logic for re-embedding path
     workflow.add_edge("re_embed_segment", "chunk_retrieval")
 
     return workflow.compile()
 
+    
 def create_rag_graph():
     workflow = StateGraph(AgentState)
     
@@ -74,8 +107,8 @@ def create_rag_graph():
 
 def main():
     # 1. Compile the graph
-    output_folder = 'assistant_agent_third_try'
-    app = create_rag_graph()
+    output_folder = 'assistant_agent_test'
+    app = create_rag_graph_path()
 
     primary_questions = [
     "چگونه می توانم قراردادها مرتبط با پروژه را در سامانه ثبت نمایم؟",
@@ -113,6 +146,7 @@ def main():
     report = []
     
     for i, q in enumerate(questions):
+        if i != 0: continue
         print(f"Processing question {i+1}/{len(questions)}...")
         
         initial_state = {
@@ -123,23 +157,41 @@ def main():
             "selected_paths": [],
             "retrieved_chunks": [],
             "reranked_chunks": [],
-            "answer": ""
+            "answer": "",
+            "steps_taken": 0,
+            "low_confidence": False, 
+            "is_finished": False,
+            "last_generated_segment": "",
+            "best_answer": "",
+            "best_is_finished": False,
+            "best_min_logprob": -1000
         }
 
         try:
             final_state = app.invoke(initial_state)
             
-            # Keys to EXCLUDE from the JSON (they contain large numpy arrays/vectors)
-            exclude_keys = {"query_embedding", "retrieved_chunks", "reranked_chunks"}
+            final_state['query_embedding'] = []
+            final_state['retrieved_chunks'] = [
+                {k: v for k, v in chunk.items() if k in ["text", "metadata", "score"]} 
+                for chunk in final_state.get("retrieved_chunks", [])
+            ]
+            final_state['reranked_chunks'] = [
+                {k: v for k, v in chunk.items() if k in ["text", "metadata", "score"]} 
+                for chunk in final_state.get("reranked_chunks", [])
+            ]
             
-            # Prepare data for saving
-            run_data = {
-                "index": i,
-                "timestamp": datetime.now().isoformat(),
-                "data": {k: v for k, v in final_state.items() if k not in exclude_keys}
-            }
+
+            # # Keys to EXCLUDE from the JSON (they contain large numpy arrays/vectors)
+            # exclude_keys = {"query_embedding", "retrieved_chunks", "reranked_chunks"}
             
-            report.append(run_data)
+            # # Prepare data for saving
+            # run_data = {
+            #     "index": i,
+            #     "timestamp": datetime.now().isoformat(),
+            #     "data": {k: v for k, v in final_state.items() if k not in exclude_keys}
+            # }
+            
+            report.append(final_state)
             
         except Exception as e:
             print(f"Error processing question {i}: {e}")
