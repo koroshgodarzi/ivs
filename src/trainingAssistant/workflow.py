@@ -7,6 +7,9 @@ from trainingAssistant.schema import AgentState
 import json
 import os
 from datetime import datetime
+from langgraph.checkpoint.memory import MemorySaver
+import sqlite3
+from langchain_core.messages import HumanMessage, AIMessage
 
 
 def create_rag_graph_path():
@@ -89,6 +92,9 @@ def create_active_rag_graph():
 
     
 def create_rag_graph():
+    # 1. Initialize Memory for persistence
+    memory = MemorySaver()
+    
     workflow = StateGraph(AgentState)
     
     workflow.add_node("embedding_query", hallucinated_llm_embedding)
@@ -102,54 +108,100 @@ def create_rag_graph():
     workflow.add_edge("chunk_reranking", "response_generation")
     workflow.add_edge("response_generation", END)
 
-    return workflow.compile()
+    # 2. Compile with checkpointer
+    return workflow.compile(checkpointer=memory)
 
+
+def message_to_dict(message):
+    """Converts LangChain messages to a JSON-serializable format."""
+    if isinstance(message, HumanMessage):
+        return {"role": "human", "content": message.content}
+    elif isinstance(message, AIMessage):
+        return {"role": "ai", "content": message.content}
+    return {"role": "other", "content": str(message.content)}
 
 def main():
     # 1. Compile the graph
-    output_folder = 'assistant_agent_test'
-    app = create_rag_graph_path()
-
-    primary_questions = [
-    "چگونه می توانم قراردادها مرتبط با پروژه را در سامانه ثبت نمایم؟",
-    "امکان ثبت مبلغ قرارداد با ارزی غیر از ارز پیش فرض پروژه وجود دارد؟",
-    "برای یک قرارداد مبالغ به ارزهای مختلف قابل ثبت است؟",
-    "برای هر پروژه می توانم دو قرارداد ثبت نمایم؟",
-    "امکان ثبت تقویم جلسات فردی در سامانه وجود دارد؟ چگونه؟",
-    "چطور می توانم اتاق جلسات را بصورت پیش فرض داشته باشم؟",
-    "چگونه می توانم جلسات را دسته بندی نمایم؟",
-    "می توانم در سامانه فرآیند یا گردش کاری تعریف کنم؟ چگونه؟",
-    "برای فرمهای طراحی شده توسط خودم می توانم چرخه کاری طراحی نمایم؟"
-]
-    midlevel_questions = [
-    "تبدیل مبلغ ارزی قرارداد به ارز پایه پروژه در سامانه چگونه انجام می شود؟",
-    "چگونه می توانم قراردادها ثبت شده را به فعالیت های کاری متصل نمایم؟",
-    "چگونه می توانم پیشرفت مالی پروژه را ثبت نمایم؟",
-    "چطوری می توانم پرداختهای مربوط به پروژه را ثبت نمایم؟",
-    "چگونه می توانم از جلسات همکاران و مدیران باخبر بشم؟",
-    "چرخه های کاری برای چه فرآیندهایی قابل طراحی است؟",
-    "چرخه های کاری طراحی شده در ماژول مدیریت فرم ها چه تفاوت و شباهتی با چرخه های کاری هسته دارد؟", 
-    "قابلیت های ماژول قرارداد چیه؟", 
-    "من قراردادهای چند ارزی رو چطور باید ثبت کنم؟"
-]
-    questions = primary_questions
-    questions.extend(midlevel_questions)
+    # Note: Ensure create_rag_graph() now uses SqliteSaver as discussed previously
+    app = create_rag_graph()
+    
+    # 2. Define the questions (Follow-ups included)
+#     primary_questions = [
+#     "چگونه می توانم قراردادها مرتبط با پروژه را در سامانه ثبت نمایم؟",
+#     "امکان ثبت مبلغ قرارداد با ارزی غیر از ارز پیش فرض پروژه وجود دارد؟",
+#     "برای یک قرارداد مبالغ به ارزهای مختلف قابل ثبت است؟",
+#     "برای هر پروژه می توانم دو قرارداد ثبت نمایم؟",
+#     "امکان ثبت تقویم جلسات فردی در سامانه وجود دارد؟ چگونه؟",
+#     "چطور می توانم اتاق جلسات را بصورت پیش فرض داشته باشم؟",
+#     "چگونه می توانم جلسات را دسته بندی نمایم؟",
+#     "می توانم در سامانه فرآیند یا گردش کاری تعریف کنم؟ چگونه؟",
+#     "برای فرمهای طراحی شده توسط خودم می توانم چرخه کاری طراحی نمایم؟"
+# ]
+#     midlevel_questions = [
+#     "تبدیل مبلغ ارزی قرارداد به ارز پایه پروژه در سامانه چگونه انجام می شود؟",
+#     "چگونه می توانم قراردادها ثبت شده را به فعالیت های کاری متصل نمایم؟",
+#     "چگونه می توانم پیشرفت مالی پروژه را ثبت نمایم؟",
+#     "چطوری می توانم پرداختهای مربوط به پروژه را ثبت نمایم؟",
+#     "چگونه می توانم از جلسات همکاران و مدیران باخبر بشم؟",
+#     "چرخه های کاری برای چه فرآیندهایی قابل طراحی است؟",
+#     "چرخه های کاری طراحی شده در ماژول مدیریت فرم ها چه تفاوت و شباهتی با چرخه های کاری هسته دارد؟", 
+#     "قابلیت های ماژول قرارداد چیه؟", 
+#     "من قراردادهای چند ارزی رو چطور باید ثبت کنم؟"
+# ]
+#     questions = primary_questions
+#     questions.extend(midlevel_questions)
         
-    # Create directory if it doesn't exist
+    questions = [
+    "در ماژول مالی و قراردادها چه کارهایی می توانم انجام دهم؟",
+    "چه مدل قراردادی را می توانم در این ماژول ثبت کنم؟",
+    "انواع قرارداد در نرم افزار وجود دارد؟",
+    "چه فیلدهایی را می توانم در قرارداد ثبت نمایم؟",
+    "فایل های قراردادها را چه کار کنم؟",
+    "قراردادهای پروژه ای و غیر پروژه ای را چکار کنم؟",
+    "قراردادهای غیر پروژه را چگونه می توانم ثبت نمایم؟",
+    "پروژه صوری را چگونه ثبت نمایم؟",
+    "الحاقیه ها را کجا می توانم ثبت نمایم؟",
+    "قرارداد را به ساختار شکست وصل کنم یعنی چه؟",
+    "قرارداد را به ساختار شکست را چگونه وصل کنم؟",
+    "چه فایده ای دارد؟",
+    "CPM را خودم باید تعریف کنم یا اتوماتیک انجام می‌شود؟",
+    "صورت وضعیت های پروژه و قرارداد را چطور می‌توانم ثبت کنم؟",
+    "جزییات صورت وضعیت را هم می‌توانم ثبت کنم؟",
+    "ردیف‌های صورت وضعیت چطور؟",
+    "این صورت وضعیت را چطور می‌توانم بگردانماش؟",
+    "دسترسی های نقش قرارداد کجا تعیین می‌شود؟",
+    "من می‌توانم کاربری را مشخص کنم که فقط بتواند قراردادها را ببیند؟",
+    "برای بقیه ی قسمت ها هم دسترسی چطور تعیین می‌شود؟",
+    "در بررسی صورت وضعیت چطور دسترسی ها تعیین می‌شود؟"
+    ]
+
+    output_folder = 'assistant_agent_follow_up_first_try'
     output_dir = os.path.join('..', 'output', output_folder)
     os.makedirs(output_dir, exist_ok=True)
     
-    # Unique filename for this specific run session
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_file = os.path.join(output_dir, f"run_{timestamp}.json")
+
+    # 3. Configuration with a consistent thread_id for history
+    thread_id = f"test_session_{timestamp}"
+    config = {
+        "configurable": {
+            "thread_id": thread_id,
+            "model_name": "ollama",
+            'n_chunks': 5
+        }
+    }
 
     report = []
     
     for i, q in enumerate(questions):
-        if i != 0: continue
-        print(f"Processing question {i+1}/{len(questions)}...")
+        print(f"\n--- Processing question {i+1}/{len(questions)} ---")
+        print(f"Query: {q}")
         
+        # In LangGraph with persistence, we only need to send the NEW message.
+        # The checkpointer automatically merges it into existing history for this thread_id.
         initial_state = {
+            "messages": [HumanMessage(content=q)],
             "query": q,
             "query_embedding": [],
             "selected_sources": [],
@@ -168,40 +220,35 @@ def main():
         }
 
         try:
-            final_state = app.invoke(initial_state)
+            # 4. Invoke the graph with the persistent config
+            final_state = app.invoke(initial_state, config=config)
             
-            final_state['query_embedding'] = []
-            final_state['retrieved_chunks'] = [
-                {k: v for k, v in chunk.items() if k in ["text", "metadata", "score"]} 
-                for chunk in final_state.get("retrieved_chunks", [])
-            ]
-            final_state['reranked_chunks'] = [
-                {k: v for k, v in chunk.items() if k in ["text", "metadata", "score"]} 
-                for chunk in final_state.get("reranked_chunks", [])
-            ]
+            # 5. Prepare state for JSON serialization
+            # We must convert BaseMessage objects to dicts and remove numpy arrays
+            serializable_state = final_state.copy()
             
-
-            # # Keys to EXCLUDE from the JSON (they contain large numpy arrays/vectors)
-            # exclude_keys = {"query_embedding", "retrieved_chunks", "reranked_chunks"}
+            serializable_state['messages'] = [message_to_dict(m) for m in final_state.get("messages", [])]
+            serializable_state['query_embedding'] = [] # Remove large embedding vectors
             
-            # # Prepare data for saving
-            # run_data = {
-            #     "index": i,
-            #     "timestamp": datetime.now().isoformat(),
-            #     "data": {k: v for k, v in final_state.items() if k not in exclude_keys}
-            # }
-            
-            report.append(final_state)
+            # Clean up chunks for readable JSON
+            for key in ['retrieved_chunks', 'reranked_chunks']:
+                serializable_state[key] = [
+                    {k: v for k, v in chunk.items() if k in ["text", "metadata", "score"]} 
+                    for chunk in final_state.get(key, [])
+                ]
+                        
+            report.append(serializable_state)
+            print(f"Response: {final_state['answer']}...")
             
         except Exception as e:
             print(f"Error processing question {i}: {e}")
             report.append({"index": i, "query": q, "error": str(e)})
 
-    # Save the full report for this session
+    # 6. Save the full report
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     
-    print(f"Run completed. Results saved to {output_file}")
+    print(f"\nRun completed. Results saved to {output_file}")
 
 if __name__ == "__main__":
     main()

@@ -4,7 +4,8 @@ import os
 import ollama
 from pathlib import Path
 import json
-from utils import get_llm
+from utils import get_llm, get_truncated_history
+from langchain_core.runnables import RunnableConfig
 
 def cosine_similarity(v1, v2):
     """Calculates the cosine similarity between two vectors."""
@@ -29,22 +30,28 @@ def get_query_embedding(query: str):
     resp = ollama.embed(model=embed_model, input=query)
     return np.array(resp["embeddings"][0], dtype=np.float32)
 
-def hallucinated_llm_embedding(state: AgentState):
-    query = state["query"]
+def hallucinated_llm_embedding(state: AgentState, config: RunnableConfig):
+    # Get model name from config
+    latest_query = state["messages"][-1].content
+    model_name = config["configurable"].get("model_name", "qwen_api")
+    llm = get_llm(model_name, max_tokens=250)
     
-    llm = get_llm("ollama", max_tokens=250)
+    # Get truncated history (e.g., limit to 2000 tokens for context)
+    history = get_truncated_history(state.get("messages", []), 2000)
+    
     prompt = f"""
-    Answer the user's question. Imagine that you have the knowledge.
-    
-    Question: {query}
+    You are an AI assistant. Based on the conversation history and the user's new question, 
+    generate a detailed 'hallucinated' answer as if you had full knowledge. 
+    This answer will be used to improve document retrieval.
+
+    History:
+    {history}
+
+    New Question: {latest_query}
     """
     
-    response = llm.invoke(prompt, logprobs=True)
-    logprobs_data = response.response_metadata.get("logprobs", {}).get("content", [])
-    current_segment_logprobs = [token_info.get("logprob", 0) for token_info in logprobs_data]
-    min_logprob = min(current_segment_logprobs) if current_segment_logprobs else 0
-    print(min_logprob)
-    print(current_segment_logprobs)
+    response = llm.invoke(prompt)
+    # We do NOT save this response to state["messages"] as requested.
     user_embedding = get_query_embedding(response.content)
     return {"query_embedding": user_embedding}
 

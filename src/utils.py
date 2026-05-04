@@ -39,13 +39,14 @@ def get_llm(model_id: str, max_tokens: int = 4096):
     # 1. OLLAMA Logic
     elif model_id.startswith("ollama"):
         # You can extract the specific version if you send 'ollama:qwen2.5'
-        model_name = model_id.split(":")[1::] if ":" in model_id else "qwen2.5-coder:14b"
-        model_name = model_name[0] + ':' + model_name[1]
+        model_name =  "qwen2.5-coder:32b"
+        # model_name = model_name[0] + ':' + model_name[1]
         return ChatOllama(
             model=model_name,
             temperature=0,
             num_predict=max_tokens,
             format="json",
+            reasoning=False
         )
 
     # 2. QWEN API Logic (OpenAI Compatible)
@@ -78,6 +79,19 @@ def get_llm(model_id: str, max_tokens: int = 4096):
             temperature=0,
             max_tokens=max_tokens,
         )
+
+
+def get_truncated_history(messages: list[BaseMessage], max_tokens: int) -> list[BaseMessage]:
+    """Returns the most recent messages that fit within max_tokens."""
+    truncated = []
+    # Work backwards from the most recent message
+    for msg in reversed(messages):
+        # Temporary list to check token count
+        test_list = [msg] + truncated
+        if count_chat_tokens(test_list) > max_tokens:
+            break
+        truncated = [msg] + truncated
+    return truncated
 
 
 def count_chat_tokens(messages: list[BaseMessage]) -> int:
