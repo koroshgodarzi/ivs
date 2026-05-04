@@ -12,6 +12,10 @@ def load_file(file_path):
         else:
             return [{"data": f.read()}]
 
+def chunk_list(lst, n):
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
 def run_ingestion(file_path_list, strategy="recursive", db_path="../data/chroma_db", collection_name="project_management_rag"):
     collection = get_vector_collection(db_path, collection_name)
     total_chunks = 0
@@ -24,29 +28,68 @@ def run_ingestion(file_path_list, strategy="recursive", db_path="../data/chroma_
             docs = chunk_markdown_sections(raw_data, source)
         else:
             docs = chunk_jsonl_recursive(raw_data)
+        
+        batch_size = 20 
+        # We need a counter for the IDs that doesn't reset every batch
+        chunk_idx = 0 
+        
+        for i, batch in enumerate(chunk_list(docs, batch_size)):
+            # 1. Correctly prepare IDs (incrementing globally per file)
+            batch_ids = [f"{source}_{chunk_idx + j}" for j in range(len(batch))]
             
-        collection.add(
-            ids=[f"{source}_{i}" for i in range(len(docs))],
-            documents=[doc["text"] for doc in docs],
-            metadatas=[doc["metadata"] for doc in docs]
-        )
+            # 2. Correctly extract Text and Metadata
+            batch_texts = [doc["text"] for doc in batch]
+            batch_metadatas = [doc["metadata"] for doc in batch]
+            
+            # 3. Add to collection with correct keyword arguments
+            collection.add(
+                ids=batch_ids,          # Unique string IDs
+                documents=batch_texts,  # The actual content to be embedded
+                metadatas=batch_metadatas
+            )
+            
+            chunk_idx += len(batch) # Increment the counter
+            print(f"Ingested batch {i+1} for {source}")
+
         total_chunks += len(docs)
-        print(f"Successfully added {len(docs)} chunks from: {file_path})")
+        print(f"Successfully added {len(docs)} chunks from: {file_path}")
     
     print(f"\nIngestion Complete. Total chunks added: {total_chunks}")
+
+# Make sure this helper function is defined in your file!
+def chunk_list(lst, n):
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
 
 if __name__ == "__main__":
     # Example usage:
     # run_ingestion("data/PM_concepts.jsonl", strategy="recursive")
-    folder = "../data/MarkDown/"
+    folder = "../data/MD-1/"
     files = [
-        "CreateContract.md",
-        "MittingManagement.md",
-        "MittingManagementSetting.md",
-        "MittingRoom.md",
-        "MittingTypeManagement.md",
-        "WorkFLow.md",
-        "WorkFlowManagement.md"
+        # "CreateContract.md",
+        # "MittingManagement.md",
+        # "MittingManagementSetting.md",
+        # "MittingRoom.md",
+        # "MittingTypeManagement.md",
+        # "WorkFlow.md",
+        # "WorkFlowManagement.md",
+        # "FinancialManagement.md",
+        # "RolesAndSecurity.md",
+        # "DynamicFields.md",
+        # "WBS-Program.md",
+        # "ProjectTypeManagement.md",
+        # "ContractTypeManagement.md", 
+        # "IPMPAdvantages.md", 
+        # "EPC.md",
+                                            "IPMP-Vs-EPM.md",
+        # "MadulePerformanceDetail.md", 
+        # "BasicInfoProjectManagement.md",
+        # "IPMP-ProjectManagementSoftware.md",
+        # "IPMP-ProjectManagementMethods.md",
+        # "EVMSetting.md",
+        # "EVMDashboard.md",
+        # "CreateProject.md",
+        # "FinancialStatement.md"
     ]
 
     file_paths = [folder + file for file in files]
