@@ -10,14 +10,19 @@ from datetime import datetime
 from langgraph.checkpoint.memory import MemorySaver
 import sqlite3
 from langchain_core.messages import HumanMessage, AIMessage
+import chromadb
+from functools import partial
 
 
 def create_rag_graph_path():
     workflow = StateGraph(AgentState)
 
+    client = chromadb.PersistentClient(path="../data/chroma_db")
+    collection = client.get_collection(name="software_user_guide")
+
     workflow.add_node("source_matching", source_matching_node)
-    workflow.add_node("path_selection", path_selection_node)
-    workflow.add_node("chunk_retrieval", retrieve_by_path)
+    workflow.add_node("path_selection", partial(path_selection_node, collection=collection))
+    workflow.add_node("chunk_retrieval", partial(retrieve_by_path, collection=collection))
     workflow.add_node("response_generation", response_generation_node)
 
     workflow.set_entry_point("source_matching")
@@ -94,12 +99,17 @@ def create_active_rag_graph():
 def create_rag_graph():
     # 1. Initialize Memory for persistence
     memory = MemorySaver()
-    
+
+    # Initialize ChromaDB client and collection once here
+    client = chromadb.PersistentClient(path="../data/chroma_db")
+    collection = client.get_collection(name="software_user_guide")
+
     workflow = StateGraph(AgentState)
-    
+
+    # Use functools.partial to bind the collection to the node functions
     workflow.add_node("embedding_query", hallucinated_llm_embedding)
-    workflow.add_node("chunk_retrieval", retrieve_chunks_globally)
-    workflow.add_node("chunk_reranking", retrieve_by_source)
+    workflow.add_node("chunk_retrieval", partial(retrieve_chunks_globally, collection=collection))
+    workflow.add_node("chunk_reranking", partial(retrieve_by_source, collection=collection))
     workflow.add_node("response_generation", response_generation_node)
 
     workflow.set_entry_point("embedding_query")
@@ -108,7 +118,6 @@ def create_rag_graph():
     workflow.add_edge("chunk_reranking", "response_generation")
     workflow.add_edge("response_generation", END)
 
-    # 2. Compile with checkpointer
     return workflow.compile(checkpointer=memory)
 
 

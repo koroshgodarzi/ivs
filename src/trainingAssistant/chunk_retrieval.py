@@ -1,14 +1,7 @@
 import numpy as np
 from trainingAssistant.schema import AgentState
 import json
-import chromadb
 from utils import cosine_similarity
-
-# 1. Initialize the client to point to your local storage
-client = chromadb.PersistentClient(path="../data/chroma_db")
-
-# 2. Get the collection (Replace "your_collection_name" with the name you used when creating it)
-collection = client.get_collection(name="software_user_guide")
 
 
 def fetch_chunks_by_source(selected_sources, collection):
@@ -18,8 +11,6 @@ def fetch_chunks_by_source(selected_sources, collection):
     if not selected_sources:
         return []
 
-    # If searching for one source: {"source": "Catalog.md"}
-    # If searching for multiple: {"source": {"$in": ["Catalog.md", "Docs.md"]}}
     if len(selected_sources) == 1:
         where_clause = {"source": selected_sources[0]}
     else:
@@ -30,7 +21,6 @@ def fetch_chunks_by_source(selected_sources, collection):
         include=["documents", "metadatas", "embeddings"]
     )
 
-    # Note: No json.loads() needed anymore!
     chunks = []
     for i in range(len(results["ids"])):
         chunks.append({
@@ -44,28 +34,21 @@ def fetch_chunks_by_source(selected_sources, collection):
 
 def fetch_chunks_by_paths(selected_paths, collection):
     """
-    Queries ChromaDB for all chunks where the 'path' metadata (string) 
+    Queries ChromaDB for all chunks where the 'path' metadata (string)
     matches any of the strings in selected_paths.
     """
     if not selected_paths:
         return []
 
-    # 1. Clean the list (remove duplicates if the LLM repeated paths)
     unique_paths = list(set(selected_paths))
-
-    # 2. Construct the Chroma query using the $in operator
-    # This looks for the 'path' field matching any value in our list
     where_clause = {"path": {"$in": unique_paths}}
 
-    # 3. Fetch documents, embeddings, and metadatas
     results = collection.get(
         where=where_clause,
         include=["documents", "embeddings", "metadatas"]
     )
 
-    # 4. Format results
     chunks = []
-    # results['ids'] will be an empty list if no matches are found
     for i in range(len(results.get("ids", []))):
         chunks.append({
             "id": results["ids"][i],
@@ -77,7 +60,7 @@ def fetch_chunks_by_paths(selected_paths, collection):
     return chunks
 
 
-def retrieve_by_source(state: AgentState, n_results=10):
+def retrieve_by_source(state: AgentState, collection, n_results=10):
     sources = state["selected_sources"]
     query_emb = state["query_embedding"]
 
@@ -86,45 +69,38 @@ def retrieve_by_source(state: AgentState, n_results=10):
     scored_chunks = []
     for chunk in chunks:
         score = cosine_similarity(query_emb, chunk["embedding"])
-        chunk["score"] = float(score) # Ensure it's a standard float
+        chunk["score"] = float(score)
         scored_chunks.append(chunk)
-    
-    # Sort by score descending
+
     scored_chunks.sort(key=lambda x: x["score"], reverse=True)
-    
-    # Take top 10 instead of 5
-    top_chunks = scored_chunks[:n_results] 
-    
+    top_chunks = scored_chunks[:n_results]
+
     return {
-        "reranked_chunks": top_chunks, 
+        "reranked_chunks": top_chunks,
     }
 
 
-def retrieve_by_path(state: AgentState):
+def retrieve_by_path(state: AgentState, collection): 
     query_emb = state["query_embedding"]
     selected_paths = state["selected_paths"]
 
-    # 1. Fetch chunks matching the paths
     chunks = fetch_chunks_by_paths(selected_paths, collection)
 
-    # 2. Calculate similarity for each chunk
     scored_chunks = []
     for chunk in chunks:
         score = cosine_similarity(query_emb, chunk["embedding"])
         chunk["score"] = score
         scored_chunks.append(chunk)
-    
-    # 3. Sort by score descending and take top results
+
     scored_chunks.sort(key=lambda x: x["score"], reverse=True)
-    top_chunks = scored_chunks[:3] 
-    
-    # print(f"top_chunks: {top_chunks[0]['metadata']}")
+    top_chunks = scored_chunks[:3]
+
     return {"retrieved_chunks": top_chunks}
 
 
-def retrieve_chunks_globally(state: AgentState, n_results=20):
+def retrieve_chunks_globally(state: AgentState, collection, n_results=20):
     query_emb = state["query_embedding"]
-    
+
     results = collection.query(
         query_embeddings=[query_emb.tolist() if isinstance(query_emb, np.ndarray) else query_emb],
         n_results=n_results,
@@ -135,25 +111,23 @@ def retrieve_chunks_globally(state: AgentState, n_results=20):
     sources = set()
 
     for i in range(len(results["ids"][0])):
-        # Chroma distances: lower is more similar (usually L2). 
-        # If you want similarity, you might need (1 - distance) depending on Chroma config
         distance = float(results["distances"][0][i])
-        
+
         chunk = {
             "id": results["ids"][0][i],
             "text": results["documents"][0][i],
             "embedding": results["embeddings"][0][i],
             "metadata": results["metadatas"][0][i],
-            "score": 1 - distance 
+            "score": 1 - distance
         }
         chunks.append(chunk)
-        
+
         source_name = chunk["metadata"].get("source")
         if source_name:
             sources.add(source_name)
 
     return {
-        "retrieved_chunks": chunks, 
+        "retrieved_chunks": chunks,
         "selected_sources": list(sources),
     }
 
