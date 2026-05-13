@@ -24,14 +24,15 @@ def sql_generator(state: GraphState, config: RunnableConfig) -> GraphState:
 
     # all_schemas_metadata = create_column_names_for_schemas(validation_result['Needed table and categories'])
     all_schemas_metadata = create_ddl_for_schemas(validation_result['Needed table and categories'])
-
+    state["retrieved_columns"] = all_schemas_metadata
+    # print(all_schemas_metadata)
     with open(os.path.join('..', 'prompt_template', 'query_generation_user_prompt.txt')) as f:
         user_prompt = f.read()
     
     rag_context = [] #get_rag_context(user_question)
 
     user_prompt = user_prompt.format(all_schemas_metadata, rag_context, user_question)
-    # print(user_prompt)
+    # print(f"user_prompt: {user_prompt}")
 
     with open(os.path.join('..', 'prompt_template', 'query_generation_system_prompt.txt')) as f:
         system_prompt = f.read()
@@ -39,6 +40,7 @@ def sql_generator(state: GraphState, config: RunnableConfig) -> GraphState:
     with open(os.path.join('..', 'prompt_template', 'query_generation_shot.txt')) as f:
         system_prompt += f.read()
 
+    # print(f"system_prompt: {system_prompt}")
     messages = [
         SystemMessage(content=system_prompt),
         HumanMessage(content=user_prompt),
@@ -47,7 +49,7 @@ def sql_generator(state: GraphState, config: RunnableConfig) -> GraphState:
     print(count_chat_tokens(messages))
     # print(messages)
     response = llm.invoke(messages)
-    print(response.content)
+    # print(response.content)
     try:
         query_generation_result = response.content.strip()
         query_generation_result = ommiting_think_block(query_generation_result)

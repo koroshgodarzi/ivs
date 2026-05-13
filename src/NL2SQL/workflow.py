@@ -60,8 +60,8 @@ def build_graph(output_folder: str):
     workflow.add_edge("explain_query_error", "execute_query")
     workflow.add_edge("format_response", END)
     
-    # Compile with memory
-    conn = sqlite3.connect(":memory:", check_same_thread=False)
+    db_path = os.path.join('..', 'output', 'NL2SQL_langgraph_state.db')
+    conn = sqlite3.connect(db_path, check_same_thread=False)
     memory = SqliteSaver(conn)
 
     return workflow.compile(checkpointer=memory)
@@ -80,7 +80,7 @@ def main():
     output = {}
 
     # 2. Build the compiled graph
-    output_folder = 'LLM_based_view_abrarvan'
+    output_folder = 'view_change_first_try'
     os.makedirs(os.path.join('..', 'output', output_folder), exist_ok=True)
 
     app = build_graph(output_folder)
@@ -148,8 +148,8 @@ def main():
     # 4. Initialize the state
 
     for i, user_question in enumerate(questions):
-        # if i != 12:
-        #     continue
+        if i != 0:
+            continue
         initial_state = {
             "messages": [
                 {"role": "user", "content": user_question}
@@ -161,6 +161,7 @@ def main():
             "query_results": None,
             "validation_result": None,
             "query_explanation": None,
+            "retrieved_columns": None
         }
 
         # 5. Config with thread_id

@@ -4,7 +4,6 @@ from typing import TypedDict, List, Optional, Annotated
 from pydantic import BaseModel, Field
 
 
-# LangGraph State
 class GraphState(TypedDict):
     """State managed by the LangGraph workflow."""
     messages: Annotated[List[dict], "Chat history messages"]
@@ -14,8 +13,9 @@ class GraphState(TypedDict):
     summary_context: Optional[str]  # Summary from previous session (for reset feature)
     retry_count: int  # Track number of retries to limit loops
     validation_result: Optional[str]  # Result from query validation
-    retrieved_schema: Optional[str] 
+    retrieved_schema: Optional[str]
     query_explanation: int
+    retrieved_columns: Optional[str] # Added field to store schema metadata
 
 
 # FastAPI Request/Response Models
