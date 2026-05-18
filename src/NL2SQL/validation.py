@@ -14,7 +14,7 @@ import json
 def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphState:
     """
     Use LLM to determine if a question can be answered from the database schema.
-    Iterates through 3, 5, and 7 table candidates until a 'Yes' is found.
+    Returns specific column names instead of category ordinals.
     """
     model_name = config.get("configurable", {}).get("model_name", "gpt")
     llm = get_llm(model_id=model_name)
@@ -25,9 +25,23 @@ def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphSt
         return state
     
     views = state.get("retrieved_schema", {})
-    table_candidates = views.get('Table Candidates', [])
+    table_candidates = views.get('Table Candidates', []) if isinstance(views, dict) else []
     
-    # Define the increments for the loop
+    # --- LOAD COLUMN DESCRIPTIONS ---
+    column_metadata = {}
+    description_path = os.path.join('..', 'data', 'column_description.jsonl')
+    
+    try:
+        with open(description_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                if line.strip():
+                    data = json.loads(line)
+                    # Mapping: { "vw_Cashflow": {"col1": "desc1", ...} }
+                    column_metadata[data['view_name']] = data.get('columns', {})
+    except FileNotFoundError:
+        print(f"Error: Column description file not found at {description_path}")
+    # -------------------------------
+
     limits = [3, 5, 7]
     validation_result = {}
     last_limit_tried = 0
@@ -38,33 +52,36 @@ def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphSt
         user_prompt_template = f.read()
 
     for limit in limits:
-        # Optimization: If the total tables available are less than the previous limit, stop.
-        # Or if we've already tried all available tables in the previous step.
         actual_tables_to_use = table_candidates[:limit]
+        
         if len(actual_tables_to_use) <= last_limit_tried and last_limit_tried != 0:
             break
         
         last_limit_tried = len(actual_tables_to_use)
-        print(f"Attempting validation with first {len(actual_tables_to_use)} tables...")
+        print(f"Attempting column-level validation with first {len(actual_tables_to_use)} tables...")
 
-        # 1. Build schema for current subset
-        schema = ""
-        for v in actual_tables_to_use:
-            schema += v + ':\n'
-            try:
-                with open(os.path.join('..', 'data', 'short_schema', f'{v}.txt')) as f:
-                    s = f.read()
-                schema += s + '\n'
-            except FileNotFoundError:
-                print(f"Warning: Schema file for {v} not found.")
+        # 1. Build schema context using the JSONL data
+        schema_context = ""
+        for table_name in actual_tables_to_use:
+            schema_context += f"Table: {table_name}\n"
+            
+            cols = column_metadata.get(table_name)
+            if cols:
+                for col_name, description in cols.items():
+                    schema_context += f"- {col_name}: {description}\n"
+            else:
+                schema_context += "(No column descriptions available for this table)\n"
+            
+            schema_context += "-" * 15 + "\n"
 
         # 2. Prepare messages
-        formatted_user_prompt = user_prompt_template.format(schema, user_messages)
+        formatted_user_prompt = user_prompt_template.format(schema_context, user_messages)
         messages = [
             SystemMessage(content=system_prompt),
             HumanMessage(content=formatted_user_prompt)
         ]
 
+        # 3. Invoke LLM
         response = llm.invoke(messages)
         
         try:
@@ -74,21 +91,23 @@ def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphSt
             validation_result = parsed_json
         except (json.JSONDecodeError, ValueError) as e:
             print(f"Failed to parse validation_result as JSON at limit {limit}: {e}")
-            continue # Try next limit if parsing fails
+            continue 
 
-        # 5. Check condition to break
-        # We check for "Yes" (case-insensitive usually safer)
-        short_answer = validation_result.get("short answer", "No")
+        # 4. Check if answerable
+        short_answer = validation_result.get("short_answer", "No")
         if str(short_answer).strip().upper().startswith("YES"):
-            print(f"Validation successful with {limit} tables.")
+            print(f"Validation successful! Columns identified for {len(validation_result.get('needed_columns', {}))} tables.")
             break
         else:
-            print(f"Validation failed with {limit} tables. Trying next increment...")
+            print(f"Validation failed with {limit} tables. Trying more context...")
 
+    print(validation_result)
     # Final state update
     state["validation_result"] = validation_result
-    print(f"Final validation result: {validation_result}")
-
+    state["retrieved_columns"] = json.dumps(validation_result.get("needed_columns", {}))
+    
+    # Note: Fixed the key access here to match "short_answer" used above
+    print(f"Final validation decision: {validation_result.get('short_answer')}")
     return state
 
 
@@ -99,7 +118,7 @@ def should_proceed_with_user_question(state: GraphState, config: RunnableConfig)
     if not validation_result:
         return "proceed"
 
-    if validation_result.get("short answer", "").strip().upper().startswith("YES"):
+    if validation_result.get("short_answer", "").strip().upper().startswith("YES"):
         return "proceed"
     else:
         return "halt"

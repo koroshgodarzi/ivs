@@ -210,84 +210,49 @@ def create_column_names_for_schemas(schema_categories: dict) -> list:
     return all_schemas_metadata
 
 
-def create_ddl_for_schemas(schema_categories: dict) -> str:
+def create_ddl_for_schemas(needed_columns_dict: dict) -> str:
     """
-    schema_categories: dict where
-        key   -> schema name (the filename prefix)
-        value -> iterable of category names/IDs
-    Returns a string formatted as SQL DDL.
-    """
-    all_ddl_blocks = []
-
-    for schema, needed_categories in schema_categories.items():
-        needed_cat_ids = {str(n) for n in needed_categories}
-
-        # 1. Load the category mapping (to see which columns we need)
-        cat_path = os.path.join('..', 'data', 'short_schema', f'{schema}.json')
-        if not os.path.exists(cat_path):
-            print(f"Warning: Category file not found: {cat_path}")
-            continue
-
-        with open(cat_path, 'r', encoding='utf-8') as f:
-            schema_mapping = json.load(f)
-
-        table_name = schema_mapping.get('table', schema)
+    needed_columns_dict: dict where
+        key   -> table/view name (e.g., 'vw_Contracts')
+        value -> list of column names (e.g., ['ContractID', 'Amount'])
         
-        # Determine which column names to include based on categories
-        columns_to_include = set()
-        for category in schema_mapping.get('categories', []):
-            if str(category['category_name']) in needed_cat_ids:
-                columns_to_include.update(category['columns'])
+    Returns: A formatted string representing the DDL/Schema context.
+    """
+    all_schemas_text = ""
 
-        if not columns_to_include:
-            continue
-
-        # 2. Load the actual metadata (types, examples)
-        meta_path = os.path.join('..', 'data', 'metadata', f'{schema}_column_meta.json')
+    for table_name, columns in needed_columns_dict.items():
+        # 1. Load the actual metadata for this specific table
+        # Path assumes your metadata naming convention: {table_name}_column_meta.json
+        meta_path = os.path.join('..', 'data', 'metadata', f'{table_name}_column_meta.json')
+        
         if not os.path.exists(meta_path):
-            print(f"Warning: Metadata file not found: {meta_path}")
+            print(f"Warning: Metadata file for {table_name} not found at {meta_path}")
             continue
 
         with open(meta_path, 'r', encoding='utf-8') as f:
-            master_metadata = json.load(f)
+            table_metadata = json.load(f)
 
-        # 3. Build the DDL String for this table
-        table_ddl = [f"-- Table: {table_name}"]
-        table_ddl.append(f"CREATE TABLE {table_name} (")
+        # 2. Filter metadata for only the columns requested by the validator
+        # We also want to be case-insensitive just in case
+        requested_cols_upper = [c.upper() for c in columns]
+        filtered_cols = [
+            col for col in table_metadata 
+            if col['name'].upper() in requested_cols_upper
+        ]
+
+        # 3. Format into a DDL-like block for the prompt
+        all_schemas_text += f"CREATE TABLE {table_name} (\n"
+        col_definitions = []
+        for col in filtered_cols:
+            col_def = f"  {col['name']} {col.get('type', 'VARCHAR')}"
+            if col.get('description'):
+                col_def += f" -- {col['description']}"
+            col_definitions.append(col_def)
         
-        column_lines = []
-        for col in master_metadata:
-            if col['name'] in columns_to_include:
-                name = col['name']
-                col_type = col['type']
-                null_status = "NULL" if col.get('nullable') else "NOT NULL"
-                
-                # Handle Examples / Unique Values from your JSON structure
-                example_bits = []
-                if "unique_values" in col:
-                    example_bits = col["unique_values"]
-                elif "example_values" in col:
-                    example_bits = col["example_values"]
-                
-                example_str = ""
-                if example_bits:
-                    # Clean up values for comment (limit to 5)
-                    clean_vals = [str(v).replace('\n', ' ') for v in example_bits[:5]]
-                    example_str = f" -- Examples: {', '.join(clean_vals)}"
-                
-                # Format: "ColumnName" TYPE NULL, -- Examples: ...
-                line = f"  \"{name}\" {col_type} {null_status},{example_str}"
-                column_lines.append(line)
+        all_schemas_text += ",\n".join(col_definitions)
+        all_schemas_text += "\n);\n\n"
 
-        # Remove the comma from the last column line for valid SQL
-        if column_lines:
-            column_lines[-1] = column_lines[-1].replace(",", "", 1)
-            table_ddl.extend(column_lines)
-            table_ddl.append(");\n")
-            all_ddl_blocks.append("\n".join(table_ddl))
-
-    # Return all tables as one big string
-    return "\n".join(all_ddl_blocks)
+    return all_schemas_text
 
 
 def ommiting_think_block(text: str) -> str:

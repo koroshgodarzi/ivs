@@ -80,7 +80,7 @@ def main():
     output = {}
 
     # 2. Build the compiled graph
-    output_folder = 'view_change_first_try'
+    output_folder = 'column_selection_first_try'
     os.makedirs(os.path.join('..', 'output', output_folder), exist_ok=True)
 
     app = build_graph(output_folder)
@@ -148,8 +148,8 @@ def main():
     # 4. Initialize the state
 
     for i, user_question in enumerate(questions):
-        if i != 0:
-            continue
+        # if i != 0:
+        #     continue
         initial_state = {
             "messages": [
                 {"role": "user", "content": user_question}
