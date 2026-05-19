@@ -59,6 +59,15 @@ def get_llm(model_id: str, max_tokens: int = 4096):
             max_tokens=max_tokens,
         )
 
+    elif "open_router" in model_id.lower():
+        return ChatOpenAI(
+            api_key=os.getenv("OPENROUTER_API_KEY"),
+            base_url="https://openrouter.ai/api/v1", # e.g. DashScope or your proxy
+            model='Qwen3-30B-A3B-lbu2r',
+            temperature=0,
+            max_tokens=max_tokens,
+        )
+
     # 3. GPT Logic (OpenAI)
     elif "gpt" in model_id.lower():
         return ChatOpenAI(
@@ -254,6 +263,12 @@ def create_ddl_for_schemas(needed_columns_dict: dict) -> str:
 
     return all_schemas_text
 
+def format_join_info_for_llm(join_info):
+    output = ""
+    for column, tables in join_info.items():
+        table_list = ", ".join(tables)
+        output += f"- {column}: Links {table_list}\n"
+    return output
 
 def ommiting_think_block(text: str) -> str:
     """

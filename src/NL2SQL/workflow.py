@@ -1,10 +1,12 @@
 from NL2SQL.schema import GraphState
-from NL2SQL.embedding import schema_retriever
+from NL2SQL.view_selection import schema_retriever
 from NL2SQL.validation import validate_user_question, should_proceed_with_user_question, handle_validation_failure
-from NL2SQL.generate_query import sql_generator
+from NL2SQL.generate_query import sql_generator, sql_generator_column_based
 from NL2SQL.execute_query import execute_query
 from NL2SQL.error_handling import error_handler, should_retry, explain_query_error
 from NL2SQL.final_node import format_final_response
+from NL2SQL.preprocessing import keyword_extraction
+from NL2SQL.column_retrieval import querying
 from utils import get_llm
 
 from langgraph.graph import StateGraph, END
@@ -13,8 +15,55 @@ import sqlite3
 from NL2SQL.monitoring import configure_text_logger, with_state_logging
 
 import time
+import os
 
-def build_graph(output_folder: str):
+
+def column_based_graph(output_folder: str):
+    workflow = StateGraph(GraphState)
+
+    logger = configure_text_logger(output_folder)
+
+    # Add the new nodes
+    workflow.add_node("keyword_extraction", with_state_logging("keyword_extraction", keyword_extraction, logger))
+    workflow.add_node("querying", with_state_logging("querying", querying, logger))
+
+    # Add the existing nodes
+    workflow.add_node("sql_generator", with_state_logging("sql_generator", sql_generator_column_based, logger))
+    workflow.add_node("execute_query", with_state_logging("execute_query", execute_query, logger))
+    workflow.add_node("error_handler", with_state_logging("error_handler", error_handler, logger))
+    workflow.add_node("explain_query_error", with_state_logging("explain_query_error", explain_query_error, logger))
+    workflow.add_node("format_response", with_state_logging("format_response", format_final_response, logger))
+
+    # 1. Set the entry point
+    workflow.set_entry_point("keyword_extraction")
+
+    # 2. Define the edges
+    workflow.add_edge("keyword_extraction", "querying")
+    workflow.add_edge("querying", "sql_generator")
+    workflow.add_edge("sql_generator", "execute_query")
+    workflow.add_edge("execute_query", "error_handler")
+
+    # 3. Error retry logic
+    workflow.add_conditional_edges(
+        "error_handler",
+        should_retry,
+        {
+            "retry": "explain_query_error",
+            "end": "format_response"
+        }
+    )
+    workflow.add_edge("explain_query_error", "execute_query")
+    workflow.add_edge("format_response", END)
+    
+    # Set up memory
+    db_path = os.path.join('..', 'output', 'NL2SQL_langgraph_state.db')
+    conn = sqlite3.connect(db_path, check_same_thread=False)
+    memory = SqliteSaver(conn)
+
+    return workflow.compile(checkpointer=memory)
+
+
+def view_based_graph(output_folder: str):
     workflow = StateGraph(GraphState)
 
     logger = configure_text_logger(output_folder)
@@ -80,10 +129,10 @@ def main():
     output = {}
 
     # 2. Build the compiled graph
-    output_folder = 'column_selection_first_try'
+    output_folder = 'column_based_first_try'
     os.makedirs(os.path.join('..', 'output', output_folder), exist_ok=True)
 
-    app = build_graph(output_folder)
+    app = column_based_graph(output_folder)
 
     # 3. Define the user's question by reading from Excel
     # excel_file = "../FAQ-IPMP-1404-11-21 (1).xlsx"
@@ -148,8 +197,8 @@ def main():
     # 4. Initialize the state
 
     for i, user_question in enumerate(questions):
-        # if i != 0:
-        #     continue
+        if i != 0:
+            continue
         initial_state = {
             "messages": [
                 {"role": "user", "content": user_question}

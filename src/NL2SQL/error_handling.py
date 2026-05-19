@@ -31,7 +31,7 @@ def explain_query_error(state: GraphState, config: RunnableConfig) -> GraphState
         except (json.JSONDecodeError, ValueError):
             validation_result = {}
 
-    all_schemas_metadata = create_column_names_for_schemas(validation_result['Needed table and categories'])
+    all_schemas_metadata = state["retrieved_columns"]
 
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
     user_prompt = user_messages[-1]["content"] if user_messages else ""
