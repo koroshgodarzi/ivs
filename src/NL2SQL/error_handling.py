@@ -7,7 +7,6 @@ from langchain_core.runnables import RunnableConfig
 import json
 import os
 
-
 def explain_query_error(state: GraphState, config: RunnableConfig) -> GraphState:
     """
     Use LLM to explain the reason for a query execution error.
@@ -23,24 +22,10 @@ def explain_query_error(state: GraphState, config: RunnableConfig) -> GraphState
     model_name = config.get("configurable", {}).get("model_name", "gpt")
     llm = get_llm(model_id=model_name)
 
-    # Get needed columns
-    validation_result = state.get("validation_result", {})
-    if isinstance(validation_result, str):
-        try:
-            validation_result = extract_json_from_text(validation_result)
-        except (json.JSONDecodeError, ValueError):
-            validation_result = {}
-
-    all_schemas_metadata = state["retrieved_columns"]
-
-    user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
-    user_prompt = user_messages[-1]["content"] if user_messages else ""
-
     with open(os.path.join('..', 'prompt_template', 'error_handling_system_prompt.txt')) as f:
         system_prompt = f.read()
-
-    with open(os.path.join('..', 'prompt_template', 'error_handling_user_prompt_part_1.txt')) as f:
-        user_prompt_text = f.read().format(all_schemas_metadata, user_prompt)
+    
+    user_prompt_text = state["query_generation_user_prompt"]
 
     queries = [q for q in state.get("generated_query", [])]
     error_messages = [err for err in state.get("error_message", [])]
@@ -48,6 +33,7 @@ def explain_query_error(state: GraphState, config: RunnableConfig) -> GraphState
     for i, (q, err) in enumerate(zip(queries, error_messages)):
         with open(os.path.join('..', 'prompt_template', 'error_handling_user_prompt_part_2.txt')) as f:
             p = f.read().format(i, q, err)
+        user_prompt_text += "\n"
         user_prompt_text += p
 
     messages = [
@@ -60,7 +46,9 @@ def explain_query_error(state: GraphState, config: RunnableConfig) -> GraphState
     response = extract_json_from_text(response.strip())
 
     state["error_explanation"] = response["error_explanation"]
-    state["generated_query"].append(response["corrected_query"])
+    query_list = state["generated_query"]
+    query_list.append(response["corrected_query"])
+    state["generated_query"] = query_list
     
     return response
 

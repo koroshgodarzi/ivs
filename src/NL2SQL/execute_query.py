@@ -3,7 +3,6 @@ from NL2SQL.error_handling import explain_query_error
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine, text, inspect
 from urllib.parse import quote_plus
-from utils import fix_sql_wildcards
 from langchain_core.runnables import RunnableConfig
 
 import re
@@ -14,8 +13,6 @@ def execute_query(state: GraphState, config: RunnableConfig) -> GraphState:
 
     queries = [q for q in state.get("generated_query", [])]
     query = queries[-1] if queries else ""
-    query = fix_sql_wildcards(query)
-    print(f"Here on executing: {query}")
     
     if not query:
         state["error_message"] = "No SQL query generated"

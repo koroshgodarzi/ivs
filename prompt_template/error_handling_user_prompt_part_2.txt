@@ -1,6 +1,1 @@
-Attempt {}:
-
-Generated SQL Query:
-{}
-Error Message:
-{}
+Attempt {}: SQL Query: {} With error Message: {}

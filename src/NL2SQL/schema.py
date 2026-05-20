@@ -17,25 +17,4 @@ class GraphState(TypedDict):
     query_explanation: int
     retrieved_columns: Optional[str] # Added field to store schema metadata
     keywords: str
-
-
-# class GraphState_(TypedDict):
-#     """
-#     Represents the state of our graph.
-
-#     Attributes:
-#         question: The user's question.
-#         keywords: Keywords extracted from the user's question.
-#         retrieved_schema: The relevant schema parts retrieved from ChromaDB.
-#         sql_query: The generated SQL query.
-#         query_result: The result of the executed SQL query.
-#         error: Any error messages encountered.
-#         retries: The number of retries for SQL execution.
-# """
-#     question: str
-#     keywords: str
-#     retrieved_schema: str
-#     sql_query: str
-#     query_result: str
-#     error: str
-#     retries: int
+    query_generation_user_prompt: str

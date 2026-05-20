@@ -1,13 +1,12 @@
 from NL2SQL.schema import GraphState
 from NL2SQL.view_selection import schema_retriever
 from NL2SQL.validation import validate_user_question, should_proceed_with_user_question, handle_validation_failure
-from NL2SQL.generate_query import sql_generator, sql_generator_column_based
+from NL2SQL.generate_query import sql_generator
 from NL2SQL.execute_query import execute_query
 from NL2SQL.error_handling import error_handler, should_retry, explain_query_error
 from NL2SQL.final_node import format_final_response
 from NL2SQL.preprocessing import keyword_extraction
 from NL2SQL.column_retrieval import querying
-from utils import get_llm
 
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.sqlite import SqliteSaver
@@ -28,7 +27,7 @@ def column_based_graph(output_folder: str):
     workflow.add_node("querying", with_state_logging("querying", querying, logger))
 
     # Add the existing nodes
-    workflow.add_node("sql_generator", with_state_logging("sql_generator", sql_generator_column_based, logger))
+    workflow.add_node("sql_generator", with_state_logging("sql_generator", sql_generator, logger))
     workflow.add_node("execute_query", with_state_logging("execute_query", execute_query, logger))
     workflow.add_node("error_handler", with_state_logging("error_handler", error_handler, logger))
     workflow.add_node("explain_query_error", with_state_logging("explain_query_error", explain_query_error, logger))
@@ -129,10 +128,10 @@ def main():
     output = {}
 
     # 2. Build the compiled graph
-    output_folder = 'column_based_first_try'
+    output_folder = 'test'
     os.makedirs(os.path.join('..', 'output', output_folder), exist_ok=True)
 
-    app = column_based_graph(output_folder)
+    app = view_based_graph(output_folder)
 
     # 3. Define the user's question by reading from Excel
     # excel_file = "../FAQ-IPMP-1404-11-21 (1).xlsx"
@@ -197,7 +196,7 @@ def main():
     # 4. Initialize the state
 
     for i, user_question in enumerate(questions):
-        if i != 0:
+        if i != 9:
             continue
         initial_state = {
             "messages": [
@@ -210,7 +209,9 @@ def main():
             "query_results": None,
             "validation_result": None,
             "query_explanation": None,
-            "retrieved_columns": None
+            "retrieved_columns": None,
+            "keywords": None,
+            "query_generation_user_prompt": None
         }
 
         # 5. Config with thread_id
