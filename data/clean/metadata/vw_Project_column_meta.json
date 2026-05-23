@@ -60,16 +60,6 @@
         ]
     },
     {
-        "name": "PMUserName",
-        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
-        "nullable": true,
-        "default": null,
-        "example_values": [
-            "13172_deleted",
-            "22222222"
-        ]
-    },
-    {
         "name": "ProjectTitle",
         "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
@@ -123,72 +113,6 @@
         ]
     },
     {
-        "name": "CreatedBy",
-        "type": "UNIQUEIDENTIFIER",
-        "nullable": false,
-        "default": null,
-        "unique_values": [
-            "43f1224f-65d1-4c3a-892e-043fb0b38fe4",
-            "788702e1-81ec-4132-b88a-12eeb0e1e380",
-            "120acbc0-deb7-4151-87e3-169f93a186b6",
-            "2adb818d-ee4e-4dc4-804e-64b74429a84b",
-            "320df7f9-f44d-4339-91c7-6e73b1dbd321",
-            "8423d75a-7635-4d40-8088-88ea0afbf846",
-            "61ff4d5e-193b-4736-b65f-d7e11148c8e3",
-            "91915af2-984d-4631-8282-ed06320fc5c9"
-        ]
-    },
-    {
-        "name": "LastModifiedBy",
-        "type": "UNIQUEIDENTIFIER",
-        "nullable": false,
-        "default": null,
-        "example_values": [
-            "0a200e15-3edc-4827-af43-003980159b88",
-            "0c40f473-e8de-4010-9cef-03cce72fdcbb"
-        ]
-    },
-    {
-        "name": "CreationTime",
-        "type": "DATETIME",
-        "nullable": false,
-        "default": null,
-        "example_values": [
-            "2013-04-10 14:53:59.080000",
-            "2013-04-15 13:17:59.940000"
-        ]
-    },
-    {
-        "name": "CreationTime_J",
-        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
-        "nullable": true,
-        "default": null,
-        "example_values": [
-            "1392/01/21",
-            "1392/01/26"
-        ]
-    },
-    {
-        "name": "LastModificationTime",
-        "type": "DATETIME",
-        "nullable": false,
-        "default": null,
-        "example_values": [
-            "2013-06-13 12:40:21.673000",
-            "2016-03-07 18:36:50.093000"
-        ]
-    },
-    {
-        "name": "LastModificationTime_J",
-        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
-        "nullable": true,
-        "default": null,
-        "example_values": [
-            "1392/03/23",
-            "1394/12/17"
-        ]
-    },
-    {
         "name": "ProjectAdmin",
         "type": "UNIQUEIDENTIFIER",
         "nullable": true,
@@ -196,21 +120,6 @@
         "example_values": [
             "0a200e15-3edc-4827-af43-003980159b88",
             "5d2c60e6-ac8f-49f1-89c1-120a69aa35cb"
-        ]
-    },
-    {
-        "name": "DefaultLocation_CityID",
-        "type": "INTEGER",
-        "nullable": true,
-        "default": null,
-        "unique_values": [
-            1,
-            2,
-            3,
-            4,
-            107,
-            300,
-            402
         ]
     },
     {
@@ -309,16 +218,6 @@
         ]
     },
     {
-        "name": "DefaultLocationID",
-        "type": "INTEGER",
-        "nullable": true,
-        "default": null,
-        "example_values": [
-            254,
-            255
-        ]
-    },
-    {
         "name": "LocationTitle",
         "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
@@ -356,26 +255,6 @@
         "unique_values": [
             "شمسی",
             "میلادی"
-        ]
-    },
-    {
-        "name": "ProjectWBSKEY",
-        "type": "INTEGER",
-        "nullable": true,
-        "default": null,
-        "example_values": [
-            62,
-            65
-        ]
-    },
-    {
-        "name": "ProjectWBSName",
-        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
-        "nullable": true,
-        "default": null,
-        "example_values": [
-            "030506",
-            "0516"
         ]
     },
     {
@@ -786,15 +665,6 @@
         "default": null,
         "unique_values": [
             1.0
-        ]
-    },
-    {
-        "name": "ProjectHasControlPoints",
-        "type": "BIT",
-        "nullable": true,
-        "default": null,
-        "unique_values": [
-            false
         ]
     },
     {
