@@ -1,0 +1,65 @@
+[
+    {
+        "name": "PlanHistoryKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "WBSPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "wbsName",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ProjectPlanPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ProjectPlanName",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "CreationTime",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "PlanStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "PlanEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    }
+]

@@ -1,0 +1,93 @@
+[
+    {
+        "name": "DateType",
+        "type": "CHAR(1) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "j"
+        ]
+    },
+    {
+        "name": "FromDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-01",
+            "2008-09-02"
+        ]
+    },
+    {
+        "name": "ToDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-09-01",
+            "2008-12-01"
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            0.07622524881456627
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -0.5541106571259817,
+            0.0
+        ]
+    },
+    {
+        "name": "PlanCommulative",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            1.3196897888841015
+        ]
+    },
+    {
+        "name": "ActualCommulative",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            0.004060310559339052
+        ]
+    },
+    {
+        "name": "ProjectGroupID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            8,
+            11
+        ]
+    },
+    {
+        "name": "TimePeriod",
+        "type": "VARCHAR(20) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Monthly",
+            "Seasonally",
+            "Weekly",
+            "Yearly"
+        ]
+    }
+]

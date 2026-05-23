@@ -1,3 +1,0 @@
-[Report].[vw_ProjectGroup]
-1) Group Identity: unique key for each project group.
-2) Group Naming: human-readable group name/label (may be non‑Latin).

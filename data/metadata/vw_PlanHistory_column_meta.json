@@ -1,149 +1,215 @@
 [
     {
-        "name": "PlanHistoryKEY",
+        "name": "PlanHistoryID",
         "type": "INTEGER",
         "nullable": false,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            1,
+            2
+        ]
     },
     {
         "name": "ProjectName",
-        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "فاز اول - ناصری",
+            "فاز اول - احمدی"
+        ]
     },
     {
-        "name": "WBSPK",
+        "name": "WBSID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            31993,
+            31994
+        ]
     },
     {
         "name": "wbsName",
-        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "فاز اول - ناصری",
+            "بلوک 3"
+        ]
     },
     {
-        "name": "ProjectPlanPK",
+        "name": "ProjectPlanID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            59,
+            60
+        ]
     },
     {
         "name": "ProjectPlanName",
-        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "MAIN",
+            "پایه"
+        ]
     },
     {
         "name": "CreationTime",
         "type": "DATE",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "2024-05-26",
+            "2024-08-03"
+        ]
     },
     {
         "name": "CreationTime_JalaliDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "1403/01/15",
+            "1405/01/18"
+        ]
     },
     {
         "name": "CreationTime_JalaliYear",
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "unique_values": [
+            1403,
+            1401,
+            1404,
+            1405,
+            1402
+        ]
     },
     {
         "name": "CreationTime_JalaliMonth",
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            9,
+            3
+        ]
     },
     {
         "name": "CreationTime_JalaliDay",
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            23,
+            29
+        ]
     },
     {
         "name": "PlanStartDate",
         "type": "DATE",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "2010-12-22",
+            "2011-01-08"
+        ]
     },
     {
         "name": "PlanStartDate_JalaliDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "1389/10/01",
+            "1389/10/18"
+        ]
     },
     {
         "name": "PlanStartDate_JalaliYear",
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            1397,
+            1403
+        ]
     },
     {
         "name": "PlanStartDate_JalaliMonth",
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            9,
+            3
+        ]
     },
     {
         "name": "PlanStartDate_JalaliDay",
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            23,
+            29
+        ]
     },
     {
         "name": "PlanEndDate",
         "type": "DATE",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "2013-08-02",
+            "2013-06-24"
+        ]
     },
     {
         "name": "PlanEndDate_JalaliDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            "1392/05/11",
+            "1392/04/03"
+        ]
     },
     {
         "name": "PlanEndDate_JalaliYear",
         "type": "SMALLINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            1397,
+            1403
+        ]
     },
     {
         "name": "PlanEndDate_JalaliMonth",
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            9,
+            3
+        ]
     },
     {
         "name": "PlanEndDate_JalaliDay",
         "type": "TINYINT",
         "nullable": true,
         "default": null,
-        "unique_values": []
+        "example_values": [
+            23,
+            29
+        ]
     }
 ]

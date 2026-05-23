@@ -1,6 +1,6 @@
 [
     {
-        "name": "CBSKEY",
+        "name": "CBSID",
         "type": "INTEGER",
         "nullable": false,
         "default": null,
@@ -11,7 +11,7 @@
     },
     {
         "name": "CBSName",
-        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(1000) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "example_values": [
@@ -20,7 +20,7 @@
         ]
     },
     {
-        "name": "OrganizationUnitPK",
+        "name": "OrganizationUnitID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -30,15 +30,17 @@
             1,
             3001,
             4250,
+            1777,
             3002
         ]
     },
     {
         "name": "OrganUnitName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
+            "معاونت فن آوری (2)",
             "معاونت اقتصادی و سرمایه گذاری",
             "معاونت مالی",
             "معاونت برنامه ریزی، مالی و پشتیبانی",
@@ -48,7 +50,7 @@
         ]
     },
     {
-        "name": "Stakeholder_ParentKEY",
+        "name": "Stakeholder_ParentID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -78,17 +80,17 @@
         ]
     },
     {
-        "name": "CreationTimeKEY",
+        "name": "CreationTime",
         "type": "BIGINT",
         "nullable": true,
         "default": null,
         "example_values": [
-            20130422163319026,
-            20130422163327660
+            20250923,
+            20230717
         ]
     },
     {
-        "name": "LastModificationTimeKEY",
+        "name": "LastModificationTime",
         "type": "BIGINT",
         "nullable": true,
         "default": null,
@@ -114,7 +116,7 @@
         "default": null,
         "example_values": [
             29,
-            3292
+            6415
         ]
     },
     {
@@ -125,7 +127,7 @@
         "unique_values": []
     },
     {
-        "name": "Amount",
+        "name": "IRRAmmount",
         "type": "FLOAT",
         "nullable": true,
         "default": null,
@@ -135,13 +137,44 @@
         ]
     },
     {
+        "name": "USDAmmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            810000000.0
+        ]
+    },
+    {
+        "name": "EURAmmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            3500.0,
+            700.0,
+            10000000.0,
+            7700.0,
+            2100.0,
+            14700.0
+        ]
+    },
+    {
+        "name": "AEDAmmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
         "name": "WBSID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
         "example_values": [
             31994,
-            43443
+            31996
         ]
     }
 ]

@@ -1,0 +1,94 @@
+[
+    {
+        "name": "ID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            9503,
+            9509,
+            9521
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            9499,
+            9505,
+            9518
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "شرح_فعالیت",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "تست فاینال",
+            "سلام",
+            "علیک "
+        ]
+    },
+    {
+        "name": "خروجی",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "تست فاینال",
+            "سلامسلام",
+            "ندارد"
+        ]
+    },
+    {
+        "name": "زمان_پایان",
+        "type": "NVARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1404/11/01",
+            "1404/11/12",
+            "1405/01/14"
+        ]
+    },
+    {
+        "name": "عنوان_برنامه_عملیاتی",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "تست فاینال",
+            "سلام"
+        ]
+    },
+    {
+        "name": "درصد_پیشرفت",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            66.67
+        ]
+    },
+    {
+        "name": "زمان_شروع_",
+        "type": "NVARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1403/12/30",
+            "1404/11/14",
+            "1404/12/29"
+        ]
+    }
+]

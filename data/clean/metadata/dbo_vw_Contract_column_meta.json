@@ -1,0 +1,552 @@
+[
+    {
+        "name": "ProjectKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            25,
+            26
+        ]
+    },
+    {
+        "name": "DefaultProjectPlanPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            59,
+            74
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Construction P",
+            "Dorood Field Development"
+        ]
+    },
+    {
+        "name": "Contractkey",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            846,
+            847
+        ]
+    },
+    {
+        "name": "IsCashIn",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false
+        ]
+    },
+    {
+        "name": "isKarfama",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            1
+        ]
+    },
+    {
+        "name": "ContractTitle",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "555",
+            "currencytest"
+        ]
+    },
+    {
+        "name": "ContractAmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            100000000000.0,
+            4140000000.0
+        ]
+    },
+    {
+        "name": "ContractNumber",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1111",
+            "1112"
+        ]
+    },
+    {
+        "name": "ContractFinalAmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1.0,
+            5800000.0,
+            2311299500.0,
+            2500000000.0,
+            3500000000.0,
+            50000000000000.0
+        ]
+    },
+    {
+        "name": "Contract_Date",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2022-09-14",
+            "2022-09-21"
+        ]
+    },
+    {
+        "name": "Contract_Date_Int",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20220914,
+            20220921
+        ]
+    },
+    {
+        "name": "ContractDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2010-06-29",
+            "2010-07-04"
+        ]
+    },
+    {
+        "name": "ContractDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1389,
+            1390
+        ]
+    },
+    {
+        "name": "ContractDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ContractDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ContractDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1401/06/23",
+            "1401/06/30"
+        ]
+    },
+    {
+        "name": "ContractDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2022-09-14",
+            "2022-09-21"
+        ]
+    },
+    {
+        "name": "ContractedStartDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1387,
+            1388
+        ]
+    },
+    {
+        "name": "ContractedStartDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ContractedStartDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ContractedStartDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1387/07/17",
+            "1388/09/18"
+        ]
+    },
+    {
+        "name": "ContractedStartDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2022-09-14",
+            "2022-08-20"
+        ]
+    },
+    {
+        "name": "ContractFinishDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1388,
+            1389
+        ]
+    },
+    {
+        "name": "ContractFinishDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ContractFinishDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ContractFinishDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1388/01/17",
+            "1388/11/29"
+        ]
+    },
+    {
+        "name": "ContractFinishDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2023-09-23",
+            "2023-04-11"
+        ]
+    },
+    {
+        "name": "ContractTypeName",
+        "type": "NVARCHAR(50) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "پیمانکاری",
+            "خرید مصالح و تجهیزات",
+            "متفرقه",
+            "مشاوره",
+            "کارفرما"
+        ]
+    },
+    {
+        "name": "ContractStatusName",
+        "type": "NVARCHAR(50) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "جاری",
+            "خاتمه",
+            "در حال عقد",
+            "فسخ"
+        ]
+    },
+    {
+        "name": "SumContractAmendment",
+        "type": "DECIMAL(38, 0)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0",
+            "1"
+        ]
+    },
+    {
+        "name": "AmountPayment",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2000",
+            "4000"
+        ]
+    },
+    {
+        "name": "AmountInvoice",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0",
+            "1"
+        ]
+    },
+    {
+        "name": "CountContractAmendment",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "name": "CountInvoice",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            25
+        ]
+    },
+    {
+        "name": "MaxAmendmentDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "MaxAmendmentDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "MaxAmendmentDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1389,
+            1390
+        ]
+    },
+    {
+        "name": "MaxAmendmentDate_MiladiDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1401/12/10",
+            "1403/01/27"
+        ]
+    },
+    {
+        "name": "MaxAmendmentDate_PersianDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2010-06-30",
+            "2010-07-15"
+        ]
+    },
+    {
+        "name": "MaxInvoice_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "MaxInvoice_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "MaxInvoice_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1391,
+            1392,
+            1393,
+            1394,
+            1397,
+            1399,
+            1401,
+            1402,
+            1403,
+            1404
+        ]
+    },
+    {
+        "name": "MaxInvoice_MiladiDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1401/06/29",
+            "1402/02/09"
+        ]
+    },
+    {
+        "name": "MaxInvoice_PersianDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2022-09-20",
+            "2023-04-29"
+        ]
+    },
+    {
+        "name": "CountPayment",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2,
+            3,
+            5
+        ]
+    },
+    {
+        "name": "MaxPaiementDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            3,
+            8
+        ]
+    },
+    {
+        "name": "MaxPaiementDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12
+        ]
+    },
+    {
+        "name": "MaxPaiementDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1392,
+            1393,
+            1400,
+            1401,
+            1402,
+            1403,
+            1404
+        ]
+    },
+    {
+        "name": "MaxPaiementDate_MiladiDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1392/05/19",
+            "1392/06/18"
+        ]
+    },
+    {
+        "name": "MaxPaiementDate_PersianDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2013-08-10",
+            "2013-09-09"
+        ]
+    }
+]

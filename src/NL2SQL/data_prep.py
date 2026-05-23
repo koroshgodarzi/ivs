@@ -17,7 +17,6 @@ def get_join_relationships(needed_views_dict, csv_file_path='../docs/IDColumns.c
     Returns:
         dict: A mapping of Column_Names to the list of views that contain them.
     """
-    print(needed_views_dict)
     needed_table_names = set(needed_views_dict.keys())
     column_to_tables = defaultdict(list)
 

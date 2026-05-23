@@ -1,5 +1,0 @@
-vw_ProjectPlan
-1) Identity: Unique plan identifier.
-2) Plan Label: Human-readable plan name (e.g., MAIN / پایه).
-3) Project Reference: Linked project identifier + project display name.
-4) Default Flag: Indicates whether this plan is the project’s default plan (true/false).

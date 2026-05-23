@@ -1,6 +1,6 @@
 [
     {
-        "name": "RisksKEY",
+        "name": "RiskID",
         "type": "INTEGER",
         "nullable": false,
         "default": null,
@@ -20,7 +20,7 @@
     },
     {
         "name": "OrganUnitName",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -36,7 +36,7 @@
     },
     {
         "name": "RiskTitle",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "example_values": [
@@ -46,7 +46,7 @@
     },
     {
         "name": "Description",
-        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(1000) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -75,7 +75,7 @@
         ]
     },
     {
-        "name": "IdentificationDate_GeorgianDate",
+        "name": "IdentificationDate",
         "type": "DATE",
         "nullable": true,
         "default": null,
@@ -86,7 +86,7 @@
     },
     {
         "name": "IdentificationDate_JalaliDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -144,7 +144,7 @@
         ]
     },
     {
-        "name": "DueDate_GeorgianDate",
+        "name": "DueDate",
         "type": "DATE",
         "nullable": true,
         "default": null,
@@ -159,7 +159,7 @@
     },
     {
         "name": "DueDate_JalaliDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -210,7 +210,7 @@
     },
     {
         "name": "Resolution",
-        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(1000) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": []
@@ -313,7 +313,7 @@
     },
     {
         "name": "Sign",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -340,7 +340,7 @@
     },
     {
         "name": "SupportResponse",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -353,7 +353,7 @@
     },
     {
         "name": "AssignedUserDetailsUserName",
-        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -369,7 +369,7 @@
     },
     {
         "name": "AssignedUserDetailsFirstName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -385,7 +385,7 @@
     },
     {
         "name": "AssignedUserDetailsLastName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -401,7 +401,7 @@
     },
     {
         "name": "CreatorUserDetailsUserName",
-        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -418,7 +418,7 @@
     },
     {
         "name": "CreatorUserDetailsFirstName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -432,7 +432,7 @@
     },
     {
         "name": "CreatorUserDetailsLastName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -449,7 +449,7 @@
     },
     {
         "name": "LastModifierUserDetailsUserName",
-        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -467,7 +467,7 @@
     },
     {
         "name": "LastModifierUserDetailsFirstName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -482,7 +482,7 @@
     },
     {
         "name": "LastModifierUserDetailsLastName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -499,7 +499,7 @@
         ]
     },
     {
-        "name": "ProjectPK",
+        "name": "ProjectID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -530,7 +530,7 @@
     },
     {
         "name": "ProjectName",
-        "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -539,8 +539,8 @@
         ]
     },
     {
-        "name": "ProjectRiskCategoriesTitle",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "name": "RiskCategory",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -549,8 +549,8 @@
         ]
     },
     {
-        "name": "RiskStatusName",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "name": "RiskStatus",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -572,7 +572,7 @@
     },
     {
         "name": "ActionDescription",
-        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(1000) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -589,12 +589,13 @@
         ]
     },
     {
-        "name": "StakeholderName",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "name": "OrganizationUnit",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
-            "ABB (Turkey Branch)",
+            " محسن آقا محسنی راد",
+            "ABt (Turkey Branch)",
             "صتاب 2",
             "صتاب 3",
             "گتاب 2",

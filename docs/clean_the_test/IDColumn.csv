@@ -1,0 +1,55 @@
+﻿TABLE_NAME,Column_Name,Description,Confidence_Score
+vw_Cashflow,ProjectID,Unique identifier for the project,100
+vw_CBS,CBSID,Unique identifier for the Cost Breakdown Structure node,100
+vw_CBS,OrganizationUnitID,Associated Organization Unit ID,100
+vw_CBS,Stakeholder_ParentID,Identifier of the parent stakeholder entity,90
+vw_CBS,ProjectID,Unique identifier for the project,100
+vw_CBS,WBSID,Associated Work Breakdown Structure ID,100
+vw_DataFormItem,WBSID,Associated Work Breakdown Structure ID,100
+vw_Invoice,CBSID,Associated Cost Breakdown Structure ID,100
+vw_Issues,IssueID,Unique identifier for the project issue,100
+vw_Issues,OrganizationUnitID,Associated Organization Unit ID,100
+vw_Issues,ProjectID,Associated project ID,100
+vw_OrganizationUnit,StakeholderID,Associated stakeholder ID,95
+vw_OrganizationUnit,ParentID,Identifier of the parent Organization Unit,100
+vw_OrganizationUnitType,OrganizationUnitTypeID,Unique identifier for the Organization Unit Type,100
+vw_OrganUnitScurve,ParentId,Parent ID of the organization unit,100
+vw_Payments,PaymentID,Unique identifier for the payment,100
+vw_Payments,OrganizationUnitID,Organization Unit ID tied to the payment,100
+vw_Payments,ParentID,Parent identifier for the payment or org unit,90
+vw_Payments,InvoiceID,Associated invoice ID,100
+vw_Payments,ProjectID,Project ID tied to the payment,100
+vw_Payments,CBSID,Associated Cost Breakdown Structure ID,100
+vw_Payments,ContractID,Contract ID tied to the payment,100
+vw_Photos,PhotoID,Unique identifier for the project photo,100
+vw_Photos,ProjectID,Associated project ID,100
+vw_PlanHistory,PlanHistoryID,Unique identifier for the plan baseline/history record,100
+vw_PlanHistory,WBSID,Associated Work Breakdown Structure ID,100
+vw_PlanHistory,ProjectPlanID,Associated Project Plan ID,100
+vw_ProjectGroup,ProjectGroupID,Unique identifier for a group or portfolio of projects,100
+vw_ProjectGroupScurve,ProjectGroupID,Associated project group ID,100
+vw_ProjectMonthlyReport,ProjectMonthlyReportID,Unique identifier for the monthly report,100
+vw_ProjectMonthlyReport,ProjectID,Associated project ID,100
+vw_ProjectPlan,ProjectPlanID,Unique identifier for the project plan/schedule version,100
+vw_ProjectPlan,ProjectID,Associated project ID,100
+vw_ProjectPlanProgress,ProjectID,Associated project ID,100
+vw_ProjectScurve,ProjectID,Associated project ID,100
+vw_ResourceUsage,ProjectID,Associated project ID,100
+vw_ResourceUsage,ResourceID,Unique identifier for the resource,100
+vw_ResourceUsage,WBSID,Associated Work Breakdown Structure ID,100
+vw_Risks,RiskID,Unique identifier for the risk record,100
+vw_Risks,OrganizationUnitID,Associated Organization Unit ID,100
+vw_Risks,ParentID,Identifier of the parent risk or node,90
+vw_Risks,ProjectID,Associated project ID,100
+vw_WBS,ParentID,Parent WBS node ID,100
+vw_WBS,WbsId,Unique identifier for the WBS element,100
+vw_WBS,ProjectID,Associated project ID,100
+vw_WorkItems,WorkItemID,Unique identifier for the work item,100
+vw_WorkItems,WBSID,Associated WBS ID,100
+vw_WorkItems,ProjectID,Associated project ID,100
+vw_WorkItems,SubProjectID,Identifier if the item belongs to a sub-project,100
+vw_Project,ProjectId,Unique identifier for the project,100
+vw_Project,ProjectStatusID,Status ID indicating project phase/state,100
+vw_Project,OrganizationUnitID,Associated Organization Unit ID managing the project,100
+vw_Project,OrganizationUnitTypeID,Type ID of the managing Organization Unit,100
+vw_Project,ParentID,Identifier of the parent project or program,100

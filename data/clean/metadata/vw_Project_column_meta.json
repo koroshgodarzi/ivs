@@ -1,0 +1,818 @@
+[
+    {
+        "name": "ProjectId",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            25,
+            26
+        ]
+    },
+    {
+        "name": "ProjectContractKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            499,
+            525
+        ]
+    },
+    {
+        "name": "DefaultProjectPlanPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            59,
+            74
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "AQR Sample Project",
+            "Construction P"
+        ]
+    },
+    {
+        "name": "ProjectNO",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "",
+            "0005-تیپ یک"
+        ]
+    },
+    {
+        "name": "PMFullName",
+        "type": "NVARCHAR(1001) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "bita aghaei",
+            "Guest Project Admin"
+        ]
+    },
+    {
+        "name": "PMUserName",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "13172_deleted",
+            "22222222"
+        ]
+    },
+    {
+        "name": "ProjectTitle",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "Client",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "آ.س.پ",
+            "آبفا فارس"
+        ]
+    },
+    {
+        "name": "Contractor",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "",
+            "آ.س.پ"
+        ]
+    },
+    {
+        "name": "Supervisor",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "بهزاد کشتکار",
+            "شخص زد",
+            "گلدشت",
+            "محمد",
+            "مشاور/ ناظر--2",
+            "واحد ساخت"
+        ]
+    },
+    {
+        "name": "ContractSubject",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "عملیات بنایی سالن گاو شیری",
+            "موضوع قرارداد--2"
+        ]
+    },
+    {
+        "name": "CreatedBy",
+        "type": "UNIQUEIDENTIFIER",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "43f1224f-65d1-4c3a-892e-043fb0b38fe4",
+            "788702e1-81ec-4132-b88a-12eeb0e1e380",
+            "120acbc0-deb7-4151-87e3-169f93a186b6",
+            "2adb818d-ee4e-4dc4-804e-64b74429a84b",
+            "320df7f9-f44d-4339-91c7-6e73b1dbd321",
+            "8423d75a-7635-4d40-8088-88ea0afbf846",
+            "61ff4d5e-193b-4736-b65f-d7e11148c8e3",
+            "91915af2-984d-4631-8282-ed06320fc5c9"
+        ]
+    },
+    {
+        "name": "LastModifiedBy",
+        "type": "UNIQUEIDENTIFIER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "0a200e15-3edc-4827-af43-003980159b88",
+            "0c40f473-e8de-4010-9cef-03cce72fdcbb"
+        ]
+    },
+    {
+        "name": "CreationTime",
+        "type": "DATETIME",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "2013-04-10 14:53:59.080000",
+            "2013-04-15 13:17:59.940000"
+        ]
+    },
+    {
+        "name": "CreationTime_J",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1392/01/21",
+            "1392/01/26"
+        ]
+    },
+    {
+        "name": "LastModificationTime",
+        "type": "DATETIME",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "2013-06-13 12:40:21.673000",
+            "2016-03-07 18:36:50.093000"
+        ]
+    },
+    {
+        "name": "LastModificationTime_J",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1392/03/23",
+            "1394/12/17"
+        ]
+    },
+    {
+        "name": "ProjectAdmin",
+        "type": "UNIQUEIDENTIFIER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0a200e15-3edc-4827-af43-003980159b88",
+            "5d2c60e6-ac8f-49f1-89c1-120a69aa35cb"
+        ]
+    },
+    {
+        "name": "DefaultLocation_CityID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3,
+            4,
+            107,
+            300,
+            402
+        ]
+    },
+    {
+        "name": "Location_Latitude",
+        "type": "DECIMAL(9, 6)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "24.829367",
+            "27.322975"
+        ]
+    },
+    {
+        "name": "Location_Longtitude",
+        "type": "DECIMAL(9, 6)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "-123.111763",
+            "-1.097091"
+        ]
+    },
+    {
+        "name": "ProjectStatusID",
+        "type": "TINYINT",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            12
+        ]
+    },
+    {
+        "name": "ProjectStatusName",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "آتی",
+            "آرشیو",
+            "اتمام",
+            "تست",
+            "در حال برنامه ریزی",
+            "در حال ساخت",
+            "درحال اجرا",
+            "درحال عقد قرارداد",
+            "درحال مذاکره",
+            "معاونت-شروع "
+        ]
+    },
+    {
+        "name": "Consultant",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "سارویه",
+            "علی"
+        ]
+    },
+    {
+        "name": "OrganizationUnitID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            1777
+        ]
+    },
+    {
+        "name": "OrganizationUnitTypeID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            2
+        ]
+    },
+    {
+        "name": "OrganizationUnitName",
+        "type": "NVARCHAR(250) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "ایده ورزان",
+            "سازمان تولیدی سامان"
+        ]
+    },
+    {
+        "name": "DefaultLocationID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            254,
+            255
+        ]
+    },
+    {
+        "name": "LocationTitle",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "آب بر",
+            "آذربایجان شرقی"
+        ]
+    },
+    {
+        "name": "Title",
+        "type": "NVARCHAR(250) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "ایده ورزان",
+            "سازمان تولیدی سامان"
+        ]
+    },
+    {
+        "name": "DateTypeKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "DateTypeName",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "شمسی",
+            "میلادی"
+        ]
+    },
+    {
+        "name": "ProjectWBSKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            62,
+            65
+        ]
+    },
+    {
+        "name": "ProjectWBSName",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "030506",
+            "0516"
+        ]
+    },
+    {
+        "name": "ProjectTypeKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "CountryProvinceCityKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3,
+            4,
+            110,
+            312,
+            414
+        ]
+    },
+    {
+        "name": "CityName",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "بابك",
+            "بندر شرفخانه",
+            "تبريز",
+            "ريشهر",
+            "شازند",
+            "كندوان",
+            "مراغه"
+        ]
+    },
+    {
+        "name": "Visible",
+        "type": "BIT",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "UnitKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            6,
+            12,
+            13,
+            36
+        ]
+    },
+    {
+        "name": "UnitName",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "دلار",
+            "ریال",
+            "یورو",
+            "یورو سنا"
+        ]
+    },
+    {
+        "name": "LocationKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            254,
+            255
+        ]
+    },
+    {
+        "name": "ContractKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            499,
+            525
+        ]
+    },
+    {
+        "name": "IsCashIn",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false
+        ]
+    },
+    {
+        "name": "ContractTitle",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC ",
+            "اجرای دستمزدی فنداسیون ، اسکلت بتنی و سقفهای کرمیت 12 بلوک"
+        ]
+    },
+    {
+        "name": "ContractNO",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "01",
+            "1"
+        ]
+    },
+    {
+        "name": "ContractAmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1.0,
+            1000000.0
+        ]
+    },
+    {
+        "name": "ContractDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2010-06-29",
+            "2013-02-10"
+        ]
+    },
+    {
+        "name": "ContractDate_J",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1388/01/17",
+            "1389/11/13"
+        ]
+    },
+    {
+        "name": "ContractFinalAmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            50000000000000.0
+        ]
+    },
+    {
+        "name": "ContractedStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-10-08",
+            "2009-12-09"
+        ]
+    },
+    {
+        "name": "ContractedStartDate_J",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1387/07/17",
+            "1388/09/18"
+        ]
+    },
+    {
+        "name": "ContractFinishDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2009-04-06",
+            "2011-02-02"
+        ]
+    },
+    {
+        "name": "ContractFinishDate_J",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/04/08",
+            "1391/11/22"
+        ]
+    },
+    {
+        "name": "ContractDescription",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "asdfasdfxx",
+            "تست ویجت های گروه پروژه"
+        ]
+    },
+    {
+        "name": "Unit_ConKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            12
+        ]
+    },
+    {
+        "name": "Unit_ConName",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "ریال"
+        ]
+    },
+    {
+        "name": "ContractTypeName",
+        "type": "NVARCHAR(50) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "پیمانکاری",
+            "خرید مصالح و تجهیزات",
+            "متفرقه",
+            "مشاوره",
+            "کارفرما"
+        ]
+    },
+    {
+        "name": "ContractStatusName",
+        "type": "NVARCHAR(50) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "جاری",
+            "خاتمه",
+            "در حال عقد",
+            "فسخ"
+        ]
+    },
+    {
+        "name": "ContractTypeKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "ProjectCountry",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Iran"
+        ]
+    },
+    {
+        "name": "ProjectProvince",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "آذربایجان شرقی",
+            "آذربایجان غربی",
+            "اردبیل",
+            "اصفهان",
+            "تهران",
+            "زنجان",
+            "مازندران",
+            "همدان"
+        ]
+    },
+    {
+        "name": "ProjectCity",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "آب بر",
+            "اصفهان",
+            "بابل",
+            "تهران",
+            "تهران 6",
+            "سهند",
+            "قروه درجزین"
+        ]
+    },
+    {
+        "name": "PlanProgressfr",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0
+        ]
+    },
+    {
+        "name": "ActualProgressfr",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0
+        ]
+    },
+    {
+        "name": "FieldProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ProgressOfBeginningOfYear_Plan",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0
+        ]
+    },
+    {
+        "name": "ProgressOfEndOfYear_Plan",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0
+        ]
+    },
+    {
+        "name": "ProgressOfBeginningOfYear_Actual",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0
+        ]
+    },
+    {
+        "name": "ProgressOfEndOfYear_Actual",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            25,
+            34,
+            3292,
+            5338,
+            5339
+        ]
+    },
+    {
+        "name": "WeightOfParentProject",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1.0
+        ]
+    },
+    {
+        "name": "ProjectHasControlPoints",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false
+        ]
+    },
+    {
+        "name": "RandTotal",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            100.0
+        ]
+    },
+    {
+        "name": "RandYear",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            100.0
+        ]
+    }
+]

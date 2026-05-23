@@ -1,0 +1,417 @@
+[
+    {
+        "name": "RiskID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            3,
+            6
+        ]
+    },
+    {
+        "name": "OrganizationUnitID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1
+        ]
+    },
+    {
+        "name": "OrganUnitName",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "کل سازمان"
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "RiskTitle",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            " آسیب دیدن تجهیزات در سایت",
+            "TEST 3"
+        ]
+    },
+    {
+        "name": "Description",
+        "type": "NVARCHAR(1000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "با توجه به کمبود ماشین آلات سنگین در منطقه امکان اجاره دادن ماشین آلات سنگین در زمانی که پروژه به آنها نیاز ندارد وجود دارد",
+            "بررسی شد",
+            "پایین آمدن کارایی کارکنان که لزوم اجرای طرحهای انگیزشی برای پرسنل را ضروری می نماید",
+            "تست",
+            "جهت بررسی بیشتر به سایت مربوط مراجعه شود.",
+            "عدم نگهداری صحیح از تجهیزات سبب اشکالاتی چون زنگ زدگی، اشکال در عملکرد و.. می گردد",
+            "فعالیت",
+            "ناظر 1",
+            "نبود سیستم DCC سبب اختلال در دستگردانی مدارک و به تبع آن مشکلات اجرایی می شود",
+            "نظارت 1"
+        ]
+    },
+    {
+        "name": "Severity",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            2,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "IdentificationDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001-01-01",
+            "2021-05-05"
+        ]
+    },
+    {
+        "name": "DueDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "0001-01-01",
+            "2023-05-24",
+            "2023-09-22",
+            "2024-01-24",
+            "2024-03-19",
+            "2025-05-25"
+        ]
+    },
+    {
+        "name": "Resolution",
+        "type": "NVARCHAR(1000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "AssignedTo",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            244300198,
+            269264075,
+            402080009,
+            1059827585,
+            1189118919,
+            1233198652,
+            1878852022,
+            2147483647
+        ]
+    },
+    {
+        "name": "Type",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "Probability",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "name": "DetectionCapability",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            3,
+            5
+        ]
+    },
+    {
+        "name": "Sign",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "123",
+            "RF005",
+            "RF006",
+            "RF007",
+            "RF008",
+            "RF009"
+        ]
+    },
+    {
+        "name": "SupportResponse",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "اجاره به شرکت فراصنعت",
+            "اختصاص فضا به انبار تجهیزات و لحاظ نمودن شرایط نگهداری",
+            "ارجاع کار به کارفرما",
+            "استخدام کارشناس کنترل مدارک و راه اندازی سیستم DCC",
+            "پیاده سازی نظام انگیزشی"
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "",
+            "asadi",
+            "eghbali",
+            "izadpanah",
+            "mory",
+            "PMO",
+            "PmoAraste",
+            "rezaei.mohammad"
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "",
+            "Pmo",
+            "امیر حسین",
+            "پیمان",
+            "دفتر",
+            "محمد",
+            "موری",
+            "ناصر"
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "",
+            "Araste",
+            "اسدی",
+            "اقبالی",
+            "ایزدپناه",
+            "رضایی",
+            "مدیریت پروژه",
+            "موری"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "asadi",
+            "izadpanah",
+            "momatest1",
+            "momatest2",
+            "momatest4",
+            "momatest6",
+            "PMO",
+            "PmoTest_deleted",
+            "sinsin1"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "moma",
+            "PMO",
+            "sinsin",
+            "پیمان",
+            "دفتر",
+            "ناصر"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "1",
+            "TEST",
+            "test1",
+            "test2",
+            "test4",
+            "test6",
+            "اسدی",
+            "ایزدپناه",
+            "مدیریت پروژه"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "asadi",
+            "izadpanah",
+            "momatest1",
+            "momatest2",
+            "momatest4",
+            "momatest6",
+            "PMO",
+            "PmoTest_deleted",
+            "rezaei.mohammad",
+            "sinsin1"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "moma",
+            "PMO",
+            "sinsin",
+            "پیمان",
+            "دفتر",
+            "محمد",
+            "ناصر"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "1",
+            "TEST",
+            "test1",
+            "test2",
+            "test4",
+            "test6",
+            "اسدی",
+            "ایزدپناه",
+            "رضایی",
+            "مدیریت پروژه"
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            25,
+            27
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Manuals",
+            "بعثت"
+        ]
+    },
+    {
+        "name": "RiskCategory",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1",
+            "داخلی"
+        ]
+    },
+    {
+        "name": "RiskStatus",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "",
+            "باز",
+            "بسته"
+        ]
+    },
+    {
+        "name": "ReferCount",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ActionDescription",
+        "type": "NVARCHAR(1000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "اختلال در دستگردانی مدارک برطرف شد",
+            "اقدام 1",
+            "اقدام 230",
+            "اقدام 25",
+            "اقدام 26",
+            "اقدام 3",
+            "اقدام شد",
+            "راهکار 1",
+            "شرح اقدام ریسک عدم اطمینان از توانایی شبکه توزیع برق منطقه ای از تامین برق پروژه ",
+            "فعال"
+        ]
+    },
+    {
+        "name": "OrganizationUnit",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            " محسن آقا محسنی راد",
+            "ABt (Turkey Branch)",
+            "صتاب 2",
+            "صتاب 3",
+            "گتاب 2",
+            "کل سازمان"
+        ]
+    }
+]

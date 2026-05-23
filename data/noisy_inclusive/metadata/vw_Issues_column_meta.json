@@ -1,0 +1,623 @@
+[
+    {
+        "name": "IssuesKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            11,
+            12
+        ]
+    },
+    {
+        "name": "OrganizationUnitID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1
+        ]
+    },
+    {
+        "name": "OrganUnitName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "کل سازمان"
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "IssuesTitle",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            " عدم ارسال بموقع صورت وضعیت به کارفرما",
+            "1"
+        ]
+    },
+    {
+        "name": "Description",
+        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "asd",
+            "Due to the role of Mr Shamin in the project, there is a risk of missing project knowledge caused by his leaving. ",
+            "In spite of passing the deadlines the generation of basic documents is not finished yet. Although some are critical for the detailed design phase",
+            "به دلیل شیوع بیماری کرونا به مدت 1 ماه امکان حضور افراد در دفتر مرکزی وجود ندارد",
+            "به دلیل وجود تعارض در منافع اختلاف به وجود آمده است.",
+            "پیمانکار نما باید سریعتر تعیین گردد.",
+            "چشماش کوره",
+            "قوانین مربوط به مشاعات ساختمان تغییر یافته است",
+            "مصالح هنوز خریداری نشده است"
+        ]
+    },
+    {
+        "name": "ActionDescription",
+        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "asd",
+            "اقدام 1",
+            "اقدام 25",
+            "اقدام 26",
+            "دستور خرید داده شد",
+            "عینک نداشت"
+        ]
+    },
+    {
+        "name": "Severity",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "IdentificationDate_GeorgianDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001-01-01",
+            "2013-07-09"
+        ]
+    },
+    {
+        "name": "IdentificationDate_JalaliDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001/01/01",
+            "1392/04/18"
+        ]
+    },
+    {
+        "name": "IdentificationDate_JalaliYear",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1392,
+            1393,
+            1399,
+            1401,
+            1402,
+            1403,
+            1404
+        ]
+    },
+    {
+        "name": "IdentificationDate_JalaliMonth",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            11
+        ]
+    },
+    {
+        "name": "IdentificationDate_JalaliDay",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "DueDate_GeorgianDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001-01-01",
+            "2013-08-13"
+        ]
+    },
+    {
+        "name": "DueDate_JalaliDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0001/01/01",
+            "1392/05/22"
+        ]
+    },
+    {
+        "name": "DueDate_JalaliYear",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1392,
+            1393,
+            1399,
+            1402,
+            1403,
+            1404
+        ]
+    },
+    {
+        "name": "DueDate_JalaliMonth",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            2,
+            3,
+            5,
+            7,
+            12
+        ]
+    },
+    {
+        "name": "DueDate_JalaliDay",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            18,
+            19,
+            22,
+            23
+        ]
+    },
+    {
+        "name": "Resolution",
+        "type": "NVARCHAR(1000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "AssignedTo",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            402080009,
+            1063264426
+        ]
+    },
+    {
+        "name": "CategoryPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            4,
+            5
+        ]
+    },
+    {
+        "name": "CreatedByKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            244300198,
+            1145110906,
+            1208196680,
+            1233198652,
+            1313419576,
+            1452220374,
+            1653727522,
+            1878852022,
+            2025292315,
+            2099127023
+        ]
+    },
+    {
+        "name": "LastModifiedByKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            244300198,
+            906907199,
+            1078310620,
+            1145110906,
+            1208196680,
+            1233198652,
+            1452220374,
+            1878852022,
+            2025292315,
+            2099127023
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "",
+            "asadi"
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "",
+            "امیر حسین"
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "",
+            "اسدی"
+        ]
+    },
+    {
+        "name": "ProjectIssueStatusName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "",
+            "2",
+            "Identified",
+            "بدون اقدام",
+            "برطرف شده",
+            "جاری",
+            "حل نشده",
+            "در حال رفع",
+            "در دست انجام",
+            "کم اثر شده"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "asadi",
+            "bakhshizadeh",
+            "besat",
+            "engineering",
+            "izadpanah",
+            "naghousi.mahdi",
+            "pejman",
+            "PMO",
+            "Projectmanager1",
+            "salehpour"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "Project",
+            "آقاي",
+            "پژمان",
+            "پیمان",
+            "دفتر",
+            "علی",
+            "مجید",
+            "مهدی",
+            "ناصر",
+            "کاربر تست"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "Manager",
+            "اسدي",
+            "اسدی",
+            "ایزدپناه",
+            "بخشی زاده",
+            "صالح پور",
+            "مدیریت پروژه",
+            "مهندسی",
+            "ناقوسی",
+            "وحیدزاده"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsUserName",
+        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "asadi",
+            "bakhshizadeh",
+            "besat",
+            "izadpanah",
+            "manager",
+            "naghousi.mahdi",
+            "pejman",
+            "PMO",
+            "Projectmanager1",
+            "shabani"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsFirstName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "Project",
+            "آقاي",
+            "پژمان",
+            "پیمان",
+            "دفتر",
+            "طاهر",
+            "علی",
+            "محمود",
+            "مهدی",
+            "ناصر"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsLastName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "Manager",
+            "اسدي",
+            "اسدی",
+            "ایزدپناه",
+            "بخشی زاده",
+            "شعبانی",
+            "مدیریت پروژه",
+            "ناقوسی",
+            "وحیدزاده",
+            "کلایه"
+        ]
+    },
+    {
+        "name": "ProjectPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            25,
+            27,
+            32,
+            34,
+            43,
+            47,
+            78,
+            81,
+            1162,
+            5335
+        ]
+    },
+    {
+        "name": "StatusPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            7,
+            9,
+            10,
+            12,
+            13,
+            15,
+            19,
+            20,
+            21,
+            22
+        ]
+    },
+    {
+        "name": "DateTypePK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Dorood Field Development",
+            "IVS",
+            "Manuals",
+            "بعثت",
+            "پارس",
+            "ساختمان دو طبقه",
+            "فاز اول - بیگوند",
+            "فاز اول - ناصری",
+            "مجتمع الهیه",
+            "نمونه پروژه EPC"
+        ]
+    },
+    {
+        "name": "ProjectIssueCategoriesTitle",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1",
+            "پروژه",
+            "پیمانکاران",
+            "دفتر مرکزی",
+            "کارگاه",
+            "کارگاه پروژه"
+        ]
+    },
+    {
+        "name": "Name",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "2",
+            "Identified",
+            "بدون اقدام",
+            "برطرف شده",
+            "جاری",
+            "حل نشده",
+            "در حال رفع",
+            "در دست انجام",
+            "کم اثر شده"
+        ]
+    },
+    {
+        "name": "ProjectStatusPK",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2,
+            4
+        ]
+    },
+    {
+        "name": "AssignedUserDetailsFullName",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "امیر حسین اقبالی",
+            "بهنام اقدام راد",
+            "پژمان وحیدزاده",
+            "دفتر مدیریت پروژه",
+            "طاهر شعبانی",
+            "علی بخشی زاده",
+            "علیرضا اسکندر",
+            "محمدرضا منصوری پور",
+            "ناصر اسدی",
+            "کاربر تست مهندسی"
+        ]
+    },
+    {
+        "name": "CreatorUserDetailsFullName",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Project Manager",
+            "آقاي اسدي",
+            "پژمان وحیدزاده",
+            "پیمان ایزدپناه",
+            "دفتر مدیریت پروژه",
+            "علی بخشی زاده",
+            "مجید صالح پور",
+            "مهدی ناقوسی",
+            "ناصر اسدی",
+            "کاربر تست مهندسی"
+        ]
+    },
+    {
+        "name": "LastModifierUserDetailsFullName",
+        "type": "NVARCHAR(1001) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Project Manager",
+            "آقاي اسدي",
+            "پژمان وحیدزاده",
+            "پیمان ایزدپناه",
+            "دفتر مدیریت پروژه",
+            "طاهر شعبانی",
+            "علی بخشی زاده",
+            "محمود کلایه",
+            "مهدی ناقوسی",
+            "ناصر اسدی"
+        ]
+    },
+    {
+        "name": "ReferCount",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "StakeholderName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "ABt (Turkey Branch)",
+            "پشتیبانی",
+            "رفع معایب",
+            "سهیل سازه صدرا ( بیگوند )",
+            "صنایع خیام الکتریک",
+            "کل سازمان"
+        ]
+    }
+]

@@ -1,0 +1,55 @@
+﻿TABLE_NAME,Column_Name,Description
+vw_Cashflow,ProjectID,Unique identifier for the project.
+vw_CBS,CBSID,Unique identifier for the Cost Breakdown Structure (CBS) element.
+vw_CBS,OrganizationUnitID,Identifier for the organizational unit associated with the CBS element.
+vw_CBS,Stakeholder_ParentID,Identifier for the parent stakeholder of this CBS element.
+vw_CBS,ProjectID,Unique identifier for the project.
+vw_CBS,WBSID,Identifier for the Work Breakdown Structure (WBS) element linked to this CBS element.
+vw_Contracts,ContractID,Unique identifier for the contract.
+vw_Contracts,ProjectID,Unique identifier for the project associated with the contract.
+vw_WorkItems,WorkItemID,Unique identifier for the work item.
+vw_WorkItems,WBSID,Identifier for the Work Breakdown Structure (WBS) element to which this work item belongs.
+vw_WorkItems,ProjectID,Unique identifier for the project.
+vw_Invoice,InvoiceID,Unique identifier for the invoice.
+vw_Invoice,ContractID,Identifier for the contract associated with the invoice.
+vw_Invoice,CBSID,Identifier for the Cost Breakdown Structure (CBS) element related to the invoice.
+vw_Issues,IssueID,Unique identifier for the issue.
+vw_Issues,OrganizationUnitID,Identifier for the organizational unit where the issue occurred.
+vw_Issues,ProjectID,Unique identifier for the project related to the issue.
+vw_OrganizationUnit,StakeholderID,Unique identifier for the stakeholder.
+vw_OrganizationUnit,ParentID,Identifier for the parent organizational unit.
+vw_OrganizationUnitType,OrganizationUnitTypeID,Unique identifier for the type of organizational unit.
+vw_OrganUnitScurve,ParentId,Identifier for the parent organizational unit.
+vw_Payments,PaymentID,Unique identifier for the payment.
+vw_Payments,OrganizationUnitID,Identifier for the organizational unit associated with the payment.
+vw_Payments,ParentID,Identifier for the parent organizational unit.
+vw_Payments,InvoiceID,Identifier for the invoice associated with the payment.
+vw_Payments,ProjectID,Unique identifier for the project.
+vw_Payments,CBSID,Identifier for the Cost Breakdown Structure (CBS) element related to the payment.
+vw_Payments,ContractID,Identifier for the contract associated with the payment.
+vw_Photos,PhotoID,Unique identifier for the photo.
+vw_Photos,ProjectID,Unique identifier for the project.
+vw_PlanHistory,PlanHistoryID,Unique identifier for the plan history record.
+vw_PlanHistory,WBSID,Identifier for the Work Breakdown Structure (WBS) element.
+vw_PlanHistory,ProjectPlanID,Identifier for the project plan.
+vw_ProjectGroup,ProjectGroupID,Unique identifier for the project group.
+vw_ProjectGroupScurve,ProjectGroupID,Identifier for the project group.
+vw_ProjectMonthlyReport,ProjectMonthlyReportID,Unique identifier for the monthly project report.
+vw_ProjectMonthlyReport,ProjectID,Unique identifier for the project.
+vw_ProjectPlan,ProjectPlanID,Unique identifier for the project plan.
+vw_ProjectPlan,ProjectID,Unique identifier for the project.
+vw_ProjectPlanProgress,ProjectID,Unique identifier for the project.
+vw_Projects,ProjectID,Unique identifier for the project.
+vw_Projects,OrganizationUnitID,Identifier for the organizational unit responsible for the project.
+vw_Projects,ParentID,Identifier for a parent project
+vw_ProjectScurve,ProjectID,Unique identifier for the project.
+vw_ResourceUsage,ProjectID,Unique identifier for the project.
+vw_ResourceUsage,ResourceID,Unique identifier for the resource.
+vw_ResourceUsage,WBSID,Identifier for the Work Breakdown Structure (WBS) element.
+vw_Risks,RiskID,Unique identifier for the risk.
+vw_Risks,OrganizationUnitID,Identifier for the organizational unit where the risk is identified.
+vw_Risks,ParentID,Identifier for the parent organizational unit.
+vw_Risks,ProjectID,Unique identifier for the project related to the risk.
+vw_WBS,ParentID,Identifier for the parent WBS element.
+vw_WBS,WbsId,Unique identifier for the Work Breakdown Structure (WBS) element.
+vw_WBS,ProjectID,Unique identifier for the project.

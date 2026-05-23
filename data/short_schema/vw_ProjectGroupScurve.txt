@@ -1,5 +1,0 @@
-[Report].[vw_ProjectGroupScurve]
-1) Group Link & Period: project group reference + reporting time period label.
-2) Date Window: from/to dates in both Gregorian and Jalali formats, plus a date-type flag.
-3) Performance Metrics: planned vs. actual progress for the period.
-4) Cumulative Metrics: planned vs. actual cumulative progress up to the period end.

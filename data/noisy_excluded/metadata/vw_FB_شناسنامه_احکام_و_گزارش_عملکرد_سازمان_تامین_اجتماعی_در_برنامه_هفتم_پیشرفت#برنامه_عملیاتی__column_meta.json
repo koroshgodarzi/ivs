@@ -1,0 +1,30 @@
+[
+    {
+        "name": "ID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "در_صورت_داشتن_برنامه_عملیاتی",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    }
+]

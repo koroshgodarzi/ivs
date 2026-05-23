@@ -1,0 +1,282 @@
+TABLE_NAME,Column_Name,Description
+vw_Cashflow,GFromDate,The start date of the cash flow period.
+vw_Cashflow,GToDate,The end date of the cash flow period.
+vw_Cashflow,PlanCashIn,Planned cash inflow for the period.
+vw_Cashflow,PlanCashOut,Planned cash outflow for the period.
+vw_Cashflow,TotalPlanCash,Total planned cash flow (inflow minus outflow) for the period.
+vw_Cashflow,PlanCashInCumulative,Cumulative planned cash inflow up to the end of the period.
+vw_Cashflow,PlanCashOutCumulative,Cumulative planned cash outflow up to the end of the period.
+vw_Cashflow,PlanCashCumulative,Cumulative planned cash flow up to the end of the period.
+vw_Cashflow,ActualCashIn,Actual cash inflow for the period.
+vw_Cashflow,ActualCashOut,Actual cash outflow for the period.
+vw_Cashflow,TotalActualCash,Total actual cash flow (inflow minus outflow) for the period.
+vw_Cashflow,ActualCashInCommulative,Cumulative actual cash inflow up to the end of the period.
+vw_Cashflow,ActualCashOutCommulative,Cumulative actual cash outflow up to the end of the period.
+vw_Cashflow,TotalActualCashCommulative,Cumulative actual cash flow up to the end of the period.
+vw_Cashflow,ProjectID,Unique identifier for the project.
+vw_Cashflow,TimePeriod,The time period to which this cash flow record pertains (e.g. month and quarter)
+vw_CBS,CBSID,Unique identifier for the Cost Breakdown Structure (CBS) element.
+vw_CBS,CBSName,Name of the Cost Breakdown Structure (CBS) element.
+vw_CBS,OrganizationUnitID,Identifier for the organizational unit associated with the CBS element.
+vw_CBS,OrganUnitName,Name of the organizational unit associated with the CBS element.
+vw_CBS,Stakeholder_ParentID,Identifier for the parent stakeholder of this CBS element.
+vw_CBS,CreationTime,Timestamp when the CBS record was created.
+vw_CBS,LastModificationTime,Timestamp when the CBS record was last modified.
+vw_CBS,Weight,The weight or significance of this CBS element within the project.
+vw_CBS,ProjectID,Unique identifier for the project.
+vw_CBS,Budget,The budgeted amount for this CBS element.
+vw_CBS,IRRAmmount,The Internal Rate of Return (IRR) amount associated with this CBS element.
+vw_CBS,USDAmmount,The amount in USD associated with this CBS element.
+vw_CBS,EURAmmount,The amount in EUR associated with this CBS element.
+vw_CBS,AEDAmmount,The amount in AED associated with this CBS element.
+vw_CBS,WBSID,Identifier for the Work Breakdown Structure (WBS) element linked to this CBS element.
+vw_Contracts,ContractID,Unique identifier for the contract.
+vw_Contracts,ContractNumber,The official number assigned to the contract.
+vw_Contracts,ContractTitle,The title or name of the contract.
+vw_Contracts,ContractWithClient,Indicates if the contract is with the client.
+vw_Contracts,ProjectID,Unique identifier for the project associated with the contract.
+vw_Contracts,ProjectTitle,The title or name of the project associated with the contract.
+vw_Contracts,ContractStatus,The current status of the contract 
+vw_Contracts,ContractStartDate,The date the contract officially began.
+vw_Contracts,ContractEndDate,The date the contract is scheduled to end.
+vw_Contracts,ContractActualProgress,The actual percentage progress of the contract work.
+vw_Contracts,ContractPlanProgress,The planned percentage progress of the contract work.
+vw_Contracts,InitialAmmount,The original value of the contract.
+vw_Contracts,FinalAmmount,The final value of the contract after any amendments.
+vw_Contracts,AmmendmentsAmmount,The total value of all amendments made to the contract.
+vw_Contracts,ContractDate,The date the contract was signed or issued.
+vw_Contracts,PaidAmmount,The total amount of money paid against the contract.
+vw_Contracts,InvoicedAmmount,The total amount invoiced against the contract.
+vw_Contracts,NumberofAmmendments,The total number of amendments made to the contract.
+vw_Contracts,NumberofInvoices,The total number of invoices issued against the contract.
+vw_Contracts,LatestAmmendmentDate,The date of the most recent contract amendment.
+vw_Contracts,LatestInvoicetDate,The date of the most recent invoice issued.
+vw_Contracts,NumberofPayments,The total number of payments made against the contract.
+vw_Contracts,LatestPaymentDate,The date of the most recent payment made.
+vw_WorkItems,WorkItemID,Unique identifier for the work item.
+vw_WorkItems,WBSID,Identifier for the Work Breakdown Structure (WBS) element to which this work item belongs.
+vw_WorkItems,WeightOfWhole,The weight of this work item relative to the entire project or WBS.
+vw_WorkItems,ProjectID,Unique identifier for the project.
+vw_WorkItems,ProjectName,The name of the project.
+vw_WorkItems,WorkItemTitle,The title or name of the work item.
+vw_WorkItems,Duration,The planned duration of the work item.
+vw_WorkItems,DurationUnit,The unit of time for the duration 
+vw_WorkItems,ActualStartDate,The actual date the work item started.
+vw_WorkItems,ActualEndtDate,The actual date the work item was completed.
+vw_WorkItems,PlanStartDate,The planned start date of the work item.
+vw_WorkItems,PlanEndDate,The planned end date of the work item.
+vw_WorkItems,ActualProgress,The actual percentage completion of the work item.
+vw_WorkItems,PlanProgress,The planned percentage completion of the work item.
+vw_WorkItems,DisciplineName,The engineering or work discipline associated with the work item.
+vw_WorkItems,WorkItemType,The type or category of the work item
+vw_WorkItems,WorkflowModel,The workflow model or process associated with the work item.
+vw_WorkItems,TotalWorkAmount,The total amount of work estimated for this work item.
+vw_WorkItems,TotalWotkUnitAbbreviation,Abbreviation for the unit of work 
+vw_WorkItems,TotalWorkUnit,The unit of measure for the total work amount.
+vw_WorkItems,ResponsibleUser,The user responsible for executing this work item.
+vw_Invoice,InvoiceID,Unique identifier for the invoice.
+vw_Invoice,ContractID,Identifier for the contract associated with the invoice.
+vw_Invoice,ContractTitle,The title of the contract associated with the invoice.
+vw_Invoice,InvoiceNumber,The unique number assigned to the invoice.
+vw_Invoice,DateReceived,The date the invoice was received.
+vw_Invoice,DateIssued,The date the invoice was issued.
+vw_Invoice,Amount,The total amount of the invoice.
+vw_Invoice,PreviousAccepted,The previously accepted amount for this invoice.
+vw_Invoice,FinalAcceptedAmount,The final approved amount for this invoice.
+vw_Invoice,CBSID,Identifier for the Cost Breakdown Structure (CBS) element related to the invoice.
+vw_Invoice,CBSName,Name of the Cost Breakdown Structure (CBS) element related to the invoice.
+vw_Invoice,ValueAddedTax,The amount of Value Added Tax (VAT) applied to the invoice.
+vw_Issues,IssueID,Unique identifier for the issue.
+vw_Issues,OrganizationUnitID,Identifier for the organizational unit where the issue occurred.
+vw_Issues,IssuesTitle,The title or subject of the issue.
+vw_Issues,Description,A detailed description of the issue.
+vw_Issues,ActionDescription,A description of the actions taken or to be taken to resolve the issue.
+vw_Issues,Severity,The severity level of the issue
+vw_Issues,IdentificationDate,The date the issue was identified.
+vw_Issues,DueDate,The date by which the issue should be resolved.
+vw_Issues,Resolution,The resolution or outcome of the issue.
+vw_Issues,AssignedUserDetailsFullName,The full name of the user assigned to resolve the issue.
+vw_Issues,IssueStatus,The current status of the issue (e.g.
+vw_Issues,CreatorUserDetailsFullName,The full name of the user who created the issue.
+vw_Issues,LastModifierUserDetailsFullName,The full name of the user who last modified the issue.
+vw_Issues,ProjectID,Unique identifier for the project related to the issue.
+vw_Issues,ProjectName,The name of the project related to the issue.
+vw_Issues,IssueCategory,The category or type of issue.
+vw_Issues,,The current status of the issue
+vw_Issues,AssignedUserDetailsFullName,The full name of the user assigned to resolve the issue 
+vw_Issues,CreatorUserDetailsFullName,The full name of the user who created the issue
+vw_Issues,LastModifierUserDetailsFullName,The full name of the user who last modified the issue 
+vw_Issues,ReferCount,The number of times this issue has been referenced.
+vw_Issues,ResponsibleStakeholder,The stakeholder responsible for this issue.
+vw_Issues,ActionDescription,A description of the actions taken or to be taken to resolve the issue 
+vw_OrganizationUnit,StakeholderID,Unique identifier for the stakeholder.
+vw_OrganizationUnit,OrganizationUnitTitle,The title or name of the organizational unit.
+vw_OrganizationUnit,ParentID,Identifier for the parent organizational unit.
+vw_OrganizationUnit,ProgProgress,Planned progress of the organizational unit.
+vw_OrganizationUnit,ActualProgress,Actual progress of the organizational unit.
+vw_OrganizationUnitType,OrganizationUnitTypeID,Unique identifier for the type of organizational unit.
+vw_OrganizationUnitType,OrganizationUnitTypeTitle,The title or name of the organizational unit type.
+vw_OrganUnitScurve,FromDate,The start date of the S-curve period.
+vw_OrganUnitScurve,ToDate,The end date of the S-curve period.
+vw_OrganUnitScurve,OrganizationUnitTitle,The title of the organizational unit for which the S-curve data is provided.
+vw_OrganUnitScurve,ParentId,Identifier for the parent organizational unit.
+vw_OrganUnitScurve,PlanProgress,Planned progress for the organizational unit during the period.
+vw_OrganUnitScurve,ActualProgress,Actual progress for the organizational unit during the period.
+vw_OrganUnitScurve,TimePeriodtxt,Textual representation of the time period for the S-curve data.
+vw_Payments,PaymentID,Unique identifier for the payment.
+vw_Payments,OrganizationUnitID,Identifier for the organizational unit associated with the payment.
+vw_Payments,OrganUnitName,Name of the organizational unit associated with the payment.
+vw_Payments,ParentID,Identifier for the parent organizational unit.
+vw_Payments,DocumentNumber,The document number associated with the payment.
+vw_Payments,PaymentDate,The date the payment was made.
+vw_Payments,Amount,The amount of the payment.
+vw_Payments,CurrencyName,The name of the currency in which the payment was made.
+vw_Payments,InvoiceID,Identifier for the invoice associated with the payment.
+vw_Payments,InvoiceNumber,The number of the invoice associated with the payment.
+vw_Payments,ProjectID,Unique identifier for the project.
+vw_Payments,ProjectName,The name of the project.
+vw_Payments,CBSID,Identifier for the Cost Breakdown Structure (CBS) element related to the payment.
+vw_Payments,CBSName,Name of the Cost Breakdown Structure (CBS) element related to the payment.
+vw_Payments,ContractID,Identifier for the contract associated with the payment.
+vw_Payments,CostCenterName,The name of the cost center associated with the payment.
+vw_Payments,PaymentBehalfName,The name of the entity on whose behalf the payment was made.
+vw_Payments,PaymentTypeName,The type of payment 
+vw_Photos,PhotoID,Unique identifier for the photo.
+vw_Photos,ProjectID,Unique identifier for the project.
+vw_Photos,PhotoValue,The actual photo data or a reference to it.
+vw_PlanHistory,PlanHistoryID,Unique identifier for the plan history record.
+vw_PlanHistory,ProjectName,The name of the project.
+vw_PlanHistory,WBSID,Identifier for the Work Breakdown Structure (WBS) element.
+vw_PlanHistory,wbsName,The name of the WBS element.
+vw_PlanHistory,ProjectPlanID,Identifier for the project plan.
+vw_PlanHistory,ProjectPlanName,The name of the project plan.
+vw_PlanHistory,CreationTime,Timestamp when the plan history record was created.
+vw_PlanHistory,PlanStartDate,The planned start date recorded in the history.
+vw_PlanHistory,PlanEndDate,The planned end date recorded in the history.
+vw_ProjectGroup,ProjectGroupID,Unique identifier for the project group.
+vw_ProjectGroup,ProjectGroupName,The name of the project group.
+vw_ProjectGroupScurve,DateType,The type of date used for the S-curve 
+vw_ProjectGroupScurve,FromDate,The start date of the S-curve period.
+vw_ProjectGroupScurve,ToDate,The end date of the S-curve period.
+vw_ProjectGroupScurve,PlanProgress,Planned progress for the project group during the period.
+vw_ProjectGroupScurve,ActualProgress,Actual progress for the project group during the period.
+vw_ProjectGroupScurve,PlanCommulative,Cumulative planned progress for the project group.
+vw_ProjectGroupScurve,ActualCommulative,Cumulative actual progress for the project group.
+vw_ProjectGroupScurve,ProjectGroupID,Identifier for the project group.
+vw_ProjectGroupScurve,TimePeriod,The time period to which this S-curve data pertains.
+vw_ProjectMonthlyReport,ProjectMonthlyReportID,Unique identifier for the monthly project report.
+vw_ProjectMonthlyReport,ProjectID,Unique identifier for the project.
+vw_ProjectMonthlyReport,ProjectName,The name of the project.
+vw_ProjectMonthlyReport,StatusTitle,The overall status title of the project for the report period.
+vw_ProjectMonthlyReport,CreationTime,Timestamp when the report was created.
+vw_ProjectMonthlyReport,DoneWorkTitle,Title or summary of work completed during the reporting period.
+vw_ProjectMonthlyReport,DoneWorkWorkDescription,Detailed description of work completed during the reporting period.
+vw_ProjectMonthlyReport,FutureWorkTitle,Title or summary of planned work for the next reporting period.
+vw_ProjectMonthlyReport,FutureWorkDescription,Detailed description of planned work for the next reporting period.
+vw_ProjectMonthlyReport,IsDone,Indicates if the reporting period's work is considered complete.
+vw_ProjectMonthlyReport,ReportNumber,The sequential number of the monthly report.
+vw_ProjectPlan,ProjectPlanID,Unique identifier for the project plan.
+vw_ProjectPlan,ProjectPlanName,The name of the project plan.
+vw_ProjectPlan,ProjectID,Unique identifier for the project.
+vw_ProjectPlan,ProjectName,The name of the project.
+vw_ProjectPlan,isDefault,Indicates if this is the default project plan.
+vw_ProjectPlanProgress,ProjectID,Unique identifier for the project.
+vw_ProjectPlanProgress,ProjectName,The name of the project.
+vw_ProjectPlanProgress,Date,The date for which the progress is recorded.
+vw_ProjectPlanProgress,ActualProgress,The actual progress achieved on the project as of this date.
+vw_ProjectPlanProgress,PlanProgress,The planned progress for the project as of this date.
+vw_Projects,ProjectID,Unique identifier for the project.
+vw_Projects,OrganizationUnitID,Identifier for the organizational unit responsible for the project.
+vw_Projects,PMFullName,The full name of the Project Manager.
+vw_Projects,Client,The name of the client for the project.
+vw_Projects,Contractor,The name of the contractor for the project.
+vw_Projects,Supervisor,The name of the supervisor for the project.
+vw_Projects,ContractNo,The contract number associated with the project.
+vw_Projects,ProjectNO,The project's internal number or code.
+vw_Projects,ContractSubject,The subject or description of the contract.
+vw_Projects,Consultant,The name of the consultant involved in the project.
+vw_Projects,LocationTitle,The geographical location of the project.
+vw_Projects,ProjectName,The name of the project.
+vw_Projects,ProjectType,The type or category of the project.
+vw_Projects,ProjectStatus,The current status of the project 
+vw_Projects,ProjectOrganizationUnit,The organizational unit responsible for the project.
+vw_Projects,ActualProgress,The overall actual progress of the project.
+vw_Projects,PlanProgress,The overall planned progress of the project.
+vw_Projects,ProjectCountry,The country where the project is located.
+vw_Projects,ProjectProvince,The province or state where the project is located.
+vw_Projects,ProjectCity,The city where the project is located.
+vw_Projects,ParentID,Identifier for a parent project
+vw_Projects,WeightOfParentProject,The weight of this project within its parent project.
+vw_Projects,ProjectCurrency,The currency used for project financials.
+vw_ProjectScurve,FromDate,The start date of the S-curve period.
+vw_ProjectScurve,ToDate,The end date of the S-curve period.
+vw_ProjectScurve,PlanProgress,Planned progress for the project during the period.
+vw_ProjectScurve,ActualProgress,Actual progress for the project during the period.
+vw_ProjectScurve,PlanCommulative,Cumulative planned progress for the project.
+vw_ProjectScurve,ActualCommulative,Cumulative actual progress for the project.
+vw_ProjectScurve,ProjectID,Unique identifier for the project.
+vw_ProjectScurve,TimePeriod,The time period to which this S-curve data pertains.
+vw_ResourceUsage,VolUnit,The unit of volume for resource usage.
+vw_ResourceUsage,ProjectID,Unique identifier for the project.
+vw_ResourceUsage,ResourceID,Unique identifier for the resource.
+vw_ResourceUsage,UsageAmount,The amount of resource usage.
+vw_ResourceUsage,Comments,Any comments related to the resource usage.
+vw_ResourceUsage,Cost,The cost associated with the resource usage.
+vw_ResourceUsage,CostCurrencyName,The name of the currency for the cost.
+vw_ResourceUsage,WBSID,Identifier for the Work Breakdown Structure (WBS) element.
+vw_ResourceUsage,Abbreviation,Abbreviation for the resource or related item.
+vw_ResourceUsage,ResourceName,The name of the resource.
+vw_ResourceUsage,ResourceTypeName,The type of the resource.
+vw_ResourceUsage,ResourceGroupName,The group to which the resource belongs.
+vw_ResourceUsage,WBSName,The name of the WBS element.
+vw_ResourceUsage,WBSCode,The code of the WBS element.
+vw_ResourceUsage,ActivityCode,The code of the activity.
+vw_ResourceUsage,WBSPath,The hierarchical path of the WBS element.
+vw_Risks,RiskID,Unique identifier for the risk.
+vw_Risks,OrganizationUnitID,Identifier for the organizational unit where the risk is identified.
+vw_Risks,OrganUnitName,Name of the organizational unit.
+vw_Risks,ParentID,Identifier for the parent organizational unit.
+vw_Risks,RiskTitle,The title or subject of the risk.
+vw_Risks,Description,A detailed description of the risk.
+vw_Risks,Severity,The severity level of the risk
+vw_Risks,IdentificationDate,The date the risk was identified.
+vw_Risks,DueDate,The date by which the risk should be addressed or mitigated.
+vw_Risks,Resolution,The resolution or mitigation plan for the risk.
+vw_Risks,AssignedTo,The user or entity assigned to manage the risk.
+vw_Risks,Type,The type or category of the risk.
+vw_Risks,Probability,The probability of the risk occurring.
+vw_Risks,DetectionCapability,The capability to detect the risk.
+vw_Risks,Sign,A significance indicator for the risk.
+vw_Risks,SupportResponse,The expected support or response to the risk.
+vw_Risks,AssignedUserDetailsFullName,The full name of the user assigned to the risk.
+vw_Risks,CreatorUserDetailsFullName,The full name of the user who created the risk record.
+vw_Risks,LastModifierUserDetailsFullName,The full name of the user who last modified the risk record.
+vw_Risks,ProjectID,Unique identifier for the project related to the risk.
+vw_Risks,ProjectName,The name of the project related to the risk.
+vw_Risks,RiskCategory,The category or type of risk.
+vw_Risks,RiskStatus,The current status of the risk 
+vw_Risks,ReferCount,The number of times this risk has been referenced.
+vw_Risks,ActionDescription,A description of the actions taken or planned for the risk.
+vw_Risks,OrganizationUnit,The organizational unit associated with the risk.
+vw_WBS,ParentID,Identifier for the parent WBS element.
+vw_WBS,WbsId,Unique identifier for the Work Breakdown Structure (WBS) element.
+vw_WBS,Duration,The duration of the WBS element.
+vw_WBS,DurationUnit,The unit of time for the duration 
+vw_WBS,IsActivity,Indicates if this WBS element represents an activity.
+vw_WBS,Code,The code or identifier for the WBS element.
+vw_WBS,Name,The name or title of the WBS element.
+vw_WBS,ActivityCode (It happens a lot that Date gets saved here),A code for the activity; potentially misused for dates.
+vw_WBS,PlanEndDate,The planned end date of the WBS element.
+vw_WBS,PlanStartDate,The planned start date of the WBS element.
+vw_WBS,ActualEndDate,The actual end date of the WBS element.
+vw_WBS,ActualStartDate,The actual start date of the WBS element.
+vw_WBS,IsMilestone,Indicates if this WBS element is a milestone.
+vw_WBS,ProjectID,Unique identifier for the project.
+vw_WBS,ProjectName,The name of the project.
+vw_WBS,Weight,The weight or importance of the WBS element.
+vw_WBS,Critical,Indicates if the WBS element is on the critical path.
+vw_WBS,PlanProgress,Planned progress of the WBS element.
+vw_WBS,ActualProgress,Actual progress of the WBS element.
+vw_WBS,FieldProgress,Progress as recorded in a specific field.
+vw_WBS,lvl,The level of the WBS element in the hierarchy.
+vw_WBS,ParentPath,The hierarchical path from the root to this WBS element.

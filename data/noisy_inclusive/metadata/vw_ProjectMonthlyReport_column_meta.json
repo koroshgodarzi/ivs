@@ -1,0 +1,162 @@
+[
+    {
+        "name": "ProjectMonthlyReportKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ProjectPK",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            25,
+            32
+        ]
+    },
+    {
+        "name": "PrjName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "IVS",
+            "پروژه ساختمانی قیطریه"
+        ]
+    },
+    {
+        "name": "StatusTitle",
+        "type": "VARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Confirmed",
+            "Draft",
+            "FinalizeByReporter"
+        ]
+    },
+    {
+        "name": "CreationTime",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2023-05-28",
+            "2023-06-22"
+        ]
+    },
+    {
+        "name": "CreationTime_JalaliDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1402/03/07",
+            "1402/04/01"
+        ]
+    },
+    {
+        "name": "CreationTime_JalaliYear",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1402,
+            1403
+        ]
+    },
+    {
+        "name": "CreationTime_JalaliMonth",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9,
+            10
+        ]
+    },
+    {
+        "name": "CreationTime_JalaliDay",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "DoneWorkTitle",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "ASAsAS",
+            "asd"
+        ]
+    },
+    {
+        "name": "DoneWorkWorkDescription",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "adad",
+            "adadasdasda"
+        ]
+    },
+    {
+        "name": "FutureWorkTitle",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "asd",
+            "hhhhhh"
+        ]
+    },
+    {
+        "name": "FutureWorkDescription",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "asd",
+            "تست",
+            "تست تست",
+            "تست گزارش دهی پروژه",
+            "شرح تست آتی 1"
+        ]
+    },
+    {
+        "name": "IsDone",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "ReportNumber",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "001",
+            "1"
+        ]
+    }
+]

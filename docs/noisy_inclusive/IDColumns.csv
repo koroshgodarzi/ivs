@@ -1,0 +1,68 @@
+﻿TABLE_NAME,Column_Name,Description,Confidence_Score
+vw_Cashflow,ProjectID,Foreign key identifying the project,100
+vw_CBS,ProjectID,Foreign key identifying the project,100
+vw_CBS,WBSID,Foreign key to the associated Work Breakdown Structure (WBS) node,100
+vw_DataFormItem,WBSID,Associated WBS ID,100
+vw_DataFormItem,SubProjectID,Foreign key to a sub-project if applicable,100
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ÿ®ÿ±ŸÜÿßŸÖŸá_ÿπŸÖŸÑ€åÿßÿ™€å_,ID,Form Builder ID for the Operational Plan section,95
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ÿ®ÿ±ŸÜÿßŸÖŸá_ÿπŸÖŸÑ€åÿßÿ™€å_,ParentID,Parent ID linking to the main mandate/form,95
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ÿ®ÿ±ŸÜÿßŸÖŸá_ÿπŸÖŸÑ€åÿßÿ™€å_,ProjectID,Associated Project ID,100
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿ≠⁄©ŸÖ,ID,Form Builder ID for the Mandate Specification section,95
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿ≠⁄©ŸÖ,ParentID,Parent ID,95
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿ≠⁄©ŸÖ,ProjectID,Associated Project ID,100
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ŸáÿØŸÅ_⁄©ŸÖ€å,ID,Form Builder ID for the Quantitative Goal section,95
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ŸáÿØŸÅ_⁄©ŸÖ€å,ParentID,Parent ID,95
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#ŸáÿØŸÅ_⁄©ŸÖ€å,ProjectID,Associated Project ID,100
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#Ÿàÿßÿ≠ÿØ_ŸÖÿ™ŸàŸÑ€å_ŸÖÿπÿßŸàŸÜÿ™,ID,Form Builder ID for Sponsoring Unit section,95
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#Ÿàÿßÿ≠ÿØ_ŸÖÿ™ŸàŸÑ€å_ŸÖÿπÿßŸàŸÜÿ™,ParentID,Parent ID,95
+vw_FB_ÿ¥ŸÜÿßÿ≥ŸÜÿßŸÖŸá_ÿßÿ≠⁄©ÿßŸÖ_Ÿà_⁄Øÿ≤ÿßÿ±ÿ¥_ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≥ÿßÿ≤ŸÖÿßŸÜ_ÿ™ÿßŸÖ€åŸÜ_ÿßÿ¨ÿ™ŸÖÿßÿπ€å_ÿØÿ±_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ_Ÿæ€åÿ¥ÿ±ŸÅÿ™#Ÿàÿßÿ≠ÿØ_ŸÖÿ™ŸàŸÑ€å_ŸÖÿπÿßŸàŸÜÿ™,ProjectID,Associated Project ID,100
+vw_FB_ŸÅÿ±ŸÖ_ÿ¢ŸæŸÑŸàÿØ_ŸÅÿß€åŸÑ,ID,Form Builder ID for the file upload form,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ¢ŸæŸÑŸàÿØ_ŸÅÿß€åŸÑ,ParentID,Parent ID for the file upload form,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ¢ŸæŸÑŸàÿØ_ŸÅÿß€åŸÑ,ProjectID,Associated Project ID,100
+vw_FB_ŸÅÿ±ŸÖ_ÿßŸÇÿß€å_ÿßÿ≠ŸÖÿØ€å,ID,Form Builder ID for Mr. Ahmadi's custom form,95
+vw_FB_ŸÅÿ±ŸÖ_ÿßŸÇÿß€å_ÿßÿ≠ŸÖÿØ€å,ParentID,Parent ID for the custom form,95
+vw_FB_ŸÅÿ±ŸÖ_ÿßŸÇÿß€å_ÿßÿ≠ŸÖÿØ€å,ProjectID,Associated Project ID,100
+vw_FB_ŸÅÿ±ŸÖ_ÿßŸÇÿß€å_ÿßÿ≠ŸÖÿØ€å#child,ID,Child ID for the custom form sub-table,95
+vw_FB_ŸÅÿ±ŸÖ_ÿßŸÇÿß€å_ÿßÿ≠ŸÖÿØ€å#child,ParentID,Parent ID mapping to the main record,95
+vw_FB_ŸÅÿ±ŸÖ_ÿßŸÇÿß€å_ÿßÿ≠ŸÖÿØ€å#child,ProjectID,Associated Project ID,100
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ,ID,Form Builder ID for the 7th Development Plan form,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ,ParentID,Parent ID,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ,ProjectID,Associated Project ID,100
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≠⁄©ŸÖ,ID,Form Builder ID for Mandate Performance section,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≠⁄©ŸÖ,ParentID,Parent ID,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ÿπŸÖŸÑ⁄©ÿ±ÿØ_ÿ≠⁄©ŸÖ,ProjectID,Associated Project ID,100
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ÿπŸÜŸàÿßŸÜ_ÿ®ÿ±ŸÜÿßŸÖŸá_ÿπŸÖŸÑ€åÿßÿ™€å,ID,Form Builder ID for the Operational Plan Title section,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ÿπŸÜŸàÿßŸÜ_ÿ®ÿ±ŸÜÿßŸÖŸá_ÿπŸÖŸÑ€åÿßÿ™€å,ParentID,Parent ID,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ÿπŸÜŸàÿßŸÜ_ÿ®ÿ±ŸÜÿßŸÖŸá_ÿπŸÖŸÑ€åÿßÿ™€å,ProjectID,Associated Project ID,100
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ŸáÿØŸÅ_⁄©ŸÖ€å,ID,Form Builder ID for the Quantitative Goals section,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ŸáÿØŸÅ_⁄©ŸÖ€å,ParentID,Parent ID,95
+vw_FB_ŸÅÿ±ŸÖ_ÿ®ÿ±ŸÜÿßŸÖŸá_ŸáŸÅÿ™ŸÖ#ŸáÿØŸÅ_⁄©ŸÖ€å,ProjectID,Associated Project ID,100
+vw_Issues,OrganizationUnitID,Foreign key to the reporting Organizational Unit,100
+vw_Issues,ParentID,ID of the parent issue (if part of a hierarchy),95
+vw_OrganizationUnit,StakeholderID,Foreign key to the associated stakeholder,100
+vw_OrganizationUnit,ParentID,Parent organizational unit ID for hierarchy mapping,100
+vw_OrganUnitScurve,Orgid,Foreign key to the Organizational Unit,100
+vw_OrganUnitScurve,ParentId,Parent ID of the Organizational Unit,100
+vw_ProjectGroupScurve,ProjectGroupID,Foreign key to the project group,100
+vw_Projects,OrganizationUnitID,Foreign key to the organizational unit owning the project,100
+vw_Projects,DefaultLocation_CityID,ID representing the city where the project is located,100
+vw_Projects,ProjectStatusID,Foreign key for the project's current lifecycle status,100
+vw_Projects,DefaultLocationID,Foreign key to the default location table,100
+vw_Projects,ParentID,Parent Project ID (if part of a master project),100
+vw_ProjectScurve,ProjectID,Associated Project ID,100
+vw_ResourceUsage,ProjectID,Associated Project ID,100
+vw_ResourceUsage,ResourceID,Foreign key identifying the resource,100
+vw_ResourceUsage,CostCurrencyID,Currency ID for the incurred cost,100
+vw_ResourceUsage,WBSID,Associated WBS ID where the resource was used,100
+vw_ResourceUsage,ResourceTypeID,Foreign key for the resource classification type (Labor/Material/Equipment),100
+vw_ResourceUsage,ResourceGroupID,Foreign key to the resource group,100
+vw_Risks,OrganizationUnitID,Foreign key to the Org Unit identifying the risk,100
+vw_Risks,ParentID,Parent Risk ID (if risks are nested),95
+vw_WBS,ParentID,Parent WBS ID to maintain hierarchical structure,100
+vw_WBS,WbsId,Primary key for the WBS element,100
+vw_WBS,PrjId,Associated Project ID,100
+vw_WBS,OrgID,Associated Organizational Unit ID,100
+vw_WBS,DefaultProjectPlanID,Foreign key to the default/active project plan baseline,95
+vw_WBS,DefaultProjectWBSID,Foreign key linking to a master WBS dictionary,95
+vw_WorkItems,WBSID,Associated WBS ID,100
+vw_WorkItems,SubProjectID,Foreign key to sub-project if applicable,100

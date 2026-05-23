@@ -1,5 +1,0 @@
-vw_FB_فرم_آپلود_فایل — Column Categories
-
-1) Record Identity: unique key for the row.
-2) Relationships & Context: parent linkage (if any) and which project this row belongs to.
-3) Person Details: the person’s full name (submitter/uploader).

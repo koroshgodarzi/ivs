@@ -1,0 +1,237 @@
+[
+    {
+        "name": "PaymentKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            12,
+            13
+        ]
+    },
+    {
+        "name": "OrganizationUnitPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            3001
+        ]
+    },
+    {
+        "name": "OrganUnitName",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "معاونت برنامه ریزی، مالی و پشتیبانی",
+            "کل سازمان"
+        ]
+    },
+    {
+        "name": "ParentPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1
+        ]
+    },
+    {
+        "name": "DocumentNumber",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "",
+            "1"
+        ]
+    },
+    {
+        "name": "PaiementDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20130810,
+            20130813
+        ]
+    },
+    {
+        "name": "Amount",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "12",
+            "21"
+        ]
+    },
+    {
+        "name": "CurrencyName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "دلار",
+            "ریال",
+            "یورو"
+        ]
+    },
+    {
+        "name": "InvoicePK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            35,
+            85,
+            107,
+            109,
+            117,
+            118,
+            1144,
+            2208,
+            2246
+        ]
+    },
+    {
+        "name": "InvoiceNumber",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1",
+            "1111",
+            "123",
+            "1234",
+            "3",
+            "x12"
+        ]
+    },
+    {
+        "name": "ProjectPK",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            25,
+            32
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "Construction P",
+            "Dorood Field Development"
+        ]
+    },
+    {
+        "name": "CBSPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            14,
+            15,
+            16,
+            19,
+            1988,
+            1990,
+            1991,
+            7024,
+            27274,
+            27537
+        ]
+    },
+    {
+        "name": "CBSName",
+        "type": "NVARCHAR(200) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "General Conditions",
+            "test",
+            "پروژه ساختمانی پاسداران",
+            "ترابری",
+            "دذرو2",
+            "دفتر مرکزی",
+            "صورت وضعیت",
+            "قلم کاری عمومی",
+            "منوال چرخه",
+            "کل پروژه"
+        ]
+    },
+    {
+        "name": "ContractPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            568,
+            569
+        ]
+    },
+    {
+        "name": "CostCenterPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1
+        ]
+    },
+    {
+        "name": "CostCenterName",
+        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "تست 1"
+        ]
+    },
+    {
+        "name": "PaymentBehalfPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            2,
+            5,
+            8
+        ]
+    },
+    {
+        "name": "PaymentBehalfName",
+        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "صدور پروانه",
+            "علی الحساب",
+            "نظام مهندسی"
+        ]
+    },
+    {
+        "name": "PaymentTypePK",
+        "type": "TINYINT",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            1
+        ]
+    },
+    {
+        "name": "PaymentTypeName",
+        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "Cash"
+        ]
+    }
+]

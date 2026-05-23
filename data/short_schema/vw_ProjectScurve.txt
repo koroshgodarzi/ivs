@@ -1,7 +1,0 @@
-vw_ProjectScurve — Column categories (concise)
-
-1) Context & Grain: Project identifier and reporting grain (time period label).
-2) Calendar Type: Flag indicating which calendar/date system the row represents.
-3) Period Boundaries: Start/end dates of the period in both Gregorian and Persian (Solar Hijri) formats.
-4) Period Progress: Planned vs. actual progress for the period (percent).
-5) Cumulative Progress: Planned vs. actual cumulative progress up to the period end (percent).

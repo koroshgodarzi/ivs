@@ -1,6 +1,6 @@
 [
     {
-        "name": "PaymentKEY",
+        "name": "PaymentID",
         "type": "INTEGER",
         "nullable": false,
         "default": null,
@@ -10,7 +10,7 @@
         ]
     },
     {
-        "name": "OrganizationUnitPK",
+        "name": "OrganizationUnitID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -21,7 +21,7 @@
     },
     {
         "name": "OrganUnitName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -30,7 +30,7 @@
         ]
     },
     {
-        "name": "ParentPK",
+        "name": "ParentID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -40,7 +40,7 @@
     },
     {
         "name": "DocumentNumber",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -49,7 +49,7 @@
         ]
     },
     {
-        "name": "PaiementDateKEY",
+        "name": "PaymentDate",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -70,7 +70,7 @@
     },
     {
         "name": "CurrencyName",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -80,7 +80,7 @@
         ]
     },
     {
-        "name": "InvoicePK",
+        "name": "InvoiceID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -98,7 +98,7 @@
     },
     {
         "name": "InvoiceNumber",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -111,7 +111,7 @@
         ]
     },
     {
-        "name": "ProjectPK",
+        "name": "ProjectID",
         "type": "INTEGER",
         "nullable": false,
         "default": null,
@@ -122,7 +122,7 @@
     },
     {
         "name": "ProjectName",
-        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "example_values": [
@@ -131,7 +131,7 @@
         ]
     },
     {
-        "name": "CBSPK",
+        "name": "CBSID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -150,7 +150,7 @@
     },
     {
         "name": "CBSName",
-        "type": "NVARCHAR(200) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(200) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -167,7 +167,7 @@
         ]
     },
     {
-        "name": "ContractPK",
+        "name": "ContractID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -178,17 +178,17 @@
     },
     {
         "name": "ContractTitle",
-        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
-            "اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC ",
-            "اجرای پیمانکار الف"
+            "sdf",
+            "اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC اجرای اسکلت بتنی EPC "
         ]
     },
     {
         "name": "ContractJalaliDate",
-        "type": "NVARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -232,17 +232,8 @@
         ]
     },
     {
-        "name": "CostCenterPK",
-        "type": "INTEGER",
-        "nullable": true,
-        "default": null,
-        "unique_values": [
-            1
-        ]
-    },
-    {
         "name": "CostCenterName",
-        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -250,39 +241,20 @@
         ]
     },
     {
-        "name": "PaymentBehalfPK",
-        "type": "INTEGER",
-        "nullable": true,
-        "default": null,
-        "unique_values": [
-            2,
-            5,
-            8
-        ]
-    },
-    {
         "name": "PaymentBehalfName",
-        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
+            "پیش پرداخت",
             "صدور پروانه",
             "علی الحساب",
             "نظام مهندسی"
         ]
     },
     {
-        "name": "PaymentTypePK",
-        "type": "TINYINT",
-        "nullable": false,
-        "default": null,
-        "unique_values": [
-            1
-        ]
-    },
-    {
         "name": "PaymentTypeName",
-        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "unique_values": [
@@ -291,7 +263,7 @@
     },
     {
         "name": "PaymentJalaliDate",
-        "type": "NVARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [

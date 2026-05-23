@@ -1,0 +1,177 @@
+[
+    {
+        "name": "GFromDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2013-03-21",
+            "2013-08-10"
+        ]
+    },
+    {
+        "name": "GToDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2014-03-20",
+            "2014-08-09"
+        ]
+    },
+    {
+        "name": "PlanCashIn",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            2,
+            444,
+            500,
+            123123,
+            1000000,
+            1500000000,
+            7505000000
+        ]
+    },
+    {
+        "name": "PlanCashOut",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -1386932000000,
+            -1234506789000
+        ]
+    },
+    {
+        "name": "TotalPlanCash",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -1386932000000,
+            -1234506789000
+        ]
+    },
+    {
+        "name": "PlanCashInCommulative",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            2,
+            444,
+            502,
+            123567,
+            1500000000,
+            7505000000,
+            7506000000
+        ]
+    },
+    {
+        "name": "PlanCashOutCommulative",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -1387124436973,
+            -1386932000000
+        ]
+    },
+    {
+        "name": "TotalPlanCashCommulative",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -1387124436971,
+            -1387124436471
+        ]
+    },
+    {
+        "name": "ActualCashIn",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            4995
+        ]
+    },
+    {
+        "name": "ActualCashOut",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -1100223232323,
+            -771234567890
+        ]
+    },
+    {
+        "name": "TotalActualCash",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -1100223232323,
+            -771234567890
+        ]
+    },
+    {
+        "name": "ActualCashInCommulative",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0,
+            4995
+        ]
+    },
+    {
+        "name": "ActualCashOutCommulative",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -1227234567890,
+            -1100223810074
+        ]
+    },
+    {
+        "name": "TotalActualCashCommulative",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            -1100223810024,
+            -1100223805079
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            25,
+            32
+        ]
+    },
+    {
+        "name": "TimePeriod",
+        "type": "VARCHAR(20) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Daily",
+            "Monthly",
+            "Seasonally",
+            "Weekly",
+            "Yearly"
+        ]
+    }
+]

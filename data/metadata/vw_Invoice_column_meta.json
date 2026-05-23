@@ -21,7 +21,7 @@
     },
     {
         "name": "ContractTitle",
-        "type": "NVARCHAR(200) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(200) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "example_values": [
@@ -31,7 +31,7 @@
     },
     {
         "name": "InvoiceNumber",
-        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -61,7 +61,7 @@
     },
     {
         "name": "DateReceived_JalaliDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -121,7 +121,7 @@
     },
     {
         "name": "DateIssued_JalaliDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -190,7 +190,7 @@
         ]
     },
     {
-        "name": "CBSPK",
+        "name": "CBSID",
         "type": "INTEGER",
         "nullable": true,
         "default": null,
@@ -208,7 +208,7 @@
     },
     {
         "name": "CBSName",
-        "type": "NVARCHAR(200) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(200) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -234,7 +234,7 @@
         ]
     },
     {
-        "name": "IsBalance",
+        "name": "IsInvoiceBalance",
         "type": "BIT",
         "nullable": false,
         "default": null,
@@ -244,8 +244,8 @@
         ]
     },
     {
-        "name": "BalanceManualNumber",
-        "type": "NVARCHAR(50) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "name": "BalanceInvoiceNumber",
+        "type": "NVARCHAR(50) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": []

@@ -1,0 +1,222 @@
+[
+    {
+        "name": "DataFormItemKEY",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "WBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            72944,
+            72945
+        ]
+    },
+    {
+        "name": "WeightOfWhole",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.010768661153710416,
+            0.006173413506221919
+        ]
+    },
+    {
+        "name": "ProjectKey",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            6404,
+            1117
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "مجتمع الهیه",
+            "پارس"
+        ]
+    },
+    {
+        "name": "DataFormItemPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            17843,
+            17844
+        ]
+    },
+    {
+        "name": "DataFormItemTitle",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "نصب صفحات سقف کاذب - ششم - F",
+            "نصب صفحات سقف کاذب - هفتم - F"
+        ]
+    },
+    {
+        "name": "Duration",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            15.0,
+            7.0
+        ]
+    },
+    {
+        "name": "DurationUnit",
+        "type": "CHAR(3) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "HOR",
+            "DAY",
+            "MON"
+        ]
+    },
+    {
+        "name": "ActualStartDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2024-05-08",
+            "2024-05-04"
+        ]
+    },
+    {
+        "name": "ActualEndDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2024-05-08",
+            "2024-05-04"
+        ]
+    },
+    {
+        "name": "PlanStartDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2014-07-20",
+            "2014-07-24"
+        ]
+    },
+    {
+        "name": "PlanEndDate_MiladiDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2014-08-05",
+            "2014-08-10"
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            100.0
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            100.0,
+            99.99999999999999
+        ]
+    },
+    {
+        "name": "DisciplineName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "BIM",
+            "Mechanical"
+        ]
+    },
+    {
+        "name": "DFITypeName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "عمومی"
+        ]
+    },
+    {
+        "name": "WorkflowModelName",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "کلاس 1_2_1",
+            "Test case"
+        ]
+    },
+    {
+        "name": "حجم",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            1234567890.0
+        ]
+    },
+    {
+        "name": "اختصار حجم",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Amp",
+            "Pcs"
+        ]
+    },
+    {
+        "name": "واحد حجم",
+        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "ست",
+            "متر"
+        ]
+    },
+    {
+        "name": "AssignedUsers",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "فاطمه کلانتری",
+            "Project Admin"
+        ]
+    }
+]

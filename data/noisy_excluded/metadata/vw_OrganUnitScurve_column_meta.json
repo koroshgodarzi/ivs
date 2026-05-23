@@ -1,0 +1,87 @@
+[
+    {
+        "name": "GFromDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2025-01-19",
+            "2008-12-31"
+        ]
+    },
+    {
+        "name": "GTodate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2025-01-19",
+            "2008-12-31"
+        ]
+    },
+    {
+        "name": "OrgTitle",
+        "type": "NVARCHAR(256) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "آزمایشگاه مرجع",
+            "اداره کل ارتباطات و نظارت مردمی"
+        ]
+    },
+    {
+        "name": "ParentId",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            3009,
+            4251
+        ]
+    },
+    {
+        "name": "Prog",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0,
+            95.2719797596458,
+            99.99999999999999,
+            95.27197975964577,
+            50.426932775365984,
+            100.0,
+            99.39668174962294,
+            50.0,
+            50.42693277536599
+        ]
+    },
+    {
+        "name": "Actual",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0.0,
+            9.705882352941183,
+            15.142613919990948,
+            21.82778350889895,
+            15.142613919990952,
+            12.5,
+            52.0,
+            0.806451612903226
+        ]
+    },
+    {
+        "name": "TimePeriodtxt",
+        "type": "VARCHAR(50) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "daily",
+            "Monthly",
+            "Seasonally",
+            "yearly"
+        ]
+    }
+]

@@ -1,0 +1,432 @@
+[
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            202396,
+            228507
+        ]
+    },
+    {
+        "name": "WbsId",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            202396,
+            202397
+        ]
+    },
+    {
+        "name": "Duration",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            15.0
+        ]
+    },
+    {
+        "name": "DurationUnit",
+        "type": "CHAR(3) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "HOR",
+            "DAY",
+            "MON"
+        ]
+    },
+    {
+        "name": "IsActivity",
+        "type": "BIT",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "Code",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1.4.5",
+            "1"
+        ]
+    },
+    {
+        "name": "Name",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "الف",
+            "1"
+        ]
+    },
+    {
+        "name": "ActivityCode",
+        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1.1",
+            "1389/02/01"
+        ]
+    },
+    {
+        "name": "JalaliDate_PlanEndDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1387/03/12",
+            "1387/03/31"
+        ]
+    },
+    {
+        "name": "GeorgianDate_PlanEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-01",
+            "2008-06-20"
+        ]
+    },
+    {
+        "name": "JalaliYear_PlanEndDate",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1397,
+            1403
+        ]
+    },
+    {
+        "name": "JalaliMonth_PlanEndDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            3
+        ]
+    },
+    {
+        "name": "JalaliDay_PlanEndDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            23,
+            29
+        ]
+    },
+    {
+        "name": "JalaliDate_PlanStartDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1387/03/12",
+            "1387/03/13"
+        ]
+    },
+    {
+        "name": "GeorgianDate_PlanStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-01",
+            "2008-06-02"
+        ]
+    },
+    {
+        "name": "JalaliYear_PlanStartDate",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1397,
+            1403
+        ]
+    },
+    {
+        "name": "JalaliMonth_PlanStartDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            3
+        ]
+    },
+    {
+        "name": "JalaliDay_PlanStartDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            23,
+            29
+        ]
+    },
+    {
+        "name": "JalaliDate_ActualEndDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1394/10/11",
+            "1403/02/15"
+        ]
+    },
+    {
+        "name": "GeorgianDate_ActualEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2016-01-01",
+            "2024-05-04"
+        ]
+    },
+    {
+        "name": "JalaliYear_ActualEndDate",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1403,
+            1389,
+            1404,
+            1392,
+            1393,
+            1390,
+            1391,
+            1394,
+            1402
+        ]
+    },
+    {
+        "name": "JalaliMonth_ActualEndDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            3
+        ]
+    },
+    {
+        "name": "JalaliDay_ActualEndDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            23,
+            29
+        ]
+    },
+    {
+        "name": "JalaliDate_ActualStartDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/10/27",
+            "1389/10/29"
+        ]
+    },
+    {
+        "name": "GeorgianDate_ActualStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-17",
+            "2011-01-19"
+        ]
+    },
+    {
+        "name": "JalaliYear_ActualStartDate",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1403,
+            1389
+        ]
+    },
+    {
+        "name": "JalaliMonth_ActualStartDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            3
+        ]
+    },
+    {
+        "name": "JalaliDay_ActualStartDate",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            23,
+            29
+        ]
+    },
+    {
+        "name": "IsMilestone",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "PrjId",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            5342,
+            6397
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "تست wbs دستی",
+            "Hooman`s project"
+        ]
+    },
+    {
+        "name": "OrgID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            4251,
+            1778
+        ]
+    },
+    {
+        "name": "Weight",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            11.363636363636363
+        ]
+    },
+    {
+        "name": "Critical",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "DefaultProjectPlanID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            3625,
+            3752
+        ]
+    },
+    {
+        "name": "DefaultProjectWBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            4575,
+            4705
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            100.0
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            100.0
+        ]
+    },
+    {
+        "name": "FieldProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "lvl",
+        "type": "CHAR(2) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "3 ",
+            "2 ",
+            "8 ",
+            "6 ",
+            "1 ",
+            "7 ",
+            "5 ",
+            "4 "
+        ]
+    },
+    {
+        "name": "ParentPath",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "DETAIL DESIGN ENGINEERING/Engineering/STRIKE THROW TEST",
+            " Construction Project/Contracts"
+        ]
+    },
+    {
+        "name": "ProjectHasControlPoint",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false
+        ]
+    }
+]

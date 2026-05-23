@@ -1,0 +1,329 @@
+[
+    {
+        "name": "Contractkey",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1854,
+            846
+        ]
+    },
+    {
+        "name": "کد قرارداد",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1854,
+            846
+        ]
+    },
+    {
+        "name": "شماره قرارداد",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "001",
+            "01"
+        ]
+    },
+    {
+        "name": "عنوان قرارداد",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "555",
+            "currencytest"
+        ]
+    },
+    {
+        "name": "قرارداد پروژه",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false
+        ]
+    },
+    {
+        "name": "کد پروژه",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            25,
+            26
+        ]
+    },
+    {
+        "name": "نام پروژه",
+        "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Construction P",
+            "Dorood Field Development"
+        ]
+    },
+    {
+        "name": "وضعیت قرارداد",
+        "type": "NVARCHAR(50) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "جاری",
+            "خاتمه",
+            "در حال عقد",
+            "فسخ"
+        ]
+    },
+    {
+        "name": "تاریخ شروع قرارداد-میلادی",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2022-11-19",
+            "2022-09-14"
+        ]
+    },
+    {
+        "name": "تاریخ پایان قرارداد-میلادی",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2023-09-23",
+            "2023-04-11"
+        ]
+    },
+    {
+        "name": "پیشرفت واقعی قرارداد",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            -0.3300936848733888,
+            -0.26596496554824867,
+            -0.1,
+            -0.04000000000000001,
+            -0.004022671844949355,
+            0.0
+        ]
+    },
+    {
+        "name": "پیشرفت برنامه ای قرارداد",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            -1.0,
+            -0.9995095417544102,
+            0.0
+        ]
+    },
+    {
+        "name": "مبلغ اولیه قرارداد",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            10000000000.0,
+            100000000000.0
+        ]
+    },
+    {
+        "name": "مبلغ نهایی قرارداد",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1.0,
+            5800000.0,
+            2311299500.0,
+            2500000000.0,
+            3500000000.0,
+            50000000000000.0
+        ]
+    },
+    {
+        "name": "جمع مبالغ الحاقیه",
+        "type": "DECIMAL(38, 0)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0",
+            "1"
+        ]
+    },
+    {
+        "name": "تاریخ قرارداد",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2010-06-29",
+            "2010-07-04"
+        ]
+    },
+    {
+        "name": "مبلغ پرداخت شده قرارداد",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2000",
+            "4000"
+        ]
+    },
+    {
+        "name": "مبلغ صورت وضعیت شده قرارداد",
+        "type": "DECIMAL(18, 0)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "0",
+            "1"
+        ]
+    },
+    {
+        "name": "تعداد الحاقیه ها",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "name": "تعداد صورت وضعیت ها",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            25
+        ]
+    },
+    {
+        "name": "تاریخ آخرین الحاقیه",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/04/09",
+            "1389/04/24"
+        ]
+    },
+    {
+        "name": "تاریخ آخرین صورت وضعیت",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1391/12/02",
+            "1392/04/04"
+        ]
+    },
+    {
+        "name": "تعداد پرداخت ها",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            0,
+            1,
+            2,
+            3,
+            5
+        ]
+    },
+    {
+        "name": "تاریخ آخرین پرداخت",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1392/05/19",
+            "1392/06/18"
+        ]
+    },
+    {
+        "name": "پیوست گردش قراداد مطالعه شد.",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "false"
+        ]
+    },
+    {
+        "name": "تاریخ شروع کار پیمانکار - فرم گردش قرارداد",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "تضمین انجام تعهدات",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "false"
+        ]
+    },
+    {
+        "name": "شماره طرف قرارداد",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "شماره فرم گردش قرارداد",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "11",
+            "1111",
+            "12",
+            "47",
+            "55"
+        ]
+    },
+    {
+        "name": "مدت دوره تضمین - فرم گردش قرارداد",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "نام کارگاه - فرم گردش قراداد",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "11",
+            "123",
+            "313",
+            "test",
+            "تست"
+        ]
+    }
+]

@@ -1,0 +1,236 @@
+[
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            202396,
+            228507
+        ]
+    },
+    {
+        "name": "WbsId",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            202396,
+            202397
+        ]
+    },
+    {
+        "name": "Duration",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            15.0
+        ]
+    },
+    {
+        "name": "DurationUnit",
+        "type": "CHAR(3) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "HOR",
+            "DAY",
+            "MON"
+        ]
+    },
+    {
+        "name": "IsActivity",
+        "type": "BIT",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "Code",
+        "type": "NVARCHAR(150) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1.4.5",
+            "1"
+        ]
+    },
+    {
+        "name": "Name",
+        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "الف",
+            "1"
+        ]
+    },
+    {
+        "name": "ActivityCode",
+        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1.1",
+            "1389/02/01"
+        ]
+    },
+    {
+        "name": "GeorgianDate_PlanEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-01",
+            "2008-06-20"
+        ]
+    },
+    {
+        "name": "GeorgianDate_PlanStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-01",
+            "2008-06-02"
+        ]
+    },
+    {
+        "name": "GeorgianDate_ActualEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2016-01-01",
+            "2024-05-04"
+        ]
+    },
+    {
+        "name": "GeorgianDate_ActualStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-17",
+            "2011-01-19"
+        ]
+    },
+    {
+        "name": "IsMilestone",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "PrjId",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            5342,
+            6397
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "تست wbs دستی",
+            "Hooman`s project"
+        ]
+    },
+    {
+        "name": "OrgID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            4251,
+            1778
+        ]
+    },
+    {
+        "name": "Weight",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            11.363636363636363
+        ]
+    },
+    {
+        "name": "Critical",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            100.0
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            100.0
+        ]
+    },
+    {
+        "name": "FieldProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "lvl",
+        "type": "CHAR(2) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "3 ",
+            "2 ",
+            "8 ",
+            "6 ",
+            "1 ",
+            "7 ",
+            "5 ",
+            "4 "
+        ]
+    },
+    {
+        "name": "ParentPath",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "DETAIL DESIGN ENGINEERING/Engineering/STRIKE THROW TEST",
+            " Construction Project/Contracts"
+        ]
+    }
+]

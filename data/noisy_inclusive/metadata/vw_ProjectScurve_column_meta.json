@@ -1,0 +1,115 @@
+[
+    {
+        "name": "DateType",
+        "type": "CHAR(1) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "j"
+        ]
+    },
+    {
+        "name": "GFromDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-08",
+            "2011-02-07"
+        ]
+    },
+    {
+        "name": "GToDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-02-06",
+            "2011-03-08"
+        ]
+    },
+    {
+        "name": "JFromDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/10/18",
+            "1389/11/18"
+        ]
+    },
+    {
+        "name": "JToDate",
+        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/11/17",
+            "1389/12/17"
+        ]
+    },
+    {
+        "name": "PlanPer",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            5.91,
+            7.57
+        ]
+    },
+    {
+        "name": "ActualPer",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.84,
+            1.58
+        ]
+    },
+    {
+        "name": "PlanCommulative",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            5.91,
+            13.48
+        ]
+    },
+    {
+        "name": "ActualCommulative",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.84,
+            2.42
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            6404,
+            1117
+        ]
+    },
+    {
+        "name": "TimePeriod",
+        "type": "VARCHAR(20) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Sixmonth",
+            "Daily",
+            "Monthly",
+            "Weekly",
+            "Seasonally",
+            "Yearly"
+        ]
+    }
+]

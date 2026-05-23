@@ -1,8 +1,0 @@
-vw_Issues — field grouping (for prompting)
-
-1) Identity & Scope: Unique issue record + where it belongs (org unit hierarchy, project).
-2) Issue Content: Title + narrative (description, actions, resolution).
-3) Dates: Identification + due dates; available as Gregorian + Jalali + Y/M/D parts.
-4) People: Assigned person plus creator and last editor (usernames + first/last/full names).
-5) Classification & Status: Severity, category, issue status, project status, date-type.
-6) Engagement & Stakeholders: Reference count and stakeholder name.

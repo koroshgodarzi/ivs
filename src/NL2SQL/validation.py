@@ -29,7 +29,7 @@ def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphSt
     
     # --- LOAD COLUMN DESCRIPTIONS ---
     column_metadata = {}
-    description_path = os.path.join('..', 'data', 'column_description.jsonl')
+    description_path = os.path.join('..', 'data', 'noisy', 'column_description.jsonl')
     
     try:
         with open(description_path, 'r', encoding='utf-8') as f:
@@ -101,10 +101,9 @@ def validate_user_question(state: GraphState, config: RunnableConfig) -> GraphSt
         else:
             print(f"Validation failed with {limit} tables. Trying more context...")
 
-    print(validation_result)
     # Final state update
     state["validation_result"] = validation_result
-    state["retrieved_columns"] = json.dumps(validation_result.get("needed_columns", {}))
+    state["retrieved_columns"] = validation_result.get("needed_columns", {})
     
     # Note: Fixed the key access here to match "short_answer" used above
     print(f"Final validation decision: {validation_result.get('short_answer')}")

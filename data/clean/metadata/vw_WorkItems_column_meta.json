@@ -1,0 +1,431 @@
+[
+    {
+        "name": "WorkItemID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "WBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            32395,
+            32396
+        ]
+    },
+    {
+        "name": "WeightOfWhole",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.5001125253181964,
+            2.9173230643561454
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            6404,
+            1117
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "مجتمع الهیه",
+            "پارس"
+        ]
+    },
+    {
+        "name": "WorkItemTitle",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "اجرای فونداسیون - بلوک 10",
+            "اجرای اسکلت و سقف - بلوک 10"
+        ]
+    },
+    {
+        "name": "Duration",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            21.0,
+            120.0
+        ]
+    },
+    {
+        "name": "DurationUnit",
+        "type": "CHAR(3) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "DAY",
+            "MON",
+            "HOR"
+        ]
+    },
+    {
+        "name": "ActualStartDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20110122,
+            20110302
+        ]
+    },
+    {
+        "name": "ActualStartDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1403,
+            1389
+        ]
+    },
+    {
+        "name": "ActualStartDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            3
+        ]
+    },
+    {
+        "name": "ActualStartDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            23,
+            29
+        ]
+    },
+    {
+        "name": "ActualStartDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/11/02",
+            "1389/12/11"
+        ]
+    },
+    {
+        "name": "ActualStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-22",
+            "2011-03-02"
+        ]
+    },
+    {
+        "name": "ActualEndDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20110129,
+            20110421
+        ]
+    },
+    {
+        "name": "ActualEndDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1403,
+            1389,
+            1404,
+            1392,
+            1393,
+            1390,
+            1405,
+            1391,
+            1394,
+            1402
+        ]
+    },
+    {
+        "name": "ActualEndDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            3
+        ]
+    },
+    {
+        "name": "ActualEndDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            23,
+            29
+        ]
+    },
+    {
+        "name": "ActualEndDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/11/09",
+            "1390/02/01"
+        ]
+    },
+    {
+        "name": "ActualEndtDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-29",
+            "2011-04-21"
+        ]
+    },
+    {
+        "name": "PlanStartDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20110119,
+            20110210
+        ]
+    },
+    {
+        "name": "PlanStartDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1397,
+            1403
+        ]
+    },
+    {
+        "name": "PlanStartDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            3
+        ]
+    },
+    {
+        "name": "PlanStartDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            23,
+            29
+        ]
+    },
+    {
+        "name": "PlanStartDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/10/29",
+            "1389/11/21"
+        ]
+    },
+    {
+        "name": "PlanStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-19",
+            "2011-02-10"
+        ]
+    },
+    {
+        "name": "PlanEndDateKEY",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20110209,
+            20110705
+        ]
+    },
+    {
+        "name": "PlanEndDate_Year",
+        "type": "SMALLINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1397,
+            1403
+        ]
+    },
+    {
+        "name": "PlanEndDate_Month",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            9,
+            3
+        ]
+    },
+    {
+        "name": "PlanEndDate_Day",
+        "type": "TINYINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            23,
+            29
+        ]
+    },
+    {
+        "name": "PlanEndDate_PersianDate",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1389/11/20",
+            "1390/04/14"
+        ]
+    },
+    {
+        "name": "PlanEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-02-09",
+            "2011-07-05"
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            48.25481818181818,
+            38.872270547945284
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            100.0,
+            0.0
+        ]
+    },
+    {
+        "name": "DisciplineName",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "BIM",
+            "Mechanical"
+        ]
+    },
+    {
+        "name": "WorkItemType",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "public"
+        ]
+    },
+    {
+        "name": "WorkflowModel",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "کلاس 1_2_1",
+            "Test case"
+        ]
+    },
+    {
+        "name": "VolumnOfWork",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            1234567890.0
+        ]
+    },
+    {
+        "name": "VolUnitAbbr",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Amp",
+            "Pcs"
+        ]
+    },
+    {
+        "name": "VolUnit",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "ست",
+            "متر"
+        ]
+    },
+    {
+        "name": "SubProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            5339,
+            3294,
+            6374
+        ]
+    },
+    {
+        "name": "ResponsibleUser",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "فاطمه کلانتری",
+            "Project Admin"
+        ]
+    }
+]

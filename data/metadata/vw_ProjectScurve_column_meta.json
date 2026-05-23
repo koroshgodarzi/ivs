@@ -1,71 +1,72 @@
 [
     {
         "name": "DateType",
-        "type": "CHAR(1) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "CHAR(1) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
+            "e",
             "j"
         ]
     },
     {
-        "name": "GFromDate",
+        "name": "FromDate",
         "type": "DATE",
         "nullable": true,
         "default": null,
         "example_values": [
-            "2011-01-08",
-            "2011-02-07"
+            "2000-01-01",
+            "2008-06-01"
         ]
     },
     {
-        "name": "GToDate",
+        "name": "ToDate",
         "type": "DATE",
         "nullable": true,
         "default": null,
         "example_values": [
-            "2011-02-06",
-            "2011-03-08"
+            "2008-06-07",
+            "2008-06-14"
         ]
     },
     {
         "name": "JFromDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
-            "1389/10/18",
-            "1389/11/18"
+            "1378/10/11",
+            "1387/03/12"
         ]
     },
     {
         "name": "JToDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
-            "1389/11/17",
-            "1389/12/17"
+            "1387/03/18",
+            "1387/03/25"
         ]
     },
     {
-        "name": "PlanPer",
+        "name": "PlanProgress",
         "type": "FLOAT",
         "nullable": true,
         "default": null,
         "example_values": [
-            5.91,
-            7.57
+            0.0,
+            0.8771929824561369
         ]
     },
     {
-        "name": "ActualPer",
+        "name": "ActualProgress",
         "type": "FLOAT",
         "nullable": true,
         "default": null,
         "example_values": [
-            2.01,
-            2.72
+            0.0,
+            0.01
         ]
     },
     {
@@ -74,8 +75,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            5.91,
-            13.48
+            0.0,
+            2.6208026208026207
         ]
     },
     {
@@ -84,8 +85,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            2.01,
-            4.73
+            0.0,
+            0.01
         ]
     },
     {
@@ -94,21 +95,21 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            1117,
-            29
+            25,
+            26
         ]
     },
     {
         "name": "TimePeriod",
-        "type": "VARCHAR(20) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(20) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
-            "Sixmonth",
             "Daily",
             "Monthly",
-            "Weekly",
             "Seasonally",
+            "Sixmonth",
+            "Weekly",
             "Yearly"
         ]
     }

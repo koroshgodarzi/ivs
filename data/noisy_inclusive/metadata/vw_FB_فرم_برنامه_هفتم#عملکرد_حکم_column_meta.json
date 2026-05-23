@@ -1,0 +1,118 @@
+[
+    {
+        "name": "ID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            9504,
+            9510,
+            9522
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            9499,
+            9505,
+            9518
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "زمان_اقدام",
+        "type": "NVARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1404/10/30",
+            "1404/11/14"
+        ]
+    },
+    {
+        "name": "واحد_سنجش",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "تست فاینال",
+            "دوبای ",
+            "سلام"
+        ]
+    },
+    {
+        "name": "خروجی_مورد_انتظار_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "بای ",
+            "تست فاینال",
+            "سلام"
+        ]
+    },
+    {
+        "name": "میزان_تحقق_خروجی",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "تست فاینال",
+            "سلام",
+            "هزار آفرین "
+        ]
+    },
+    {
+        "name": "اقدامات_آتی",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "تست فاینال",
+            "چایی",
+            "سلام"
+        ]
+    },
+    {
+        "name": "شرح_اقدامات_حوزه_همکار_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "بای بای ",
+            "تست فاینال",
+            "سلام"
+        ]
+    },
+    {
+        "name": "موانع_اجرایی",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "تست فاینال",
+            "سلام",
+            "نداریم"
+        ]
+    },
+    {
+        "name": "شرح_اقدامات_حوزه_متولی_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "بای ",
+            "تست فاینال",
+            "سلام"
+        ]
+    }
+]

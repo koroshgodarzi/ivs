@@ -196,7 +196,7 @@ def main():
     # 4. Initialize the state
 
     for i, user_question in enumerate(questions):
-        if i != 9:
+        if i != 1:
             continue
         initial_state = {
             "messages": [

@@ -1,3 +1,0 @@
-vw_OrganizationUnitType — Categories
-1) Identifier: internal numeric key for each organization unit type.
-2) Type Label: short human-readable title/name of the unit type (e.g., group / industry / HQ).

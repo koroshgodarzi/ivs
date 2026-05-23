@@ -1,0 +1,52 @@
+[
+    {
+        "name": "ProjectPlanPK",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            59,
+            60
+        ]
+    },
+    {
+        "name": "ProjectPlanName",
+        "type": "NVARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "01",
+            "030506"
+        ]
+    },
+    {
+        "name": "ProjectPK",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            25,
+            26
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "AQR Sample Project",
+            "Construction P"
+        ]
+    },
+    {
+        "name": "isDefault",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    }
+]

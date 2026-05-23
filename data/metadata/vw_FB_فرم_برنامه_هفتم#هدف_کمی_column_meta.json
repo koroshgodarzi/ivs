@@ -1,0 +1,49 @@
+[
+    {
+        "name": "ID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            9500,
+            9501,
+            9502,
+            9506,
+            9507,
+            9508,
+            9519,
+            9520
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            9499,
+            9505,
+            9518
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "میزان_تحقق_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "26",
+            "34",
+            "66",
+            "تست فاینال",
+            "سلام"
+        ]
+    }
+]

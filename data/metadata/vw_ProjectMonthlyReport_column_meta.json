@@ -1,6 +1,6 @@
 [
     {
-        "name": "ProjectMonthlyReportKEY",
+        "name": "ProjectMonthlyReportID",
         "type": "INTEGER",
         "nullable": false,
         "default": null,
@@ -10,7 +10,7 @@
         ]
     },
     {
-        "name": "ProjectPK",
+        "name": "ProjectID",
         "type": "INTEGER",
         "nullable": false,
         "default": null,
@@ -20,8 +20,8 @@
         ]
     },
     {
-        "name": "PrjName",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "name": "ProjectName",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": false,
         "default": null,
         "example_values": [
@@ -31,7 +31,7 @@
     },
     {
         "name": "StatusTitle",
-        "type": "VARCHAR(100) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -52,7 +52,7 @@
     },
     {
         "name": "CreationTime_JalaliDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -98,7 +98,7 @@
     },
     {
         "name": "DoneWorkTitle",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -108,7 +108,7 @@
     },
     {
         "name": "DoneWorkWorkDescription",
-        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -118,7 +118,7 @@
     },
     {
         "name": "FutureWorkTitle",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -128,7 +128,7 @@
     },
     {
         "name": "FutureWorkDescription",
-        "type": "NVARCHAR(1024) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -151,7 +151,7 @@
     },
     {
         "name": "ReportNumber",
-        "type": "NVARCHAR(500) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [

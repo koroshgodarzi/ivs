@@ -1,7 +1,7 @@
 [
     {
         "name": "DateType",
-        "type": "CHAR(1) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "CHAR(1) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [
@@ -9,7 +9,7 @@
         ]
     },
     {
-        "name": "GFromDate",
+        "name": "FromDate",
         "type": "DATE",
         "nullable": true,
         "default": null,
@@ -19,7 +19,7 @@
         ]
     },
     {
-        "name": "GToDate",
+        "name": "ToDate",
         "type": "DATE",
         "nullable": true,
         "default": null,
@@ -30,7 +30,7 @@
     },
     {
         "name": "JFromDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -40,7 +40,7 @@
     },
     {
         "name": "JToDate",
-        "type": "VARCHAR(10) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(10) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "example_values": [
@@ -49,7 +49,7 @@
         ]
     },
     {
-        "name": "PlanPer",
+        "name": "PlanProgress",
         "type": "FLOAT",
         "nullable": true,
         "default": null,
@@ -59,7 +59,7 @@
         ]
     },
     {
-        "name": "ActualPer",
+        "name": "ActualProgress",
         "type": "FLOAT",
         "nullable": true,
         "default": null,
@@ -100,7 +100,7 @@
     },
     {
         "name": "TimePeriod",
-        "type": "VARCHAR(20) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "type": "VARCHAR(20) COLLATE \"Latin1_General_CI_AS\"",
         "nullable": true,
         "default": null,
         "unique_values": [

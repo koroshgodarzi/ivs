@@ -1,0 +1,608 @@
+TABLE_NAME,Column_Name,Description,Confidence_Score
+vw_Cashflow,DateType,"Type of date interval or aggregation (e.g., Monthly, Yearly)",95
+vw_Cashflow,GFromDate,"Gregorian start date of the cashflow period",100
+vw_Cashflow,GToDate,"Gregorian end date of the cashflow period",100
+vw_Cashflow,JFromDate,"Jalali (Persian) start date of the cashflow period",100
+vw_Cashflow,JToDate,"Jalali (Persian) end date of the cashflow period",100
+vw_Cashflow,PlanCashIn,"Planned cash inflow for the period",100
+vw_Cashflow,PlanCashOut,"Planned cash outflow for the period",100
+vw_Cashflow,TotalPlanCash,"Net planned cash for the period",95
+vw_Cashflow,PlanCashInCommulative,"Cumulative planned cash inflow up to this period",100
+vw_Cashflow,PlanCashOutCommulative,"Cumulative planned cash outflow up to this period",100
+vw_Cashflow,TotalPlanCashCommulative,"Cumulative net planned cash up to this period",95
+vw_Cashflow,ActualCashIn,"Actual cash inflow recorded for the period",100
+vw_Cashflow,ActualCashOut,"Actual cash outflow recorded for the period",100
+vw_Cashflow,TotalActualCash,"Net actual cash for the period",95
+vw_Cashflow,ActualCashInCommulative,"Cumulative actual cash inflow up to this period",100
+vw_Cashflow,ActualCashOutCommulative,"Cumulative actual cash outflow up to this period",100
+vw_Cashflow,TotalActualCashCommulative,"Cumulative net actual cash up to this period",95
+vw_Cashflow,ProjectID,"Foreign key identifying the project",100
+vw_Cashflow,TimePeriod,"Identifier or string for the specific time period",90
+vw_CBS,CBSKEY,"Primary key for the Cost Breakdown Structure (CBS) node",100
+vw_CBS,CBSName,"Name of the CBS node",100
+vw_CBS,OrganizationUnitPK,"Foreign key to the responsible organizational unit",100
+vw_CBS,OrganUnitName,"Name of the responsible organizational unit",100
+vw_CBS,Stakeholder_ParentKEY,"Foreign key identifying the parent stakeholder",90
+vw_CBS,CreatedBy,"User who created the CBS record",100
+vw_CBS,LastModifiedBy,"User who last modified the CBS record",100
+vw_CBS,CreationTimeKEY,"Timestamp key for when the record was created",100
+vw_CBS,LastModificationTimeKEY,"Timestamp key for when the record was last modified",100
+vw_CBS,Weight,"Weight percentage of this CBS node in the overall project",95
+vw_CBS,ProjectID,"Foreign key identifying the project",100
+vw_CBS,Budget,"Total allocated budget for this CBS node",100
+vw_CBS,IRRAmmount,"Budget amount in Iranian Rials (IRR)",100
+vw_CBS,USDAmmount,"Budget amount in US Dollars (USD)",100
+vw_CBS,EURAmmount,"Budget amount in Euros (EUR)",100
+vw_CBS,AEDAmmount,"Budget amount in UAE Dirhams (AED)",100
+vw_CBS,WBSID,"Foreign key to the associated Work Breakdown Structure (WBS) node",100
+vw_Contracts,Contractkey,"Primary key for the contract",100
+vw_Contracts,کد قرارداد,"Contract code (System/Internal ID)",100
+vw_Contracts,شماره قرارداد,"Contract number (Official/Paper ID)",100
+vw_Contracts,عنوان قرارداد,"Title or subject of the contract",100
+vw_Contracts,قرارداد پروژه,"Flag or ID indicating the main project contract",90
+vw_Contracts,کد پروژه,"Project code associated with the contract",100
+vw_Contracts,نام پروژه,"Name of the project associated with the contract",100
+vw_Contracts,وضعیت قرارداد,"Current status of the contract (e.g., Active, Closed)",100
+vw_Contracts,تاریخ شروع قرارداد-سال,"Contract start date - Year component",100
+vw_Contracts,تاریخ شروع قرارداد-ماه,"Contract start date - Month component",100
+vw_Contracts,تاریخ شروع قرارداد-روز,"Contract start date - Day component",100
+vw_Contracts,تاریخ شروع قرارداد-شمسی,"Contract start date in Jalali (Shamsi) calendar",100
+vw_Contracts,تاریخ شروع قرارداد-میلادی,"Contract start date in Gregorian (Miladi) calendar",100
+vw_Contracts,تاریخ پایان قرارداد-سال,"Contract end date - Year component",100
+vw_Contracts,تاریخ پایان قرارداد-ماه,"Contract end date - Month component",100
+vw_Contracts,تاریخ پایان قرارداد-روز,"Contract end date - Day component",100
+vw_Contracts,تاریخ پایان قرارداد-شمسی,"Contract end date in Jalali (Shamsi) calendar",100
+vw_Contracts,تاریخ پایان قرارداد-میلادی,"Contract end date in Gregorian (Miladi) calendar",100
+vw_Contracts,پیشرفت واقعی قرارداد,"Actual physical or financial progress of the contract",100
+vw_Contracts,پیشرفت برنامه ای قرارداد,"Planned progress of the contract",100
+vw_Contracts,مبلغ اولیه قرارداد,"Initial agreed amount of the contract",100
+vw_Contracts,مبلغ نهایی قرارداد,"Final contract amount including amendments",100
+vw_Contracts,جمع مبالغ الحاقیه,"Total sum of financial amendments/addendums",100
+vw_Contracts,تاریخ قرارداد-سال,"Contract signature date - Year",100
+vw_Contracts,تاریخ قرارداد-ماه,"Contract signature date - Month",100
+vw_Contracts,تاریخ قرارداد-روز,"Contract signature date - Day",100
+vw_Contracts,تاریخ قرارداد,"Full date of the contract signature",100
+vw_Contracts,مبلغ پرداخت شده قرارداد,"Total amount paid to date on the contract",100
+vw_Contracts,مبلغ صورت وضعیت شده قرارداد,"Total amount invoiced (Statement of Work) so far",100
+vw_Contracts,تعداد الحاقیه ها,"Number of amendments/addendums issued",100
+vw_Contracts,تعداد صورت وضعیت ها,"Number of invoices/statements issued",100
+vw_Contracts,تاریخ آخرین الحاقیه-سال,"Date of the last amendment - Year",100
+vw_Contracts,تاریخ آخرین الحاقیه-ماه,"Date of the last amendment - Month",100
+vw_Contracts,تاریخ آخرین الحاقیه-روز,"Date of the last amendment - Day",100
+vw_Contracts,تاریخ آخرین الحاقیه,"Full date of the last amendment",100
+vw_Contracts,تاریخ آخرین صورت وضعیت-سال,"Date of the last invoice - Year",100
+vw_Contracts,تاریخ آخرین صورت وضعیت-ماه,"Date of the last invoice - Month",100
+vw_Contracts,تاریخ آخرین صورت وضعیت-روز,"Date of the last invoice - Day",100
+vw_Contracts,تاریخ آخرین صورت وضعیت,"Full date of the last invoice",100
+vw_Contracts,تعداد پرداخت ها,"Total number of payments made",100
+vw_Contracts,تاریخ آخرین پرداخت-سال,"Date of the last payment - Year",100
+vw_Contracts,تاریخ آخرین پرداخت-ماه,"Date of the last payment - Month",100
+vw_Contracts,تاریخ آخرین پرداخت-روز,"Date of the last payment - Day",100
+vw_Contracts,تاریخ آخرین پرداخت,"Full date of the last payment",100
+vw_Contracts,پیوست گردش قراداد مطالعه شد.,"Flag indicating if contract workflow attachments were read",95
+vw_Contracts,تاریخ شروع کار پیمانکار - فرم گردش قرارداد,"Contractor actual work start date from workflow form",95
+vw_Contracts,تضمین انجام تعهدات,"Performance guarantee details or amount",100
+vw_Contracts,شماره طرف قرارداد,"Contractor or third-party reference number",95
+vw_Contracts,شماره فرم گردش قرارداد,"Contract workflow/circulation form number",95
+vw_Contracts,مدت دوره تضمین - فرم گردش قرارداد,"Warranty or guarantee period duration from workflow form",95
+vw_Contracts,نام کارگاه - فرم گردش قراداد,"Workshop or site name derived from the workflow form",95
+vw_DataFormItem,DataFormItemKEY,"Primary key for the Data Form Item (Work package/Task)",100
+vw_DataFormItem,WBSID,"Associated WBS ID",100
+vw_DataFormItem,WeightOfWhole,"Weight of this item relative to the whole project",100
+vw_DataFormItem,ProjectKey,"Foreign key to the project",100
+vw_DataFormItem,ProjectName,"Name of the project",100
+vw_DataFormItem,DataFormItemPK,"Primary key (alternative/duplicate) for Data Form Item",95
+vw_DataFormItem,DataFormItemTitle,"Title of the data form item or task",100
+vw_DataFormItem,Duration,"Task or item duration",100
+vw_DataFormItem,DurationUnit,"Unit of duration (e.g., Days, Hours)",100
+vw_DataFormItem,ActualStartDateKEY,"Key/ID for the actual start date",90
+vw_DataFormItem,ActualStartDate_Year,"Actual start date - Year",100
+vw_DataFormItem,ActualStartDate_Month,"Actual start date - Month",100
+vw_DataFormItem,ActualStartDate_Day,"Actual start date - Day",100
+vw_DataFormItem,ActualStartDate_PersianDate,"Actual start date in Persian calendar",100
+vw_DataFormItem,ActualStartDate_MiladiDate,"Actual start date in Gregorian calendar",100
+vw_DataFormItem,ActualEndDateKEY,"Key/ID for the actual end date",90
+vw_DataFormItem,ActualEndDate_Year,"Actual end date - Year",100
+vw_DataFormItem,ActualEndDate_Month,"Actual end date - Month",100
+vw_DataFormItem,ActualEndDate_Day,"Actual end date - Day",100
+vw_DataFormItem,ActualEndDate_PersianDate,"Actual end date in Persian calendar",100
+vw_DataFormItem,ActualEndDate_MiladiDate,"Actual end date in Gregorian calendar",100
+vw_DataFormItem,PlanStartDateKEY,"Key/ID for the planned start date",90
+vw_DataFormItem,PlanStartDate_Year,"Planned start date - Year",100
+vw_DataFormItem,PlanStartDate_Month,"Planned start date - Month",100
+vw_DataFormItem,PlanStartDate_Day,"Planned start date - Day",100
+vw_DataFormItem,PlanStartDate_PersianDate,"Planned start date in Persian calendar",100
+vw_DataFormItem,PlanStartDate_MiladiDate,"Planned start date in Gregorian calendar",100
+vw_DataFormItem,PlanEndDateKEY,"Key/ID for the planned end date",90
+vw_DataFormItem,PlanEndDate_Year,"Planned end date - Year",100
+vw_DataFormItem,PlanEndDate_Month,"Planned end date - Month",100
+vw_DataFormItem,PlanEndDate_Day,"Planned end date - Day",100
+vw_DataFormItem,PlanEndDate_PersianDate,"Planned end date in Persian calendar",100
+vw_DataFormItem,PlanEndDate_MiladiDate,"Planned end date in Gregorian calendar",100
+vw_DataFormItem,ActualProgress,"Actual completion percentage",100
+vw_DataFormItem,PlanProgress,"Planned completion percentage",100
+vw_DataFormItem,DisciplineName,"Engineering or execution discipline (e.g., Civil, Mechanical)",100
+vw_DataFormItem,DFITypeName,"Data Form Item Type Name",95
+vw_DataFormItem,WorkflowModelName,"Name of the workflow model driving this item",100
+vw_DataFormItem,حجم,"Volume or physical quantity of work",100
+vw_DataFormItem,اختصار حجم,"Abbreviation of the volume or quantity dimension",90
+vw_DataFormItem,واحد حجم,"Unit of measurement for the volume (e.g., m3, kg)",100
+vw_DataFormItem,SubProjectID,"Foreign key to a sub-project if applicable",100
+vw_DataFormItem,AssignedUsers,"Users assigned to complete this item",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#برنامه_عملیاتی_,ID,"Form Builder ID for the Operational Plan section",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#برنامه_عملیاتی_,ParentID,"Parent ID linking to the main mandate/form",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#برنامه_عملیاتی_,ProjectID,"Associated Project ID",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#برنامه_عملیاتی_,در_صورت_داشتن_برنامه_عملیاتی,"Details of the operational plan (if it exists)",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,ID,"Form Builder ID for the Mandate Specification section",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,ParentID,"Parent ID",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,ProjectID,"Associated Project ID",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,متن_حکم,"The official text of the legal/executive mandate",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,شناسه_حکم,"Official ID or code of the mandate",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,موضوع_,"Subject or topic of the mandate",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,ID,"Form Builder ID for the Quantitative Goal section",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,ParentID,"Parent ID",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,ProjectID,"Associated Project ID",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,سال_پنجم,"Target or performance goal for the Fifth Year",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,در_صورت_داشتن_هدف_کمی__میزان_تحقق_در_سال_اول_,"Realization amount in the First Year, if a quantitative goal exists",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,سال_چهارم,"Target or performance goal for the Fourth Year",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,سال_دوم,"Target or performance goal for the Second Year",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,سال_سوم,"Target or performance goal for the Third Year",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,ID,"Form Builder ID for Sponsoring Unit section",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,ParentID,"Parent ID",95
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,ProjectID,"Associated Project ID",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,واحد_همکار,"Collaborating organizational unit",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,واحد_همکار_درون_سازمانی_,"Internal collaborating organizational unit",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,دستگاه_متولی_برون_سازمانی_,"External sponsoring/responsible agency",100
+vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,واحد_اصلی,"Main responsible organizational unit",100
+vw_FB_فرم_آپلود_فایل,ID,"Form Builder ID for the file upload form",95
+vw_FB_فرم_آپلود_فایل,ParentID,"Parent ID for the file upload form",95
+vw_FB_فرم_آپلود_فایل,ProjectID,"Associated Project ID",100
+vw_FB_فرم_آپلود_فایل,نام_و_نام_خانوادگی,"Full name of the person uploading the file",100
+vw_FB_فرم_اقای_احمدی,ID,"Form Builder ID for Mr. Ahmadi's custom form",95
+vw_FB_فرم_اقای_احمدی,ParentID,"Parent ID for the custom form",95
+vw_FB_فرم_اقای_احمدی,ProjectID,"Associated Project ID",100
+vw_FB_فرم_اقای_احمدی,متن,"Text content inside the custom form",100
+vw_FB_فرم_اقای_احمدی#child,ID,"Child ID for the custom form sub-table",95
+vw_FB_فرم_اقای_احمدی#child,ParentID,"Parent ID mapping to the main record",95
+vw_FB_فرم_اقای_احمدی#child,ProjectID,"Associated Project ID",100
+vw_FB_فرم_اقای_احمدی#child,میزان_تحقق_,"Realization or fulfillment rate/amount logged in this child record",100
+vw_FB_فرم_برنامه_هفتم,ID,"Form Builder ID for the 7th Development Plan form",95
+vw_FB_فرم_برنامه_هفتم,ParentID,"Parent ID",95
+vw_FB_فرم_برنامه_هفتم,ProjectID,"Associated Project ID",100
+vw_FB_فرم_برنامه_هفتم,واحد_همکار_درون_سازمانی_,"Internal collaborating unit",100
+vw_FB_فرم_برنامه_هفتم,توضیحات_,"Descriptions or general remarks",100
+vw_FB_فرم_برنامه_هفتم,شناسه_حکم,"Mandate Identifier Code",100
+vw_FB_فرم_برنامه_هفتم,متن_حکم,"Text of the mandate",100
+vw_FB_فرم_برنامه_هفتم,موضوع_,"Subject of the program",100
+vw_FB_فرم_برنامه_هفتم,در_صورت_داشتن_برنامه_عملیاتی_,"Details if an operational plan exists",95
+vw_FB_فرم_برنامه_هفتم,اصلی_,"Flag or field for the primary stakeholder",95
+vw_FB_فرم_برنامه_هفتم,همکار_,"Flag or field for the collaborating stakeholder",95
+vw_FB_فرم_برنامه_هفتم,دستگاه_متولی_برون_سازمانی_,"External sponsoring agency",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,ID,"Form Builder ID for Mandate Performance section",95
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,ParentID,"Parent ID",95
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,ProjectID,"Associated Project ID",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,زمان_اقدام,"Time or deadline for the action taken",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,واحد_سنجش,"Unit of measurement for performance",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,خروجی_مورد_انتظار_,"Expected output or deliverable",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,میزان_تحقق_خروجی,"Actual realization rate of the output",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,اقدامات_آتی,"Planned future actions",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,شرح_اقدامات_حوزه_همکار_,"Description of actions taken by the collaborating unit",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,موانع_اجرایی,"Executive obstacles or roadblocks encountered",100
+vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,شرح_اقدامات_حوزه_متولی_,"Description of actions taken by the sponsoring unit",100
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,ID,"Form Builder ID for the Operational Plan Title section",95
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,ParentID,"Parent ID",95
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,ProjectID,"Associated Project ID",100
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,شرح_فعالیت,"Description of the operational activity",100
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,خروجی,"Output of the operational activity",100
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,زمان_پایان,"End date/time of the activity",100
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,عنوان_برنامه_عملیاتی,"Title of the operational plan",100
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,درصد_پیشرفت,"Progress percentage of the activity",100
+vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,زمان_شروع_,"Start date/time of the activity",100
+vw_FB_فرم_برنامه_هفتم#هدف_کمی,ID,"Form Builder ID for the Quantitative Goals section",95
+vw_FB_فرم_برنامه_هفتم#هدف_کمی,ParentID,"Parent ID",95
+vw_FB_فرم_برنامه_هفتم#هدف_کمی,ProjectID,"Associated Project ID",100
+vw_FB_فرم_برنامه_هفتم#هدف_کمی,میزان_تحقق_,"Realization or fulfillment amount for the quantitative goal",100
+vw_Invoice,InvoiceKey,"Primary key for the Invoice record",100
+vw_Invoice,ContractPK,"Foreign key to the associated contract",100
+vw_Invoice,ContractTitle,"Title of the associated contract",100
+vw_Invoice,InvoiceNumber,"Invoice serial number",100
+vw_Invoice,DateReceivedKEY,"Key/ID for the date the invoice was received",90
+vw_Invoice,DateReceived,"Gregorian date the invoice was received",100
+vw_Invoice,DateReceived_JalaliDate,"Jalali date the invoice was received",100
+vw_Invoice,DateReceived_JalaliDay,"Jalali day the invoice was received",100
+vw_Invoice,DateReceived_JalaliMonth,"Jalali month the invoice was received",100
+vw_Invoice,DateReceived_JalaliYear,"Jalali year the invoice was received",100
+vw_Invoice,DateIssuedKEY,"Key/ID for the date the invoice was issued",90
+vw_Invoice,DateIssued,"Gregorian date the invoice was issued",100
+vw_Invoice,DateIssued_JalaliDate,"Jalali date the invoice was issued",100
+vw_Invoice,DateIssued_JalaliDay,"Jalali day the invoice was issued",100
+vw_Invoice,DateIssued_JalaliMonth,"Jalali month the invoice was issued",100
+vw_Invoice,DateIssued_JalaliYear,"Jalali year the invoice was issued",100
+vw_Invoice,Amount,"Invoice amount before deductions",100
+vw_Invoice,PreviousAccepted,"Previously accepted invoice amounts on this contract",95
+vw_Invoice,FinalAcceptedAmount,"The final approved amount to be paid for this invoice",100
+vw_Invoice,CBSPK,"Foreign key to the Cost Breakdown Structure element",100
+vw_Invoice,CBSName,"Name of the Cost Breakdown Structure element",100
+vw_Invoice,ValueAddedTax,"Value Added Tax (VAT) applied to the invoice",100
+vw_Invoice,IsBalance,"Boolean indicating if this is a balancing/settlement invoice",90
+vw_Invoice,BalanceManualNumber,"Manual reference number for the balance/settlement",90
+vw_Issues,IssuesKEY,"Primary key for the Project Issue",100
+vw_Issues,OrganizationUnitID,"Foreign key to the reporting Organizational Unit",100
+vw_Issues,OrganUnitName,"Name of the reporting Organizational Unit",100
+vw_Issues,ParentID,"ID of the parent issue (if part of a hierarchy)",95
+vw_Issues,IssuesTitle,"Title or subject of the project issue",100
+vw_Issues,Description,"Detailed description of the issue",100
+vw_Issues,ActionDescription,"Description of actions taken or needed to resolve the issue",100
+vw_Issues,Severity,"Severity or critical level of the issue",100
+vw_Issues,IdentificationDate_GeorgianDate,"Date the issue was identified (Gregorian)",100
+vw_Issues,IdentificationDate_JalaliDate,"Date the issue was identified (Jalali)",100
+vw_Issues,IdentificationDate_JalaliYear,"Year the issue was identified (Jalali)",100
+vw_Issues,IdentificationDate_JalaliMonth,"Month the issue was identified (Jalali)",100
+vw_Issues,IdentificationDate_JalaliDay,"Day the issue was identified (Jalali)",100
+vw_Issues,DueDate_GeorgianDate,"Due date for resolving the issue (Gregorian)",100
+vw_Issues,DueDate_JalaliDate,"Due date for resolving the issue (Jalali)",100
+vw_Issues,DueDate_JalaliYear,"Due year for resolving the issue (Jalali)",100
+vw_Issues,DueDate_JalaliMonth,"Due month for resolving the issue (Jalali)",100
+vw_Issues,DueDate_JalaliDay,"Due day for resolving the issue (Jalali)",100
+vw_Issues,Resolution,"Resolution provided to close the issue",100
+vw_Issues,AssignedTo,"Foreign key/username of the person assigned to fix the issue",100
+vw_Issues,CategoryPK,"Foreign key to the issue category",100
+vw_Issues,CreatedByKEY,"User ID who logged the issue",100
+vw_Issues,LastModifiedByKEY,"User ID who last updated the issue",100
+vw_Issues,AssignedUserDetailsUserName,"Username of the assigned individual",100
+vw_Issues,AssignedUserDetailsFirstName,"First name of the assigned individual",100
+vw_Issues,AssignedUserDetailsLastName,"Last name of the assigned individual",100
+vw_Issues,ProjectIssueStatusName,"Textual name of the current issue status",100
+vw_Issues,CreatorUserDetailsUserName,"Username of the creator",100
+vw_Issues,CreatorUserDetailsFirstName,"First name of the creator",100
+vw_Issues,CreatorUserDetailsLastName,"Last name of the creator",100
+vw_Issues,LastModifierUserDetailsUserName,"Username of the last modifier",100
+vw_Issues,LastModifierUserDetailsFirstName,"First name of the last modifier",100
+vw_Issues,LastModifierUserDetailsLastName,"Last name of the last modifier",100
+vw_Issues,ProjectPK,"Foreign key to the related project",100
+vw_Issues,StatusPK,"Foreign key to the issue status",100
+vw_Issues,DateTypePK,"Foreign key to the date type classification",85
+vw_Issues,ProjectName,"Name of the related project",100
+vw_Issues,ProjectIssueCategoriesTitle,"Title of the issue category",100
+vw_Issues,Name,"General name field (potentially reporter or component)",85
+vw_Issues,ProjectStatusPK,"Foreign key to the project's overall status",100
+vw_Issues,AssignedUserDetailsFullName,"Full name of the assigned user",100
+vw_Issues,CreatorUserDetailsFullName,"Full name of the creator",100
+vw_Issues,LastModifierUserDetailsFullName,"Full name of the last modifier",100
+vw_Issues,ReferCount,"Number of times this issue was referred or escalated",90
+vw_Issues,StakeholderName,"Name of the stakeholder impacted or reporting",100
+vw_OrganizationUnit,StakeholderID,"Foreign key to the associated stakeholder",100
+vw_OrganizationUnit,OrganizationUnitTitle,"Title or name of the organizational unit",100
+vw_OrganizationUnit,ParentID,"Parent organizational unit ID for hierarchy mapping",100
+vw_OrganizationUnit,ProgProgress,"Planned program progress for the org unit",95
+vw_OrganizationUnit,ActualProgress,"Actual measured progress for the org unit",100
+vw_OrganizationUnitType,OrganizationUnitTypeKEY,"Primary key for the Organizational Unit Type",100
+vw_OrganizationUnitType,OrganizationUnitTypeTitle,"Title of the Organizational Unit Type (e.g., Department, Division)",100
+vw_OrganUnitScurve,jFromDate,"Jalali start date for the S-Curve period",100
+vw_OrganUnitScurve,jTodate,"Jalali end date for the S-Curve period",100
+vw_OrganUnitScurve,GFromDate,"Gregorian start date for the S-Curve period",100
+vw_OrganUnitScurve,GTodate,"Gregorian end date for the S-Curve period",100
+vw_OrganUnitScurve,Orgid,"Foreign key to the Organizational Unit",100
+vw_OrganUnitScurve,OrgTitle,"Name of the Organizational Unit",100
+vw_OrganUnitScurve,ParentId,"Parent ID of the Organizational Unit",100
+vw_OrganUnitScurve,Prog,"Planned Progress (S-Curve line)",100
+vw_OrganUnitScurve,Actual,"Actual Progress (S-Curve line)",100
+vw_OrganUnitScurve,TimePeriod,"Identifier for the time interval",95
+vw_OrganUnitScurve,TimePeriodtxt,"Textual description of the time interval",95
+vw_Payments,PaymentKEY,"Primary key for the payment record",100
+vw_Payments,OrganizationUnitPK,"Foreign key to the paying/requesting Org Unit",100
+vw_Payments,OrganUnitName,"Name of the Org Unit",100
+vw_Payments,ParentPK,"Parent payment ID if part of a split payment",90
+vw_Payments,DocumentNumber,"Financial document or receipt number",100
+vw_Payments,PaiementDateKEY,"Key/ID for the date of payment",90
+vw_Payments,Amount,"Amount paid",100
+vw_Payments,CurrencyName,"Currency in which payment was made",100
+vw_Payments,InvoicePK,"Foreign key to the associated invoice",100
+vw_Payments,InvoiceNumber,"Invoice number associated with the payment",100
+vw_Payments,ProjectPK,"Foreign key to the project",100
+vw_Payments,ProjectName,"Name of the project",100
+vw_Payments,CBSPK,"Foreign key to the Cost Breakdown Structure node",100
+vw_Payments,CBSName,"Name of the Cost Breakdown Structure node",100
+vw_Payments,ContractPK,"Foreign key to the contract",100
+vw_Payments,ContractTitle,"Title of the contract",100
+vw_Payments,ContractJalaliDate,"Contract signature date in Jalali",100
+vw_Payments,ContractJalaliYear,"Contract signature year in Jalali",100
+vw_Payments,ContractJalaliMonth,"Contract signature month in Jalali",100
+vw_Payments,CostCenterPK,"Foreign key to the cost center",100
+vw_Payments,CostCenterName,"Name of the cost center",100
+vw_Payments,PaymentBehalfPK,"Foreign key identifying who the payment was made on behalf of",95
+vw_Payments,PaymentBehalfName,"Name of the party the payment was made on behalf of",95
+vw_Payments,PaymentTypePK,"Foreign key defining the payment method/type",100
+vw_Payments,PaymentTypeName,"Name of the payment method/type (e.g., Wire, Cheque)",100
+vw_Payments,PaymentJalaliDate,"Payment date in Jalali calendar",100
+vw_Payments,PaymentJalaliYear,"Payment year in Jalali calendar",100
+vw_Payments,PaymentJalaliMonth,"Payment month in Jalali calendar",100
+vw_Photos,PhotosPK,"Primary key for the photo record",100
+vw_Photos,ProjectPK,"Foreign key to the project associated with the photo",100
+vw_Photos,PhotoValue,"Binary data or path to the photo file",100
+vw_PlanHistory,PlanHistoryKEY,"Primary key for the project plan history/baseline record",100
+vw_PlanHistory,ProjectName,"Name of the project",100
+vw_PlanHistory,WBSPK,"Foreign key to the Work Breakdown Structure element",100
+vw_PlanHistory,wbsName,"Name of the WBS element",100
+vw_PlanHistory,ProjectPlanPK,"Foreign key to the project plan",100
+vw_PlanHistory,ProjectPlanName,"Name of the project plan (baseline name)",100
+vw_PlanHistory,CreationTime,"Gregorian date/time the baseline/plan history was saved",100
+vw_PlanHistory,CreationTime_JalaliDate,"Jalali date the plan history was saved",100
+vw_PlanHistory,CreationTime_JalaliYear,"Jalali year the plan history was saved",100
+vw_PlanHistory,CreationTime_JalaliMonth,"Jalali month the plan history was saved",100
+vw_PlanHistory,CreationTime_JalaliDay,"Jalali day the plan history was saved",100
+vw_PlanHistory,PlanStartDate,"Planned start date in this historical baseline",100
+vw_PlanHistory,PlanStartDate_JalaliDate,"Jalali planned start date in this baseline",100
+vw_PlanHistory,PlanStartDate_JalaliYear,"Jalali planned start year in this baseline",100
+vw_PlanHistory,PlanStartDate_JalaliMonth,"Jalali planned start month in this baseline",100
+vw_PlanHistory,PlanStartDate_JalaliDay,"Jalali planned start day in this baseline",100
+vw_PlanHistory,PlanEndDate,"Planned end date in this historical baseline",100
+vw_PlanHistory,PlanEndDate_JalaliDate,"Jalali planned end date in this baseline",100
+vw_PlanHistory,PlanEndDate_JalaliYear,"Jalali planned end year in this baseline",100
+vw_PlanHistory,PlanEndDate_JalaliMonth,"Jalali planned end month in this baseline",100
+vw_PlanHistory,PlanEndDate_JalaliDay,"Jalali planned end day in this baseline",100
+vw_ProjectGroup,ProjectGroupPK,"Primary key for the project group / portfolio",100
+vw_ProjectGroup,ProjectGroupName,"Name of the project group / portfolio",100
+vw_ProjectGroupScurve,DateType,"Type of period (e.g. Monthly) for the group S-Curve",95
+vw_ProjectGroupScurve,GFromDate,"Gregorian start date for the S-Curve period",100
+vw_ProjectGroupScurve,GToDate,"Gregorian end date for the S-Curve period",100
+vw_ProjectGroupScurve,JFromDate,"Jalali start date for the S-Curve period",100
+vw_ProjectGroupScurve,JToDate,"Jalali end date for the S-Curve period",100
+vw_ProjectGroupScurve,PlanPer,"Planned progress percentage for the specific period",100
+vw_ProjectGroupScurve,ActualPer,"Actual progress percentage for the specific period",100
+vw_ProjectGroupScurve,PlanCommulative,"Cumulative planned progress for the group",100
+vw_ProjectGroupScurve,ActualCommulative,"Cumulative actual progress for the group",100
+vw_ProjectGroupScurve,ProjectGroupID,"Foreign key to the project group",100
+vw_ProjectGroupScurve,TimePeriod,"Identifier for the S-Curve time interval",95
+vw_ProjectMonthlyReport,ProjectMonthlyReportKEY,"Primary key for the monthly report",100
+vw_ProjectMonthlyReport,ProjectPK,"Foreign key to the project",100
+vw_ProjectMonthlyReport,PrjName,"Project Name",100
+vw_ProjectMonthlyReport,StatusTitle,"Overall status reported for the month",100
+vw_ProjectMonthlyReport,CreationTime,"Gregorian timestamp of report creation",100
+vw_ProjectMonthlyReport,CreationTime_JalaliDate,"Jalali date of report creation",100
+vw_ProjectMonthlyReport,CreationTime_JalaliYear,"Jalali year of report creation",100
+vw_ProjectMonthlyReport,CreationTime_JalaliMonth,"Jalali month of report creation",100
+vw_ProjectMonthlyReport,CreationTime_JalaliDay,"Jalali day of report creation",100
+vw_ProjectMonthlyReport,DoneWorkTitle,"Title or summary of work completed this month",100
+vw_ProjectMonthlyReport,DoneWorkWorkDescription,"Detailed description of work completed this month",100
+vw_ProjectMonthlyReport,FutureWorkTitle,"Title or summary of work planned for next month",100
+vw_ProjectMonthlyReport,FutureWorkDescription,"Detailed description of work planned for next month",100
+vw_ProjectMonthlyReport,IsDone,"Boolean flag indicating if the report is finalized/submitted",100
+vw_ProjectMonthlyReport,ReportNumber,"Sequential or official number of the monthly report",100
+vw_ProjectPlan,ProjectPlanPK,"Primary key for the project plan / schedule version",100
+vw_ProjectPlan,ProjectPlanName,"Name of the plan/schedule (e.g. Baseline 1)",100
+vw_ProjectPlan,ProjectPK,"Foreign key to the project",100
+vw_ProjectPlan,ProjectName,"Name of the project",100
+vw_ProjectPlan,isDefault,"Boolean indicating if this is the active default plan",100
+vw_ProjectPlanProgress,کد پروژه,"Project Code",100
+vw_ProjectPlanProgress,نام پروژه,"Project Name",100
+vw_ProjectPlanProgress,تاریخ,"Date of the progress update",100
+vw_ProjectPlanProgress,پیشرفت واقعی,"Actual overall progress percentage of the project",100
+vw_ProjectPlanProgress,پیشرفت برنامه ای,"Planned overall progress percentage of the project",100
+vw_Projects,ProjectKEY,"Primary key for the project",100
+vw_Projects,OrganizationUnitID,"Foreign key to the organizational unit owning the project",100
+vw_Projects,PMFullName,"Full name of the Project Manager",100
+vw_Projects,PMUserName,"System username of the Project Manager",100
+vw_Projects,TaskMaster,"Client or Task Master overseeing the project",90
+vw_Projects,Contractor,"Main contractor assigned to the project",100
+vw_Projects,Supervisor,"Supervising entity or resident engineer",100
+vw_Projects,ContractNo,"Official contract number",100
+vw_Projects,ProjectNO,"Internal project number",100
+vw_Projects,ContractSubject,"Subject or scope of the contract",100
+vw_Projects,CreatedBy,"User who created the project record",100
+vw_Projects,LastModifiedBy,"User who last modified the project record",100
+vw_Projects,CreationTime,"Gregorian timestamp of project creation",100
+vw_Projects,CreationTime_J,"Jalali timestamp of project creation",100
+vw_Projects,LastModificationTime,"Gregorian timestamp of last update",100
+vw_Projects,LastModificationTime_J,"Jalali timestamp of last update",100
+vw_Projects,ProjectManager,"Name or ID of the Project Manager",100
+vw_Projects,DefaultLocation_CityID,"ID representing the city where the project is located",100
+vw_Projects,DefaultLocation_Latitude,"Geographical latitude of the project site",100
+vw_Projects,DefaultLocation_Longtitude,"Geographical longitude of the project site",100
+vw_Projects,ProjectStatusID,"Foreign key for the project's current lifecycle status",100
+vw_Projects,Consultant,"Consultant firm associated with the project",100
+vw_Projects,Client,"Client or Owner of the project",100
+vw_Projects,DefaultLocationID,"Foreign key to the default location table",100
+vw_Projects,DefaultLocationTitle,"Name of the default location",100
+vw_Projects,کد پروژه,"Project Code",100
+vw_Projects,نام پروژه,"Project Name",100
+vw_Projects,نوع پروژه,"Project Type (e.g., EPC, Construction)",100
+vw_Projects,وضعیت پروژه,"Project Status (e.g., Active, Suspended)",100
+vw_Projects,واحد سازمانی پروژه,"Organizational Unit responsible for the project",100
+vw_Projects,پیشرفت واقعی,"Actual progress of the project",100
+vw_Projects,پیشرفت برنامه ای,"Planned progress of the project",100
+vw_Projects,پیشرفت برنامه ای در ابتدای سال جاری,"Planned progress at the beginning of the current year",100
+vw_Projects,پیشرفت برنامه ای در انتهای سال جاری,"Planned progress at the end of the current year",100
+vw_Projects,پیشرفت واقعی در ابتدای سال جاری,"Actual progress at the beginning of the current year",100
+vw_Projects,پیشرفت واقعی در انتهای سال جاری,"Actual progress at the end of the current year",100
+vw_Projects,راندمان کل,"Overall Efficiency/Performance Index (e.g., SPI/CPI)",95
+vw_Projects,راندمان سال,"Annual Efficiency/Performance Index",95
+vw_Projects,کشور پروژه,"Country where the project is located",100
+vw_Projects,استان پروژه,"Province/State where the project is located",100
+vw_Projects,شهر پروژه,"City where the project is located",100
+vw_Projects,ParentID,"Parent Project ID (if part of a master project)",100
+vw_Projects,WeightOfParentProject,"Weight of this project in relation to its parent project",100
+vw_Projects,ProjectHasControlPoints,"Boolean indicating if the project uses control points or milestones",95
+vw_Projects,اسکلت سازه,"Type of structural framework (e.g., Steel, Concrete) - Custom field",95
+vw_Projects,برچسب,"Tags or labels applied to the project",100
+vw_Projects,بهره بردار,"The ultimate operator or end-user of the facility",100
+vw_Projects,پیوست دارد,"Boolean indicating if attachments are present",100
+vw_Projects,تست date,"Test date (likely a custom test field)",80
+vw_Projects,تست طراحی,"Design test (likely a custom test field)",80
+vw_Projects,تست عدد,"Number test (likely a custom test field)",80
+vw_Projects,روش اداره ی پروژه,"Method of project management or execution strategy",100
+vw_Projects,سبد,"Portfolio or Basket to which the project belongs",100
+vw_Projects,سطح تصویت,"Approval level of the project",90
+vw_Projects,شرح نیاز مشتری,"Description of the customer's needs or requirements",100
+vw_Projects,فیلد1,"Field 1 (Generic custom field)",80
+vw_Projects,ماهیت,"Nature or essence of the project (e.g. developmental, maintenance)",95
+vw_Projects,مبلغ اولیه تأمین شده,"Initially funded or secured amount",100
+vw_Projects,مدت اجرای پروژه (تخمین) ,"Estimated execution duration of the project",100
+vw_Projects,مدیر پروژه,"Project Manager",100
+vw_Projects,نیروی انسانی مورد نیاز,"Required human resources or manpower estimate",100
+vw_Projects,هدف,"Objective or goal of the project",100
+vw_Projects,کابر 1,"User 1 (Generic custom user field)",80
+vw_Projects,کاربر 2,"User 2 (Generic custom user field)",80
+vw_Projects,روش اداره ی پروژه (از نحوه),"Project management method (Secondary field)",90
+vw_Projects,چارچوب,"Framework or methodology used",95
+vw_Projects,ProjectTypeName,"Textual name of the project type",100
+vw_Projects,CurrencyName,"Default currency for project financials",100
+vw_Projects,ProjectWBSKEY,"Root WBS ID for the project",100
+vw_Projects,ProjectWBSName,"Root WBS Name for the project",100
+vw_ProjectScurve,DateType,"Type of period (e.g., Monthly, Weekly)",95
+vw_ProjectScurve,GFromDate,"Gregorian start date for the period",100
+vw_ProjectScurve,GToDate,"Gregorian end date for the period",100
+vw_ProjectScurve,JFromDate,"Jalali start date for the period",100
+vw_ProjectScurve,JToDate,"Jalali end date for the period",100
+vw_ProjectScurve,PlanPer,"Planned progress percentage for this specific period",100
+vw_ProjectScurve,ActualPer,"Actual progress percentage for this specific period",100
+vw_ProjectScurve,PlanCommulative,"Cumulative planned progress up to this period",100
+vw_ProjectScurve,ActualCommulative,"Cumulative actual progress up to this period",100
+vw_ProjectScurve,ProjectID,"Associated Project ID",100
+vw_ProjectScurve,TimePeriod,"Identifier for the time period",95
+vw_ResourceUsage,VolUnit,"Unit of measurement for volume/usage (e.g., Hours, Tons)",100
+vw_ResourceUsage,ProjectID,"Associated Project ID",100
+vw_ResourceUsage,ResourceID,"Foreign key identifying the resource",100
+vw_ResourceUsage,UsageAmount,"Amount of resource utilized",100
+vw_ResourceUsage,Comments,"Notes or comments regarding the resource usage",100
+vw_ResourceUsage,Cost,"Cost incurred by utilizing the resource",100
+vw_ResourceUsage,CostCurrencyID,"Currency ID for the incurred cost",100
+vw_ResourceUsage,WBSID,"Associated WBS ID where the resource was used",100
+vw_ResourceUsage,Abbriviation,"Abbreviation code for the resource",95
+vw_ResourceUsage,ResourceName,"Name of the resource (e.g., Excavator, Engineer)",100
+vw_ResourceUsage,ResourceTypeID,"Foreign key for the resource classification type (Labor/Material/Equipment)",100
+vw_ResourceUsage,ResourceTypeName,"Name of the resource classification type",100
+vw_ResourceUsage,ResourceGroupID,"Foreign key to the resource group",100
+vw_ResourceUsage,ResourceGroupName,"Name of the resource group",100
+vw_ResourceUsage,WBSName,"Name of the WBS element",100
+vw_ResourceUsage,WBSCode,"Code of the WBS element",100
+vw_ResourceUsage,ActivityCode,"Code of the specific activity using the resource",100
+vw_ResourceUsage,WBSPath,"Full hierarchical path of the WBS element",100
+vw_ResourceUsage,ActualStartDate_Year,"Year the usage actually started",100
+vw_ResourceUsage,ActualStartDate_Month,"Month the usage actually started",100
+vw_ResourceUsage,ActualStartDate_Day,"Day the usage actually started",100
+vw_ResourceUsage,ActualStartDate_PersianDate,"Jalali date the usage actually started",100
+vw_ResourceUsage,ActualStartDate_MiladiDate,"Gregorian date the usage actually started",100
+vw_Risks,RisksKEY,"Primary key for the Risk record",100
+vw_Risks,OrganizationUnitID,"Foreign key to the Org Unit identifying the risk",100
+vw_Risks,OrganUnitName,"Name of the Org Unit",100
+vw_Risks,ParentID,"Parent Risk ID (if risks are nested)",95
+vw_Risks,RiskTitle,"Title or name of the risk",100
+vw_Risks,Description,"Detailed description of the risk",100
+vw_Risks,Severity,"Severity or impact level of the risk",100
+vw_Risks,IdentificationDate_GeorgianDate,"Gregorian date the risk was identified",100
+vw_Risks,IdentificationDate_JalaliDate,"Jalali date the risk was identified",100
+vw_Risks,IdentificationDate_JalaliYear,"Jalali year the risk was identified",100
+vw_Risks,IdentificationDate_JalaliMonth,"Jalali month the risk was identified",100
+vw_Risks,IdentificationDate_JalaliDay,"Jalali day the risk was identified",100
+vw_Risks,DueDate_GeorgianDate,"Gregorian due date for risk mitigation action",100
+vw_Risks,DueDate_JalaliDate,"Jalali due date for risk mitigation action",100
+vw_Risks,DueDate_JalaliYear,"Jalali due year for mitigation",100
+vw_Risks,DueDate_JalaliMonth,"Jalali due month for mitigation",100
+vw_Risks,DueDate_JalaliDay,"Jalali due day for mitigation",100
+vw_Risks,Resolution,"Strategy or action taken to resolve/mitigate the risk",100
+vw_Risks,AssignedTo,"Foreign key to the user assigned to manage the risk",100
+vw_Risks,CreatedByPK,"User ID who logged the risk",100
+vw_Risks,LastModifiedByPK,"User ID who last modified the risk",100
+vw_Risks,CategoryPK,"Foreign key to the risk category (e.g., Financial, Safety)",100
+vw_Risks,Type,"Type of risk (Threat vs Opportunity)",95
+vw_Risks,Probability,"Probability or likelihood of the risk occurring",100
+vw_Risks,DetectionCapability,"Ability or rating to detect the risk before it occurs",95
+vw_Risks,Sign,"Early warning sign or trigger for the risk",95
+vw_Risks,RiskResponsePK,"Foreign key to the planned risk response strategy (e.g., Mitigate, Transfer)",100
+vw_Risks,SupportResponse,"Secondary or supportive response action",90
+vw_Risks,AssignedUserDetailsUserName,"Username of the assigned risk owner",100
+vw_Risks,AssignedUserDetailsFirstName,"First name of the assigned risk owner",100
+vw_Risks,AssignedUserDetailsLastName,"Last name of the assigned risk owner",100
+vw_Risks,CreatorUserDetailsUserName,"Username of the risk creator",100
+vw_Risks,CreatorUserDetailsFirstName,"First name of the risk creator",100
+vw_Risks,CreatorUserDetailsLastName,"Last name of the risk creator",100
+vw_Risks,LastModifierUserDetailsUserName,"Username of the last modifier",100
+vw_Risks,LastModifierUserDetailsFirstName,"First name of the last modifier",100
+vw_Risks,LastModifierUserDetailsLastName,"Last name of the last modifier",100
+vw_Risks,ProjectPK,"Associated Project ID",100
+vw_Risks,StatusPK,"Foreign key to the risk status (e.g., Open, Closed)",100
+vw_Risks,DateTypePK,"Key for date formatting/type",85
+vw_Risks,ProjectName,"Name of the associated project",100
+vw_Risks,ProjectRiskCategoriesTitle,"Text title of the risk category",100
+vw_Risks,RiskStatusName,"Text title of the risk status",100
+vw_Risks,ReferCount,"Number of times the risk has been escalated or referred",90
+vw_Risks,ActionDescription,"Description of the mitigation steps applied",100
+vw_Risks,StakeholderName,"Stakeholder primarily affected by or monitoring the risk",100
+vw_WBS,ParentID,"Parent WBS ID to maintain hierarchical structure",100
+vw_WBS,WbsId,"Primary key for the WBS element",100
+vw_WBS,Duration,"Duration of the WBS element/activity",100
+vw_WBS,DurationUnit,"Unit of time for duration (e.g. Days, Weeks)",100
+vw_WBS,IsActivity,"Boolean indicating if this node is a leaf activity rather than a summary node",100
+vw_WBS,Code,"WBS Code/Numbering (e.g., 1.1.2)",100
+vw_WBS,Name,"Name or description of the WBS element",100
+vw_WBS,ActivityCode,"Specific code if it is an activity",100
+vw_WBS,JalaliDate_PlanEndDate,"Jalali planned end date",100
+vw_WBS,GeorgianDate_PlanEndDate,"Gregorian planned end date",100
+vw_WBS,JalaliYear_PlanEndDate,"Jalali planned end year",100
+vw_WBS,JalaliMonth_PlanEndDate,"Jalali planned end month",100
+vw_WBS,JalaliDay_PlanEndDate,"Jalali planned end day",100
+vw_WBS,JalaliDate_PlanStartDate,"Jalali planned start date",100
+vw_WBS,GeorgianDate_PlanStartDate,"Gregorian planned start date",100
+vw_WBS,JalaliYear_PlanStartDate,"Jalali planned start year",100
+vw_WBS,JalaliMonth_PlanStartDate,"Jalali planned start month",100
+vw_WBS,JalaliDay_PlanStartDate,"Jalali planned start day",100
+vw_WBS,JalaliDate_ActualEndDate,"Jalali actual end date",100
+vw_WBS,GeorgianDate_ActualEndDate,"Gregorian actual end date",100
+vw_WBS,JalaliYear_ActualEndDate,"Jalali actual end year",100
+vw_WBS,JalaliMonth_ActualEndDate,"Jalali actual end month",100
+vw_WBS,JalaliDay_ActualEndDate,"Jalali actual end day",100
+vw_WBS,JalaliDate_ActualStartDate,"Jalali actual start date",100
+vw_WBS,GeorgianDate_ActualStartDate,"Gregorian actual start date",100
+vw_WBS,JalaliYear_ActualStartDate,"Jalali actual start year",100
+vw_WBS,JalaliMonth_ActualStartDate,"Jalali actual start month",100
+vw_WBS,JalaliDay_ActualStartDate,"Jalali actual start day",100
+vw_WBS,IsMilestone,"Boolean indicating if the element is a milestone (zero duration)",100
+vw_WBS,PrjId,"Associated Project ID",100
+vw_WBS,ProjectName,"Name of the associated project",100
+vw_WBS,OrgID,"Associated Organizational Unit ID",100
+vw_WBS,Weight,"Weight of this WBS element for progress calculation",100
+vw_WBS,Critical,"Boolean indicating if this element is on the critical path",100
+vw_WBS,DefaultProjectPlanID,"Foreign key to the default/active project plan baseline",95
+vw_WBS,DefaultProjectWBSID,"Foreign key linking to a master WBS dictionary",95
+vw_WBS,PlanProgress,"Planned percentage complete",100
+vw_WBS,ActualProgress,"Actual percentage complete",100
+vw_WBS,FieldProgress,"Actual progress measured from the field/site",95
+vw_WBS,lvl,"Hierarchical level depth of the WBS element (e.g., Level 1, 2)",100
+vw_WBS,ParentPath,"Full path of parent nodes for easy querying",100
+vw_WBS,ProjectHasControlPoint,"Boolean indicating if this branch uses control points",90
+vw_WorkItems,DataFormItemPK,"Foreign key to the Data Form Item (Work Package)",100
+vw_WorkItems,WBSID,"Associated WBS ID",100
+vw_WorkItems,WeightOfWhole,"Weight of the work item compared to the whole project",100
+vw_WorkItems,ProjectKEY,"Associated Project ID",100
+vw_WorkItems,آیدی قلم کاری,"Work Item ID",100
+vw_WorkItems,کد پروژه,"Project Code",100
+vw_WorkItems,نام پروژه,"Project Name",100
+vw_WorkItems,کد قلم کاری,"Work Item Code",100
+vw_WorkItems,عنوان قلم کاری,"Title/Name of the Work Item",100
+vw_WorkItems,تاریخ شروع برنامه ای قلم کاری-سال,"Planned start date of work item - Year",100
+vw_WorkItems,تاریخ شروع برنامه ای قلم کاری-ماه,"Planned start date of work item - Month",100
+vw_WorkItems,تاریخ شروع برنامه ای قلم کاری-روز,"Planned start date of work item - Day",100
+vw_WorkItems,تاریخ شروع برنامه ای قلم کاری,"Full planned start date of work item",100
+vw_WorkItems,تاریخ شروع واقعی قلم کاری-سال,"Actual start date of work item - Year",100
+vw_WorkItems,تاریخ شروع واقعی قلم کاری-ماه,"Actual start date of work item - Month",100
+vw_WorkItems,تاریخ شروع واقعی قلم کاری-روز,"Actual start date of work item - Day",100
+vw_WorkItems,تاریخ شروع واقعی قلم کاری,"Full actual start date of work item",100
+vw_WorkItems,تاریخ پایان برنامه ای قلم کاری-سال,"Planned end date of work item - Year",100
+vw_WorkItems,تاریخ پایان برنامه ای قلم کاری-ماه,"Planned end date of work item - Month",100
+vw_WorkItems,تاریخ پایان برنامه ای قلم کاری-روز,"Planned end date of work item - Day",100
+vw_WorkItems,تاریخ پایان برنامه ای قلم کاری,"Full planned end date of work item",100
+vw_WorkItems,تاریخ پایان واقعی قلم کاری-سال,"Actual end date of work item - Year",100
+vw_WorkItems,تاریخ پایان واقعی قلم کاری-ماه,"Actual end date of work item - Month",100
+vw_WorkItems,تاریخ پایان واقعی قلم کاری-روز,"Actual end date of work item - Day",100
+vw_WorkItems,تاریخ پایان واقعی قلم کاری,"Full actual end date of work item",100
+vw_WorkItems,پیشرفت برنامه قلم کاری,"Planned progress percentage of the work item",100
+vw_WorkItems,پیشرفت واقعی قلم کاری,"Actual progress percentage of the work item",100
+vw_WorkItems,نام دیسیپلین قلم کاری,"Discipline name (e.g. Civil, Electrical) of the work item",100
+vw_WorkItems,نام چرخه کاری قلم کاری,"Workflow cycle name for the work item",100
+vw_WorkItems,نوع قلم کاری,"Type or category of the work item",100
+vw_WorkItems,SubProjectID,"Foreign key to sub-project if applicable",100
+vw_WorkItems,استان,"Province where the work item is executed",100
+vw_WorkItems,سایت,"Specific site or location name",100
+vw_WorkItems,شهر,"City where the work item is executed",100
+vw_WorkItems,مسول,"Person or party responsible for the work item",100

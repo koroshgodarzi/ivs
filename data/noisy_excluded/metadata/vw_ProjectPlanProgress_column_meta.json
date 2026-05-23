@@ -1,0 +1,52 @@
+[
+    {
+        "name": "کد پروژه",
+        "type": "BIGINT",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            6404,
+            1117
+        ]
+    },
+    {
+        "name": "نام پروژه",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "AQR Sample Project",
+            "Construction P"
+        ]
+    },
+    {
+        "name": "تاریخ",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "آبان, 1379",
+            "آبان, 1380"
+        ]
+    },
+    {
+        "name": "پیشرفت واقعی",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.8425743671113874,
+            2.4199070066813175
+        ]
+    },
+    {
+        "name": "پیشرفت برنامه ای",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            5.910420753760501,
+            13.475634757546471
+        ]
+    }
+]

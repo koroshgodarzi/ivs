@@ -1,0 +1,137 @@
+[
+    {
+        "name": "ID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            9499,
+            9505
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "واحد_همکار_درون_سازمانی_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "تست فاینال",
+            "تست نهایی2",
+            "واحد شمالی "
+        ]
+    },
+    {
+        "name": "توضیحات_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "الحمدالله ",
+            "تست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینالتست فاینال",
+            "هجه0ج8",
+            "یفتفعق"
+        ]
+    },
+    {
+        "name": "شناسه_حکم",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "114477",
+            "تست فاینال",
+            "تست نهایی",
+            "تست نهایی2",
+            "شثشثبثششلص3",
+            "للغهغ"
+        ]
+    },
+    {
+        "name": "متن_حکم",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "تست فاینال",
+            "تست نهایی2",
+            "حال و احوال "
+        ]
+    },
+    {
+        "name": "موضوع_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "تست فاینال",
+            "تست نهایی2",
+            "فلان و بیسار "
+        ]
+    },
+    {
+        "name": "در_صورت_داشتن_برنامه_عملیاتی_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "اصلا نمیدونم ",
+            "تست فاینال"
+        ]
+    },
+    {
+        "name": "اصلی_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "تست فاینال",
+            "تست نهایی2",
+            "واحد جنوبی "
+        ]
+    },
+    {
+        "name": "همکار_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "تست فاینال",
+            "تست نهایی2",
+            "واحد غربی "
+        ]
+    },
+    {
+        "name": "دستگاه_متولی_برون_سازمانی_",
+        "type": "NVARCHAR COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "",
+            "تست فاینال",
+            "تست نهایی2",
+            "واحد شرقی "
+        ]
+    }
+]

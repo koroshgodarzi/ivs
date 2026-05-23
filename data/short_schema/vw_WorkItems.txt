@@ -1,9 +1,0 @@
-vw_WorkItems — column groups (for LLM prompt)
-
-1- Keys & Structure: internal PKs/IDs, project key, WBS, subproject, weighting.
-2- Project Identity: project code + project name.
-3- Work Item Identity: work-item ID/code + title.
-4- Schedule (Planned vs Actual): start/end dates (also split to Y/M/D in Solar Hijri).
-5- Performance: planned progress % vs actual progress %.
-6- Classification: discipline, work cycle, work-item type.
-7- Geography & Ownership: province/site/city + responsible person.

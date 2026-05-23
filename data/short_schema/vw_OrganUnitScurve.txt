@@ -1,6 +1,0 @@
-[vw_OrganUnitScurve] Column Groups (concise)
-
-1) Period Boundaries (Persian & Gregorian): from/to dates in Solar Hijri (string) and Gregorian (date).
-2) Org Structure: organization id + title + parent id (hierarchy / roll-up).
-3) Progress Metrics: planned progress vs actual progress (numeric %/score).
-4) Time Grain: reporting period size/code and its text label (e.g., yearly/monthly).
