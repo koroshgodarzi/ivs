@@ -1,5 +1,7 @@
 output
 ivs_data
+BI_clean
+setup.sh
 .vscode
 ollama-image.tar
 mermaid-diagram-2026-02-17-102155.png

@@ -16,5 +16,6 @@ class GraphState(TypedDict):
     retrieved_schema: Optional[str]
     query_explanation: int
     retrieved_columns: Optional[str] # Added field to store schema metadata
+    retrieved_values: Optional[str]
     keywords: str
     query_generation_user_prompt: str

@@ -11,6 +11,7 @@ transformers
 ollama
 
 chromadb
+datasketch
 
 sqlalchemy
 pydantic
