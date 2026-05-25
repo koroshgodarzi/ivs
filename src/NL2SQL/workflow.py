@@ -5,7 +5,7 @@ from NL2SQL.generate_query import sql_generator, sql_generator_column_based
 from NL2SQL.execute_query import execute_query
 from NL2SQL.error_handling import error_handler, should_retry, explain_query_error
 from NL2SQL.final_node import format_final_response
-from NL2SQL.preprocessing import keyword_extraction
+from NL2SQL.preprocessing import keyword_extraction, keyword_view_extraction
 from NL2SQL.column_retrieval import querying
 
 from langgraph.graph import StateGraph, END
@@ -23,7 +23,7 @@ def column_based_graph(output_folder: str):
     logger = configure_text_logger(output_folder)
 
     # Add the new nodes
-    workflow.add_node("keyword_extraction", with_state_logging("keyword_extraction", keyword_extraction, logger))
+    workflow.add_node("keyword_extraction", with_state_logging("keyword_extraction", keyword_view_extraction, logger))
     workflow.add_node("querying", with_state_logging("querying", querying, logger))
 
     # Add the existing nodes
@@ -196,8 +196,8 @@ def main():
     # 4. Initialize the state
 
     for i, user_question in enumerate(questions):
-        # if i <= 11:
-        #     continue
+        if i == 1:
+            continue
         initial_state = {
             "messages": [
                 {"role": "user", "content": user_question}

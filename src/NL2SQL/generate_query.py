@@ -43,8 +43,8 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     with open(os.path.join('..', 'prompt_template', 'query_generation_system_prompt.txt')) as f:
         system_prompt = f.read()
 
-    with open(os.path.join('..', 'prompt_template', 'query_generation_shot.txt')) as f:
-        system_prompt += f.read()
+    # with open(os.path.join('..', 'prompt_template', 'query_generation_shot.txt')) as f:
+    #     system_prompt += f.read()
 
     messages = [
         SystemMessage(content=system_prompt),

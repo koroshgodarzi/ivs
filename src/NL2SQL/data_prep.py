@@ -6,7 +6,7 @@ import requests
 import csv
 from collections import defaultdict
 
-def get_join_relationships(needed_views_dict, csv_file_path='../docs/noisy_inclusive/IDColumn.csv'):
+def get_join_relationships(needed_views_dict, csv_file_path='../docs/noisy_inclusive/IDColumns.csv'):
     """
     Identifies joinable columns between a set of required views based on a schema CSV.
     
