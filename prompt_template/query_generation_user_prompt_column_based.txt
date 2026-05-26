@@ -1,6 +1,9 @@
 ### These are the column names you may need to generate the query, you should not use any table or column other than the ones below:
 {schemas}
 
+### DATABASE CONTEXT ###
+{data_context}
+
 ### DATABASE RELATIONSHIPS (JOIN KEYS):
 {join_info}
 

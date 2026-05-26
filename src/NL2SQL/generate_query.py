@@ -1,4 +1,4 @@
-from utils import get_llm, extract_json_from_text, format_join_info_for_llm, ommiting_think_block, count_chat_tokens, create_ddl_for_schemas, fix_sql_wildcards
+from utils import get_llm, extract_json_from_text, format_join_info_for_llm, ommiting_think_block, count_chat_tokens, create_ddl_for_schemas, create_data_context_for_schemas, fix_sql_wildcards
 from NL2SQL.schema import GraphState
 from NL2SQL.data_prep import get_join_relationships
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
@@ -21,6 +21,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     join_info = get_join_relationships(needed_columns_dict)
 
     all_schemas_metadata = create_ddl_for_schemas(needed_columns_dict)
+    data_context = create_data_context_for_schemas(needed_columns_dict)
     join_info = format_join_info_for_llm(join_info)
     
     # Extract and format retrieved_values safely
@@ -33,6 +34,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     # Using named arguments makes formatting safer as the number of placeholders grows
     user_prompt = user_prompt_template.format(
         schemas=all_schemas_metadata,
+        data_context=data_context,
         join_info=join_info,
         retrieved_values=retrieved_values,
         user_question=user_question

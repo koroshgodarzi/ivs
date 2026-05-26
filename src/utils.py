@@ -263,6 +263,57 @@ def create_ddl_for_schemas(needed_columns_dict: dict) -> str:
 
     return all_schemas_text
 
+
+def create_data_context_for_schemas(needed_columns_dict: dict) -> str:
+    """
+    needed_columns_dict: dict where
+        key   -> table/view name (e.g., 'vw_Contracts')
+        value -> list of column names (e.g., ['Contractor', 'Supervisor'])
+        
+    Returns: A formatted string representing the data context (samples/unique values)
+             for the requested columns.
+    """
+    data_context_text = ""
+
+    for table_name, columns in needed_columns_dict.items():
+        meta_path = os.path.join('..', 'data', 'metadata', f'{table_name}_column_meta.json')
+        
+        if not os.path.exists(meta_path):
+            continue
+
+        with open(meta_path, 'r', encoding='utf-8') as f:
+            table_metadata = json.load(f)
+
+        requested_cols_upper = [c.upper() for c in columns]
+        filtered_cols = [
+            col for col in table_metadata 
+            if col['name'].upper() in requested_cols_upper
+        ]
+
+        table_context_lines = []
+        
+        for col in filtered_cols:
+            col_name = col['name']
+            
+            # Prioritize unique_values if they exist and are not empty
+            if col.get('unique_values'):
+                # ensure_ascii=False keeps Persian/Arabic characters readable
+                vals_str = json.dumps(col['unique_values'], ensure_ascii=False)
+                table_context_lines.append(f"  - {col_name} (Unique Values): {vals_str}")
+            
+            # Fallback to example_values if unique_values aren't available
+            elif col.get('example_values'):
+                vals_str = json.dumps(col['example_values'], ensure_ascii=False)
+                table_context_lines.append(f"  - {col_name} (Example Values): {vals_str}")
+
+        # Only append to the final text if this table has data context to share
+        if table_context_lines:
+            data_context_text += f"Table Content Summary for {table_name}:\n"
+            data_context_text += "\n".join(table_context_lines)
+            data_context_text += "\n\n"
+
+    return data_context_text.strip()
+
 def format_join_info_for_llm(join_info):
     output = ""
     for column, tables in join_info.items():
