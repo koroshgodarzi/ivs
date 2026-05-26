@@ -96,6 +96,43 @@ def retrieve_columns_by_attributes(
             
     return retrieved_columns
 
+def retrieve_columns_by_user_question(
+    user_question: str, 
+    chosen_views: list, 
+    collection, 
+    get_query_embedding_func,
+    n_results: int = 10
+) -> list:
+    """
+    Queries ChromaDB to retrieve schema elements matching the user's question,
+    optionally filtering by the chosen views.
+    """
+    if not user_question:
+        return []
+
+    # Build metadata filter if relevant views are defined
+    where_filter = None
+    if chosen_views:
+        if len(chosen_views) == 1:
+            where_filter = {"view_name": list(chosen_views)[0]}
+        else:
+            where_filter = {"view_name": {"$in": list(chosen_views)}}
+
+    # Generate embedding for the full user question
+    query_embedding = get_query_embedding_func(user_question)
+    
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=n_results, 
+        include=["documents", "metadatas"],
+        where=where_filter
+    )
+    
+    # Chroma returns a list of lists for metadatas (one list per query embedding)
+    if results and results.get('metadatas') and len(results['metadatas']) > 0:
+        return results['metadatas'][0]
+        
+    return []
 
 def parse_lsh_key(key) -> tuple:
     """
@@ -198,11 +235,21 @@ def querying(state: GraphState, config: RunnableConfig) -> GraphState:
     
     # 2. Query attributes and restrict retrieval to chosen views
     v = [view.split('.')[-1] for view in chosen_views]
-    retrieved_columns = retrieve_columns_by_attributes(
-        attributes=keywords.get("Attributes", []),
+    # retrieved_columns = retrieve_columns_by_attributes(
+    #     attributes=keywords.get("Attributes", []),
+    #     chosen_views=v,
+    #     collection=collection,
+    #     get_query_embedding_func=get_query_embedding
+    # )
+    
+    user_messages = [msg for msg in state.get("messages", []) if msg.get("role") == "user"]
+    user_question = user_messages[-1]["content"] if user_messages else ""
+    retrieved_columns = retrieve_columns_by_user_question(
+        user_question=user_question,
         chosen_views=v,
         collection=collection,
-        get_query_embedding_func=get_query_embedding
+        get_query_embedding_func=get_query_embedding,
+        n_results=10  # Adjust the number of retrieved schema items as needed
     )
     
     # 3. Query LSH for values, filtering matches by chosen views
