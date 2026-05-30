@@ -5,44 +5,82 @@ Here is the list of available database views and their descriptions:
 [VIEW_DESCRIPTIONS_HERE]
 Given a user question, extract information into the following three categories:
 "Views" (نام ویوها): The exact view names (from the list above) that are most relevant to the question.
+"Entities" (موجودیت‌ها): The main subjects/tables being discussed (e.g., Project, Contract, Invoice, Risk, Work Item).
 "Attributes" (ویژگی‌ها): The specific columns, fields, or properties requested to be shown or used as filters (e.g., Progress Percentage, End Date, Status, Name). Crucial: If the user mentions a specific value (like "20%" or "Be'sat"), you must infer and extract the ATTRIBUTE that value represents (e.g., "Progress" or "Project Name").
 "Values" (مقادیر): The specific names, numbers, or dates used for filtering.
 Format your output STRICTLY as a JSON object with keys: "Views", "Attributes", and "Values". Do not include any explanation outside the JSON.
 Examples:
-User Question: لیست صورت وضعیت هایی که مربوط به ساختار هزینه «هزینه کارگاه» پروژه «فاز اول- ناصری» است؟
+User Question: لیست پروژه‌هایی که مدیر پروژه آن‌ها «پژمان وحیدزاده» است و پیشرفت واقعی آن‌ها کمتر از ۵۰ درصد است را بده.
 Output:
 {
-"Views": ["vw_Invoice", "vw_Projects", "vw_CBS"],
-"Attributes": ["نام ساختار هزینه", "نام پروژه"],
-"Values": ["هزینه کارگاه", "فاز اول- ناصری"]
+"Views": ["Report.vw_Projects"],
+"Entities": ["پروژه"]
+"Attributes": ["مدیر پروژه", "پیشرفت واقعی"],
+"Values": ["پژمان وحیدزاده", "< 50"]
 }
-User Question: لیست قراردادهای جاری پروژه بعثت که الحاقیه دارند رو بده ؟
-Output:
-{
-"Views": ["dbo.vw_Contracts", "dbo.vw_Projects"],
-"Attributes": ["وضعیت قرارداد", "نام پروژه", "تعداد الحاقیه"],
-"Values": ["جاری", "بعثت", "> 0"]
-}
-User Question: لیست تمام اقلام کاریهایی که تنها ۲۰ درصد پیشرفت دارند و تاریخ پایان آنها گذشته است را نیاز دارم؟
+User Question: چه اقلام کاری مسئولیتشون با «مجید صالح پور» هست و تاریخ پایان برنامه‌ای آن‌ها گذشته اما هنوز کامل نشده‌اند؟
 Output:
 {
 "Views": ["Report.vw_DataFormItem"],
-"Attributes": ["درصد پیشرفت", "تاریخ پایان", "تاریخ امروز"],
-"Values": ["20", "گذشته است", "کوچکتر از امروز"]
+"Entities": ["قلم کاری"]
+"Attributes": ["کاربر تخصیص یافته", "تاریخ پایان برنامه‌ای", "وضعیت تکمیل", "پیشرفت واقعی"],
+"Values": ["مجید صالح پور", "گذشته", "کامل نشده‌اند", "< 100"]
 }
-User Question: لیست پروژه هایی که ریسک منفی و تاریخ شناسایی قبل از ۶ ماه پیش دارند؟
+User Question: مجموع مبالغ پرداخت شده به ازای هر پروژه به ریال چقدر است؟ اسم پروژه و مبلغ کل رو میخوام.
 Output:
 {
-"Views": ["Report.vw_Projects", "dbo.vw_Risks"],
-"Attributes": ["نوع ریسک", "تاریخ شناسایی"],
-"Values": ["منفی", "6 ماه پیش"]
+"Views": ["Report.vw_Payments"],
+"Entities": ["پرداخت"]
+"Attributes": ["نام پروژه", "مبلغ پرداخت", "واحد پول"],
+"Values": ["ریال"]
 }
-User Question: لیست مشکلات و موانع پروژه های «طاهر شعبانی» به همراه نام پروژه؟
+User Question: قراردادهایی که بیشتر از ۵ الحاقیه دارن و تاریخ شروعشون مال قبل از سال ۱۴۰۰ بوده رو میخوام؟ نام پروژه و شماره قرارداد برگردون.
 Output:
 {
-"Views": ["Report.vw_Issues", "Report.vw_Projects"],
-"Attributes": ["نام پروژه", "کاربر تخصیص یافته", "نام کامل کاربر"],
-"Values": ["طاهر شعبانی"]
+"Views": ["Report.vw_Contracts"],
+"Entities": ["قرارداد"]
+"Attributes": ["نام پروژه", "شماره قرارداد", "تعداد الحاقیه ها", "سال تاریخ شروع قرارداد"],
+"Values": ["> 5", "< 1400"]
+}
+User Question: چند تا ریسک با شدت بالای ۵ در پروژه‌های استان «تهران» شناسایی شده است؟
+Output:
+{
+"Views": ["Report.vw_Risks", "Report.vw_Projects"],
+"Entities": ["ریسک", "پروژه"]
+"Attributes": ["شدت ریسک", "استان پروژه"],
+"Values": ["> 5", "تهران"]
+}
+User Question: صورت وضعیت‌هایی که در سال ۱۳۹۲ صادر شده‌اند و مبلغ نهایی تایید شده آن‌ها با مبلغ اعلامی اولیه برابر است را نمایش بده.
+Output:
+{
+"Views": ["Report.vw_Invoice"],
+"Entities": ["صورت وضعیت"]
+"Attributes": ["سال صدور", "مبلغ نهایی تایید شده", "مبلغ اعلامی اولیه"],
+"Values": ["1392", "برابر با مبلغ اعلامی اولیه"]
+}
+User Question: نام منابعی از نوع «کار» در پروژه «مجتمع پاسارگاد» که بیشتر از ۱۰۰۰ واحد از آن‌ها استفاده شده است چیست؟
+Output:
+{
+"Views": ["Report.vw_ResourceUsage", "Report.vw_Projects"],
+"Entities": ["مصرف منابع", "پروژه"]
+"Attributes": ["نام منبع", "نوع منبع", "نام پروژه", "میزان استفاده"],
+"Values": ["کار", "مجتمع پاسارگاد", "> 1000"]
+}
+User Question: لیست تمام مشکلات و موانع (Issues) که وضعیتشون «بدون اقدام» هست و تاریخ موعد آن‌ها توی همین ماه میلادی جاری هست رو برام بیار.
+Output:
+{
+"Views": ["Report.vw_Issues"],
+"Entities": ["مشکلات و موانع"]
+"Attributes": ["وضعیت مشکل", "تاریخ موعد"],
+"Values": ["بدون اقدام", "ماه میلادی جاری"]
+}
+User Question: لیست ساختارهای شکست هزینه (CBS) که بودجه ریالی آن‌ها بیشتر از ۱۰ میلیارد است و هیچ صورت وضعیتی روی آن‌ها ثبت نشده رو نیاز دارم.
+Output:
+{
+"Views": ["Report.vw_CBS", "Report.vw_Invoice"],
+"Entities": ["ساختار شکست هزینه", "صورت وضعیت"]
+"Attributes": ["بودجه ریالی", "صورت وضعیت"],
+"Values": ["> 10000000000", "ثبت نشده"]
 }
 Now, process the following user question:
 User Question: [USER_QUESTION_HERE]

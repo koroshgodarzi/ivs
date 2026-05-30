@@ -232,7 +232,7 @@ def create_ddl_for_schemas(needed_columns_dict: dict) -> str:
     for table_name, columns in needed_columns_dict.items():
         # 1. Load the actual metadata for this specific table
         # Path assumes your metadata naming convention: {table_name}_column_meta.json
-        meta_path = os.path.join('..', 'data', 'metadata', f'{table_name}_column_meta.json')
+        meta_path = os.path.join('..', 'data', 'noisy_inclusive', 'metadata', f'{table_name.split(".")[-1]}_column_meta.json')
         
         if not os.path.exists(meta_path):
             print(f"Warning: Metadata file for {table_name} not found at {meta_path}")
@@ -276,7 +276,7 @@ def create_data_context_for_schemas(needed_columns_dict: dict) -> str:
     data_context_text = ""
 
     for table_name, columns in needed_columns_dict.items():
-        meta_path = os.path.join('..', 'data', 'metadata', f'{table_name}_column_meta.json')
+        meta_path = os.path.join('..', 'data', 'noisy_inclusive', 'metadata', f'{table_name.split("-1")[-1]}_column_meta.json')
         
         if not os.path.exists(meta_path):
             continue

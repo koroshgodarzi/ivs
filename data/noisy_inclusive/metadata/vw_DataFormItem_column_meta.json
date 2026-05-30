@@ -116,8 +116,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            3,
-            6
+            9,
+            3
         ]
     },
     {
@@ -127,7 +127,7 @@
         "default": null,
         "example_values": [
             23,
-            3
+            29
         ]
     },
     {
@@ -168,13 +168,13 @@
         "unique_values": [
             1403,
             1389,
-            1392,
             1404,
-            1390,
+            1392,
             1393,
-            1402,
+            1390,
             1391,
-            1394
+            1394,
+            1402
         ]
     },
     {
@@ -183,8 +183,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            3,
-            6
+            9,
+            3
         ]
     },
     {
@@ -194,7 +194,7 @@
         "default": null,
         "example_values": [
             23,
-            3
+            29
         ]
     },
     {
@@ -234,7 +234,7 @@
         "default": null,
         "example_values": [
             1397,
-            1400
+            1403
         ]
     },
     {
@@ -243,8 +243,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            3,
-            6
+            9,
+            3
         ]
     },
     {
@@ -254,7 +254,7 @@
         "default": null,
         "example_values": [
             23,
-            3
+            29
         ]
     },
     {
@@ -294,7 +294,7 @@
         "default": null,
         "example_values": [
             1397,
-            1400
+            1403
         ]
     },
     {
@@ -303,8 +303,8 @@
         "nullable": true,
         "default": null,
         "example_values": [
-            3,
-            6
+            9,
+            3
         ]
     },
     {
@@ -314,7 +314,7 @@
         "default": null,
         "example_values": [
             23,
-            3
+            29
         ]
     },
     {
