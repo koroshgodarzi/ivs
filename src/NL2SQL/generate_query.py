@@ -10,7 +10,7 @@ import os
 def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> GraphState:
     """Node: Generate SQL query from user input using selected columns and retrieved values."""
     model_name = config.get("configurable", {}).get("model_name", "gpt")
-    llm = get_llm(model_id=model_name)
+    llm = get_llm(model_id=model_name, reasoning=True, max_tokens=8000)
 
     # 1. Get User Question
     user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]

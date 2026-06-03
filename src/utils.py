@@ -10,6 +10,12 @@ from langchain_core.messages import BaseMessage
 from transformers import AutoTokenizer
 from openai import OpenAI
 import numpy as np
+import pandas as pd
+import chromadb
+from chromadb.utils import embedding_functions
+import requests
+import csv
+from collections import defaultdict
 # import chromadb
 # from chromadb.utils import embedding_functions
 
@@ -21,7 +27,7 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain_community.chat_models import ChatOllama
 
-def get_llm(model_id: str, max_tokens: int = 4096):
+def get_llm(model_id: str, max_tokens: int = 4096, reasoning=False):
     """
     model_id comes from the UI/API request.
     Example IDs: 'gpt-4o', 'qwen-72b-api', 'ollama-qwen'
@@ -60,12 +66,14 @@ def get_llm(model_id: str, max_tokens: int = 4096):
         )
 
     elif "open_router" in model_id.lower():
+        reasoning_config = {"effort": "medium"} if reasoning else {"effort": "none"}
         return ChatOpenAI(
-            api_key=os.getenv("OPENROUTER_API_KEY"),
+            api_key=os.getenv("OPENROUTER_API_KEY_REPORTER"),
             base_url="https://openrouter.ai/api/v1", # e.g. DashScope or your proxy
-            model='Qwen3-30B-A3B-lbu2r',
+            model='qwen/qwen3.5-9b',
             temperature=0,
             max_tokens=max_tokens,
+            reasoning=reasoning_config
         )
 
     # 3. GPT Logic (OpenAI)
@@ -219,37 +227,29 @@ def create_column_names_for_schemas(schema_categories: dict) -> list:
     return all_schemas_metadata
 
 
-def create_ddl_for_schemas(needed_columns_dict: dict) -> str:
-    """
-    needed_columns_dict: dict where
-        key   -> table/view name (e.g., 'vw_Contracts')
-        value -> list of column names (e.g., ['ContractID', 'Amount'])
-        
-    Returns: A formatted string representing the DDL/Schema context.
-    """
+def create_ddl_for_schemas(needed_columns_dict: dict, data_dir: str) -> str:
     all_schemas_text = ""
 
     for table_name, columns in needed_columns_dict.items():
-        # 1. Load the actual metadata for this specific table
-        # Path assumes your metadata naming convention: {table_name}_column_meta.json
-        meta_path = os.path.join('..', 'data', 'noisy_inclusive', 'metadata', f'{table_name.split(".")[-1]}_column_meta.json')
+        # Attempt to load metadata using fully qualified name first, falling back to name split
+        [path, short_name] = table_name.split(".")
+        meta_path = os.path.join(data_dir, 'metadata', f'{path + "_" + short_name}.json')
+        if not os.path.exists(meta_path):
+            meta_path = os.path.join(data_dir, 'metadata', f'{short_name}.json')
         
         if not os.path.exists(meta_path):
-            print(f"Warning: Metadata file for {table_name} not found at {meta_path}")
+            print(f"Warning: Metadata file for {table_name} not found.")
             continue
 
         with open(meta_path, 'r', encoding='utf-8') as f:
             table_metadata = json.load(f)
 
-        # 2. Filter metadata for only the columns requested by the validator
-        # We also want to be case-insensitive just in case
         requested_cols_upper = [c.upper() for c in columns]
         filtered_cols = [
             col for col in table_metadata 
             if col['name'].upper() in requested_cols_upper
         ]
 
-        # 3. Format into a DDL-like block for the prompt
         all_schemas_text += f"CREATE TABLE {table_name} (\n"
         col_definitions = []
         for col in filtered_cols:
@@ -264,19 +264,15 @@ def create_ddl_for_schemas(needed_columns_dict: dict) -> str:
     return all_schemas_text
 
 
-def create_data_context_for_schemas(needed_columns_dict: dict) -> str:
-    """
-    needed_columns_dict: dict where
-        key   -> table/view name (e.g., 'vw_Contracts')
-        value -> list of column names (e.g., ['Contractor', 'Supervisor'])
-        
-    Returns: A formatted string representing the data context (samples/unique values)
-             for the requested columns.
-    """
+
+def create_data_context_for_schemas(needed_columns_dict: dict, data_dir: str) -> str:
     data_context_text = ""
 
     for table_name, columns in needed_columns_dict.items():
-        meta_path = os.path.join('..', 'data', 'noisy_inclusive', 'metadata', f'{table_name.split("-1")[-1]}_column_meta.json')
+        [path, short_name] = table_name.split(".")
+        meta_path = os.path.join(data_dir, 'metadata', f'{path + "_" + short_name}.json')
+        if not os.path.exists(meta_path):
+            meta_path = os.path.join(data_dir, 'metadata', f'{short_name}_column_meta.json')
         
         if not os.path.exists(meta_path):
             continue
@@ -295,24 +291,78 @@ def create_data_context_for_schemas(needed_columns_dict: dict) -> str:
         for col in filtered_cols:
             col_name = col['name']
             
-            # Prioritize unique_values if they exist and are not empty
             if col.get('unique_values'):
-                # ensure_ascii=False keeps Persian/Arabic characters readable
                 vals_str = json.dumps(col['unique_values'], ensure_ascii=False)
                 table_context_lines.append(f"  - {col_name} (Unique Values): {vals_str}")
-            
-            # Fallback to example_values if unique_values aren't available
             elif col.get('example_values'):
                 vals_str = json.dumps(col['example_values'], ensure_ascii=False)
                 table_context_lines.append(f"  - {col_name} (Example Values): {vals_str}")
 
-        # Only append to the final text if this table has data context to share
         if table_context_lines:
             data_context_text += f"Table Content Summary for {table_name}:\n"
             data_context_text += "\n".join(table_context_lines)
             data_context_text += "\n\n"
 
     return data_context_text.strip()
+
+
+def get_join_relationships(needed_views_dict, csv_file_path):
+    """
+    Identifies joinable columns between a set of required views based on a schema CSV.
+    Supports comma-separated metadata lists with or without standard headers.
+    """
+    needed_table_names = set(needed_views_dict.keys())
+    column_to_tables = defaultdict(list)
+
+    if not os.path.exists(csv_file_path):
+        print(f"Warning: Join relationships metadata file not found at {csv_file_path}")
+        return {}
+
+    with open(csv_file_path, mode='r', encoding='utf-8-sig') as f:
+        # Detect if file contains specific column labels/headers
+        sample = f.read(2048)
+        f.seek(0)
+        
+        has_header = False
+        if sample:
+            first_line = sample.splitlines()[0].upper()
+            if 'TABLE_NAME' in first_line or 'COLUMN_NAME' in first_line or 'VIEW_NAME' in first_line:
+                has_header = True
+
+        if has_header:
+            reader = csv.DictReader(f)
+            for row in reader:
+                table = None
+                column = None
+                for k, v in row.items():
+                    if k and k.upper() in ['TABLE_NAME', 'VIEW_NAME']:
+                        table = v
+                    elif k and k.upper() in ['COLUMN_NAME', 'COLUMN_NAME']:
+                        column = v
+                
+                if not table or not column:
+                    keys = list(row.keys())
+                    if len(keys) >= 2:
+                        table = row[keys[0]]
+                        column = row[keys[1]]
+                
+                if table and column and table in needed_table_names:
+                    column_to_tables[column].append(table)
+        else:
+            reader = csv.reader(f)
+            for row in reader:
+                if len(row) >= 2:
+                    table, column = row[0].strip(), row[1].strip()
+                    if table in needed_table_names:
+                        column_to_tables[column].append(table)
+
+    join_metadata = {
+        col: tables for col, tables in column_to_tables.items() 
+        if len(tables) > 1
+    }
+
+    return join_metadata
+
 
 def format_join_info_for_llm(join_info):
     output = ""
@@ -321,17 +371,12 @@ def format_join_info_for_llm(join_info):
         output += f"- {column}: Links {table_list}\n"
     return output
 
-def ommiting_think_block(text: str) -> str:
-    """
-    Extract a SQL query from model output.
-    - Removes any <think>...</think> blocks (if present)
-    - Extracts SQL starting from first SELECT or WITH
-    - Validates basic SQL-only constraints
-    """
 
+def ommiting_think_block(text: str) -> str:
     if not text or not isinstance(text, str):
         raise ValueError("Input must be a non-empty string")
 
+    import re
     cleaned = re.sub(
         r'(?is)<think>.*?</think>\s*',
         '',
@@ -342,17 +387,15 @@ def ommiting_think_block(text: str) -> str:
 
 
 def fix_sql_wildcards(sql):
-    # This regex finds N'%...%' and captures the content inside the wildcards
+    import re
     pattern = r"LIKE\s+N'%([^']+)%'"
     
     def replace_spaces(match):
         content = match.group(1)
-        # Replace spaces with %
         modified_content = content.replace(" ", "%")
         return f"LIKE N'%{modified_content}%'"
 
     return re.sub(pattern, replace_spaces, sql)
-
 
 def get_rag_context(user_question: str, n_results: int = 2, chroma_db_path: str = "../data/chroma_db"):
     # Initialize the same client and embedding function used in storage

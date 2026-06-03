@@ -128,7 +128,7 @@ def main():
     output = {}
 
     # 2. Build the compiled graph
-    output_folder = 'column_based_with_lsh_noisy_data'
+    output_folder = 'column_based_with_lsh_noisy_data_qwen_35_27b_reasoning'
     os.makedirs(os.path.join('..', 'output', output_folder), exist_ok=True)
 
     app = column_based_graph(output_folder)
@@ -196,8 +196,8 @@ def main():
     # 4. Initialize the state
 
     for i, user_question in enumerate(questions):
-        if i != 1:
-            continue
+        # if i != 1:
+        #     continue
         initial_state = {
             "messages": [
                 {"role": "user", "content": user_question}
@@ -215,7 +215,7 @@ def main():
         }
 
         # 5. Config with thread_id
-        config = {"configurable": {"thread_id": f"{str(i)}", "model_name": 'qwen_api'}}
+        config = {"configurable": {"thread_id": f"{str(i)}", "model_name": 'open_router'}}
 
         if not os.path.exists(os.path.join('..', 'output', output_folder, 'info.txt')):
             with open(os.path.join('..', 'output', output_folder, 'info.txt'), 'w', encoding='utf-8') as f:

@@ -157,7 +157,7 @@ def retrieve_values_by_lsh(
     values: list, 
     chosen_views: set, 
     retrieved_columns: dict, 
-    lsh_path: str = '../data/lsh_index.pkl'
+    lsh_path: str = '../data/noisy_inclusive/lsh_index.pkl'
 ) -> dict:
     """
     Queries LSH index dictionary for approximate value matching,
@@ -237,12 +237,11 @@ def querying(state: GraphState, config: RunnableConfig) -> GraphState:
     v = [view.split('.')[-1] for view in chosen_views]
     retrieved_columns = {}
     retrieved_columns = retrieve_columns_by_attributes(
-        attributes=keywords.get("Attributes", []) + keywords.get("Entities", []),
+        attributes=keywords.get("Attributes", []),
         chosen_views=chosen_views,
         collection=collection,
         get_query_embedding_func=get_query_embedding
     )
-    print(retrieved_columns)
 
     # user_messages = [msg for msg in state.get("messages", []) if msg.get("role") == "user"]
     # user_question = user_messages[-1]["content"] if user_messages else ""

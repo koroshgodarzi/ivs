@@ -5,7 +5,6 @@ Here is the list of available database views and their descriptions:
 [VIEW_DESCRIPTIONS_HERE]
 Given a user question, extract information into the following three categories:
 "Views" (نام ویوها): The exact view names (from the list above) that are most relevant to the question.
-"Entities" (موجودیت‌ها): The main subjects/tables being discussed (e.g., Project, Contract, Invoice, Risk, Work Item).
 "Attributes" (ویژگی‌ها): The specific columns, fields, or properties requested to be shown or used as filters (e.g., Progress Percentage, End Date, Status, Name). Crucial: If the user mentions a specific value (like "20%" or "Be'sat"), you must infer and extract the ATTRIBUTE that value represents (e.g., "Progress" or "Project Name").
 "Values" (مقادیر): The specific names, numbers, or dates used for filtering.
 Format your output STRICTLY as a JSON object with keys: "Views", "Attributes", and "Values". Do not include any explanation outside the JSON.
@@ -13,8 +12,7 @@ Examples:
 User Question: لیست پروژه‌هایی که مدیر پروژه آن‌ها «پژمان وحیدزاده» است و پیشرفت واقعی آن‌ها کمتر از ۵۰ درصد است را بده.
 Output:
 {
-"Views": ["Report.vw_Projects"],
-"Entities": ["پروژه"]
+"Views": ["dbo.vw_Project"],
 "Attributes": ["مدیر پروژه", "پیشرفت واقعی"],
 "Values": ["پژمان وحیدزاده", "< 50"]
 }
@@ -22,7 +20,6 @@ User Question: چه اقلام کاری مسئولیتشون با «مجید ص�
 Output:
 {
 "Views": ["Report.vw_DataFormItem"],
-"Entities": ["قلم کاری"]
 "Attributes": ["کاربر تخصیص یافته", "تاریخ پایان برنامه‌ای", "وضعیت تکمیل", "پیشرفت واقعی"],
 "Values": ["مجید صالح پور", "گذشته", "کامل نشده‌اند", "< 100"]
 }
@@ -30,23 +27,20 @@ User Question: مجموع مبالغ پرداخت شده به ازای هر پر
 Output:
 {
 "Views": ["Report.vw_Payments"],
-"Entities": ["پرداخت"]
 "Attributes": ["نام پروژه", "مبلغ پرداخت", "واحد پول"],
 "Values": ["ریال"]
 }
 User Question: قراردادهایی که بیشتر از ۵ الحاقیه دارن و تاریخ شروعشون مال قبل از سال ۱۴۰۰ بوده رو میخوام؟ نام پروژه و شماره قرارداد برگردون.
 Output:
 {
-"Views": ["Report.vw_Contracts"],
-"Entities": ["قرارداد"]
+"Views": ["dbo.vw_Contract"],
 "Attributes": ["نام پروژه", "شماره قرارداد", "تعداد الحاقیه ها", "سال تاریخ شروع قرارداد"],
 "Values": ["> 5", "< 1400"]
 }
 User Question: چند تا ریسک با شدت بالای ۵ در پروژه‌های استان «تهران» شناسایی شده است؟
 Output:
 {
-"Views": ["Report.vw_Risks", "Report.vw_Projects"],
-"Entities": ["ریسک", "پروژه"]
+"Views": ["Report.vw_Risks", "dbo.vw_Project"],
 "Attributes": ["شدت ریسک", "استان پروژه"],
 "Values": ["> 5", "تهران"]
 }
@@ -54,15 +48,13 @@ User Question: صورت وضعیت‌هایی که در سال ۱۳۹۲ صادر
 Output:
 {
 "Views": ["Report.vw_Invoice"],
-"Entities": ["صورت وضعیت"]
 "Attributes": ["سال صدور", "مبلغ نهایی تایید شده", "مبلغ اعلامی اولیه"],
 "Values": ["1392", "برابر با مبلغ اعلامی اولیه"]
 }
 User Question: نام منابعی از نوع «کار» در پروژه «مجتمع پاسارگاد» که بیشتر از ۱۰۰۰ واحد از آن‌ها استفاده شده است چیست؟
 Output:
 {
-"Views": ["Report.vw_ResourceUsage", "Report.vw_Projects"],
-"Entities": ["مصرف منابع", "پروژه"]
+"Views": ["Report.vw_ResourceUsage", "dbo.vw_Project"],
 "Attributes": ["نام منبع", "نوع منبع", "نام پروژه", "میزان استفاده"],
 "Values": ["کار", "مجتمع پاسارگاد", "> 1000"]
 }
@@ -70,7 +62,6 @@ User Question: لیست تمام مشکلات و موانع (Issues) که وضع
 Output:
 {
 "Views": ["Report.vw_Issues"],
-"Entities": ["مشکلات و موانع"]
 "Attributes": ["وضعیت مشکل", "تاریخ موعد"],
 "Values": ["بدون اقدام", "ماه میلادی جاری"]
 }
@@ -78,7 +69,6 @@ User Question: لیست ساختارهای شکست هزینه (CBS) که بود
 Output:
 {
 "Views": ["Report.vw_CBS", "Report.vw_Invoice"],
-"Entities": ["ساختار شکست هزینه", "صورت وضعیت"]
 "Attributes": ["بودجه ریالی", "صورت وضعیت"],
 "Values": ["> 10000000000", "ثبت نشده"]
 }

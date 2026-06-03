@@ -1,0 +1,171 @@
+[
+    {
+        "name": "VolUnit",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            25,
+            32,
+            78,
+            3269,
+            6379
+        ]
+    },
+    {
+        "name": "ResourceID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            2,
+            10
+        ]
+    },
+    {
+        "name": "UsageAmount",
+        "type": "DECIMAL(18, 2)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1",
+            "2"
+        ]
+    },
+    {
+        "name": "Comments",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "3241",
+            "sdfsdfsdf",
+            "بررسی اشکالات",
+            "توسعه",
+            "متر"
+        ]
+    },
+    {
+        "name": "Cost",
+        "type": "DECIMAL(18, 2)",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "WBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            31993,
+            31995
+        ]
+    },
+    {
+        "name": "Abbreviation",
+        "type": "NVARCHAR(50) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ResourceName",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Ali",
+            "CAT 797F dump truck"
+        ]
+    },
+    {
+        "name": "ResourceTypeName",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "مواد",
+            "کار"
+        ]
+    },
+    {
+        "name": "ResourceGroupName",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "heavy equipment",
+            "ماشین آلات",
+            "ماشین الات",
+            "مصالح",
+            "نیروی انسانی"
+        ]
+    },
+    {
+        "name": "WBSName",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Analyse",
+            "اجرای فونداسیون - بلوک 3"
+        ]
+    },
+    {
+        "name": "WBSCode",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "1",
+            "1.1.1",
+            "1.1.2",
+            "1.1.3",
+            "1.12.3",
+            "1.2.1",
+            "1.2.2",
+            "1.2.3",
+            "1.5.1",
+            "۱.۱.۵"
+        ]
+    },
+    {
+        "name": "ActivityCode",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "0.38",
+            "344",
+            "SpProject"
+        ]
+    },
+    {
+        "name": "WBSPath",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Project test2/phase1/Analyse",
+            "پروژه سمپل"
+        ]
+    },
+    {
+        "name": "ActualStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2017-05-22",
+            "2017-05-29"
+        ]
+    }
+]
