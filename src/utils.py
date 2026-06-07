@@ -138,14 +138,18 @@ def count_chat_tokens(messages: list[BaseMessage]) -> int:
     total_tokens = 0
 
     for message in messages:
-        total_tokens += len(encoding.encode(message.content))
-
-        # Small overhead per message (role + separators)
+        # Check if it's a LangChain message object or a dictionary
+        if isinstance(message, BaseMessage):
+            content = message.content
+        elif isinstance(message, dict):
+            content = message.get("content", "")
+        else:
+            content = str(message)
+            
+        total_tokens += len(encoding.encode(content))
         total_tokens += 4
 
-    # Extra tokens for assistant reply priming
     total_tokens += 2
-
     return total_tokens
 
 

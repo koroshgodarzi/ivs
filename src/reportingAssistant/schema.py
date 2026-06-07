@@ -19,3 +19,4 @@ class GraphState(TypedDict):
     retrieved_values: Optional[str]
     keywords: str
     query_generation_user_prompt: str
+    chat_history: str

@@ -34,7 +34,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     data_context = create_data_context_for_schemas(needed_columns_dict, data_dir=data_dir)
     join_info = format_join_info_for_llm(join_info)
 
-    history = format_chat_history(state)
+    history = state["chat_history"]
     
     retrieved_values = state.get("retrieved_values", {})
     

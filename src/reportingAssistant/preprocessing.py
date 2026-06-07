@@ -2,7 +2,7 @@ from reportingAssistant.schema import GraphState
 import os
 from langchain_core.runnables import RunnableConfig
 import json
-from utils import get_llm, extract_json_from_text, ommiting_think_block
+from utils import get_llm, extract_json_from_text, ommiting_think_block, count_chat_tokens
 from pathlib import Path
 
 
@@ -44,6 +44,7 @@ def keyword_view_extraction(state: GraphState, config: RunnableConfig) -> GraphS
     prompt = prompt.replace("[VIEW_DESCRIPTIONS_HERE]", view_descriptions_str)
 
     history = format_chat_history(state)
+
     prompt = prompt.replace("[HISTORY_HERE]", history)
     prompt = prompt.replace("[USER_QUESTION_HERE]", user_question)
     
@@ -70,26 +71,53 @@ def keyword_view_extraction(state: GraphState, config: RunnableConfig) -> GraphS
 
     print(f"---Extracted Keywords---\n{keywords}")
 
-    return {"keywords": keywords}
+    return {"keywords": keywords, "chat_history": history}
 
 
-def format_chat_history(state: GraphState) -> str:
-    history_str = ""
+def format_chat_history(state: GraphState, max_tokens: int = 2000) -> str:
+    """
+    Formats chat history into a string, truncating the oldest turns
+    to ensure the total token count stays below max_tokens.
+    """
     messages = state.get("messages", [])
     queries = state.get("generated_query", [])
     
-    # We match messages to query attempts
-    # Assuming user asks, agent runs, then maybe retries
+    # List to store formatted strings for each turn
+    formatted_turns = []
+    
+    # We rebuild the turns to check token counts
+    # We iterate backwards (from newest to oldest) to keep the most recent context
+    # and stop when we exceed the threshold
+    
     turn_idx = 0
+    # Group interactions into (User + System) pairs
+    turns = []
     for msg in messages:
         if msg["role"] == "user":
-            history_str += f"User Question: {msg['content']}\n"
-            # Get the list of queries for this turn
-            if turn_idx < len(queries):
-                attempted_queries = queries[turn_idx]
-                if attempted_queries:
-                    history_str += f"System (Previous SQL attempt): {attempted_queries[-1]}\n"
-            history_str += "---\n"
+            # Start a new turn
+            turns.append({"user": msg["content"], "query": None})
+            if turn_idx < len(queries) and queries[turn_idx]:
+                turns[-1]["query"] = queries[turn_idx][-1] # Get last attempt
             turn_idx += 1
+
+    # Process from newest to oldest
+    final_history_str = ""
+    current_token_count = 0
+    
+    for turn in reversed(turns):
+        turn_str = f"User Question: {turn['user']}\n"
+        if turn['query']:
+            turn_str += f"System (Previous SQL attempt): {turn['query']}\n"
+        turn_str += "---\n"
+        
+        # Calculate tokens for this specific turn
+        turn_tokens = count_chat_tokens([{"role": "user", "content": turn_str}])
+        
+        if current_token_count + turn_tokens <= max_tokens:
+            final_history_str = turn_str + final_history_str
+            current_token_count += turn_tokens
+        else:
+            # Threshold reached, stop adding older context
+            break
             
-    return history_str
+    return final_history_str
