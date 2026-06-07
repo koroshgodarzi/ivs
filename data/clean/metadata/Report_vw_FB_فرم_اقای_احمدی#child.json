@@ -1,0 +1,36 @@
+[
+    {
+        "name": "ID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            9525
+        ]
+    },
+    {
+        "name": "ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            9524
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "میزان_تحقق_",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "23"
+        ]
+    }
+]

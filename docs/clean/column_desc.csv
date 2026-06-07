@@ -1,407 +1,411 @@
 TABLE_NAME,Column_Name,Description
-vw_Cashflow,GFromDate,
-vw_Cashflow,GToDate,
-vw_Cashflow,PlanCashIn,
-vw_Cashflow,PlanCashOut,
-vw_Cashflow,TotalPlanCash,
-vw_Cashflow,PlanCashInCumulative,
-vw_Cashflow,PlanCashOutCumulative,
-vw_Cashflow,PlanCashCumulative,
-vw_Cashflow,ActualCashIn,
-vw_Cashflow,ActualCashOut,
-vw_Cashflow,TotalActualCash,
-vw_Cashflow,ActualCashInCommulative,
-vw_Cashflow,ActualCashOutCommulative,
-vw_Cashflow,TotalActualCashCommulative,
-vw_Cashflow,ProjectID,
-vw_Cashflow,TimePeriod,
-vw_CBS,CBSID,
-vw_CBS,CBSName,
-vw_CBS,OrganizationUnitID,
-vw_CBS,OrganUnitName,
-vw_CBS,Stakeholder_ParentID,
-vw_CBS,CreationTime,
-vw_CBS,LastModificationTime,
-vw_CBS,Weight,
-vw_CBS,ProjectID,
-vw_CBS,Budget,
-vw_CBS,IRRAmmount,
-vw_CBS,USDAmmount,
-vw_CBS,EURAmmount,
-vw_CBS,AEDAmmount,
-vw_CBS,WBSID,
-vw_DataFormItem,DataFormItemKEY,
-vw_DataFormItem,WBSID,
-vw_DataFormItem,WeightOfWhole,
-vw_DataFormItem,ProjectKey,
-vw_DataFormItem,ProjectName,
-vw_DataFormItem,DataFormItemPK,
-vw_DataFormItem,DataFormItemTitle,
-vw_DataFormItem,Duration,
-vw_DataFormItem,DurationUnit,
-vw_DataFormItem,ActualStartDate_MiladiDate,
-vw_DataFormItem,ActualEndDate_MiladiDate,
-vw_DataFormItem,PlanStartDate_MiladiDate,
-vw_DataFormItem,PlanEndDate_MiladiDate,
-vw_DataFormItem,ActualProgress,
-vw_DataFormItem,PlanProgress,
-vw_DataFormItem,DisciplineName,
-vw_DataFormItem,DFITypeName,
-vw_DataFormItem,WorkflowModelName,
-vw_DataFormItem,volume,
-vw_DataFormItem,VolUnitAbbr,
-vw_DataFormItem,volume unit,
-vw_DataFormItem,AssignedUsers,
-vw_Invoice,InvoiceKey,
-vw_Invoice,ContractPK,
-vw_Invoice,ContractTitle,
-vw_Invoice,InvoiceNumber,
-vw_Invoice,DateReceived,
-vw_Invoice,DateIssued,
-vw_Invoice,Amount,
-vw_Invoice,PreviousAccepted,
-vw_Invoice,FinalAcceptedAmount,
-vw_Invoice,CBSID,
-vw_Invoice,CBSName,
-vw_Invoice,ValueAddedTax,
-vw_Invoice,IsInvoiceBalance,
-vw_Invoice,BalanceInvoiceNumber,
-vw_Issues,IssueID,
-vw_Issues,OrganizationUnitID,
-vw_Issues,IssuesTitle,
-vw_Issues,Description,
-vw_Issues,ActionDescription,
-vw_Issues,Severity,
-vw_Issues,IdentificationDate,
-vw_Issues,DueDate,
-vw_Issues,Resolution,
-vw_Issues,AssignedUserDetailsUserName,
-vw_Issues,AssignedUserDetailsFirstName,
-vw_Issues,AssignedUserDetailsLastName,
-vw_Issues,IssueStatus,
-vw_Issues,CreatorUserDetailsUserName,
-vw_Issues,CreatorUserDetailsFirstName,
-vw_Issues,CreatorUserDetailsLastName,
-vw_Issues,LastModifierUserDetailsUserName,
-vw_Issues,LastModifierUserDetailsFirstName,
-vw_Issues,LastModifierUserDetailsLastName,
-vw_Issues,ProjectID,
-vw_Issues,ProjectName,
-vw_Issues,IssueCategory,
-vw_Issues,AssignedUserDetailsFullName,
-vw_Issues,CreatorUserDetailsFullName,
-vw_Issues,LastModifierUserDetailsFullName,
-vw_Issues,ReferCount,
-vw_Issues,ResponsibleStakeholder,
-vw_OrganizationUnit,StakeholderID,
-vw_OrganizationUnit,OrganizationUnitTitle,
-vw_OrganizationUnit,ParentID,
-vw_OrganizationUnit,ProgProgress,
-vw_OrganizationUnit,ActualProgress,
-vw_OrganizationUnitType,OrganizationUnitTypeID,
-vw_OrganizationUnitType,OrganizationUnitTypeTitle,
-vw_OrganUnitScurve,FromDate,
-vw_OrganUnitScurve,Todate,
-vw_OrganUnitScurve,OrganizationUnitTitle,
-vw_OrganUnitScurve,ParentId,
-vw_OrganUnitScurve,PlanProgress,
-vw_OrganUnitScurve,ActualProgress,
-vw_OrganUnitScurve,TimePeriodtxt,
-vw_Payments,PaymentID,
-vw_Payments,OrganizationUnitID,
-vw_Payments,OrganUnitName,
-vw_Payments,ParentID,
-vw_Payments,DocumentNumber,
-vw_Payments,PaymentDate,
-vw_Payments,Amount,
-vw_Payments,CurrencyName,
-vw_Payments,InvoiceID,
-vw_Payments,InvoiceNumber,
-vw_Payments,ProjectID,
-vw_Payments,ProjectName,
-vw_Payments,CBSID,
-vw_Payments,CBSName,
-vw_Payments,ContractID,
-vw_Payments,CostCenterName,
-vw_Payments,PaymentBehalfName,
-vw_Payments,PaymentTypeName,
-vw_Photos,PhotoID,
-vw_Photos,ProjectID,
-vw_Photos,PhotoValue,
-vw_PlanHistory,PlanHistoryID,
-vw_PlanHistory,ProjectName,
-vw_PlanHistory,WBSID,
-vw_PlanHistory,wbsName,
-vw_PlanHistory,ProjectPlanID,
-vw_PlanHistory,ProjectPlanName,
-vw_PlanHistory,CreationTime,
-vw_PlanHistory,PlanStartDate,
-vw_PlanHistory,PlanEndDate,
-vw_ProjectGroup,ProjectGroupID,
-vw_ProjectGroup,ProjectGroupName,
-vw_ProjectGroupScurve,DateType,
-vw_ProjectGroupScurve,FromDate,
-vw_ProjectGroupScurve,ToDate,
-vw_ProjectGroupScurve,PlanProgress,
-vw_ProjectGroupScurve,ActualProgress,
-vw_ProjectGroupScurve,PlanCommulative,
-vw_ProjectGroupScurve,ActualCommulative,
-vw_ProjectGroupScurve,ProjectGroupID,
-vw_ProjectGroupScurve,TimePeriod,
-vw_ProjectMonthlyReport,ProjectMonthlyReportID,
-vw_ProjectMonthlyReport,ProjectID,
-vw_ProjectMonthlyReport,ProjectName,
-vw_ProjectMonthlyReport,StatusTitle,
-vw_ProjectMonthlyReport,CreationTime,
-vw_ProjectMonthlyReport,DoneWorkTitle,
-vw_ProjectMonthlyReport,DoneWorkWorkDescription,
-vw_ProjectMonthlyReport,FutureWorkTitle,
-vw_ProjectMonthlyReport,FutureWorkDescription,
-vw_ProjectMonthlyReport,IsDone,
-vw_ProjectMonthlyReport,ReportNumber,
-vw_ProjectPlan,ProjectPlanID,
-vw_ProjectPlan,ProjectPlanName,
-vw_ProjectPlan,ProjectID,
-vw_ProjectPlan,ProjectName,
-vw_ProjectPlan,isDefault,
-vw_ProjectPlanProgress,ProjectID,
-vw_ProjectPlanProgress,ProjectName,
-vw_ProjectPlanProgress,Date,
-vw_ProjectPlanProgress,ActualProgress,
-vw_ProjectPlanProgress,PlanProgress,
-vw_ProjectScurve,FromDate,
-vw_ProjectScurve,ToDate,
-vw_ProjectScurve,PlanProgress,
-vw_ProjectScurve,ActualProgress,
-vw_ProjectScurve,PlanCommulative,
-vw_ProjectScurve,ActualCommulative,
-vw_ProjectScurve,ProjectID,
-vw_ProjectScurve,TimePeriod,
-vw_ResourceUsage,VolUnit,
-vw_ResourceUsage,ProjectID,
-vw_ResourceUsage,ResourceID,
-vw_ResourceUsage,UsageAmount,
-vw_ResourceUsage,Comments,
-vw_ResourceUsage,Cost,
-vw_ResourceUsage,WBSID,
-vw_ResourceUsage,Abbreviation,
-vw_ResourceUsage,ResourceName,
-vw_ResourceUsage,ResourceTypeName,
-vw_ResourceUsage,ResourceGroupName,
-vw_ResourceUsage,WBSName,
-vw_ResourceUsage,WBSCode,
-vw_ResourceUsage,ActivityCode,
-vw_ResourceUsage,WBSPath,
-vw_ResourceUsage,ActualStartDate,
-vw_Risks,RiskID,
-vw_Risks,OrganizationUnitID,
-vw_Risks,OrganUnitName,
-vw_Risks,ParentID,
-vw_Risks,RiskTitle,
-vw_Risks,Description,
-vw_Risks,Severity,
-vw_Risks,IdentificationDate,
-vw_Risks,DueDate,
-vw_Risks,Resolution,
-vw_Risks,AssignedTo,
-vw_Risks,Type,
-vw_Risks,Probability,
-vw_Risks,DetectionCapability,
-vw_Risks,Sign,
-vw_Risks,SupportResponse,
-vw_Risks,AssignedUserDetailsUserName,
-vw_Risks,AssignedUserDetailsFirstName,
-vw_Risks,AssignedUserDetailsLastName,
-vw_Risks,CreatorUserDetailsUserName,
-vw_Risks,CreatorUserDetailsFirstName,
-vw_Risks,CreatorUserDetailsLastName,
-vw_Risks,LastModifierUserDetailsUserName,
-vw_Risks,LastModifierUserDetailsFirstName,
-vw_Risks,LastModifierUserDetailsLastName,
-vw_Risks,ProjectID,
-vw_Risks,ProjectName,
-vw_Risks,RiskCategory,
-vw_Risks,RiskStatus,
-vw_Risks,ReferCount,
-vw_Risks,ActionDescription,
-vw_Risks,OrganizationUnit,
-vw_WBS,ParentID,
-vw_WBS,WbsId,
-vw_WBS,Duration,
-vw_WBS,DurationUnit,
-vw_WBS,IsActivity,
-vw_WBS,Code,
-vw_WBS,Name,
-vw_WBS,ActivityCode,
-vw_WBS,PlanEndDate,
-vw_WBS,PlanStartDate,
-vw_WBS,ActualEndDate,
-vw_WBS,ActualStartDate,
-vw_WBS,IsMilestone,
-vw_WBS,ProjectID,
-vw_WBS,ProjectName,
-vw_WBS,Weight,
-vw_WBS,Critical,
-vw_WBS,PlanProgress,
-vw_WBS,ActualProgress,
-vw_WBS,FieldProgress,
-vw_WBS,lvl,
-vw_WBS,ParentPath,
-vw_WorkItems,WorkItemID,
-vw_WorkItems,WBSID,
-vw_WorkItems,WeightOfWhole,
-vw_WorkItems,ProjectID,
-vw_WorkItems,ProjectName,
-vw_WorkItems,WorkItemTitle,
-vw_WorkItems,Duration,
-vw_WorkItems,DurationUnit,
-vw_WorkItems,ActualStartDateKEY,
-vw_WorkItems,ActualStartDate_Year,
-vw_WorkItems,ActualStartDate_Month,
-vw_WorkItems,ActualStartDate_Day,
-vw_WorkItems,ActualStartDate_PersianDate,
-vw_WorkItems,ActualStartDate,
-vw_WorkItems,ActualEndDateKEY,
-vw_WorkItems,ActualEndDate_Year,
-vw_WorkItems,ActualEndDate_Month,
-vw_WorkItems,ActualEndDate_Day,
-vw_WorkItems,ActualEndDate_PersianDate,
-vw_WorkItems,ActualEndtDate,
-vw_WorkItems,PlanStartDateKEY,
-vw_WorkItems,PlanStartDate_Year,
-vw_WorkItems,PlanStartDate_Month,
-vw_WorkItems,PlanStartDate_Day,
-vw_WorkItems,PlanStartDate_PersianDate,
-vw_WorkItems,PlanStartDate,
-vw_WorkItems,PlanEndDateKEY,
-vw_WorkItems,PlanEndDate_Year,
-vw_WorkItems,PlanEndDate_Month,
-vw_WorkItems,PlanEndDate_Day,
-vw_WorkItems,PlanEndDate_PersianDate,
-vw_WorkItems,PlanEndDate,
-vw_WorkItems,ActualProgress,
-vw_WorkItems,PlanProgress,
-vw_WorkItems,DisciplineName,
-vw_WorkItems,WorkItemType,
-vw_WorkItems,WorkflowModel,
-vw_WorkItems,VolumnOfWork,
-vw_WorkItems,VolUnitAbbr,
-vw_WorkItems,VolUnit,
-vw_WorkItems,SubProjectID,
-vw_WorkItems,ResponsibleUser,
-vw_Contract,ProjectKEY,
-vw_Contract,DefaultProjectPlanPK,
-vw_Contract,ProjectName,
-vw_Contract,Contractkey,
-vw_Contract,IsCashIn,
-vw_Contract,isKarfama,
-vw_Contract,ContractTitle,
-vw_Contract,ContractAmount,
-vw_Contract,ContractNumber,
-vw_Contract,ContractFinalAmount,
-vw_Contract,Contract_Date,
-vw_Contract,Contract_Date_Int,
-vw_Contract,ContractDate,
-vw_Contract,ContractDate_Year,
-vw_Contract,ContractDate_Month,
-vw_Contract,ContractDate_Day,
-vw_Contract,ContractDate_PersianDate,
-vw_Contract,ContractDate_MiladiDate,
-vw_Contract,ContractedStartDate_Year,
-vw_Contract,ContractedStartDate_Month,
-vw_Contract,ContractedStartDate_Day,
-vw_Contract,ContractedStartDate_PersianDate,
-vw_Contract,ContractedStartDate_MiladiDate,
-vw_Contract,ContractFinishDate_Year,
-vw_Contract,ContractFinishDate_Month,
-vw_Contract,ContractFinishDate_Day,
-vw_Contract,ContractFinishDate_PersianDate,
-vw_Contract,ContractFinishDate_MiladiDate,
-vw_Contract,ContractTypeName,
-vw_Contract,ContractStatusName,
-vw_Contract,SumContractAmendment,
-vw_Contract,AmountPayment,
-vw_Contract,AmountInvoice,
-vw_Contract,CountContractAmendment,
-vw_Contract,CountInvoice,
-vw_Contract,MaxAmendmentDate_Day,
-vw_Contract,MaxAmendmentDate_Month,
-vw_Contract,MaxAmendmentDate_Year,
-vw_Contract,MaxAmendmentDate_MiladiDate,
-vw_Contract,MaxAmendmentDate_PersianDate,
-vw_Contract,MaxInvoice_Day,
-vw_Contract,MaxInvoice_Month,
-vw_Contract,MaxInvoice_Year,
-vw_Contract,MaxInvoice_MiladiDate,
-vw_Contract,MaxInvoice_PersianDate,
-vw_Contract,CountPayment,
-vw_Contract,MaxPaiementDate_Day,
-vw_Contract,MaxPaiementDate_Month,
-vw_Contract,MaxPaiementDate_Year,
-vw_Contract,MaxPaiementDate_MiladiDate,
-vw_Contract,MaxPaiementDate_PersianDate,
-vw_Project,ProjectId,
-vw_Project,ProjectContractKEY,
-vw_Project,DefaultProjectPlanPK,
-vw_Project,ProjectName,
-vw_Project,ProjectNO,
-vw_Project,PMFullName,
-vw_Project,ProjectTitle,
-vw_Project,Client,
-vw_Project,Contractor,
-vw_Project,Supervisor,
-vw_Project,ContractSubject,
-vw_Project,ProjectAdmin,
-vw_Project,Location_Latitude,
-vw_Project,Location_Longtitude,
-vw_Project,ProjectStatusID,
-vw_Project,ProjectStatusName,
-vw_Project,Consultant,
-vw_Project,OrganizationUnitID,
-vw_Project,OrganizationUnitTypeID,
-vw_Project,OrganizationUnitName,
-vw_Project,LocationTitle,
-vw_Project,Title,
-vw_Project,DateTypeKEY,
-vw_Project,DateTypeName,
-vw_Project,ProjectTypeKEY,
-vw_Project,CountryProvinceCityKEY,
-vw_Project,CityName,
-vw_Project,Visible,
-vw_Project,UnitKEY,
-vw_Project,UnitName,
-vw_Project,LocationKEY,
-vw_Project,ContractKEY,
-vw_Project,IsCashIn,
-vw_Project,ContractTitle,
-vw_Project,ContractNO,
-vw_Project,ContractAmount,
-vw_Project,ContractDate,
-vw_Project,ContractDate_J,
-vw_Project,ContractFinalAmount,
-vw_Project,ContractedStartDate,
-vw_Project,ContractedStartDate_J,
-vw_Project,ContractFinishDate,
-vw_Project,ContractFinishDate_J,
-vw_Project,ContractDescription,
-vw_Project,Unit_ConKEY,
-vw_Project,Unit_ConName,
-vw_Project,ContractTypeName,
-vw_Project,ContractStatusName,
-vw_Project,ContractTypeKEY,
-vw_Project,ProjectCountry,
-vw_Project,ProjectProvince,
-vw_Project,ProjectCity,
-vw_Project,PlanProgressfr,
-vw_Project,ActualProgressfr,
-vw_Project,PlanProgress,
-vw_Project,ActualProgress,
-vw_Project,FieldProgress,
-vw_Project,ProgressOfBeginningOfYear_Plan,
-vw_Project,ProgressOfEndOfYear_Plan,
-vw_Project,ProgressOfBeginningOfYear_Actual,
-vw_Project,ProgressOfEndOfYear_Actual,
-vw_Project,ParentID,
-vw_Project,WeightOfParentProject,
-vw_Project,RandTotal,
-vw_Project,RandYear,
+Report.vw_Cashflow,GFromDate,"Gregorian start date for the cashflow period"
+Report.vw_Cashflow,GToDate,"Gregorian end date for the cashflow period"
+Report.vw_Cashflow,PlanCashIn,"Planned cash inflow for the period"
+Report.vw_Cashflow,PlanCashOut,"Planned cash outflow for the period"
+Report.vw_Cashflow,TotalPlanCash,"Total net planned cash for the period"
+Report.vw_Cashflow,PlanCashInCumulative,"Cumulative planned cash inflow up to this period"
+Report.vw_Cashflow,PlanCashOutCumulative,"Cumulative planned cash outflow up to this period"
+Report.vw_Cashflow,PlanCashCumulative,"Cumulative total planned cash up to this period"
+Report.vw_Cashflow,ActualCashIn,"Actual cash inflow for the period"
+Report.vw_Cashflow,ActualCashOut,"Actual cash outflow for the period"
+Report.vw_Cashflow,TotalActualCash,"Total net actual cash for the period"
+Report.vw_Cashflow,ActualCashInCommulative,"Cumulative actual cash inflow up to this period"
+Report.vw_Cashflow,ActualCashOutCommulative,"Cumulative actual cash outflow up to this period"
+Report.vw_Cashflow,TotalActualCashCommulative,"Cumulative total actual cash up to this period"
+Report.vw_Cashflow,ProjectID,"Unique identifier for the project"
+Report.vw_Cashflow,TimePeriod,"Text description or ID of the time period"
+Report.vw_CBS,CBSID,"Unique identifier for the Cost Breakdown Structure (CBS) node"
+Report.vw_CBS,CBSName,"Name or title of the CBS node"
+Report.vw_CBS,OrganizationUnitID,"Identifier of the associated Organization Unit"
+Report.vw_CBS,OrganUnitName,"Name of the associated Organization Unit"
+Report.vw_CBS,Stakeholder_ParentID,"Identifier of the parent stakeholder or node"
+Report.vw_CBS,CreationTime,"Timestamp when the CBS node was created"
+Report.vw_CBS,LastModificationTime,"Timestamp when the CBS node was last modified"
+Report.vw_CBS,Weight,"Relative weight of the CBS node within the project"
+Report.vw_CBS,ProjectID,"Unique identifier for the project"
+Report.vw_CBS,Budget,"Allocated budget for the CBS node"
+Report.vw_CBS,IRRAmmount,"Budget amount in Iranian Rials (IRR)"
+Report.vw_CBS,USDAmmount,"Budget amount in US Dollars (USD)"
+Report.vw_CBS,EURAmmount,"Budget amount in Euros (EUR)"
+Report.vw_CBS,AEDAmmount,"Budget amount in UAE Dirhams (AED)"
+Report.vw_CBS,WBSID,"Unique identifier for the associated Work Breakdown Structure (WBS) node"
+Report.vw_Contracts,Contractkey,"Unique system key for the contract"
+Report.vw_Contracts,ContractNumber,"Official contract reference number"
+Report.vw_Contracts,ContractTitle,"Title or name of the contract"
+Report.vw_Contracts,IsCashIn,"Boolean flag indicating if the contract generates cash inflow"
+Report.vw_Contracts,ProjectKEY,"Unique key for the associated project"
+Report.vw_Contracts,ProjectName,"Name of the associated project"
+Report.vw_Contracts,ContractStatusName,"Current status of the contract (e.g., Active, Closed)"
+Report.vw_Contracts,ContractedStartDate_MiladiDate,"Gregorian planned start date of the contract"
+Report.vw_Contracts,ContractFinishDate_MiladiDate,"Gregorian planned finish date of the contract"
+Report.vw_Contracts,ActualProgress,"Actual progress percentage of the contract"
+Report.vw_Contracts,PlanProgress,"Planned progress percentage of the contract"
+Report.vw_Contracts,ContractAmount,"Original financial amount of the contract"
+Report.vw_Contracts,ContractFinalAmount,"Final financial amount of the contract including amendments"
+Report.vw_Contracts,SumContractAmendment,"Total financial sum of all contract amendments"
+Report.vw_Contracts,ContractDate_MiladiDate,"Gregorian date when the contract was signed"
+Report.vw_Contracts,AmountPayment,"Total amount paid against the contract"
+Report.vw_Contracts,AmountInvoice,"Total amount invoiced against the contract"
+Report.vw_Contracts,CountContractAmendment,"Total number of amendments applied to the contract"
+Report.vw_Contracts,CountInvoice,"Total number of invoices issued for the contract"
+Report.vw_Contracts,MaxAmendmentDate_MiladiDate,"Gregorian date of the most recent contract amendment"
+Report.vw_Contracts,MaxInvoice_MiladiDate,"Gregorian date of the most recent invoice"
+Report.vw_Contracts,CountPayment,"Total number of payments made"
+Report.vw_Contracts,MaxPaiementDate_MiladiDate,"Gregorian date of the most recent payment"
+Report.vw_Contracts,نام کارگاه - فرم گردش قراداد,"Workshop name extracted from the contract workflow form"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#برنامه_عملیاتی_,ID,"Unique identifier for the operational plan record"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#برنامه_عملیاتی_,ParentID,"Identifier of the parent record in the hierarchy"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#برنامه_عملیاتی_,ProjectID,"Identifier of the associated project"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#برنامه_عملیاتی_,در_صورت_داشتن_برنامه_عملیاتی,"Details if an operational plan exists for the 7th Development Plan"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,ID,"Unique identifier for the decree/mandate record"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,ParentID,"Identifier of the parent record in the hierarchy"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,ProjectID,"Identifier of the associated project"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,متن_حکم,"Text content of the official decree/mandate"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,شناسه_حکم,"Official identifier or code for the decree/mandate"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#شناسنامه_حکم,موضوع_,"Subject or topic of the decree"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,ID,"Unique identifier for the quantitative target record"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,ParentID,"Identifier of the parent record in the hierarchy"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,ProjectID,"Identifier of the associated project"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,سال_پنجم,"Target goal or metric for the fifth year"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,در_صورت_داشتن_هدف_کمی__میزان_تحقق_در_سال_اول_,"Realization amount in the first year for quantitative targets"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,سال_چهارم,"Target goal or metric for the fourth year"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,سال_دوم,"Target goal or metric for the second year"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#هدف_کمی,سال_سوم,"Target goal or metric for the third year"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,ID,"Unique identifier for the responsible deputy unit record"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,ParentID,"Identifier of the parent record in the hierarchy"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,ProjectID,"Identifier of the associated project"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,واحد_همکار,"Name of the collaborating unit"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,واحد_همکار_درون_سازمانی_,"Name of the internal collaborating organizational unit"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,دستگاه_متولی_برون_سازمانی_,"Name of the external responsible agency or ministry"
+Report.vw_FB_شناسنامه_احکام_و_گزارش_عملکرد_سازمان_تامین_اجتماعی_در_برنامه_هفتم_پیشرفت#واحد_متولی_معاونت,واحد_اصلی,"Name of the main responsible unit"
+Report.vw_FB_فرم_آپلود_فایل,ID,"Unique identifier for the file upload form record"
+Report.vw_FB_فرم_آپلود_فایل,ParentID,"Identifier of the parent record"
+Report.vw_FB_فرم_آپلود_فایل,ProjectID,"Identifier of the associated project"
+Report.vw_FB_فرم_آپلود_فایل,نام_و_نام_خانوادگی,"First and last name of the uploader"
+Report.vw_FB_فرم_اقای_احمدی,ID,"Unique identifier for the custom form record"
+Report.vw_FB_فرم_اقای_احمدی,ParentID,"Identifier of the parent record"
+Report.vw_FB_فرم_اقای_احمدی,ProjectID,"Identifier of the associated project"
+Report.vw_FB_فرم_اقای_احمدی,متن,"Text content of the custom form"
+Report.vw_FB_فرم_اقای_احمدی#child,ID,"Unique identifier for the custom form child record"
+Report.vw_FB_فرم_اقای_احمدی#child,ParentID,"Identifier of the parent custom form record"
+Report.vw_FB_فرم_اقای_احمدی#child,ProjectID,"Identifier of the associated project"
+Report.vw_FB_فرم_اقای_احمدی#child,میزان_تحقق_,"Realization amount or percentage for this item"
+Report.vw_FB_فرم_برنامه_هفتم,ID,"Unique identifier for the 7th Development Plan form record"
+Report.vw_FB_فرم_برنامه_هفتم,ParentID,"Identifier of the parent record"
+Report.vw_FB_فرم_برنامه_هفتم,ProjectID,"Identifier of the associated project"
+Report.vw_FB_فرم_برنامه_هفتم,واحد_همکار_درون_سازمانی_,"Internal organizational collaborating unit"
+Report.vw_FB_فرم_برنامه_هفتم,توضیحات_,"Additional comments or descriptions"
+Report.vw_FB_فرم_برنامه_هفتم,متن_حکم,"Text content of the decree"
+Report.vw_FB_فرم_برنامه_هفتم,موضوع_,"Subject of the plan or decree"
+Report.vw_FB_فرم_برنامه_هفتم,در_صورت_داشتن_برنامه_عملیاتی_,"Details if an operational plan exists"
+Report.vw_FB_فرم_برنامه_هفتم,اصلی_,"Boolean flag indicating if this is the main entity"
+Report.vw_FB_فرم_برنامه_هفتم,همکار_,"Boolean flag indicating if this is a collaborating entity"
+Report.vw_FB_فرم_برنامه_هفتم,دستگاه_متولی_برون_سازمانی_,"External responsible organization or agency"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,ID,"Unique identifier for the decree performance record"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,ParentID,"Identifier of the parent record"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,ProjectID,"Identifier of the associated project"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,زمان_اقدام,"Timeframe or date of the action taken"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,واحد_سنجش,"Unit of measurement used for performance tracking"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,خروجی_مورد_انتظار_,"Expected output or deliverable"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,میزان_تحقق_خروجی,"Actual realization rate of the expected output"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,اقدامات_آتی,"Planned future actions"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,شرح_اقدامات_حوزه_همکار_,"Description of actions performed by the collaborating unit"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,موانع_اجرایی,"Execution barriers and obstacles encountered"
+Report.vw_FB_فرم_برنامه_هفتم#عملکرد_حکم,شرح_اقدامات_حوزه_متولی_,"Description of actions performed by the responsible unit"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,ID,"Unique identifier for the operational plan title record"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,ParentID,"Identifier of the parent record"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,ProjectID,"Identifier of the associated project"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,شرح_فعالیت,"Description of the operational activity"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,خروجی,"Actual delivered output"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,زمان_پایان,"End time or completion date of the activity"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,عنوان_برنامه_عملیاتی,"Title of the operational plan"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,درصد_پیشرفت,"Percentage of progress made on the operational plan"
+Report.vw_FB_فرم_برنامه_هفتم#عنوان_برنامه_عملیاتی,زمان_شروع_,"Start time or commencement date of the activity"
+Report.vw_FB_فرم_برنامه_هفتم#هدف_کمی,ID,"Unique identifier for the quantitative target record"
+Report.vw_FB_فرم_برنامه_هفتم#هدف_کمی,ParentID,"Identifier of the parent record"
+Report.vw_FB_فرم_برنامه_هفتم#هدف_کمی,ProjectID,"Identifier of the associated project"
+Report.vw_FB_فرم_برنامه_هفتم#هدف_کمی,میزان_تحقق_,"Realization rate or achievement amount"
+Report.vw_Invoice,InvoiceKey,"Unique system key for the invoice"
+Report.vw_Invoice,ContractPK,"Primary key of the associated contract"
+Report.vw_Invoice,ContractTitle,"Title of the associated contract"
+Report.vw_Invoice,InvoiceNumber,"Official invoice reference number"
+Report.vw_Invoice,DateReceived,"Date the invoice was received"
+Report.vw_Invoice,DateIssued,"Date the invoice was officially issued"
+Report.vw_Invoice,Amount,"Total amount requested in the invoice"
+Report.vw_Invoice,PreviousAccepted,"Total invoice amount previously accepted"
+Report.vw_Invoice,FinalAcceptedAmount,"Final amount accepted for this invoice"
+Report.vw_Invoice,CBSID,"Identifier for the associated CBS node"
+Report.vw_Invoice,CBSName,"Name of the associated CBS node"
+Report.vw_Invoice,ValueAddedTax,"Value Added Tax (VAT) applied to the invoice"
+Report.vw_Invoice,IsInvoiceBalance,"Boolean flag indicating if this is a balance/final invoice"
+Report.vw_Invoice,BalanceInvoiceNumber,"Reference number for the balance invoice if applicable"
+Report.vw_Issues,IssueID,"Unique identifier for the issue"
+Report.vw_Issues,OrganizationUnitID,"Identifier of the associated Organization Unit"
+Report.vw_Issues,IssuesTitle,"Title or short description of the issue"
+Report.vw_Issues,Description,"Detailed description of the issue"
+Report.vw_Issues,ActionDescription,"Description of the action taken or required"
+Report.vw_Issues,Severity,"Severity or priority level of the issue"
+Report.vw_Issues,IdentificationDate,"Date the issue was identified"
+Report.vw_Issues,DueDate,"Deadline date for resolving the issue"
+Report.vw_Issues,Resolution,"Details on how the issue was resolved"
+Report.vw_Issues,AssignedUserDetailsUserName,"Username of the person assigned to resolve the issue"
+Report.vw_Issues,AssignedUserDetailsFirstName,"First name of the assigned person"
+Report.vw_Issues,AssignedUserDetailsLastName,"Last name of the assigned person"
+Report.vw_Issues,IssueStatus,"Current status of the issue (e.g., Open, Closed)"
+Report.vw_Issues,CreatorUserDetailsUserName,"Username of the person who reported the issue"
+Report.vw_Issues,CreatorUserDetailsFirstName,"First name of the issue creator"
+Report.vw_Issues,CreatorUserDetailsLastName,"Last name of the issue creator"
+Report.vw_Issues,LastModifierUserDetailsUserName,"Username of the last person to modify the issue"
+Report.vw_Issues,LastModifierUserDetailsFirstName,"First name of the last modifier"
+Report.vw_Issues,LastModifierUserDetailsLastName,"Last name of the last modifier"
+Report.vw_Issues,ProjectID,"Unique identifier for the associated project"
+Report.vw_Issues,ProjectName,"Name of the associated project"
+Report.vw_Issues,IssueCategory,"Category classification of the issue"
+Report.vw_Issues,AssignedUserDetailsFullName,"Full name of the person assigned to the issue"
+Report.vw_Issues,CreatorUserDetailsFullName,"Full name of the issue creator"
+Report.vw_Issues,LastModifierUserDetailsFullName,"Full name of the last modifier"
+Report.vw_Issues,ReferCount,"Number of times the issue has been referenced or escalated"
+Report.vw_Issues,ResponsibleStakeholder,"Stakeholder ultimately responsible for the issue"
+Report.vw_OrganizationUnit,StakeholderID,"Identifier of the associated stakeholder"
+Report.vw_OrganizationUnit,OrganizationUnitTitle,"Title or name of the Organization Unit"
+Report.vw_OrganizationUnit,ParentID,"Identifier of the parent Organization Unit"
+Report.vw_OrganizationUnit,ProgProgress,"Programmatic or planned progress of the unit"
+Report.vw_OrganizationUnit,ActualProgress,"Actual progress achieved by the unit"
+Report.vw_OrganizationUnitType,OrganizationUnitTypeID,"Unique identifier for the organization unit type"
+Report.vw_OrganizationUnitType,OrganizationUnitTypeTitle,"Title of the organization unit type (e.g., Department, Division)"
+Report.vw_OrganUnitScurve,FromDate,"Start date of the S-curve data period"
+Report.vw_OrganUnitScurve,Todate,"End date of the S-curve data period"
+Report.vw_OrganUnitScurve,OrganizationUnitTitle,"Name of the Organization Unit"
+Report.vw_OrganUnitScurve,ParentId,"Identifier of the parent Organization Unit"
+Report.vw_OrganUnitScurve,PlanProgress,"Planned progress percentage for the period"
+Report.vw_OrganUnitScurve,ActualProgress,"Actual progress percentage for the period"
+Report.vw_OrganUnitScurve,TimePeriodtxt,"Text representation of the time period (e.g., Q1 2024)"
+Report.vw_Payments,PaymentID,"Unique identifier for the payment"
+Report.vw_Payments,OrganizationUnitID,"Identifier of the Organization Unit processing the payment"
+Report.vw_Payments,OrganUnitName,"Name of the Organization Unit"
+Report.vw_Payments,ParentID,"Identifier of the parent entity"
+Report.vw_Payments,DocumentNumber,"Reference number of the payment document"
+Report.vw_Payments,PaymentDate,"Date the payment was processed"
+Report.vw_Payments,Amount,"Financial amount of the payment"
+Report.vw_Payments,CurrencyName,"Currency used for the payment"
+Report.vw_Payments,InvoiceID,"Identifier of the invoice being paid"
+Report.vw_Payments,InvoiceNumber,"Reference number of the invoice being paid"
+Report.vw_Payments,ProjectID,"Unique identifier for the associated project"
+Report.vw_Payments,ProjectName,"Name of the associated project"
+Report.vw_Payments,CBSID,"Identifier for the associated CBS node"
+Report.vw_Payments,CBSName,"Name of the associated CBS node"
+Report.vw_Payments,ContractID,"Identifier of the associated contract"
+Report.vw_Payments,CostCenterName,"Name of the cost center absorbing the payment"
+Report.vw_Payments,PaymentBehalfName,"Name of the entity the payment was made on behalf of"
+Report.vw_Payments,PaymentTypeName,"Type or category of the payment"
+Report.vw_Photos,PhotoID,"Unique identifier for the photo"
+Report.vw_Photos,ProjectID,"Unique identifier for the associated project"
+Report.vw_Photos,PhotoValue,"File path, URL, or binary data of the photo"
+Report.vw_PlanHistory,PlanHistoryID,"Unique identifier for the baseline/plan history record"
+Report.vw_PlanHistory,ProjectName,"Name of the associated project"
+Report.vw_PlanHistory,WBSID,"Identifier of the associated WBS node"
+Report.vw_PlanHistory,wbsName,"Name of the associated WBS node"
+Report.vw_PlanHistory,ProjectPlanID,"Identifier of the specific project plan or baseline"
+Report.vw_PlanHistory,ProjectPlanName,"Name of the project plan or baseline"
+Report.vw_PlanHistory,CreationTime,"Timestamp when the plan history record was saved"
+Report.vw_PlanHistory,PlanStartDate,"Planned start date in the historical baseline"
+Report.vw_PlanHistory,PlanEndDate,"Planned end date in the historical baseline"
+Report.vw_ProjectGroup,ProjectGroupID,"Unique identifier for the project portfolio or group"
+Report.vw_ProjectGroup,ProjectGroupName,"Name of the project portfolio or group"
+Report.vw_ProjectGroupScurve,DateType,"Type of date interval used for the S-curve (e.g., Monthly, Weekly)"
+Report.vw_ProjectGroupScurve,FromDate,"Start date of the S-curve data period"
+Report.vw_ProjectGroupScurve,ToDate,"End date of the S-curve data period"
+Report.vw_ProjectGroupScurve,PlanProgress,"Planned progress percentage for the period"
+Report.vw_ProjectGroupScurve,ActualProgress,"Actual progress percentage for the period"
+Report.vw_ProjectGroupScurve,PlanCommulative,"Cumulative planned progress for the project group"
+Report.vw_ProjectGroupScurve,ActualCommulative,"Cumulative actual progress for the project group"
+Report.vw_ProjectGroupScurve,ProjectGroupID,"Identifier of the associated project group"
+Report.vw_ProjectGroupScurve,TimePeriod,"Text description of the time period"
+Report.vw_ProjectMonthlyReport,ProjectMonthlyReportID,"Unique identifier for the monthly report"
+Report.vw_ProjectMonthlyReport,ProjectID,"Unique identifier for the associated project"
+Report.vw_ProjectMonthlyReport,ProjectName,"Name of the associated project"
+Report.vw_ProjectMonthlyReport,StatusTitle,"Overall status title for the reporting month"
+Report.vw_ProjectMonthlyReport,CreationTime,"Timestamp when the report was created"
+Report.vw_ProjectMonthlyReport,DoneWorkTitle,"Title summarizing work completed this month"
+Report.vw_ProjectMonthlyReport,DoneWorkWorkDescription,"Detailed description of work completed this month"
+Report.vw_ProjectMonthlyReport,FutureWorkTitle,"Title summarizing work planned for next month"
+Report.vw_ProjectMonthlyReport,FutureWorkDescription,"Detailed description of work planned for next month"
+Report.vw_ProjectMonthlyReport,IsDone,"Boolean flag indicating if the report is finalized"
+Report.vw_ProjectMonthlyReport,ReportNumber,"Sequential or reference number of the report"
+Report.vw_ProjectPlan,ProjectPlanID,"Unique identifier for the project plan or schedule"
+Report.vw_ProjectPlan,ProjectPlanName,"Name of the project plan"
+Report.vw_ProjectPlan,ProjectID,"Unique identifier for the associated project"
+Report.vw_ProjectPlan,ProjectName,"Name of the associated project"
+Report.vw_ProjectPlan,isDefault,"Boolean flag indicating if this is the active/default plan"
+Report.vw_ProjectPlanProgress,ProjectID,"Unique identifier for the associated project"
+Report.vw_ProjectPlanProgress,ProjectName,"Name of the associated project"
+Report.vw_ProjectPlanProgress,Date,"Date of the progress entry"
+Report.vw_ProjectPlanProgress,ActualProgress,"Actual progress recorded on this date"
+Report.vw_ProjectPlanProgress,PlanProgress,"Planned progress calculated for this date"
+Report.vw_Projects,ProjectId,"Unique identifier for the project"
+Report.vw_Projects,OrganizationUnitID,"Identifier of the Organization Unit managing the project"
+Report.vw_Projects,PMFullName,"Full name of the Project Manager"
+Report.vw_Projects,PMUserName,"System username of the Project Manager"
+Report.vw_Projects,Client,"Name of the client entity"
+Report.vw_Projects,Contractor,"Name of the primary contractor"
+Report.vw_Projects,Supervisor,"Name of the supervising entity or engineer"
+Report.vw_Projects,ContractNo,"Official contract number of the project"
+Report.vw_Projects,ProjectNO,"Internal project reference number"
+Report.vw_Projects,ContractSubject,"Subject or scope of the project contract"
+Report.vw_Projects,CreatedBy,"User who created the project record"
+Report.vw_Projects,LastModifiedBy,"User who last modified the project record"
+Report.vw_Projects,CreationTime,"Gregorian timestamp of project creation"
+Report.vw_Projects,CreationTime_J,"Jalali (Persian) timestamp of project creation"
+Report.vw_Projects,LastModificationTime,"Gregorian timestamp of last modification"
+Report.vw_Projects,LastModificationTime_J,"Jalali (Persian) timestamp of last modification"
+Report.vw_Projects,ProjectAdmin,"System administrator or coordinator for the project"
+Report.vw_Projects,DefaultLocation_CityID,"Identifier for the default city location of the project"
+Report.vw_Projects,Location_Latitude,"Geographical latitude of the project site"
+Report.vw_Projects,Location_Longtitude,"Geographical longitude of the project site"
+Report.vw_Projects,Consultant,"Name of the consulting firm"
+Report.vw_Projects,DefaultLocationID,"Identifier for the default geographical location"
+Report.vw_Projects,LocationTitle,"Name or title of the project location"
+Report.vw_Projects,ProjectName,"Name of the project"
+Report.vw_Projects,ProjectTypeKEY,"System key defining the type or category of the project"
+Report.vw_Projects,ProjectStatusName,"Current overall status of the project"
+Report.vw_Projects,OrganizationUnitName,"Name of the managing Organization Unit"
+Report.vw_Projects,ActualProgress,"Overall actual progress of the project"
+Report.vw_Projects,PlanProgress,"Overall planned progress of the project"
+Report.vw_Projects,ProgressOfBeginningOfYear_Plan,"Planned progress at the beginning of the current year"
+Report.vw_Projects,ProgressOfEndOfYear_Plan,"Planned progress targeted for the end of the current year"
+Report.vw_Projects,ProgressOfBeginningOfYear_Actual,"Actual progress at the beginning of the current year"
+Report.vw_Projects,ProgressOfEndOfYear_Actual,"Actual progress achieved by the end of the current year"
+Report.vw_Projects,RandTotal,"Calculated random or total weighting factor"
+Report.vw_Projects,RandYear,"Calculated yearly weighting factor"
+Report.vw_Projects,ProjectCountry,"Country where the project is located"
+Report.vw_Projects,ProjectProvince,"Province or state where the project is located"
+Report.vw_Projects,ProjectCity,"City where the project is located"
+Report.vw_Projects,ParentID,"Identifier of the parent program or master project"
+Report.vw_Projects,WeightOfParentProject,"Relative weight of this project within the parent project"
+Report.vw_Projects,ProjectHasControlPoints,"Boolean flag indicating if the project utilizes control points"
+Report.vw_Projects,مدت اجرای پروژه (تخمین) ,"Estimated execution duration of the project"
+Report.vw_Projects,کابر 1,"Custom user field 1"
+Report.vw_Projects,CurrencyName,"Default currency used for project financials"
+Report.vw_Projects,ProjectWBSKEY,"Root WBS system key for the project"
+Report.vw_Projects,ProjectWBSName,"Root WBS name for the project"
+Report.vw_ProjectScurve,FromDate,"Start date of the S-curve data period"
+Report.vw_ProjectScurve,ToDate,"End date of the S-curve data period"
+Report.vw_ProjectScurve,PlanProgress,"Planned progress for the period"
+Report.vw_ProjectScurve,ActualProgress,"Actual progress for the period"
+Report.vw_ProjectScurve,PlanCommulative,"Cumulative planned progress for the project"
+Report.vw_ProjectScurve,ActualCommulative,"Cumulative actual progress for the project"
+Report.vw_ProjectScurve,ProjectID,"Unique identifier for the associated project"
+Report.vw_ProjectScurve,TimePeriod,"Text description of the time period"
+Report.vw_ResourceUsage,VolUnit,"Volume unit or measurement unit for the resource"
+Report.vw_ResourceUsage,ProjectID,"Unique identifier for the associated project"
+Report.vw_ResourceUsage,ResourceID,"Unique identifier for the resource"
+Report.vw_ResourceUsage,UsageAmount,"Total amount or quantity of the resource used"
+Report.vw_ResourceUsage,Comments,"Additional comments regarding resource usage"
+Report.vw_ResourceUsage,Cost,"Financial cost associated with the resource usage"
+Report.vw_ResourceUsage,WBSID,"Identifier of the WBS node utilizing the resource"
+Report.vw_ResourceUsage,Abbreviation,"Short abbreviation for the resource unit or type"
+Report.vw_ResourceUsage,ResourceName,"Name of the resource (e.g., Labor, Concrete, Crane)"
+Report.vw_ResourceUsage,ResourceTypeName,"Category or type of the resource (e.g., Material, Equipment)"
+Report.vw_ResourceUsage,ResourceGroupName,"Group or classification the resource belongs to"
+Report.vw_ResourceUsage,WBSName,"Name of the WBS node utilizing the resource"
+Report.vw_ResourceUsage,WBSCode,"Hierarchical code of the WBS node"
+Report.vw_ResourceUsage,ActivityCode,"Code of the specific activity utilizing the resource"
+Report.vw_ResourceUsage,WBSPath,"Full hierarchical path of the WBS node"
+Report.vw_ResourceUsage,ActualStartDate,"Actual start date of the resource usage"
+Report.vw_Risks,RiskID,"Unique identifier for the risk"
+Report.vw_Risks,OrganizationUnitID,"Identifier of the Organization Unit tracking the risk"
+Report.vw_Risks,OrganUnitName,"Name of the Organization Unit"
+Report.vw_Risks,ParentID,"Identifier of the parent risk or entity"
+Report.vw_Risks,RiskTitle,"Title or short description of the risk"
+Report.vw_Risks,Description,"Detailed description of the risk and its potential impact"
+Report.vw_Risks,Severity,"Severity level if the risk occurs"
+Report.vw_Risks,IdentificationDate,"Date the risk was identified"
+Report.vw_Risks,DueDate,"Deadline for implementing risk response"
+Report.vw_Risks,Resolution,"Planned or actual resolution to mitigate the risk"
+Report.vw_Risks,AssignedTo,"Person or entity assigned to manage the risk"
+Report.vw_Risks,Type,"Type of the risk (e.g., Threat, Opportunity)"
+Report.vw_Risks,Probability,"Probability or likelihood of the risk occurring"
+Report.vw_Risks,DetectionCapability,"Ability or capability to detect the risk before it occurs"
+Report.vw_Risks,Sign,"Early warning sign or indicator of the risk"
+Report.vw_Risks,SupportResponse,"Required support or response strategy"
+Report.vw_Risks,AssignedUserDetailsUserName,"Username of the risk owner"
+Report.vw_Risks,AssignedUserDetailsFirstName,"First name of the risk owner"
+Report.vw_Risks,AssignedUserDetailsLastName,"Last name of the risk owner"
+Report.vw_Risks,CreatorUserDetailsUserName,"Username of the user who logged the risk"
+Report.vw_Risks,CreatorUserDetailsFirstName,"First name of the user who logged the risk"
+Report.vw_Risks,CreatorUserDetailsLastName,"Last name of the user who logged the risk"
+Report.vw_Risks,LastModifierUserDetailsUserName,"Username of the last user to modify the risk"
+Report.vw_Risks,LastModifierUserDetailsFirstName,"First name of the last modifier"
+Report.vw_Risks,LastModifierUserDetailsLastName,"Last name of the last modifier"
+Report.vw_Risks,ProjectID,"Unique identifier for the associated project"
+Report.vw_Risks,ProjectName,"Name of the associated project"
+Report.vw_Risks,RiskCategory,"Category classification of the risk (e.g., Financial, Safety)"
+Report.vw_Risks,RiskStatus,"Current status of the risk (e.g., Open, Mitigated)"
+Report.vw_Risks,ReferCount,"Number of times the risk has been referenced or escalated"
+Report.vw_Risks,ActionDescription,"Description of the mitigation actions taken"
+Report.vw_Risks,OrganizationUnit,"Organization Unit responsible for the risk"
+Report.vw_WBS,ParentID,"Identifier of the parent WBS node"
+Report.vw_WBS,WbsId,"Unique identifier for the Work Breakdown Structure (WBS) node"
+Report.vw_WBS,Duration,"Duration required to complete the WBS element"
+Report.vw_WBS,DurationUnit,"Unit of time for the duration (e.g., Days, Weeks)"
+Report.vw_WBS,IsActivity,"Boolean flag indicating if the node is a leaf activity/task"
+Report.vw_WBS,Code,"Hierarchical WBS code"
+Report.vw_WBS,Name,"Name or title of the WBS node"
+Report.vw_WBS,ActivityCode,"Specific code identifying the activity"
+Report.vw_WBS,PlanEndDate,"Planned end date of the WBS element"
+Report.vw_WBS,PlanStartDate,"Planned start date of the WBS element"
+Report.vw_WBS,ActualEndDate,"Actual completion date of the WBS element"
+Report.vw_WBS,ActualStartDate,"Actual start date of the WBS element"
+Report.vw_WBS,IsMilestone,"Boolean flag indicating if the WBS element is a milestone"
+Report.vw_WBS,ProjectID,"Unique identifier for the associated project"
+Report.vw_WBS,ProjectName,"Name of the associated project"
+Report.vw_WBS,Weight,"Relative weight of the WBS node within the project"
+Report.vw_WBS,Critical,"Boolean flag indicating if the WBS element is on the critical path"
+Report.vw_WBS,PlanProgress,"Planned progress percentage of the WBS element"
+Report.vw_WBS,ActualProgress,"Actual progress percentage of the WBS element"
+Report.vw_WBS,FieldProgress,"Progress percentage reported directly from the field"
+Report.vw_WBS,lvl,"Hierarchical level depth of the WBS node"
+Report.vw_WBS,ParentPath,"Full hierarchical path of parent nodes"
+Report.vw_WorkItems,WorkItemID,"Unique identifier for the work item or task"
+Report.vw_WorkItems,WBSID,"Identifier of the parent WBS node"
+Report.vw_WorkItems,WeightOfWhole,"Relative weight of the work item compared to the whole project"
+Report.vw_WorkItems,ProjectID,"Unique identifier for the associated project"
+Report.vw_WorkItems,ProjectName,"Name of the associated project"
+Report.vw_WorkItems,WorkItemTitle,"Title or short description of the work item"
+Report.vw_WorkItems,Duration,"Duration required to complete the work item"
+Report.vw_WorkItems,DurationUnit,"Unit of time for the duration"
+Report.vw_WorkItems,ActualStartDateKEY,"System key for the actual start date"
+Report.vw_WorkItems,ActualStartDate_Year,"Year the work item actually started"
+Report.vw_WorkItems,ActualStartDate_Month,"Month the work item actually started"
+Report.vw_WorkItems,ActualStartDate_Day,"Day the work item actually started"
+Report.vw_WorkItems,ActualStartDate_PersianDate,"Jalali (Persian) actual start date"
+Report.vw_WorkItems,ActualStartDate,"Gregorian actual start date"
+Report.vw_WorkItems,ActualEndDateKEY,"System key for the actual end date"
+Report.vw_WorkItems,ActualEndDate_Year,"Year the work item actually ended"
+Report.vw_WorkItems,ActualEndDate_Month,"Month the work item actually ended"
+Report.vw_WorkItems,ActualEndDate_Day,"Day the work item actually ended"
+Report.vw_WorkItems,ActualEndDate_PersianDate,"Jalali (Persian) actual end date"
+Report.vw_WorkItems,ActualEndDate,"Gregorian actual completion date"
+Report.vw_WorkItems,PlanStartDateKEY,"System key for the planned start date"
+Report.vw_WorkItems,PlanStartDate_Year,"Year the work item is planned to start"
+Report.vw_WorkItems,PlanStartDate_Month,"Month the work item is planned to start"
+Report.vw_WorkItems,PlanStartDate_Day,"Day the work item is planned to start"
+Report.vw_WorkItems,PlanStartDate_PersianDate,"Jalali (Persian) planned start date"
+Report.vw_WorkItems,PlanStartDate,"Gregorian planned start date"
+Report.vw_WorkItems,PlanEndDateKEY,"System key for the planned end date"
+Report.vw_WorkItems,PlanEndDate_Year,"Year the work item is planned to end"
+Report.vw_WorkItems,PlanEndDate_Month,"Month the work item is planned to end"
+Report.vw_WorkItems,PlanEndDate_Day,"Day the work item is planned to end"
+Report.vw_WorkItems,PlanEndDate_PersianDate,"Jalali (Persian) planned end date"
+Report.vw_WorkItems,PlanEndDate,"Gregorian planned end date"
+Report.vw_WorkItems,ActualProgress,"Actual progress percentage of the work item"
+Report.vw_WorkItems,PlanProgress,"Planned progress percentage of the work item"
+Report.vw_WorkItems,DisciplineName,"Engineering or execution discipline (e.g., Civil, Mechanical)"
+Report.vw_WorkItems,WorkItemType,"Type or category of the work item"
+Report.vw_WorkItems,WorkflowModel,"Workflow process model associated with the item"
+Report.vw_WorkItems,VolumnOfWork,"Total volume or quantity of work to be performed"
+Report.vw_WorkItems,VolUnitAbbr,"Abbreviation of the volume unit"
+Report.vw_WorkItems,VolUnit,"Unit of measurement for the volume of work"
+Report.vw_WorkItems,SubProjectID,"Identifier of the sub-project if applicable"
+Report.vw_WorkItems,ResponsibleUser,"User or entity responsible for executing the work item"

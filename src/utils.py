@@ -70,7 +70,7 @@ def get_llm(model_id: str, max_tokens: int = 4096, reasoning=False):
         return ChatOpenAI(
             api_key=os.getenv("OPENROUTER_API_KEY_REPORTER"),
             base_url="https://openrouter.ai/api/v1", # e.g. DashScope or your proxy
-            model='qwen/qwen3.5-9b',
+            model='qwen/qwen3.5-27b',
             temperature=0,
             max_tokens=max_tokens,
             reasoning=reasoning_config
@@ -306,77 +306,67 @@ def create_data_context_for_schemas(needed_columns_dict: dict, data_dir: str) ->
     return data_context_text.strip()
 
 
-def get_join_relationships(needed_views_dict, csv_file_path):
+def get_join_relationships(needed_views, csv_file_path):
     """
-    Identifies joinable columns between a set of required views based on a schema CSV.
-    Supports comma-separated metadata lists with or without standard headers.
+    Identifies pairwise join relationships between a list of required views
+    based on a metadata schema CSV.
     """
-    needed_table_names = set(needed_views_dict.keys())
-    column_to_tables = defaultdict(list)
-
     if not os.path.exists(csv_file_path):
         print(f"Warning: Join relationships metadata file not found at {csv_file_path}")
-        return {}
+        return []
+
+    # Convert the requested views to a set for fast, case-insensitive lookup
+    needed_set = {v.strip().lower() for v in needed_views}
+    join_relationships = []
 
     with open(csv_file_path, mode='r', encoding='utf-8-sig') as f:
-        # Detect if file contains specific column labels/headers
-        sample = f.read(2048)
-        f.seek(0)
-        
-        has_header = False
-        if sample:
-            first_line = sample.splitlines()[0].upper()
-            if 'TABLE_NAME' in first_line or 'COLUMN_NAME' in first_line or 'VIEW_NAME' in first_line:
-                has_header = True
+        reader = csv.DictReader(f)
+        for row in reader:
+            schema_a = row.get('SchemaNameA', '').strip()
+            view_a = row.get('ViewNameA', '').strip()
+            schema_b = row.get('SchemaNameB', '').strip()
+            view_b = row.get('ViewNameB', '').strip()
 
-        if has_header:
-            reader = csv.DictReader(f)
-            for row in reader:
-                table = None
-                column = None
-                for k, v in row.items():
-                    if k and k.upper() in ['TABLE_NAME', 'VIEW_NAME']:
-                        table = v
-                    elif k and k.upper() in ['COLUMN_NAME', 'COLUMN_NAME']:
-                        column = v
-                
-                if not table or not column:
-                    keys = list(row.keys())
-                    if len(keys) >= 2:
-                        table = row[keys[0]]
-                        column = row[keys[1]]
-                
-                if table and column and table in needed_table_names:
-                    column_to_tables[column].append(table)
-        else:
-            reader = csv.reader(f)
-            for row in reader:
-                if len(row) >= 2:
-                    table, column = row[0].strip(), row[1].strip()
-                    if table in needed_table_names:
-                        column_to_tables[column].append(table)
+            # Reconstruct standard "SchemaName.ViewName" strings
+            full_view_a = f"{schema_a}.{view_a}" if schema_a else view_a
+            full_view_b = f"{schema_b}.{view_b}" if schema_b else view_b
 
-    join_metadata = {
-        col: tables for col, tables in column_to_tables.items() 
-        if len(tables) > 1
-    }
+            # Verify if both views are present in your requested list
+            if full_view_a.lower() in needed_set and full_view_b.lower() in needed_set:
+                join_relationships.append({
+                    "ViewA": full_view_a,
+                    "ColumnA": row.get('ColumnInViewA', '').strip(),
+                    "ViewB": full_view_b,
+                    "ColumnB": row.get('ColumnInViewB', '').strip(),
+                    "DataType": row.get('DataType', '').strip(),
+                    "SampleJoinQuery": row.get('SampleJoinQuery', '').strip()
+                })
 
-    return join_metadata
+    return join_relationships
 
 
 def format_join_info_for_llm(join_info):
-    output = ""
-    for column, tables in join_info.items():
-        table_list = ", ".join(tables)
-        output += f"- {column}: Links {table_list}\n"
-    return output
+    """
+    Formats the pairwise join relationships into a concise, token-efficient 
+    string suitable for an LLM prompt.
+    """
+    lines = []
+    for join in join_info:
+        view_a = join.get("ViewA")
+        col_a = join.get("ColumnA")
+        view_b = join.get("ViewB")
+        col_b = join.get("ColumnB")
+        
+        # Formats to: - Schema.ViewA.ColumnA = Schema.ViewB.ColumnB
+        lines.append(f"- {view_a}.{col_a} = {view_b}.{col_b}")
+        
+    return "\n".join(lines)
 
 
 def ommiting_think_block(text: str) -> str:
     if not text or not isinstance(text, str):
         raise ValueError("Input must be a non-empty string")
 
-    import re
     cleaned = re.sub(
         r'(?is)<think>.*?</think>\s*',
         '',

@@ -1,0 +1,160 @@
+[
+    {
+        "name": "CBSID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            13,
+            14
+        ]
+    },
+    {
+        "name": "CBSName",
+        "type": "NVARCHAR(1000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "هزینه کارگاه",
+            "دفتر مرکزی"
+        ]
+    },
+    {
+        "name": "OrganizationUnitID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1778,
+            2803,
+            1,
+            3001,
+            4250,
+            1777,
+            3002
+        ]
+    },
+    {
+        "name": "OrganUnitName",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "معاونت فن آوری (2)",
+            "معاونت اقتصادی و سرمایه گذاری",
+            "معاونت مالی",
+            "معاونت برنامه ریزی، مالی و پشتیبانی",
+            "ایده ورزان",
+            "معاونت بهره برداری و توسعه",
+            "کل سازمان"
+        ]
+    },
+    {
+        "name": "Stakeholder_ParentID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            1,
+            2802
+        ]
+    },
+    {
+        "name": "CreationTime",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20250923,
+            20230717
+        ]
+    },
+    {
+        "name": "LastModificationTime",
+        "type": "BIGINT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            20180210115845133,
+            20180429160509270
+        ]
+    },
+    {
+        "name": "Weight",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            3.0
+        ]
+    },
+    {
+        "name": "ProjectID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            29,
+            6415
+        ]
+    },
+    {
+        "name": "Budget",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "IRRAmmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            1400000000000.0,
+            15047302670.0
+        ]
+    },
+    {
+        "name": "USDAmmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            810000000.0
+        ]
+    },
+    {
+        "name": "EURAmmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            3500.0,
+            700.0,
+            10000000.0,
+            7700.0,
+            2100.0,
+            14700.0
+        ]
+    },
+    {
+        "name": "AEDAmmount",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "WBSID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            31994,
+            31996
+        ]
+    }
+]

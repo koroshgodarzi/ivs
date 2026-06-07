@@ -1,14 +1,14 @@
-### These are the column names you may need to generate the query, you should not use any table or column other than the ones below:
+# SCHEMA & CONTEXT (Only use these tables/columns):
 {schemas}
 
-### DATABASE CONTEXT ###
+## DATABASE CONTEXT
 {data_context}
 
 ### DATABASE RELATIONSHIPS (JOIN KEYS):
 {join_info}
 
-### RETRIEVED DATABASE VALUES (Actual matches in database columns for search keywords):
+#### RETRIEVED DATABASE VALUES:
 {retrieved_values}
 
-User's question:
+# User's question:
 {user_question}

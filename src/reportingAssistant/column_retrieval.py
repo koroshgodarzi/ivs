@@ -134,7 +134,7 @@ def querying(state: GraphState, config: RunnableConfig) -> GraphState:
     """
     Main node orchestrating view identification, schema querying, and LSH matching.
     """
-    keywords = state.get("keywords", {"Views": [], "Attributes": [], "Values": []})
+    keywords = state.get("keywords", {"PM_Concepts": None, "Views": [], "Attributes": [], "Values": []})
     chosen_views = keywords.get("Views", [])
 
     # Fetch configured dynamic paths

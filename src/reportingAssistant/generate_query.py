@@ -15,7 +15,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     """Node: Generate SQL query from user input using selected columns and retrieved values."""
     configurable = config.get("configurable", {})
     model_name = configurable.get("model_name", "gpt")
-    llm = get_llm(model_id=model_name, reasoning=True, max_tokens=8000)
+    llm = get_llm(model_id=model_name, reasoning=True, max_tokens=12000)
 
     # Extract configurations
     prompt_dir = configurable.get("prompt_template_dir", os.path.join("..", "prompt_template"))
@@ -28,7 +28,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     needed_columns_dict = state["retrieved_columns"]
     
     # Pass explicit path definitions down to helper functions
-    join_info = get_join_relationships(needed_columns_dict, csv_file_path=os.path.join(docs_dir, 'IDColumns.csv'))
+    join_info = get_join_relationships(state["keywords"]["Views"], csv_file_path=os.path.join(docs_dir, 'IDColumns.csv'))
     all_schemas_metadata = create_ddl_for_schemas(needed_columns_dict, data_dir=data_dir)
     data_context = create_data_context_for_schemas(needed_columns_dict, data_dir=data_dir)
     join_info = format_join_info_for_llm(join_info)
@@ -44,8 +44,13 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
         data_context=data_context,
         join_info=join_info,
         retrieved_values=retrieved_values,
-        user_question=user_question
+        user_question=user_question,
     )
+
+    keywords = state.get("keywords", {"PM_Concepts": None, "Views": [], "Attributes": [], "Values": []})
+    pm_concepts = keywords.get("PM_Concepts", None)
+    if pm_concepts:
+        user_prompt = "### PROJECT MANAGEMENT CONCEPTS:\n" + pm_concepts + "\n\n" + user_prompt
 
     state["query_generation_user_prompt"] = user_prompt
 
@@ -59,7 +64,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
 
     print(f"Token count for generation: {count_chat_tokens(messages)}")
     response = llm.invoke(messages)
-    
+
     try:
         content = response.content
     
