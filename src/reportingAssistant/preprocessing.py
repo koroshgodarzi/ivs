@@ -42,6 +42,9 @@ def keyword_view_extraction(state: GraphState, config: RunnableConfig) -> GraphS
         return {"keywords": None}
 
     prompt = prompt.replace("[VIEW_DESCRIPTIONS_HERE]", view_descriptions_str)
+
+    history = format_chat_history(state)
+    prompt = prompt.replace("[HISTORY_HERE]", history)
     prompt = prompt.replace("[USER_QUESTION_HERE]", user_question)
     
     response = llm.invoke(prompt)
@@ -68,3 +71,25 @@ def keyword_view_extraction(state: GraphState, config: RunnableConfig) -> GraphS
     print(f"---Extracted Keywords---\n{keywords}")
 
     return {"keywords": keywords}
+
+
+def format_chat_history(state: GraphState) -> str:
+    history_str = ""
+    messages = state.get("messages", [])
+    queries = state.get("generated_query", [])
+    
+    # We match messages to query attempts
+    # Assuming user asks, agent runs, then maybe retries
+    turn_idx = 0
+    for msg in messages:
+        if msg["role"] == "user":
+            history_str += f"User Question: {msg['content']}\n"
+            # Get the list of queries for this turn
+            if turn_idx < len(queries):
+                attempted_queries = queries[turn_idx]
+                if attempted_queries:
+                    history_str += f"System (Previous SQL attempt): {attempted_queries[-1]}\n"
+            history_str += "---\n"
+            turn_idx += 1
+            
+    return history_str

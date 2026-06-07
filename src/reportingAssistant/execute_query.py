@@ -11,11 +11,14 @@ import os
 def execute_query(state: GraphState, config: RunnableConfig) -> GraphState:
     """Node 2: Execute the generated SQL query."""
 
-    queries = [q for q in state.get("generated_query", [])]
-    query = queries[-1] if queries else ""
+    all_turns = state.get("generated_query", [])
+    
+    query = ""
+    if all_turns and all_turns[-1]:
+        query = all_turns[-1][-1]
     
     if not query:
-        state["error_message"] = "No SQL query generated"
+        state["error_message"] = (state.get("error_message") or []) + ["No SQL query generated"]
         state["query_results"] = None
         return state
     

@@ -19,16 +19,17 @@ def explain_query_error(state: GraphState, config: RunnableConfig) -> GraphState
     with open(os.path.join(prompt_dir, 'error_handling_system_prompt.txt'), 'r', encoding='utf-8') as f:
         system_prompt = f.read()
     
+    all_turns = state.get("generated_query", [])
+    current_turn_queries = all_turns[-1] if all_turns else []
+    error_messages = state.get("error_message", [])
+
     user_prompt_text = state["query_generation_user_prompt"]
 
-    queries = [q for q in state.get("generated_query", [])]
-    error_messages = [err for err in state.get("error_message", [])]
-
-    for i, (q, err) in enumerate(zip(queries, error_messages)):
+    # Use the current turn's queries and corresponding errors
+    for i, (q, err) in enumerate(zip(current_turn_queries, error_messages)):
         with open(os.path.join(prompt_dir, 'error_handling_user_prompt_part_2.txt'), 'r', encoding='utf-8') as f:
             p = f.read().format(i, q, err)
-        user_prompt_text += "\n"
-        user_prompt_text += p
+        user_prompt_text += "\n" + p
 
     messages = [
         SystemMessage(content=system_prompt),
@@ -58,9 +59,9 @@ def explain_query_error(state: GraphState, config: RunnableConfig) -> GraphState
     response = extract_json_from_text(response)
 
     state["error_explanation"] = response["error_explanation"]
-    query_list = state["generated_query"]
-    query_list.append(response["corrected_query"])
-    state["generated_query"] = query_list
+
+    all_turns[-1].append(response["corrected_query"])
+    state["generated_query"] = all_turns
     
     return response
 

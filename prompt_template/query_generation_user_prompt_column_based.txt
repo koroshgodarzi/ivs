@@ -1,3 +1,6 @@
+## CONVERSATION HISTORY (Context for previous attempts):
+{history}
+
 # SCHEMA & CONTEXT (Only use these tables/columns):
 {schemas}
 

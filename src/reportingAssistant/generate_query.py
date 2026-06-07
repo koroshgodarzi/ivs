@@ -4,6 +4,7 @@ from utils import (
     create_data_context_for_schemas, fix_sql_wildcards, get_join_relationships
 )
 from reportingAssistant.schema import GraphState
+from reportingAssistant.preprocessing import format_chat_history
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 
@@ -32,6 +33,8 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     all_schemas_metadata = create_ddl_for_schemas(needed_columns_dict, data_dir=data_dir)
     data_context = create_data_context_for_schemas(needed_columns_dict, data_dir=data_dir)
     join_info = format_join_info_for_llm(join_info)
+
+    history = format_chat_history(state)
     
     retrieved_values = state.get("retrieved_values", {})
     
@@ -45,6 +48,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
         join_info=join_info,
         retrieved_values=retrieved_values,
         user_question=user_question,
+        history=history
     )
 
     keywords = state.get("keywords", {"PM_Concepts": None, "Views": [], "Attributes": [], "Values": []})
@@ -84,9 +88,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
         print(f"Failed to parse query_generation_result as JSON: {e}")
         return state
 
-    query_explanation = state.get('query_explanation') or []
-    query_explanation.append(query_generation_result.get('query_explanation', ""))
-    state['query_explanation'] = query_explanation
+    state['query_explanation'] = query_generation_result.get('query_explanation', "")
     
     sql_query = (
         query_generation_result.get("generated_query", "")
@@ -97,9 +99,13 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     )
     sql_query = fix_sql_wildcards(sql_query)
 
-    queries = state.get("generated_query") or []
-    queries.append(sql_query)
-    state["generated_query"] = queries
+    all_turns = state.get("generated_query") or []
+    if not all_turns:
+        all_turns = [[]]
+    
+    # Append the new query to the current turn's list
+    all_turns[-1].append(sql_query)
+    state["generated_query"] = all_turns
 
     print(f"Generated query accepted:\n{sql_query}")
 

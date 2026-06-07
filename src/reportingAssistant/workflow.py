@@ -24,7 +24,7 @@ DATA_DIR = os.path.join(BASE_DIR, 'data', 'clean')
 DOCS_DIR = os.path.join(BASE_DIR, 'data', 'clean')
 
 
-def column_based_graph(output_folder: str):
+def column_based_graph(output_folder: str='test'):
     workflow = StateGraph(GraphState)
 
     logger = configure_text_logger(output_folder)
@@ -66,7 +66,7 @@ def column_based_graph(output_folder: str):
 
 def main():
     output = {}
-    output_folder = 'reportingAgent27BSecondQuestionSeries'
+    output_folder = 'ChatBotFirstTry'
     os.makedirs(os.path.join(BASE_DIR, 'output', output_folder), exist_ok=True)
 
     app = column_based_graph(output_folder)
@@ -93,64 +93,138 @@ def main():
     # 'لیست منابع پروژه «فاز اول- ناصری» را نیاز دارم؟',
     # 'کدام شکست برنامه ای پروژه هایی که من راهبر پروژه هستم (من javad ahmadi هستم)، پیشرفت برنامه ای ندارند؟']
 
+    # questions = [
+    #     "وضع پیشرفت پروژه‌های تهران چگونه است؟",
+    #     "لیست پروژه‌های با پیشرفت برنامه‌ای بالای ۵۰ را بده.",
+    #     "مجموع مطالبات پیمانکاران پروژه‌ی ناصری چه قدر است؟",
+    #     "کدام یک از ردیف‌های CBS، اورباجت شده‌اند؟",
+    #     "پروژه‌هایی که در یک ماه گذشته پیشرفت اکچوال نداشته‌اند؟",
+    #     "پروژه‌هایی که در یک ماه گذشته ورود اطلاعات نداشته‌اند؟",
+    #     "مشکلات مشترک بین پروژه‌ها را به من بگو.",
+    #     "فعالیت‌های روی مسیر بحرانی پروژه‌ی ناصری کدامند؟",
+    #     "کدام قراردادها روی مسیر بحرانی پروژه‌ی ناصری‌اند؟",
+    #     "کل قرادادهایی که پیشرفت مالی ۹۰ درصد به بالا دارند را بده.",
+    #     "کدام قراردادها پیشرفت مالی‌شان بیش از پیشرفت فیزیکی‌شان است؟",
+    #     "قراردادهای چندارزی را به همراه مبالغ‌شان به‌ام بده.",
+    #     "کدام پروژه‌ها در ۶ ماه گذشته ریپلن شده‌اند؟",
+    #     "کدام پروژه بیشترین پیشرفت را از اول سال داشته است؟",
+    #     "کدام پروژه بیشترین راندمان را از اول سال داشته است؟",
+    #     "پروژه‌های EPC با تاخیر بیشتر از ۳۰ درصد را بهم بده.",
+    #     "مجموع صورت وضعیت‌های در جریان گردش برای هر قرارداد را بهم بده.",
+    #     "تضامین قرارداهایی که در یک ماه آینده منقضی می‌شوند را بهم بده.",
+    #     "تضامین قرارداهایی که در یک ماه آینده سررسید می‌شوند را بهم بده.",
+    #     "کدام پروژه بیشترین ریسک‌ها را دارد؟",
+    #     "مدارک مهندسی که تاخیر دارند را بهم بده.",
+    #     "مدارک مهندسی دیسیپلین الکتریکال که تاخیر دارند را بهم بده.",
+    #     "فعالیت‌های روی مسیر بحرانی پروژه‌ی ناصری را بهم بده.",
+    #     "پروژه‌هایی که پارسال شروع شدند را بهم بده.",
+    #     "پروژه‌هایی که امسال باید تمام بشوند را بهم بده.",
+    #     "بیشترین تاخیر پروژه‌ی ناصری کجای برنامه است؟",
+    #     "پیشرفت فعالیت‌های سطح یک پروژه‌ی ناصری را بهم بده.",
+    #     "تا الآن توی پروژه‌ی ناصری چه قدر پول خرج کرده‌ام؟",
+    #     "برنامه‌ی جریان نقدی پروژه‌ی ناصری را با هزینه‌کردش مقایسه کن.",
+    #     "لیست فعالیت‌های اتمام یافته‌ی پروژه‌ی ناصری رو بهم بده.",
+    #     "فعالیت‌های اتمام یافته‌ی پروژه‌ی ناصری چند تاست.",
+    #     "چند درصد فعالیت‌های پروژه‌ی ناصری اتمام یافته است؟"
+    # ]
     questions = [
         "وضع پیشرفت پروژه‌های تهران چگونه است؟",
-        "لیست پروژه‌های با پیشرفت برنامه‌ای بالای ۵۰ را بده.",
-        "مجموع مطالبات پیمانکاران پروژه‌ی ناصری چه قدر است؟",
-        "کدام یک از ردیف‌های CBS، اورباجت شده‌اند؟",
-        "پروژه‌هایی که در یک ماه گذشته پیشرفت اکچوال نداشته‌اند؟",
-        "پروژه‌هایی که در یک ماه گذشته ورود اطلاعات نداشته‌اند؟",
-        "مشکلات مشترک بین پروژه‌ها را به من بگو.",
-        "فعالیت‌های روی مسیر بحرانی پروژه‌ی ناصری کدامند؟",
-        "کدام قراردادها روی مسیر بحرانی پروژه‌ی ناصری‌اند؟",
-        "کل قرادادهایی که پیشرفت مالی ۹۰ درصد به بالا دارند را بده.",
-        "کدام قراردادها پیشرفت مالی‌شان بیش از پیشرفت فیزیکی‌شان است؟",
-        "قراردادهای چندارزی را به همراه مبالغ‌شان به‌ام بده.",
-        "کدام پروژه‌ها در ۶ ماه گذشته ریپلن شده‌اند؟",
-        "کدام پروژه بیشترین پیشرفت را از اول سال داشته است؟",
-        "کدام پروژه بیشترین راندمان را از اول سال داشته است؟",
-        "پروژه‌های EPC با تاخیر بیشتر از ۳۰ درصد را بهم بده.",
-        "مجموع صورت وضعیت‌های در جریان گردش برای هر قرارداد را بهم بده.",
-        "تضامین قرارداهایی که در یک ماه آینده منقضی می‌شوند را بهم بده.",
-        "تضامین قرارداهایی که در یک ماه آینده سررسید می‌شوند را بهم بده.",
-        "کدام پروژه بیشترین ریسک‌ها را دارد؟",
-        "مدارک مهندسی که تاخیر دارند را بهم بده.",
-        "مدارک مهندسی دیسیپلین الکتریکال که تاخیر دارند را بهم بده.",
-        "فعالیت‌های روی مسیر بحرانی پروژه‌ی ناصری را بهم بده.",
-        "پروژه‌هایی که پارسال شروع شدند را بهم بده.",
-        "پروژه‌هایی که امسال باید تمام بشوند را بهم بده.",
-        "بیشترین تاخیر پروژه‌ی ناصری کجای برنامه است؟",
-        "پیشرفت فعالیت‌های سطح یک پروژه‌ی ناصری را بهم بده.",
-        "تا الآن توی پروژه‌ی ناصری چه قدر پول خرج کرده‌ام؟",
-        "برنامه‌ی جریان نقدی پروژه‌ی ناصری را با هزینه‌کردش مقایسه کن.",
-        "لیست فعالیت‌های اتمام یافته‌ی پروژه‌ی ناصری رو بهم بده.",
-        "فعالیت‌های اتمام یافته‌ی پروژه‌ی ناصری چند تاست.",
-        "چند درصد فعالیت‌های پروژه‌ی ناصری اتمام یافته است؟"
+        "کدام از این پروژه‌ها پیشترفت واقعی کمتر از ۱۰ درصد دارند؟"
     ]
 
-    for i, user_question in enumerate(questions):
-        if i <= 28: continue
-        print()
-        initial_state = {
-            "messages": [
-                {"role": "user", "content": user_question}
-            ],
-            "retry_count": 0,
-            "summary_context": None,
-            "generated_query": None,
-            "error_message": None,
-            "query_results": None,
-            "validation_result": None,
-            "query_explanation": None,
-            "retrieved_columns": None,
-            "keywords": None,
-            "query_generation_user_prompt": None
-        }
+    # for i, user_question in enumerate(questions):
+    #     if i <= 0: continue
+    #     print()
+    #     initial_state = {
+    #         "messages": [
+    #             {"role": "user", "content": user_question}
+    #         ],
+    #         "retry_count": 0,
+    #         "summary_context": None,
+    #         "generated_query": [],
+    #         "error_message": None,
+    #         "query_results": None,
+    #         "validation_result": None,
+    #         "query_explanation": None,
+    #         "retrieved_columns": None,
+    #         "keywords": None,
+    #         "query_generation_user_prompt": None
+    #     }
 
-        # Dynamically pass global paths through the configuration context
+    #     # Dynamically pass global paths through the configuration context
+    #     config = {
+    #         "configurable": {
+    #             "thread_id": f"{str(i)}", 
+    #             "model_name": 'open_router',
+    #             "prompt_template_dir": PROMPT_TEMPLATE_DIR,
+    #             "data_dir": DATA_DIR,
+    #             "docs_dir": DOCS_DIR
+    #         }
+    #     }
+
+    #     info_path = os.path.join(BASE_DIR, 'output', output_folder, 'info.txt')
+    #     if not os.path.exists(info_path):
+    #         with open(info_path, 'w', encoding='utf-8') as f:
+    #             f.write(f"Model: {config['configurable']['model_name']}\n")
+    #             f.write("Qwen3-30B-A3B-lbu2r")
+
+    #     print("--- Starting Text-to-SQL Workflow ---")
+    #     print(f"User Question: {user_question}\n")
+
+    #     start_time = time.perf_counter()
+    #     final_state = app.invoke(initial_state, config=config)
+    #     end_time = time.perf_counter()
+    #     duration = end_time - start_time
+        
+    #     messages_only = final_state.get("messages", [])
+    #     schema_only = final_state.get("retrieved_schema", [])
+    #     query_results = final_state.get("query_results", [])
+    #     question_data = {
+    #         "messages": messages_only,
+    #         "query_results": query_results,
+    #         "schema_only": schema_only,
+    #         "time_spent_seconds": round(duration, 4)
+    #     }
+    #     output[str(i)] = question_data
+
+    #     with open(os.path.join(BASE_DIR, 'output', output_folder ,f'output_{str(i)}.json'), 'w', encoding="utf-8") as f:
+    #         json.dump(final_state, f, ensure_ascii=False, indent=2)  
+
+    #     with open(os.path.join(BASE_DIR, 'output', output_folder, 'output.json'), 'a', encoding="utf-8") as f:
+    #         json.dump(question_data, f, ensure_ascii=False, indent=2)    
+
+# 1. Initialize the state ONCE outside the loop to persist the session
+    current_state = {
+        "messages": [],
+        "retry_count": 0,
+        "summary_context": None,
+        "generated_query": [],        # Now List[List[str]]
+        "error_message": [],          # Changed to list to track errors per attempt
+        "query_results": None,
+        "validation_result": None,
+        "query_explanation": [],      # Changed to list
+        "retrieved_columns": None,
+        "keywords": None,
+        "query_generation_user_prompt": None
+    }
+
+    # 2. Iterate through questions in the same session
+    for i, user_question in enumerate(questions):
+        print(f"\n--- Processing Turn {i}: {user_question} ---")
+
+        # Append new question to messages
+        current_state["messages"].append({"role": "user", "content": user_question})
+        
+        # Initialize a new inner list for this turn's query attempts
+        current_state["generated_query"].append([])
+        
+        # Reset transient fields for the new turn
+        current_state["retry_count"] = 0
+        current_state["error_message"] = [] 
+
         config = {
             "configurable": {
-                "thread_id": f"{str(i)}", 
+                "thread_id": "session_01", 
                 "model_name": 'open_router',
                 "prompt_template_dir": PROMPT_TEMPLATE_DIR,
                 "data_dir": DATA_DIR,
@@ -158,36 +232,29 @@ def main():
             }
         }
 
-        info_path = os.path.join(BASE_DIR, 'output', output_folder, 'info.txt')
-        if not os.path.exists(info_path):
-            with open(info_path, 'w', encoding='utf-8') as f:
-                f.write(f"Model: {config['configurable']['model_name']}\n")
-                f.write("Qwen3-30B-A3B-lbu2r")
-
-        print("--- Starting Text-to-SQL Workflow ---")
-        print(f"User Question: {user_question}\n")
-
+        # Invoke the graph, passing the PERSISTENT state
         start_time = time.perf_counter()
-        final_state = app.invoke(initial_state, config=config)
+        current_state = app.invoke(current_state, config=config)
         end_time = time.perf_counter()
+        
+        # Process results as before
         duration = end_time - start_time
         
-        messages_only = final_state.get("messages", [])
-        schema_only = final_state.get("retrieved_schema", [])
-        query_results = final_state.get("query_results", [])
+        # Capture the assistant's final response for the chat history
+        # (Assuming format_final_response updated the 'messages' list)
+        
         question_data = {
-            "messages": messages_only,
-            "query_results": query_results,
-            "schema_only": schema_only,
+            "turn": i,
+            "question": user_question,
+            "query_results": current_state.get("query_results"),
             "time_spent_seconds": round(duration, 4)
         }
-        output[str(i)] = question_data
 
-        with open(os.path.join(BASE_DIR, 'output', output_folder ,f'output_{str(i)}.json'), 'w', encoding="utf-8") as f:
-            json.dump(final_state, f, ensure_ascii=False, indent=2)  
+        # Save output for this turn
+        with open(os.path.join(BASE_DIR, 'output', output_folder, f'turn_{i}.json'), 'w', encoding="utf-8") as f:
+            json.dump(current_state, f, ensure_ascii=False, indent=2)
 
-        with open(os.path.join(BASE_DIR, 'output', output_folder, 'output.json'), 'a', encoding="utf-8") as f:
-            json.dump(question_data, f, ensure_ascii=False, indent=2)    
+    print("--- Chat Session Complete ---")
 
 
 if __name__ == "__main__":

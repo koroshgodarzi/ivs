@@ -72,6 +72,9 @@ Output:
   "PM_Concepts": "Resource Overallocation: A condition in resource management where a resource (labor, equipment, etc.) is assigned more work than its available capacity."
 }
 
+Here is the conversation history:
+{HISTORY_HERE}
+
 Now, process the following user question:
 User Question: [USER_QUESTION_HERE]
 Output:
