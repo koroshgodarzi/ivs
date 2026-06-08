@@ -20,3 +20,5 @@ class GraphState(TypedDict):
     keywords: str
     query_generation_user_prompt: str
     chat_history: str
+    to_plot: bool
+    viz_config: Optional[dict]

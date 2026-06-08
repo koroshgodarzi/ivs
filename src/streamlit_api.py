@@ -50,7 +50,7 @@ if user_input := st.chat_input("Ask a question about the database..."):
                         "model_name": "open_router",
                         "prompt_template_dir": "../prompt_template",
                         "data_dir": "../data/clean",
-                        "docs_dir": "../docs/clean"
+                        "docs_dir": "../data/clean"
                     }
                 }
                 
