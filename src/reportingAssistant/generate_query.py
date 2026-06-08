@@ -88,7 +88,9 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
         print(f"Failed to parse query_generation_result as JSON: {e}")
         return state
 
-    state['query_explanation'] = query_generation_result.get('query_explanation', "")
+    explanation_list = state.get('query_explanation', [])
+    explanation_list.append(query_generation_result.get('query_explanation', ""))
+    state['query_explanation'] = explanation_list
     
     sql_query = (
         query_generation_result.get("generated_query", "")

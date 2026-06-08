@@ -14,7 +14,7 @@ class GraphState(TypedDict):
     retry_count: int  # Track number of retries to limit loops
     validation_result: Optional[str]  # Result from query validation
     retrieved_schema: Optional[str]
-    query_explanation: Optional[str]
+    query_explanation: Optional[List[str]]
     retrieved_columns: Optional[str] # Added field to store schema metadata
     retrieved_values: Optional[str]
     keywords: str

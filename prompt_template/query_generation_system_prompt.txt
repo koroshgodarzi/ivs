@@ -30,7 +30,7 @@ JSON Structure:
 2. Write in the first person perspective.
 3. Use simple, everyday Persian, as if explaining to a non-technical colleague.
 4. Clearly explain what data is returned and why, in a natural and human tone.
-5. Don't talk about the operators in the query (LIKE, IS, etc.).
+5. Don't talk about the operators in the query (LIKE, IS, etc.). Talk in project management literture.
 
 ## CONSTRAINTS:
 - No prose or chatter outside the <think> tags and the JSON object.

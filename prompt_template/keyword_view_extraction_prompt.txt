@@ -10,7 +10,7 @@ Given a user question, extract information into the following five categories:
 2. "Attributes" (ویژگی‌ها): The specific columns, fields, or properties requested to be shown or used as filters (e.g., Progress Percentage, End Date, Status, Name). Crucial: If the user mentions a specific value, infer and extract the ATTRIBUTE that value represents.
 3. "Values" (مقادیر): The specific names, numbers, or dates used for filtering.
 4. "PM_Concepts" (مفاهیم مدیریت پروژه): Extract any project management concept mentioned in the question (e.g., SPI, CPI, EV, Overbudget, Overdue tasks, Overallocation). Provide a short explanation and its mathematical formulation. CRITICAL: The explanation and formulation for this field MUST be written strictly in ENGLISH. If the question does not contain a specific project management concept, return `null`.
-5. "to_plot" (رسم نمودار): A boolean value (`true` or `false`) indicating whether the user explicitly or implicitly asks for a plot, chart, graph, or visual representation of the data. Set to `true` if a plot is requested, otherwise `false`.
+5. "to_plot" (رسم نمودار): A boolean value (`true` or `false`) indicating whether the user explicitly asks for a plot, chart, graph, or visual representation of the data. Set to `true` if a plot is requested, otherwise `false`.
 
 Format your output STRICTLY as a JSON object with keys: "Views", "Attributes", "Values", "PM_Concepts", and "to_plot". Do not include any explanation outside the JSON.
 
@@ -29,11 +29,11 @@ Output:
 User Question: نمودار میزان پیشرفت فعالیت‌های سطح یک (اقلام کاری) پروژه‌ی ناصری را نشان بده.
 Output:
 {
-"Views": ["Report.vw_WorkItems"],
-"Attributes": ["نام فعالیت (اقلام کاری)", "میزان پیشرفت", "سطح فعالیت", "نام پروژه"],
-"Values": ["1", "ناصری"],
-"PM_Concepts": null,
-"to_plot": true
+  "Views": ["Report.vw_WorkItems"],
+  "Attributes": ["نام فعالیت (اقلام کاری)", "میزان پیشرفت", "سطح فعالیت", "نام پروژه"],
+  "Values": ["1", "ناصری"],
+  "PM_Concepts": null,
+  "to_plot": true
 }
 
 User Question: مقادیر مربوط به ارزش کسب‌شده (EV) و همینطور شاخص عملکرد هزینه (CPI) رو برای قراردادهای پروژه‌های مرتبط با «ناصری» محاسبه کن. فقط مواردی رو بیار که مبلغ پرداخت شده دارند تا ارور تقسیم بر صفر نگیریم.
@@ -49,11 +49,11 @@ Output:
 User Question: نمودار میزان پیشرفت پروژه‌های تهران را رسم کن.
 Output:
 {
-"Views": ["Report.vw_Projects"],
-"Attributes": ["نام پروژه", "میزان پیشرفت", "مکان (شهر)"],
-"Values": ["تهران"],
-"PM_Concepts": null,
-"to_plot": true
+  "Views": ["Report.vw_Projects"],
+  "Attributes": ["نام پروژه", "میزان پیشرفت", "مکان (شهر)"],
+  "Values": ["تهران"],
+  "PM_Concepts": null,
+  "to_plot": true
 }
 
 User Question: لیست کارهای معوقه در پروژه «مجتمع پاسارگاد» که تاریخ پایان برنامه‌ای آن‌ها گذشته اما درصد پیشرفت فیزیکی آن‌ها هنوز صد در صد نشده است را بده؟

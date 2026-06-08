@@ -14,24 +14,26 @@ def format_final_response(state: GraphState, config: RunnableConfig) -> GraphSta
     
     response_content = ""
 
-    if error:
-        error_detail = "\n".join(error) if isinstance(error, list) else str(error)
-        response_content = f"### ❌ Query Error\nI encountered an issue while running the query:\n\n`{error_detail}`"
-
-    elif results is not None:
-        if len(results) == 0:
-            response_content = f"### Query Explanation\n{query_explanation}\n\n**Result:** The query returned no matching records."
-        else:
+    if results is not None:
+        if isinstance(query_explanation, list):
             df = pd.DataFrame(results)
             markdown_table = df.to_markdown(index=False)
+
+            explanation_str = '\n\n'.join(str(i) for i in query_explanation) if isinstance(query_explanation, list) else query_explanation
             
             response_content = (
-                f"### Query Explanation\n{query_explanation}\n\n"
+                f"### Query Explanation\n{explanation_str}\n\n"
                 f"### Results\n{markdown_table}"
             )
-            
+        else:            
+            response_content = f"### Query Explanation\n{query_explanation}\n\n**Result:** The query returned no matching records."
+
             if len(results) > 15:
                 response_content += f"\n\n*(Showing first {len(results)} rows)*"
+
+    elif error:
+        error_detail = "\n".join(error) if isinstance(error, list) else str(error)
+        response_content = f"### ❌ Query Error\nI encountered an issue while running the query:\n\n`{error_detail}`"
 
     else:
         response_content = "I'm sorry, I was unable to generate a valid response for that query."

@@ -58,7 +58,9 @@ def explain_query_error(state: GraphState, config: RunnableConfig) -> GraphState
     response = ommiting_think_block(content)
     response = extract_json_from_text(response)
 
-    state["error_explanation"] = response["error_explanation"]
+    explanation_list = state["query_explanation"]
+    explanation_list.append(response["corrected_query_explanation"])
+    state["query_explanation"] = explanation_list
 
     all_turns[-1].append(response["corrected_query"])
     state["generated_query"] = all_turns
