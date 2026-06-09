@@ -11,10 +11,16 @@ def format_final_response(state: GraphState, config: RunnableConfig) -> GraphSta
     query_explanation = state.get("query_explanation")
     results = state.get("query_results")
     error = state.get("error_message")
+    final_response = state.get("final_response") # Retrieve the chit-chat response
     
     response_content = ""
 
-    if results is not None:
+    # --- NEW: Handle the chit-chat scenario ---
+    if final_response:
+        response_content = final_response
+
+    # --- EXISTING: Handle SQL results ---
+    elif results is not None:
         if isinstance(query_explanation, list):
             df = pd.DataFrame(results)
             markdown_table = df.to_markdown(index=False)
@@ -39,6 +45,11 @@ def format_final_response(state: GraphState, config: RunnableConfig) -> GraphSta
         response_content = "I'm sorry, I was unable to generate a valid response for that query."
 
     state["messages"].append({
+        "role": "assistant",
+        "content": response_content
+    })
+
+    state["master_messages"].append({
         "role": "assistant",
         "content": response_content
     })

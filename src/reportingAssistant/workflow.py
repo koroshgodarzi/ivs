@@ -1,4 +1,5 @@
 from reportingAssistant.schema import GraphState
+from reportingAssistant.master import intent_router
 from reportingAssistant.generate_query import sql_generator_column_based
 from reportingAssistant.execute_query import execute_query
 from reportingAssistant.error_handling import error_handler, should_retry, explain_query_error
@@ -31,6 +32,7 @@ def column_based_graph(output_folder: str='test'):
     logger = configure_text_logger(output_folder)
 
     # Add existing nodes
+    workflow.add_node("intent_router", intent_router)
     workflow.add_node("keyword_extraction", with_state_logging("keyword_extraction", keyword_view_extraction, logger))
     workflow.add_node("querying", with_state_logging("querying", querying, logger))
     workflow.add_node("sql_generator", with_state_logging("sql_generator", sql_generator_column_based, logger))
@@ -44,8 +46,16 @@ def column_based_graph(output_folder: str='test'):
     
     workflow.add_node("format_response", with_state_logging("format_response", format_final_response, logger))
 
-    # Define standard paths/edges
-    workflow.set_entry_point("keyword_extraction")
+    workflow.set_entry_point("intent_router")
+    workflow.add_conditional_edges(
+        "intent_router",
+        route_by_intent,
+        {
+            "keyword_extraction": "keyword_extraction",
+            "format_response": "format_response"
+        }
+    )
+
     workflow.add_edge("keyword_extraction", "querying")
     workflow.add_edge("querying", "sql_generator")
     workflow.add_edge("sql_generator", "execute_query")
@@ -78,6 +88,11 @@ def column_based_graph(output_folder: str='test'):
 
     return workflow.compile(checkpointer=memory)
 
+def route_by_intent(state: GraphState):
+    if state.get("intent"):
+        return "keyword_extraction"  # Start the heavy NL2SQL pipeline
+    else:
+        return "format_response"     # Skip straight to the end!
 
 def route_after_execution(state: GraphState, config):
     """
@@ -105,27 +120,27 @@ def main():
 
     app = column_based_graph(output_folder)
 
-    questions = ['لیست پروژه های جاری «ناصر اسدی» را بده',
-    'کدام پروژه های «دفتر مدیریت پروژه» با وضعیت جاری، ساختار شکست(WBS) ندارند؟',
-    'لیست تمام قلم کاری ها در پروژه «خط انتقال» که پیشرفت برنامه ای و پیشرفت فیزیکی ندارند رو بده',
-    'لیست پروژه های از نوع EPC رو بده',
-    'پروژه های با ارز دلاری که «Project Admin» راهبر پروژه است چند تا هست؟ نام پروژه و وضعیت جاری',
-    'اقلام کاری که مسئول مستقیم آنها «احمد نظاری» هستند ؟',
-    # 'کدام شکست برنامه ای پروژه هایی که javad ahmadi راهبر پروژه آن است، محاسبه برنامه ای ندارند؟',
-    'لیست پروژه هایی که ساختار شکست هزینه به یورو دارند؟',
-    'لیست قراردادهای جاری پروژه بعثت را بده ؟',
-    'مدارک مهندسی که با دیسیپلین Piping مرتبط هستند؟',
-    'ریسکهایی که ذینفع آنها ABB است؟',
-    'لیست مشکلات و موانع پروژه های «طاهر شعبانی»‌ به همراه نام پروژه؟',
-    'لیست پروژه با وضعیت در حال اجرا بدون پیشرفت که تاریخ شروع آنها نسبت تاریخ روز گذشته است',
-    'لیست قراردادهای جاری پروژه بعثت که الحاقیه دارند رو بده ؟',
-    'لیست صورت وضعیت هایی که مربوط به ساختار هزینه «هزینه کارگاه» پروژه «فاز اول- ناصری» است؟',
-    'لیست تمام اقلام کاریهایی که کمتر از ۲۰ درصد پیشرفت دارند و تاریخ پایان آنها گذشته است را نیاز دارم؟',
-    'لیست قراردادهایی که تعدیل دارند از پروژه «فاز اول- احمدی» بده؟',
-    'لیست پروژه هایی که ریسک منفی و تاریخ شناسایی قبل از ۶ ماه پیش دارند؟',
-    'لیست قراردادهای پروژه «فاز اول- ناصری» که پرداخت بدون صورت وضعیت دارند؟',
-    'لیست منابع پروژه «فاز اول- ناصری» را نیاز دارم؟',
-    'کدام شکست برنامه ای پروژه هایی که من راهبر پروژه هستم (من javad ahmadi هستم)، محاسبه‌ی برنامه ای ندارند؟']
+    # questions = ['لیست پروژه های جاری «ناصر اسدی» را بده',
+    # 'کدام پروژه های «دفتر مدیریت پروژه» با وضعیت جاری، ساختار شکست(WBS) ندارند؟',
+    # 'لیست تمام قلم کاری ها در پروژه «خط انتقال» که پیشرفت برنامه ای و پیشرفت فیزیکی ندارند رو بده',
+    # 'لیست پروژه های از نوع EPC رو بده',
+    # 'پروژه های با ارز دلاری که «Project Admin» راهبر پروژه است چند تا هست؟ نام پروژه و وضعیت جاری',
+    # 'اقلام کاری که مسئول مستقیم آنها «احمد نظاری» هستند ؟',
+    # # 'کدام شکست برنامه ای پروژه هایی که javad ahmadi راهبر پروژه آن است، محاسبه برنامه ای ندارند؟',
+    # 'لیست پروژه هایی که ساختار شکست هزینه به یورو دارند؟',
+    # 'لیست قراردادهای جاری پروژه بعثت را بده ؟',
+    # 'مدارک مهندسی که با دیسیپلین Piping مرتبط هستند؟',
+    # 'ریسکهایی که ذینفع آنها ABB است؟',
+    # 'لیست مشکلات و موانع پروژه های «طاهر شعبانی»‌ به همراه نام پروژه؟',
+    # 'لیست پروژه با وضعیت در حال اجرا بدون پیشرفت که تاریخ شروع آنها نسبت تاریخ روز گذشته است',
+    # 'لیست قراردادهای جاری پروژه بعثت که الحاقیه دارند رو بده ؟',
+    # 'لیست صورت وضعیت هایی که مربوط به ساختار هزینه «هزینه کارگاه» پروژه «فاز اول- ناصری» است؟',
+    # 'لیست تمام اقلام کاریهایی که کمتر از ۲۰ درصد پیشرفت دارند و تاریخ پایان آنها گذشته است را نیاز دارم؟',
+    # 'لیست قراردادهایی که تعدیل دارند از پروژه «فاز اول- احمدی» بده؟',
+    # 'لیست پروژه هایی که ریسک منفی و تاریخ شناسایی قبل از ۶ ماه پیش دارند؟',
+    # 'لیست قراردادهای پروژه «فاز اول- ناصری» که پرداخت بدون صورت وضعیت دارند؟',
+    # 'لیست منابع پروژه «فاز اول- ناصری» را نیاز دارم؟',
+    # 'کدام شکست برنامه ای پروژه هایی که من راهبر پروژه هستم (من javad ahmadi هستم)، محاسبه‌ی برنامه ای ندارند؟']
 
     # questions = [
     #     "وضع پیشرفت پروژه‌های تهران چگونه است؟",
@@ -181,9 +196,13 @@ def main():
     #     "نمودار درصد فعالیت‌های اتمام‌یافته در برابر درصد باقیمانده‌ی پروژه‌ی ناصری را رسم کن."
 
     # ]
+    questions = [
+        "سلام خوبی؟",
+        "وضع پروژه‌های‌ام چطور است؟"
+    ]
     if not follow_up:
         for i, user_question in enumerate(questions):
-            if i == 19: continue
+            # if i == 19: continue
             print()
             initial_state = {
                 "messages": [

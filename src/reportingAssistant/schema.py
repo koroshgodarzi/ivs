@@ -6,7 +6,9 @@ from pydantic import BaseModel, Field
 
 class GraphState(TypedDict):
     """State managed by the LangGraph workflow."""
-    messages: Annotated[List[dict], "Chat history messages"]
+    intent: str
+    messages: Annotated[List[dict], "SQL Chat history messages"]
+    master_messages: Annotated[List[dict], "Master's Chat history messages"]
     generated_query: Optional[List[List[str]]] 
     query_results: Optional[str]  # Results from executing the query
     error_message: Optional[List[str]]
