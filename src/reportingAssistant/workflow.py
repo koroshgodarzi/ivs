@@ -183,7 +183,7 @@ def main():
     # ]
     if not follow_up:
         for i, user_question in enumerate(questions):
-            if i != 19: continue
+            if i == 19: continue
             print()
             initial_state = {
                 "messages": [

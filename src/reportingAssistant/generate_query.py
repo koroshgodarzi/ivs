@@ -4,6 +4,7 @@ from utils import (
     create_data_context_for_schemas, fix_sql_wildcards, get_join_relationships
 )
 from reportingAssistant.schema import GraphState
+from reportingAssistant.date import today_date
 from reportingAssistant.preprocessing import format_chat_history
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
@@ -33,6 +34,9 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     all_schemas_metadata = create_ddl_for_schemas(needed_columns_dict, data_dir=data_dir)
     data_context = create_data_context_for_schemas(needed_columns_dict, data_dir=data_dir)
     join_info = format_join_info_for_llm(join_info)
+    today = today_date(["Persian"])
+
+    date = '\n'.join(f"in {calendar} is {date}" for calendar, date in today.items())
 
     history = state["chat_history"]
     
@@ -43,6 +47,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
         user_prompt_template = f.read()
 
     user_prompt = user_prompt_template.format(
+        date=date,
         schemas=all_schemas_metadata,
         data_context=data_context,
         join_info=join_info,

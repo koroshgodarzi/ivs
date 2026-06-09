@@ -1,3 +1,6 @@
+### Today's date:
+{date}
+
 ## CONVERSATION HISTORY (Context for previous attempts):
 {history}
 
