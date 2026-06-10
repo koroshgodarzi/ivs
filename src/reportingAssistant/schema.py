@@ -7,8 +7,10 @@ from pydantic import BaseModel, Field
 class GraphState(TypedDict):
     """State managed by the LangGraph workflow."""
     intent: str
-    messages: Annotated[List[dict], "SQL Chat history messages"]
-    master_messages: Annotated[List[dict], "Master's Chat history messages"]
+    final_response: str
+    messages: Annotated[List[dict], "SQL technical history (Assistant only)"]
+    master_messages: Annotated[List[dict], "Master's Chat history (User and Assistant)"]
+    rephrased_query: str
     generated_query: Optional[List[List[str]]] 
     query_results: Optional[str]  # Results from executing the query
     error_message: Optional[List[str]]
@@ -24,3 +26,4 @@ class GraphState(TypedDict):
     chat_history: str
     to_plot: bool
     viz_config: Optional[dict]
+    response: List[str]

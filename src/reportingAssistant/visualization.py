@@ -13,7 +13,7 @@ def visualization(state: GraphState, config: RunnableConfig) -> dict:
     user's question and the retrieved SQL data.
     """
     # Extract user question
-    user_messages = [msg for msg in state.get("messages", []) if msg.get("role") == "user"]
+    user_messages = [msg for msg in state.get("master_messages", []) if msg["role"] == "user"]
     user_question = user_messages[-1]["content"] if user_messages else ""
 
     # Extract query results

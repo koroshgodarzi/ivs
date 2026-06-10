@@ -13,6 +13,7 @@ app = column_based_graph()
 if "graph_state" not in st.session_state:
     st.session_state.graph_state = {
         "messages": [],
+        "master_messages": [], 
         "retry_count": 0,
         "generated_query": [],
         "error_message": [],
@@ -26,16 +27,19 @@ if "graph_state" not in st.session_state:
 st.title("📊 Natural Language to SQL Assistant")
 
 # --- Display Chat History ---
-for msg in st.session_state.graph_state["messages"]:
+for msg in st.session_state.graph_state["master_messages"]:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
 # --- User Input ---
 if user_input := st.chat_input("Ask a question about the database..."):
     # 1. Update state with user message
-    st.session_state.graph_state["messages"].append({"role": "user", "content": user_input})
+    st.session_state.graph_state["master_messages"].append({"role": "user", "content": user_input})
     st.session_state.graph_state["generated_query"].append([]) # Start new turn list
-    
+    st.session_state.graph_state["retry_count"] = 0
+    st.session_state.graph_state["final_response"] = ""
+    st.session_state.graph_state["retry_count"] = 0
+
     with st.chat_message("user"):
         st.markdown(user_input)
 
@@ -53,17 +57,16 @@ if user_input := st.chat_input("Ask a question about the database..."):
                         "docs_dir": "../data/clean"
                     }
                 }
-                
+
                 # Execute graph
                 final_state = app.invoke(st.session_state.graph_state, config=config)
-                
+
                 # Update persistent state
                 st.session_state.graph_state = final_state
-                
-                # Extract the last assistant message
-                assistant_response = final_state["messages"][-1]["content"]
+
+                # Extract the last assistant message)
+                assistant_response = final_state["response"][-1]
                 st.markdown(assistant_response)
-                
+
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
-                st.write(final_state) # Debugging info

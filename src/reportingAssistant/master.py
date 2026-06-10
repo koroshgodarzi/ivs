@@ -1,6 +1,6 @@
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_openai import ChatOpenAI
-from reportingAssistant.schema import GraphState, RouterDecision
+from reportingAssistant.schema import GraphState
 from reportingAssistant.date import today_date  # Added import for today's date
 from utils import get_llm, extract_json_from_text, ommiting_think_block, count_chat_tokens
 import os
@@ -14,7 +14,7 @@ def intent_router(state: GraphState, config):
     If a query is needed, it rephrases the quest based on chat history.
     """
     # 1. Get current user question
-    user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
+    user_messages = [msg for msg in state.get("master_messages", []) if msg["role"] == "user"]
     user_question = user_messages[-1]["content"] if user_messages else ""
 
     # Retrieve parameters from the config
@@ -79,21 +79,32 @@ def intent_router(state: GraphState, config):
         # Fallback decision structure in case of parsing errors
         decision = {"needs_query": False, "direct_response": "I encountered an error understanding your request."}
 
-    # 7. Route based on the LLM's decision
+    current_master_messages = state.get("master_messages", [])
+
     if decision.get("needs_query"):
         # We capture the rephrased query if generated; if it failed, fallback to original user question
+        state["generated_query"].append([])
         rephrased = decision.get("rephrased_query", user_question)
+        print(rephrased)
+        
+        # Scenario 2 (Start): Append only the user's question to master_messages
+        current_messages = state.get("messages", [])
+        updated_messages = current_messages + [{"role": "user", "content": user_question}]
+        
         return {
             "intent": "data_query",
-            "rephrased_query": rephrased # Store the rephrased query in the state for the SQL generator
+            "rephrased_query": rephrased, # Store the rephrased query in the state for the SQL generator
+            "messages": updated_messages,
+            "final_response": None
         }
     else:
         # Extract the direct response
         direct_response = decision.get("direct_response", "")
         
-        # Grab current messages and append the direct response to form master_messages
-        current_messages = state.get("messages", [])
-        updated_master_messages = current_messages + [{"role": "assistant", "content": direct_response}]
+        # Scenario 1: intent_router updates the master_messages itself
+        updated_master_messages = current_master_messages + [
+            {"role": "assistant", "content": direct_response}
+        ]
         
         return {
             "intent": "chit_chat", 

@@ -1,20 +1,20 @@
 ### Today's date:
 {date}
 
-## CONVERSATION HISTORY (Context for previous attempts):
-{history}
-
-# SCHEMA & CONTEXT (Only use these tables/columns):
+### SCHEMA & CONTEXT (Only use these tables/columns):
 {schemas}
 
-## DATABASE CONTEXT
+### DATABASE CONTEXT
 {data_context}
 
 ### DATABASE RELATIONSHIPS (JOIN KEYS):
 {join_info}
 
-#### RETRIEVED DATABASE VALUES:
+### RETRIEVED DATABASE VALUES:
 {retrieved_values}
 
-# User's question:
-{user_question}
+### CONVERSATION HISTORY (Context for previous attempts):
+{history}
+
+### User Current Quest (Rephrased):
+{USER_REPHRASED_QUESTION}

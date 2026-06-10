@@ -24,8 +24,7 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     data_dir = configurable.get("data_dir", os.path.join("..", "data", "noisy_inclusive"))
     docs_dir = configurable.get("docs_dir", os.path.join("..", "docs", "noisy_inclusive"))
 
-    user_messages = [msg for msg in state.get("messages", []) if msg["role"] == "user"]
-    user_question = user_messages[-1]["content"] if user_messages else ""
+    rephrased_quest = state.get("rephrased_query", "")
 
     needed_columns_dict = state["retrieved_columns"]
     
@@ -52,14 +51,14 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
         data_context=data_context,
         join_info=join_info,
         retrieved_values=retrieved_values,
-        user_question=user_question,
+        USER_REPHRASED_QUESTION=rephrased_quest,
         history=history
     )
 
-    keywords = state.get("keywords", {"PM_Concepts": None, "Views": [], "Attributes": [], "Values": []})
-    pm_concepts = keywords.get("PM_Concepts", None)
-    if pm_concepts:
-        user_prompt = "### PROJECT MANAGEMENT CONCEPTS:\n" + pm_concepts + "\n\n" + user_prompt
+    # keywords = state.get("keywords", {"PM_Concepts": None, "Views": [], "Attributes": [], "Values": []})
+    # pm_concepts = keywords.get("PM_Concepts", None)
+    # if pm_concepts:
+    #     user_prompt = "### PROJECT MANAGEMENT CONCEPTS:\n" + pm_concepts + "\n\n" + user_prompt
 
     state["query_generation_user_prompt"] = user_prompt
 

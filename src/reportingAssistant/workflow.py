@@ -89,9 +89,9 @@ def column_based_graph(output_folder: str='test'):
     return workflow.compile(checkpointer=memory)
 
 def route_by_intent(state: GraphState):
-    if state.get("intent"):
+    if state.get("intent") == "data_query":
         return "keyword_extraction"  # Start the heavy NL2SQL pipeline
-    else:
+    if state.get("intent") == "chit_chat":
         return "format_response"     # Skip straight to the end!
 
 def route_after_execution(state: GraphState, config):
@@ -105,7 +105,7 @@ def route_after_execution(state: GraphState, config):
         return "retry"
     else:
         # If the query succeeded, check if we need to plot
-        to_plot = state["keywords"]["Views"]
+        to_plot = state["keywords"]["to_plot"]
         if to_plot:
             return "visualize"
         else:
@@ -114,8 +114,8 @@ def route_after_execution(state: GraphState, config):
 
 def main():
     output = {}
-    output_folder = 'DiagramFirstTry'
-    follow_up = False
+    output_folder = 'MasterSecondTry'
+    follow_up = True
     os.makedirs(os.path.join(BASE_DIR, 'output', output_folder), exist_ok=True)
 
     app = column_based_graph(output_folder)
@@ -197,15 +197,16 @@ def main():
 
     # ]
     questions = [
-        "سلام خوبی؟",
-        "وضع پروژه‌های‌ام چطور است؟"
+        "لیست پروژه‌هایی که پیشرفت برنامه‌ای بالای ۵۰ درصد دارند را بده.",
+        "به لیست بالا پیشرفت واقعی را هم اضافه کن."
     ]
     if not follow_up:
         for i, user_question in enumerate(questions):
             # if i == 19: continue
             print()
             initial_state = {
-                "messages": [
+                "messages": [], # Messages now initialized empty
+                "master_messages": [
                     {"role": "user", "content": user_question}
                 ],
                 "retry_count": 0,
@@ -217,7 +218,8 @@ def main():
                 "query_explanation": None,
                 "retrieved_columns": None,
                 "keywords": None,
-                "query_generation_user_prompt": None
+                "query_generation_user_prompt": None,
+                'response': []
             }
 
             # Dynamically pass global paths through the configuration context
@@ -264,69 +266,71 @@ def main():
 
 # 1. Initialize the state ONCE outside the loop to persist the session
     else:
-        for i, user_question in enumerate(questions):
 
-            current_state = {
-                "messages": [],
-                "retry_count": 0,
-                "summary_context": None,
-                "generated_query": [],        # Now List[List[str]]
-                "error_message": [],          # Changed to list to track errors per attempt
-                "query_results": None,
-                "validation_result": None,
-                "query_explanation": [],      # Changed to list
-                "retrieved_columns": None,
-                "keywords": None,
-                "query_generation_user_prompt": None
+        current_state = {
+            "messages": [],
+            "master_messages": [], 
+            "retry_count": 0,
+            "summary_context": None,
+            "generated_query": [],        # Now List[List[str]]
+            "error_message": [],          # Changed to list to track errors per attempt
+            "query_results": None,
+            "validation_result": None,
+            "query_explanation": [],      # Changed to list
+            "retrieved_columns": None,
+            "keywords": None,
+            "query_generation_user_prompt": None,
+            'response': []
+        }
+
+        # 2. Iterate through questions in the same session
+        for i, user_question in enumerate(questions):
+            print(f"\n--- Processing Turn {i}: {user_question} ---")
+
+            # Append new question to messages
+            current_state["master_messages"].append({"role": "user", "content": user_question})
+            
+            # Initialize a new inner list for this turn's query attempts
+            # current_state["generated_query"].append([])
+            
+            # Reset transient fields for the new turn
+            current_state["retry_count"] = 0
+            current_state["final_reponse"] = ""
+            current_state["error_message"] = [] 
+
+            config = {
+                "configurable": {
+                    "thread_id": "session_01", 
+                    "model_name": 'open_router',
+                    "prompt_template_dir": PROMPT_TEMPLATE_DIR,
+                    "data_dir": DATA_DIR,
+                    "docs_dir": DOCS_DIR
+                }
             }
 
-            # 2. Iterate through questions in the same session
-            for i, user_question in enumerate(questions):
-                print(f"\n--- Processing Turn {i}: {user_question} ---")
+            # Invoke the graph, passing the PERSISTENT state
+            start_time = time.perf_counter()
+            current_state = app.invoke(current_state, config=config)
+            end_time = time.perf_counter()
+            
+            # Process results as before
+            duration = end_time - start_time
+            
+            # Capture the assistant's final response for the chat history
+            # (Assuming format_final_response updated the 'messages' list)
+            
+            question_data = {
+                "turn": i,
+                "question": user_question,
+                "query_results": current_state.get("query_results"),
+                "time_spent_seconds": round(duration, 4)
+            }
 
-                # Append new question to messages
-                current_state["messages"].append({"role": "user", "content": user_question})
-                
-                # Initialize a new inner list for this turn's query attempts
-                current_state["generated_query"].append([])
-                
-                # Reset transient fields for the new turn
-                current_state["retry_count"] = 0
-                current_state["error_message"] = [] 
+            # Save output for this turn
+            with open(os.path.join(BASE_DIR, 'output', output_folder, f'turn_{i}.json'), 'w', encoding="utf-8") as f:
+                json.dump(current_state, f, ensure_ascii=False, indent=2)
 
-                config = {
-                    "configurable": {
-                        "thread_id": "session_01", 
-                        "model_name": 'open_router',
-                        "prompt_template_dir": PROMPT_TEMPLATE_DIR,
-                        "data_dir": DATA_DIR,
-                        "docs_dir": DOCS_DIR
-                    }
-                }
-
-                # Invoke the graph, passing the PERSISTENT state
-                start_time = time.perf_counter()
-                current_state = app.invoke(current_state, config=config)
-                end_time = time.perf_counter()
-                
-                # Process results as before
-                duration = end_time - start_time
-                
-                # Capture the assistant's final response for the chat history
-                # (Assuming format_final_response updated the 'messages' list)
-                
-                question_data = {
-                    "turn": i,
-                    "question": user_question,
-                    "query_results": current_state.get("query_results"),
-                    "time_spent_seconds": round(duration, 4)
-                }
-
-                # Save output for this turn
-                with open(os.path.join(BASE_DIR, 'output', output_folder, f'turn_{i}.json'), 'w', encoding="utf-8") as f:
-                    json.dump(current_state, f, ensure_ascii=False, indent=2)
-
-            print("--- Chat Session Complete ---")
+        print("--- Chat Session Complete ---")
 
 
 if __name__ == "__main__":

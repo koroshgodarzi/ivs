@@ -9,10 +9,9 @@ Given a user question, extract information into the following five categories:
 1. "Views" (نام ویوها): The exact view names (from the list above) that are most relevant to the question.
 2. "Attributes" (ویژگی‌ها): The specific columns, fields, or properties requested to be shown or used as filters (e.g., Progress Percentage, End Date, Status, Name). Crucial: If the user mentions a specific value, infer and extract the ATTRIBUTE that value represents.
 3. "Values" (مقادیر): The specific names, numbers, or dates used for filtering.
-4. "PM_Concepts" (مفاهیم مدیریت پروژه): Extract any project management concept mentioned in the question (e.g., SPI, CPI, EV, Overbudget, Overdue tasks, Overallocation). Provide a short explanation and its mathematical formulation. CRITICAL: The explanation and formulation for this field MUST be written strictly in ENGLISH. If the question does not contain a specific project management concept, return `null`.
-5. "to_plot" (رسم نمودار): A boolean value (`true` or `false`) indicating whether the user explicitly asks for a plot, chart, graph, or visual representation of the data. Set to `true` if a plot is requested, otherwise `false`.
+4. "to_plot" (رسم نمودار): A boolean value (`true` or `false`) indicating whether the user explicitly asks for a plot, chart, graph, or visual representation of the data. Set to `true` if a plot is requested, otherwise `false`.
 
-Format your output STRICTLY as a JSON object with keys: "Views", "Attributes", "Values", "PM_Concepts", and "to_plot". Do not include any explanation outside the JSON.
+Format your output STRICTLY as a JSON object with keys: "Views", "Attributes", "Values", and "to_plot". Do not include any explanation outside the JSON.
 
 Examples:
 
@@ -22,7 +21,6 @@ Output:
   "Views": ["Report.vw_Projects"],
   "Attributes": ["وضعیت پروژه", "شاخص عملکرد زمان‌بندی (SPI)"],
   "Values": ["جاری", "< 1"],
-  "PM_Concepts": "Schedule Performance Index (SPI): The ratio of work performed to work scheduled. Formula: (Actual Progress / Planned Progress). A value less than 1 indicates the project is behind schedule.",
   "to_plot": false
 }
 
@@ -32,7 +30,6 @@ Output:
   "Views": ["Report.vw_WorkItems"],
   "Attributes": ["نام فعالیت (اقلام کاری)", "میزان پیشرفت", "سطح فعالیت", "نام پروژه"],
   "Values": ["1", "ناصری"],
-  "PM_Concepts": null,
   "to_plot": true
 }
 
@@ -42,7 +39,6 @@ Output:
   "Views": ["Report.vw_Contracts"],
   "Attributes": ["ارزش کسب‌شده (EV)", "شاخص عملکرد هزینه (CPI)", "نام پروژه", "مبلغ پرداخت شده"],
   "Values": ["ناصری", "> 0"],
-  "PM_Concepts": "Earned Value (EV): The value of actual work performed based on the budget. Formula: (Initial Contract Amount * Actual Progress). Cost Performance Index (CPI): A measure of cost efficiency. Formula: (EV / Actual Cost or Paid Amount).",
   "to_plot": false
 }
 
@@ -52,7 +48,6 @@ Output:
   "Views": ["Report.vw_Projects"],
   "Attributes": ["نام پروژه", "میزان پیشرفت", "مکان (شهر)"],
   "Values": ["تهران"],
-  "PM_Concepts": null,
   "to_plot": true
 }
 
@@ -62,7 +57,6 @@ Output:
   "Views": ["Report.vw_WorkItems"],
   "Attributes": ["نام پروژه", "تاریخ پایان برنامه‌ای", "پیشرفت فیزیکی"],
   "Values": ["مجتمع پاسارگاد", "گذشته", "< 100"],
-  "PM_Concepts": "Overdue Tasks (Backlog): Activities whose planned end date has passed but are not yet completed, meaning their physical actual progress is less than 100%.",
   "to_plot": false
 }
 
@@ -72,7 +66,6 @@ Output:
   "Views": ["Report.vw_Contracts"],
   "Attributes": ["مبلغ نهایی قرارداد", "مبلغ اولیه قرارداد"],
   "Values": ["مبلغ نهایی قرارداد > مبلغ اولیه قرارداد"],
-  "PM_Concepts": "Cost Overrun / Cost Variance: Occurs when the actual or final costs exceed the estimated budget or initial amount. It represents a condition where (Final Amount > Initial Amount).",
   "to_plot": false
 }
 
@@ -82,7 +75,6 @@ Output:
   "Views": ["Report.vw_Projects"],
   "Attributes": ["بودجه", "هزینه واقعی", "وضعیت پروژه"],
   "Values": ["تکمیل شده"],
-  "PM_Concepts": null,
   "to_plot": true
 }
 
@@ -92,7 +84,6 @@ Output:
   "Views": ["Report.vw_ResourceUsage"],
   "Attributes": ["مجموع ساعات کارکرد (مقدار استفاده)"],
   "Values": ["> 200"],
-  "PM_Concepts": "Resource Overallocation: A condition in resource management where a resource (labor, equipment, etc.) is assigned more work than its available capacity.",
   "to_plot": false
 }
 
@@ -100,7 +91,6 @@ Output:
 Here is the conversation history:
 {HISTORY_HERE}
 
-Now, process the following user question:
-User Question: [USER_QUESTION_HERE]
+User Current Quest (Rephrased): [USER_REPHRASED_QUESTION]
 Output:
 ```
