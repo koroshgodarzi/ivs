@@ -1,0 +1,76 @@
+[
+    {
+        "name": "FromDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2000-01-01",
+            "2008-06-01"
+        ]
+    },
+    {
+        "name": "ToDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-07",
+            "2008-06-14"
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            0.8771929824561369
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            0.01
+        ]
+    },
+    {
+        "name": "PlanCommulative",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            2.6208026208026207
+        ]
+    },
+    {
+        "name": "ActualCommulative",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            0.01
+        ]
+    },
+    {
+        "name": "TimePeriod",
+        "type": "VARCHAR(20) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "Daily",
+            "Monthly",
+            "Seasonally",
+            "Sixmonth",
+            "Weekly",
+            "Yearly"
+        ]
+    }
+]

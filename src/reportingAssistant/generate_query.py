@@ -4,7 +4,7 @@ from utils import (
     create_data_context_for_schemas, fix_sql_wildcards, get_join_relationships
 )
 from reportingAssistant.schema import GraphState
-from reportingAssistant.date import today_date
+from reportingAssistant.date import today_date, get_sql_date_prompt
 from reportingAssistant.preprocessing import format_chat_history
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
@@ -29,13 +29,18 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
     needed_columns_dict = state["retrieved_columns"]
     
     # Pass explicit path definitions down to helper functions
-    join_info = get_join_relationships(state["keywords"]["Views"], csv_file_path=os.path.join(docs_dir, 'IDColumns.csv'))
+    join_info = get_join_relationships(state["retrieved_columns"].keys(), csv_file_path=os.path.join(docs_dir, 'IDColumns.csv'))
     all_schemas_metadata = create_ddl_for_schemas(needed_columns_dict, data_dir=data_dir)
     data_context = create_data_context_for_schemas(needed_columns_dict, data_dir=data_dir)
     join_info = format_join_info_for_llm(join_info)
     today = today_date(["Persian"])
 
     date = '\n'.join(f"in {calendar} is {date}" for calendar, date in today.items())
+    date_range = state.get("date_range", {})
+    date_range_str = ""
+    if date_range.get("start_date", None) or date_range.get("end_date", None):
+        date_range_str = get_sql_date_prompt(date_range)
+    
 
     history = state["chat_history"]
     
@@ -52,7 +57,8 @@ def sql_generator_column_based(state: GraphState, config: RunnableConfig) -> Gra
         join_info=join_info,
         retrieved_values=retrieved_values,
         USER_REPHRASED_QUESTION=rephrased_quest,
-        history=history
+        history=history,
+        date_range=date_range_str
     )
 
     # keywords = state.get("keywords", {"PM_Concepts": None, "Views": [], "Attributes": [], "Values": []})

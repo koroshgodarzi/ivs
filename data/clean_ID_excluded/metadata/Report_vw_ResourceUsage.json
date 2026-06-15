@@ -1,0 +1,119 @@
+[
+    {
+        "name": "VolUnit",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ResourceID",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            2,
+            10
+        ]
+    },
+    {
+        "name": "UsageAmount",
+        "type": "DECIMAL(18, 2)",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "1",
+            "2"
+        ]
+    },
+    {
+        "name": "Comments",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "3241",
+            "sdfsdfsdf",
+            "بررسی اشکالات",
+            "توسعه",
+            "متر"
+        ]
+    },
+    {
+        "name": "Cost",
+        "type": "DECIMAL(18, 2)",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "Abbreviation",
+        "type": "NVARCHAR(50) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "ResourceName",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Ali",
+            "CAT 797F dump truck"
+        ]
+    },
+    {
+        "name": "ResourceTypeName",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "مواد",
+            "کار"
+        ]
+    },
+    {
+        "name": "ResourceGroupName",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "heavy equipment",
+            "ماشین آلات",
+            "ماشین الات",
+            "مصالح",
+            "نیروی انسانی"
+        ]
+    },
+    {
+        "name": "WBSName",
+        "type": "NVARCHAR(255) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Analyse",
+            "اجرای فونداسیون - بلوک 3"
+        ]
+    },
+    {
+        "name": "WBSPath",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Project test2/phase1/Analyse",
+            "پروژه سمپل"
+        ]
+    },
+    {
+        "name": "ActualStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2017-05-22",
+            "2017-05-29"
+        ]
+    }
+]

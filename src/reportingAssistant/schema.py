@@ -11,6 +11,7 @@ class GraphState(TypedDict):
     messages: Annotated[List[dict], "SQL technical history (Assistant only)"]
     master_messages: Annotated[List[dict], "Master's Chat history (User and Assistant)"]
     rephrased_query: str
+    date_range: dict
     generated_query: Optional[List[List[str]]] 
     query_results: Optional[str]  # Results from executing the query
     error_message: Optional[List[str]]

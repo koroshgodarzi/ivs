@@ -1,0 +1,11 @@
+[
+    {
+        "name": "نام_و_نام_خانوادگی",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "جواد احمدی"
+        ]
+    }
+]

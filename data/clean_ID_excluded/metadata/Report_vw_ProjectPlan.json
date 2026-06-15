@@ -1,0 +1,32 @@
+[
+    {
+        "name": "ProjectPlanName",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "01",
+            "030506"
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "AQR Sample Project",
+            "Construction P"
+        ]
+    },
+    {
+        "name": "isDefault",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    }
+]

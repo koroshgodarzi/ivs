@@ -1,0 +1,192 @@
+[
+    {
+        "name": "WorkItemID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "WeightOfWhole",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.5001125253181964,
+            2.9173230643561454
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "مجتمع الهیه",
+            "پارس"
+        ]
+    },
+    {
+        "name": "WorkItemTitle",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "اجرای فونداسیون - بلوک 10",
+            "اجرای اسکلت و سقف - بلوک 10"
+        ]
+    },
+    {
+        "name": "Duration",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            21.0,
+            120.0
+        ]
+    },
+    {
+        "name": "DurationUnit",
+        "type": "CHAR(3) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "DAY",
+            "MON",
+            "HOR"
+        ]
+    },
+    {
+        "name": "ActualStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-22",
+            "2011-03-02"
+        ]
+    },
+    {
+        "name": "ActualEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-29",
+            "2011-04-21"
+        ]
+    },
+    {
+        "name": "PlanStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-19",
+            "2011-02-10"
+        ]
+    },
+    {
+        "name": "PlanEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-02-09",
+            "2011-07-05"
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            48.25481818181818,
+            38.872270547945284
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            100.0,
+            0.0
+        ]
+    },
+    {
+        "name": "DisciplineName",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "BIM",
+            "Mechanical"
+        ]
+    },
+    {
+        "name": "WorkItemType",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            "public"
+        ]
+    },
+    {
+        "name": "WorkflowModel",
+        "type": "NVARCHAR(150) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "کلاس 1_2_1",
+            "Test case"
+        ]
+    },
+    {
+        "name": "VolumnOfWork",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            1234567890.0
+        ]
+    },
+    {
+        "name": "VolUnitAbbr",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "Amp",
+            "Pcs"
+        ]
+    },
+    {
+        "name": "VolUnit",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "ست",
+            "متر"
+        ]
+    },
+    {
+        "name": "ResponsibleUser",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "فاطمه کلانتری",
+            "Project Admin"
+        ]
+    }
+]

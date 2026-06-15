@@ -1,0 +1,12 @@
+[
+    {
+        "name": "متن",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "سیبقل",
+            "مذعذمتذ "
+        ]
+    }
+]

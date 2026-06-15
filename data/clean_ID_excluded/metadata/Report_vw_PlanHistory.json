@@ -1,0 +1,72 @@
+[
+    {
+        "name": "PlanHistoryID",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            1,
+            2
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "فاز اول - ناصری",
+            "فاز اول - احمدی"
+        ]
+    },
+    {
+        "name": "wbsName",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "فاز اول - ناصری",
+            "بلوک 3"
+        ]
+    },
+    {
+        "name": "ProjectPlanName",
+        "type": "NVARCHAR(1024) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "MAIN",
+            "پایه"
+        ]
+    },
+    {
+        "name": "CreationTime",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2024-05-26",
+            "2024-08-03"
+        ]
+    },
+    {
+        "name": "PlanStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2010-12-22",
+            "2011-01-08"
+        ]
+    },
+    {
+        "name": "PlanEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2013-08-02",
+            "2013-06-24"
+        ]
+    }
+]

@@ -9,6 +9,7 @@
 
 ### DATABASE RELATIONSHIPS (JOIN KEYS):
 {join_info}
+CAVEAT: You SHOULD NOT use any other columns for joining
 
 ### RETRIEVED DATABASE VALUES:
 {retrieved_values}
@@ -18,3 +19,4 @@
 
 ### User Current Quest (Rephrased):
 {USER_REPHRASED_QUESTION}
+{date_range}

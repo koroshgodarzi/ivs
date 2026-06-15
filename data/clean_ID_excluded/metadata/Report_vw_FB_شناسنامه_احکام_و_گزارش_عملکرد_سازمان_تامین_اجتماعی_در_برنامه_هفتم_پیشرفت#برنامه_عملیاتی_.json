@@ -1,0 +1,9 @@
+[
+    {
+        "name": "در_صورت_داشتن_برنامه_عملیاتی",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    }
+]

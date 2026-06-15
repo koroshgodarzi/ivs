@@ -6,13 +6,72 @@ import ollama
 import os
 import pickle
 from datasketch import MinHash
+from collections import Counter  # Added for counting view frequencies
+
+
+def retrieve_columns_by_attributes_same_names_excluded(
+    attributes: list, 
+    chosen_views: set, 
+    collection, 
+    get_query_embedding_func,
+    n_results: int = 10  # Added parameter to control number of results
+) -> dict:
+    """
+    Queries ChromaDB to retrieve schema elements matching the attributes, 
+    filtering by the fully qualified chosen views.
+    """
+    retrieved_columns = {}
+    if not attributes:
+        return retrieved_columns
+
+    where_filter = None
+    if chosen_views:
+        if len(chosen_views) == 1:
+            where_filter = {"view_name": list(chosen_views)[0]}
+        else:
+            where_filter = {"view_name": {"$in": list(chosen_views)}}
+
+    for attr in attributes:
+        query_embedding = get_query_embedding_func(attr)
+        
+        # 1. Over-fetch by asking for a larger pool of results (e.g., 5x the desired amount)
+        over_fetch_limit = n_results * 5 
+        
+        results = collection.query(
+            query_embeddings=[query_embedding],
+            n_results=over_fetch_limit,  
+            include=["documents", "metadatas"],
+            where=where_filter
+        )
+        
+        if results and results.get('metadatas') and results['metadatas'][0]:
+            seen_column_names = set()
+            unique_metadatas = []
+            
+            # 2. Iterate in order to naturally keep the ones with the highest similarity
+            for metadata in results['metadatas'][0]:
+                # Assuming your metadata uses 'column' or 'column_name'. Adjust the key if needed.
+                col_name = metadata.get("view_column", metadata.get("column_name"))
+                
+                if col_name not in seen_column_names:
+                    seen_column_names.add(col_name)
+                    unique_metadatas.append(metadata)
+                    
+                # 3. Early exit once we have the exact number of unique columns requested
+                if len(unique_metadatas) == n_results:
+                    break
+                    
+            retrieved_columns[attr] = unique_metadatas
+            
+    return retrieved_columns
 
 
 def retrieve_columns_by_attributes(
     attributes: list, 
     chosen_views: set, 
     collection, 
-    get_query_embedding_func
+    get_query_embedding_func,
+    n_results: int = 10  # Added parameter to control number of results
 ) -> dict:
     """
     Queries ChromaDB to retrieve schema elements matching the attributes, 
@@ -33,11 +92,11 @@ def retrieve_columns_by_attributes(
         query_embedding = get_query_embedding_func(attr)
         results = collection.query(
             query_embeddings=[query_embedding],
-            n_results=10, 
+            n_results=n_results,  # Uses the dynamic parameter
             include=["documents", "metadatas"],
             where=where_filter
         )
-        if results and results.get('metadatas'):
+        if results and results.get('metadatas') and results['metadatas'][0]:
             retrieved_columns[attr] = results['metadatas'][0]
             
     return retrieved_columns
@@ -135,7 +194,8 @@ def querying(state: GraphState, config: RunnableConfig) -> GraphState:
     Main node orchestrating view identification, schema querying, and LSH matching.
     """
     keywords = state.get("keywords", {"PM_Concepts": None, "Views": [], "Attributes": [], "Values": []})
-    chosen_views = keywords.get("Views", [])
+    attributes = keywords.get("Attributes", [])
+    provided_views = keywords.get("Views", [])
 
     # Fetch configured dynamic paths
     configurable = config.get("configurable", {})
@@ -144,18 +204,60 @@ def querying(state: GraphState, config: RunnableConfig) -> GraphState:
     client = chromadb.PersistentClient(path=os.path.join(data_dir, 'schema_db'))
     collection = client.get_collection("schema_collection")
     
-    # Check attributes using unmodified, fully qualified chosen view names
+    chosen_views_list = []
+    
+    # Priority 1: Add explicitly provided views (up to 3)
+    for v in provided_views:
+        if v not in chosen_views_list:
+            chosen_views_list.append(v)
+        if len(chosen_views_list) == 3:
+            break
+
+    # --- STEP 1: View Discovery Phase ---
+    if attributes:
+        # Pass 1: Extract 20 columns per attribute without any view constraints
+        initial_columns = retrieve_columns_by_attributes(
+            attributes=attributes,
+            chosen_views=set(),  # No filter
+            collection=collection,
+            get_query_embedding_func=get_query_embedding,
+            n_results=10
+        )
+        
+        # Count the view_names from the retrieved metadata
+        view_counter = Counter()
+        for attr, metadatas in initial_columns.items():
+            for metadata in metadatas:
+                if "view_name" in metadata:
+                    view_counter[metadata["view_name"]] += 1
+                    
+        # Select the top 3 most repeated views
+        for view, count in view_counter.most_common():
+            if view not in chosen_views_list:
+                chosen_views_list.append(view)
+            if len(chosen_views_list) == 3:
+                break
+
+        chosen_views = set(chosen_views_list)
+        print(f"---Dynamically Discovered Top 3 Views---\n{list(chosen_views)}")
+    else:
+        # Fallback if no attributes are provided to infer views from
+        chosen_views = set(keywords.get("Views", []))
+
+    # --- STEP 2: Final Filtered Retrieval ---
+    # Pass 2: Retrieve exactly 10 columns filtered strictly by the top 3 views
     retrieved_columns = retrieve_columns_by_attributes(
-        attributes=keywords.get("Attributes", []),
-        chosen_views=set(chosen_views),
+        attributes=attributes,
+        chosen_views=chosen_views,
         collection=collection,
-        get_query_embedding_func=get_query_embedding
+        get_query_embedding_func=get_query_embedding,
+        n_results=10
     )
     
     # Query LSH filtering by the exact fully qualified views
     retrieved_values = retrieve_values_by_lsh(
         values=keywords.get("Values", []),
-        chosen_views=set(chosen_views),
+        chosen_views=chosen_views,
         retrieved_columns=retrieved_columns,
         lsh_path=os.path.join(data_dir, 'lsh_index.pkl')
     )
@@ -163,7 +265,7 @@ def querying(state: GraphState, config: RunnableConfig) -> GraphState:
     retrieved_schema_formatted = format_retrieved_schema(retrieved_columns)
     retrieved_values_formatted = format_retrieved_values(retrieved_values)
 
-    print(f"---Chosen Views---\n{list(chosen_views)}")
+    print(f"---Final Chosen Views applied to filter---\n{list(chosen_views)}")
     print(f"---Retrieved Schema---\n{retrieved_schema_formatted}")
     print(f"---Retrieved Values via LSH---\n{retrieved_values_formatted}")
 

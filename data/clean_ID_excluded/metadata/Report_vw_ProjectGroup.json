@@ -1,0 +1,12 @@
+[
+    {
+        "name": "ProjectGroupName",
+        "type": "NVARCHAR(100) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "Phase 1-1",
+            "portTest2"
+        ]
+    }
+]

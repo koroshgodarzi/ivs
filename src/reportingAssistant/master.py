@@ -1,7 +1,7 @@
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_openai import ChatOpenAI
 from reportingAssistant.schema import GraphState
-from reportingAssistant.date import today_date  # Added import for today's date
+from reportingAssistant.date import today_date
 from utils import get_llm, extract_json_from_text, ommiting_think_block, count_chat_tokens
 import os
 import json
@@ -11,7 +11,8 @@ def intent_router(state: GraphState, config):
     """
     Analyzes the user's input, decides if a query is needed, 
     and generates a response immediately if no query is needed.
-    If a query is needed, it rephrases the quest based on chat history.
+    If a query is needed, it rephrases the request based on chat history,
+    and extracts standard numerical date ranges (e.g. Jalali to YYYY/MM/DD).
     """
     # 1. Get current user question
     user_messages = [msg for msg in state.get("master_messages", []) if msg["role"] == "user"]
@@ -77,15 +78,22 @@ def intent_router(state: GraphState, config):
     except (json.JSONDecodeError, ValueError) as e:
         print(f"Failed to parse keywords as JSON: {e}")
         # Fallback decision structure in case of parsing errors
-        decision = {"needs_query": False, "direct_response": "I encountered an error understanding your request."}
+        decision = {
+            "needs_query": False, 
+            "direct_response": "I encountered an error understanding your request."
+        }
 
     current_master_messages = state.get("master_messages", [])
 
     if decision.get("needs_query"):
         # We capture the rephrased query if generated; if it failed, fallback to original user question
-        state["generated_query"].append([])
+        state.setdefault("generated_query", []).append([]) # Use setdefault to avoid KeyError
         rephrased = decision.get("rephrased_query", user_question)
-        print(rephrased)
+        
+        # --- NEW: Extract Date Range ---
+        # Provide a safe fallback dictionary if 'date_range' is missing in the LLM response
+        date_range = decision.get("date_range", {"start_date": None, "end_date": None})
+        print(f"Extracted Date Range: {date_range}")
         
         # Scenario 2 (Start): Append only the user's question to master_messages
         current_messages = state.get("messages", [])
@@ -94,6 +102,7 @@ def intent_router(state: GraphState, config):
         return {
             "intent": "data_query",
             "rephrased_query": rephrased, # Store the rephrased query in the state for the SQL generator
+            "date_range": date_range,     # <--- ADDED: Passes dates to the next node
             "messages": updated_messages,
             "final_response": None
         }

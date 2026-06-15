@@ -1,0 +1,176 @@
+[
+    {
+        "name": "Duration",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            15.0
+        ]
+    },
+    {
+        "name": "DurationUnit",
+        "type": "CHAR(3) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "DAY",
+            "MON",
+            "HOR"
+        ]
+    },
+    {
+        "name": "IsActivity",
+        "type": "BIT",
+        "nullable": false,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "Name",
+        "type": "NVARCHAR(500) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "تست زیرشاخه",
+            "Contracts"
+        ]
+    },
+    {
+        "name": "PlanEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-01",
+            "2008-06-20"
+        ]
+    },
+    {
+        "name": "PlanStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2008-06-01",
+            "2008-06-02"
+        ]
+    },
+    {
+        "name": "ActualEndDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-13",
+            "2011-01-08"
+        ]
+    },
+    {
+        "name": "ActualStartDate",
+        "type": "DATE",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "2011-01-06",
+            "2011-01-08"
+        ]
+    },
+    {
+        "name": "IsMilestone",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "ProjectName",
+        "type": "NVARCHAR(4000) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": false,
+        "default": null,
+        "example_values": [
+            "فاز اول - ناصری",
+            "Construction Project"
+        ]
+    },
+    {
+        "name": "Weight",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            11.363636363636363
+        ]
+    },
+    {
+        "name": "Critical",
+        "type": "BIT",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            false,
+            true
+        ]
+    },
+    {
+        "name": "PlanProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            100.0
+        ]
+    },
+    {
+        "name": "ActualProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            0.0,
+            87.80050000000003
+        ]
+    },
+    {
+        "name": "FieldProgress",
+        "type": "FLOAT",
+        "nullable": true,
+        "default": null,
+        "unique_values": []
+    },
+    {
+        "name": "lvl",
+        "type": "CHAR(2) COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "unique_values": [
+            "2 ",
+            "3 ",
+            "6 ",
+            "4 ",
+            "7 ",
+            "8 ",
+            "5 ",
+            "1 "
+        ]
+    },
+    {
+        "name": "ParentPath",
+        "type": "NVARCHAR COLLATE \"Latin1_General_CI_AS\"",
+        "nullable": true,
+        "default": null,
+        "example_values": [
+            "فاز اول - ناصری/بلوک 3/تست زیرشاخه",
+            " Construction Project/Contracts"
+        ]
+    }
+]
